@@ -15,7 +15,6 @@ public class ActualTaskStatus
     private Employee modified_by;
 
 
-
     public ActualTaskStatus()
     {
         //
