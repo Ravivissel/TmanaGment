@@ -1,7 +1,7 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 
 /// <summary>
@@ -9,11 +9,13 @@ using System.Web;
 /// </summary>
 public class MyTasks
 {
+    private string project_name;
+    private DateTime end_date;
+    private string task_title;
+    private string assign_to;
 
-    private ActualTask actual_task;
-    private Project project;
-    private Status status;
 
+  
     public MyTasks()
     {
         //
@@ -21,60 +23,77 @@ public class MyTasks
         //
     }
 
-    public MyTasks(ActualTask actual_task, Project project, Status status)
+    public MyTasks(string project_name, DateTime end_date, string task_title, string assign_to)
     {
-        this.Actual_task = actual_task;
-        this.Project = project;
-        this.Status = status;
+        this.Project_name = project_name;
+        this.End_date = end_date;
+        this.Task_title = task_title;
+        this.Assign_to = assign_to;
     }
 
-    public ActualTask Actual_task
+    public string Project_name
     {
         get
         {
-            return actual_task;
+            return project_name;
         }
 
         set
         {
-            actual_task = value;
+            project_name = value;
         }
     }
 
-    public Project Project
+    public DateTime End_date
     {
         get
         {
-            return project;
+            return end_date;
         }
 
         set
         {
-            project = value;
+            end_date = value;
         }
     }
 
-
-    public Status Status
+    public string Task_title
     {
         get
         {
-            return status;
+            return task_title;
         }
 
         set
         {
-            status = value;
+            task_title = value;
         }
     }
 
-
-    public List<MyTasks> getMyTasksList()
+    public string Assign_to
     {
+        get
+        {
+            return assign_to;
+        }
 
+        set
+        {
+            assign_to = value;
+        }
+    }
 
+    public List<MyTasks> getMyTasksList(Employee employee)
+    {
+    
         #region DB functions
-        string query = "select p.title project_title, emp.first_name, at.end_date,at.title task_title, s.title status from projects p inner join actual_project_task apt on apt.project_id = p.id inner join actual_tasks at on at.id = apt.actual_tasks_id inner join actual_tasks_statuses ats on ats.task_id = at.id inner join employees emp on emp.id = at.assign_to inner join statuses s on s.id = ats.status_id where emp.id = 75  and ats.is_current = 1 and s.title = 'Mr';";
+        string query = "select p.title project_title, emp.first_name, at.end_date,at.title task_title, s.title status from projects p inner join actual_project_task apt on apt.project_id = p.id inner join actual_tasks at on at.id = apt.actual_tasks_id inner join actual_tasks_statuses ats on ats.task_id = at.id inner join employees emp on emp.id = at.assign_to inner join statuses s on s.id = ats.status_id " +
+            "where " +
+            "emp.id =" + employee.Id +
+            "and " +
+            "ats.is_current = 1 " +
+            "and " +
+            "s.title = 'Mr';"; // TODO: should be shange to the required status
 
         List<MyTasks> myTaskList =  new List<MyTasks>();
         DbServices db = new DbServices();
@@ -83,22 +102,31 @@ public class MyTasks
         foreach (DataRow dr in ds.Tables[0].Rows)
         {
 
-            Project proj = new Project();
-            ActualTask at = new ActualTask();
-            Status s = new Status();
-            Employee emp = new Employee();
+            try
+            {
+                Project project = new Project();
+                ActualTask actual_task = new ActualTask();
+                Status status = new Status();
 
-            proj.Title = dr["project_title"].ToString();
-            at.End_date = (DateTime)dr["end_date"];
-            at.Title = dr["task_title"].ToString();
-            emp.First_name = dr["first_name"].ToString();
-            at.Assign_to = emp;
-            s.Title = dr["status"].ToString();
+                project.Title = dr["project_title"].ToString();
+                actual_task.End_date = (DateTime)dr["end_date"];
+                actual_task.Title = dr["task_title"].ToString();
+                employee.First_name = dr["first_name"].ToString(); 
+                actual_task.Assign_to = employee;
+                status.Title = dr["status"].ToString();
+                project.Title = dr["project_title"].ToString();
 
-            proj.Title = dr["project_title"].ToString();
-            MyTasks tmpMyTask = new MyTasks(at,proj,status);
 
-            myTaskList.Add(tmpMyTask);
+                MyTasks tmpMyTask = new MyTasks(project.Title, actual_task.End_date, status.Title, actual_task.Assign_to.First_name);
+
+                myTaskList.Add(tmpMyTask);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
         }
         #endregion
         return myTaskList;
