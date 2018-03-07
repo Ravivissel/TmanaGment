@@ -39,6 +39,13 @@ public class Request
         this.assign_to = assign_to;
     }
 
+    public Request(string title, string contact_name, int contact_phone)
+    {
+        this.title = title;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+    }
+
     public int Id
     {
         get
@@ -143,27 +150,42 @@ public class Request
         }
     }
 
-    public List<Request> getRequestList()
+    public List<Request> GetMyRequestsList()
     {
         #region DB functions
-        string query = "select * from requests r inner join requests_statuses rs on r.id = rs.request_id where is_current = 'True' and rs.";
+        string query = "select r.title request_title, r.contact_name, r.contact_phone from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
+            "where " + 
+            "rs.is_current = 1 " +
+            "and " +
+            "s.title = 'Mr';"; // TODO: should be shange to the required status
 
-        List<Request> list = new List<Request>();
+        List<Request> myReqList = new List<Request>();
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
 
         foreach (DataRow dr in ds.Tables[0].Rows)
         {
-            Request tmp = new Request();
-            tmp.Title = dr["title"].ToString();
-            tmp.Contact_name = dr["contact_name"].ToString();
-            tmp.Contact_phone = (int)dr["contact_phone"];
+            try
+            {
+                Request req = new Request();
+                req.Title = dr["request_title"].ToString();
+                req.Contact_name = dr["contact_name"].ToString();
+                req.Contact_phone = (int)dr["contact_phone"];
 
-            list.Add(tmp);
+                Request reqList = new Request(req.Title, req.Contact_name, req.Contact_phone);
+
+                myReqList.Add(reqList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
         }
         #endregion
 
-        return list;
+        return myReqList;
 
     }
 }

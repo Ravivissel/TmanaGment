@@ -6,76 +6,45 @@
     var groupid = userId;
     var request = {
         employeeId: groupid
-    }
+    };
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
+    getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
 }
-
 
 function getMyTaskCB(result) {
-    var myTasksArray = JSON.parse(result.d);
-    var myTasksData = myTasksArray[0];
-
-
-
-
-    function renderMyTaskTable(myTaskData) {
-
-        var counter = 0;
-        var str = "";
-
-
-        //TODO: render a table with all myTaskData
-        /*
-           <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>כותרת</th>
-                                                <th>מבצע</th>
-                                                <th>תאריך יעד</th>
-                                                <th>סטטוס</th>
-                                                <th>פרוייקט</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="myTasksTableBody">
-                                            <tr>
-                                                <td>1</td>
-                                                <td>הוצאת כתב כמויות למלון</td>
-                                                <td>01/01/2017</td>
-                                                <td>26/04/2017</td>
-                                                <td><button class="button badge badge-info">בביצוע</button></td>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>הוצאת כתב כמויות למלון</td>
-                                                <td>01/01/2017</td>
-                                                <td>26/04/2017</td>
-                                                <td><button class="badge badge-danger">מאחרת</button></td>
-                                                <th></th>
-                                            </tr><tr>
-                                                <td>1</td>
-                                                <td>הוצאת כתב כמויות למלון</td>
-                                                <td>01/01/2017</td>
-                                                <td>26/04/2017</td>
-                                                <td><button class="badge badge-warning">קרוב לאיחור</button></td>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>הוצאת כתב כמויות למלון</td>
-                                                <td>01/01/2017</td>
-                                                <td>26/04/2017</td>
-                                                <td><button class="badge badge-info">בביצוע</button></td>
-                                                <th></th>
-                                            </tr>
-
-                                            </tbody>
-        */
-
-    }
-
+    //var myTasksArray = JSON.parse(result.d);
+    //var myTasksData = myTasksArray[0];
+    renderMyTaskTable(result);
 }
+
 function getMyTaskErrorCB(error) {
     console.log(error);
+}
 
+function renderMyTaskTable(myTaskData) {
+    //var counter = 0;
+    //var str = "";
+    results = $.parseJSON(myTaskData.d);
+    $("#myTasksTableBody").empty();
+    $.each(results, function (i, row) {
+        dynamicLi = '<tr id=""><td>1</td><td>' + row.Task_title + '</td><td>' + row.Project_name + '</td><td>' + row.Assign_to + '</td><td>' + row.End_date + '</td><td>' + row.Status + '</td></tr>';
+        $('#myTasksTableBody').append(dynamicLi);
+    });
+}
+
+function getMyRequestCB(result) {
+    renderMyRequestTable(result);
+}
+
+function getMyRequestErrorCB(error) {
+    console.log(error);
+}
+
+function renderMyRequestTable(myRequestData) {
+    results = $.parseJSON(myRequestData.d);
+    $("#myRequestsTableBody").empty();
+    $.each(results, function (i, row) {
+        dynamicLi = '<tr id=""><td>1</td><td>' + row.Title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
+        $('#myRequestsTableBody').append(dynamicLi);
+    });
 }

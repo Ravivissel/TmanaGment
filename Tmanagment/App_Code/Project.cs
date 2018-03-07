@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -48,6 +49,14 @@ public class Project
         this.Modified_at = modified_at;
         this.Created_at = created_at;
         this.Created_by = created_by;
+    }
+
+    public Project(string title, Employee project_manager, DateTime end_date, string contact_name)
+    {
+        this.Title = title;
+        this.Project_manager = project_manager;
+        this.End_date = end_date;
+        this.Contact_name = contact_name;
     }
 
     public int Id
@@ -230,5 +239,45 @@ public class Project
         {
             created_by = value;
         }
+    }
+
+    public List<Project> GetMyOpenedProjectsList() //for the all projects page, only the active projects
+    {
+
+        #region DB functions
+        string query = "select p.title project_title, p.project_manager, p.end_date, p.contact_name from projects p"; // TODO: add a project status - active or not and change the query
+
+        List<Project> openedProjectsList = new List<Project>();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+
+            try
+            {
+                Project project = new Project();
+                Employee emp = new Employee();
+
+                project.Title = dr["title"].ToString();
+                project.End_date = (DateTime)dr["end_date"];
+                emp.First_name = dr["project_manager"].ToString();
+                project.Project_manager = emp;
+                project.Contact_name = dr["contact_name"].ToString();
+
+                Project proj = new Project(project.Title, project.Project_manager, project.End_date, project.Contact_name);
+
+                openedProjectsList.Add(proj);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+        return openedProjectsList;
+
     }
 }

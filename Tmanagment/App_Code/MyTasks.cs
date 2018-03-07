@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web;
@@ -13,9 +12,8 @@ public class MyTasks
     private DateTime end_date;
     private string task_title;
     private string assign_to;
+    private string status;
 
-
-  
     public MyTasks()
     {
         //
@@ -23,12 +21,13 @@ public class MyTasks
         //
     }
 
-    public MyTasks(string project_name, DateTime end_date, string task_title, string assign_to)
+    public MyTasks(string project_name, DateTime end_date, string task_title, string assign_to, string status)
     {
-        this.Project_name = project_name;
-        this.End_date = end_date;
-        this.Task_title = task_title;
-        this.Assign_to = assign_to;
+        this.project_name = project_name;
+        this.end_date = end_date;
+        this.task_title = task_title;
+        this.assign_to = assign_to;
+        this.status = status;
     }
 
     public string Project_name
@@ -83,7 +82,21 @@ public class MyTasks
         }
     }
 
-    public List<MyTasks> getMyTasksList(Employee employee)
+    public string Status
+    {
+        get
+        {
+            return status;
+        }
+
+        set
+        {
+            status = value;
+        }
+    }
+
+
+    public List<MyTasks> GetMyTasksList(Employee employee)
     {
     
         #region DB functions
@@ -114,10 +127,8 @@ public class MyTasks
                 employee.First_name = dr["first_name"].ToString(); 
                 actual_task.Assign_to = employee;
                 status.Title = dr["status"].ToString();
-                project.Title = dr["project_title"].ToString();
 
-
-                MyTasks tmpMyTask = new MyTasks(project.Title, actual_task.End_date, status.Title, actual_task.Assign_to.First_name);
+                MyTasks tmpMyTask = new MyTasks(project.Title, actual_task.End_date, actual_task.Title, actual_task.Assign_to.First_name, status.Title);
 
                 myTaskList.Add(tmpMyTask);
             }
@@ -130,7 +141,7 @@ public class MyTasks
         }
         #endregion
         return myTaskList;
-
+  
     }
 
 }
