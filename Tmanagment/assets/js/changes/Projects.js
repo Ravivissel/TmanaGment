@@ -8,7 +8,7 @@
         employeeId: groupid
     };
 
-    getMyTasks(request, getOpenedProjectsCB, getOpenedProjectsErrorCB);
+    getOpenedProjects(request, getOpenedProjectsCB, getOpenedProjectsErrorCB);
 }
 
 function getOpenedProjectsCB(result) {
@@ -21,9 +21,9 @@ function getOpenedProjectsErrorCB(error) {
 
 function renderActiveProjectsPage(openedProjectsData) {
     results = $.parseJSON(openedProjectsData.d);
-    $("#myRequestsTableBody").empty();
+    //$("#myRequestsTableBody").empty();
     $.each(results, function (i, row) {
         dynamicLi = '<tr id=""><td>1</td><td>' + row.Title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
-        $('#myRequestsTableBody').append(dynamicLi);
+        $('#openedProjects').append(dynamicLi);
     });
 }
