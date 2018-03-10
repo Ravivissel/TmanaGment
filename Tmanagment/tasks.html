@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <title>משימות</title>
+
+
+    <script>
+        var resizefunc = [];
+    </script>
+    <!-- Plugins  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/detect.js"></script>
+    <script src="assets/js/fastclick.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/jquery.blockUI.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="./plugins/switchery/switchery.min.js"></script>
+
+    <!-- Required datatable js -->
+    <script src="./plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="./plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="./plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="./plugins/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="./plugins/datatables/jszip.min.js"></script>
+    <script src="./plugins/datatables/pdfmake.min.js"></script>
+    <script src="./plugins/datatables/vfs_fonts.js"></script>
+    <script src="./plugins/datatables/buttons.html5.min.js"></script>
+    <script src="./plugins/datatables/buttons.print.min.js"></script>
+
+    <!-- Key Tables -->
+    <script src="./plugins/datatables/dataTables.keyTable.min.js"></script>
+
+    <!-- Responsive examples -->
+    <script src="./plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="./plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+    <!-- Selection table -->
+    <script src="./plugins/datatables/dataTables.select.min.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/jquery.core.js"></script>
+    <script src="assets/js/jquery.app.js"></script>
+
+
+
+
+    <link href="./plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="./plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <script src="assets/js/modernizr.min.js"></script>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <script src="assets/js/modernizr.min.js"></script>
+
+    <!-- DataTables -->
+    <link href="./plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="./plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="./plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Multi Item Selection examples -->
+    <link href="./plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <script src="assets/js/modernizr.min.js"></script>
+
+        <!-- page scripts -->
+    <script src="assets/js/changes/ajaxCalls.js"></script>
+    <script src="assets/js/changes/tasksPage.js"></script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+        <!-- Button mobile view to collapse sidebar menu -->
+        <nav class="navbar-custom">
+            <ul class="list-inline menu-left mb-0">
+                <li class="float-left">
+                    <button class="button-menu-mobile open-left waves-light waves-effect">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                </li>
+                <li class="float-left">
+                    <a href="index.html" class="logo"> <span>T-manaGment</span></a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+    </div>
+    <!-- Top Bar End -->
+
+    <!-- ========== Right Sidebar Start ========== -->
+    <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+            <!--- Divider -->
+            <div id="sidebar-menu">
+                <ul>
+
+                    <li>
+                        <a href="index.html" class="waves-effect waves-primary"><i
+                                class="ti-home"></i><span> דף הבית </span></a>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="ti-briefcase"></i> <span> פרוייקטים </span>
+                            <span class="menu-arrow"></span></a>
+
+                        <ul class="list-unstyled">
+                            <li><a href="Projects.html">כל הפרוייקטים</a></li>
+                            <li><a href="ui-buttons.html">Buttons</a></li>
+                            <li><a href="ui-buttons.html">Buttons</a></li>
+                            <li><a href="ui-buttons.html">Buttons</a></li>
+                            <li><a href="ui-buttons.html" class="ion-plus-circled mark "> הוסף פרוייקט</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect waves-primary"><i
+                                class="ti-write"></i><span> משימות </span> </a>
+                        <ul class="list-unstyled">
+                            <li><a href="components-grid.html">Grid</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="ti-headphone-alt"></i>
+                            <span> פניות </span> </a>
+                        <ul class="list-unstyled">
+                            <li><a href="icons-materialdesign.html">Material Design</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="ti-dashboard"></i><span> דאשבורד BI </span> </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- Right Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container-fluid">
+
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <h4 class="page-title" id="welcome-user">ברוך הבא, תומר</h4>
+                            <ol class="breadcrumb float-right">
+
+                            </ol>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget-simple-chart text-right card-box">
+                            <div class="circliful-chart" data-dimension="90" data-text="35%" data-width="5" data-fontsize="14" data-percent="35" data-fgcolor="#5fbeaa" data-bgcolor="#ebeff2"></div>
+                            <h3 class="text-success counter m-t-10">2562</h3>
+                            <p class="text-muted text-nowrap m-b-10">Total Sales today</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget-simple-chart text-right card-box">
+                            <div class="circliful-chart" data-dimension="90" data-text="75%" data-width="5" data-fontsize="14" data-percent="75" data-fgcolor="#3bafda" data-bgcolor="#ebeff2"></div>
+                            <h3 class="text-primary counter m-t-10">5685</h3>
+                            <p class="text-muted text-nowrap m-b-10">Daily visitors</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget-simple-chart text-right card-box">
+                            <div class="circliful-chart" data-dimension="90" data-text="58%" data-width="5" data-fontsize="14" data-percent="58" data-fgcolor="#f76397" data-bgcolor="#ebeff2"></div>
+                            <h3 class="text-pink m-t-10">$ <span class="counter">12480</span></h3>
+                            <p class="text-muted text-nowrap m-b-10">Total Earning</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget-simple-chart text-right card-box">
+                            <div class="circliful-chart" data-dimension="90" data-text="49%" data-width="5" data-fontsize="14" data-percent="49" data-fgcolor="#98a6ad" data-bgcolor="#ebeff2"></div>
+                            <h3 class="text-inverse counter m-t-10">62</h3>
+                            <p class="text-muted text-nowrap m-b-10">Pending Orders</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box table-responsive">
+                            <h4 class="m-t-0 header-title">Buttons example</h4>
+                            <p class="text-muted font-14 m-b-30">
+                                The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
+                            </p>
+
+                            <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                              <tbody>
+
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+    <footer class="footer">
+        <span class="hide-phone">2018 © TmanaGement System Powered by Roy Shoval, Raviv Vissel, Yarden Carmi</span>
+    </footer>
+</div>
+
+<!-- END wrapper -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
