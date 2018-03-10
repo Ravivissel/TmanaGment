@@ -292,8 +292,9 @@
                                         <th>סטטוס</th>
                                     </tr>
                                     </thead>
-                                        <% { %>
-                                        <tbody>
+                                    <tbody>
+                                    <% { %>
+
                                         <% var counter = 0; %>
                                         <% results.forEach(function(result){ %>
                                         <tr id="sds">
@@ -306,8 +307,9 @@
                                         </tr>
                                         <%  counter++ %>
                                         <% }) %>
-                                        <tbody>
+
                                         <% } %>
+                                    <tbody>
                                 </table>
                             </div>
                         </div>
