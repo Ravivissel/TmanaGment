@@ -241,7 +241,7 @@ public class Project
         }
     }
 
-    public List<Project> GetMyOpenedProjectsList() //for the all projects page, only the active projects
+    public List<Project> GetMyOpenedProjectsList() //for the "all projects page", only the active projects
     {
 
         #region DB functions
@@ -259,7 +259,7 @@ public class Project
                 Project project = new Project();
                 Employee emp = new Employee();
 
-                project.Title = dr["title"].ToString();
+                project.Title = dr["project_title"].ToString();
                 project.End_date = (DateTime)dr["end_date"];
                 emp.First_name = dr["project_manager"].ToString();
                 project.Project_manager = emp;

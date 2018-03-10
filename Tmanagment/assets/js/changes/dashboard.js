@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿function init()  {
 
     //Need to change to be dynamic from the user login session
     const userId = 75;
@@ -9,7 +9,7 @@
     };
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
-});
+}
 
 function getMyTaskCB(result) {
     //var myTasksArray = JSON.parse(result.d);
