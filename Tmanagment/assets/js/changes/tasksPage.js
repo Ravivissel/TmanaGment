@@ -1,23 +1,20 @@
 
-    $(document).ready(function() {
+$(document).ready(function () {
 
-        // Default Datatable
-      var t = $('#datatable-buttons').DataTable();
+    getAllTasks(getAllTasksCB, getAllTasksError);
 
-        var counter = 1;
-        t.row.add( [
-            counter +'.1',
-            counter +'.2',
-            counter +'.3',
-            counter +'.4',
-            counter +'.5',
-            counter +'.6',
-            counter +'.7',
-            counter +'.8'
-        ] ).draw( false );
+    function getAllTasksCB(results) {
 
-        counter++;
+        var allTasks = $.parseJSON(results.d);
+        var table = $('#datatable-buttons').DataTable();
 
+        $.each(allTasks, function (index, row) {
+
+            table.row.add([row.Id, row.Title, row.Description, row.Start_date, row.End_date, row.Created_by.First_name, row.Assign_to.First_name]).draw("false");
+           
+        });
+    
+      
 
         //Buttons examples
         var table = $('#datatable-buttons').DataTable({
@@ -42,4 +39,14 @@
         });
 
 
-    } );
+
+    };
+
+    function getAllTasksError(error) {
+
+        console.log(error);
+    }
+});
+
+
+

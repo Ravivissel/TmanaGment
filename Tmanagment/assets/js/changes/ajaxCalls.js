@@ -46,14 +46,13 @@ function getOpenedProjects(request, successCB, errorCB) {
     }); // end of ajax call
 }
 
-function getAllOpenTasks(request, successCB, errorCB) {
+function getAllTasks(successCB, errorCB) {
 
     // serialize the object to JSON string
-    var dataString = JSON.stringify(request);
+   
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/GetAllOpenTasksList',       // server side web service method
-        data: dataString,                          // the parameters sent to the server
+        url: 'TasksWS.asmx/GetAllTasksList',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         contentType: 'application/json; charset = utf-8', // sent to the server
