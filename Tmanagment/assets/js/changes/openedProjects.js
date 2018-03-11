@@ -8,25 +8,17 @@
         employeeId: groupid
     };
 
-    getOpenedProjects(request, getOpenedProjectsCB, getOpenedProjectsErrorCB);
+    getProjects(request, getProjectsCB, getProjectsErrorCB);
 }
 
-function getOpenedProjectsCB(result) {
+function getProjectsCB(result) {
     renderActiveProjectsPage(result);
 }
 
-function getOpenedProjectsErrorCB(error) {
+function getProjectsErrorCB(error) {
     console.log(error);
 }
 
-//function renderActiveProjectsPage(openedProjectsData) {
-//    results = $.parseJSON(openedProjectsData.d);
-//    //$("#myRequestsTableBody").empty();
-//    $.each(results, function (i, row) {
-//        dynamicLi = '<tr id=""><td>1</td><td>' + row.Title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
-//        $('#openedProjects').append(dynamicLi);
-//    });
-//}
 
 function renderActiveProjectsPage(openedProjectsData) {
     results = $.parseJSON(openedProjectsData.d);

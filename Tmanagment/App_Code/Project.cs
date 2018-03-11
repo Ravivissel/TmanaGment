@@ -14,7 +14,7 @@ public class Project
     private string title;
     private string description;
     private Customer customer_id;
-    private int priority_key;
+    private string priority_key; //TODO: change if necessary
     private int request_id;
     private Employee project_manager;
     private DateTime start_date;
@@ -25,7 +25,6 @@ public class Project
     private DateTime created_at;
     private Employee created_by;
 
-
     public Project()
     {
         //
@@ -33,7 +32,17 @@ public class Project
         //
     }
 
-    public Project(int id, string title, string description, Customer customer_id, int priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, int contact_phone, DateTime modified_at, DateTime created_at, Employee created_by)
+    public Project(string title, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string priority_key)
+    {
+        this.Title = title;
+        this.Project_manager = project_manager;
+        this.Start_date = start_date;
+        this.End_date = end_date;
+        this.Contact_name = contact_name;
+        this.Priority_key = priority_key;
+    }
+
+    public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, int contact_phone, DateTime modified_at, DateTime created_at, Employee created_by)
     {
         this.Id = id;
         this.Title = title;
@@ -49,14 +58,6 @@ public class Project
         this.Modified_at = modified_at;
         this.Created_at = created_at;
         this.Created_by = created_by;
-    }
-
-    public Project(string title, Employee project_manager, DateTime end_date, string contact_name)
-    {
-        this.Title = title;
-        this.Project_manager = project_manager;
-        this.End_date = end_date;
-        this.Contact_name = contact_name;
     }
 
     public int Id
@@ -111,7 +112,7 @@ public class Project
         }
     }
 
-    public int Priority_key
+    public string Priority_key
     {
         get
         {
@@ -241,13 +242,13 @@ public class Project
         }
     }
 
-    public List<Project> GetMyOpenedProjectsList() //for the "all projects page", only the active projects
+    public List<Project> GetAllProjectsList() //for the "all projects page", only the active projects
     {
 
         #region DB functions
-        string query = "select p.title project_title, p.project_manager, p.end_date, p.contact_name from projects p"; // TODO: add a project status - active or not and change the query
+        string query = "select p.title project_title, p.project_manager, p.start_date, p.end_date, p.contact_name, p.priority_key from projects p"; // TODO: add a project status - active or not and change the query
 
-        List<Project> openedProjectsList = new List<Project>();
+        List<Project> ProjectsList = new List<Project>();
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
 
@@ -260,14 +261,16 @@ public class Project
                 Employee emp = new Employee();
 
                 project.Title = dr["project_title"].ToString();
+                project.Start_date = (DateTime)dr["start_date"];
                 project.End_date = (DateTime)dr["end_date"];
                 emp.First_name = dr["project_manager"].ToString();
                 project.Project_manager = emp;
                 project.Contact_name = dr["contact_name"].ToString();
+                project.Priority_key = dr["priority_key"].ToString();
 
-                Project proj = new Project(project.Title, project.Project_manager, project.End_date, project.Contact_name);
+                Project proj = new Project(project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key);
 
-                openedProjectsList.Add(proj);
+                ProjectsList.Add(proj);
             }
             catch (Exception ex)
             {
@@ -277,7 +280,7 @@ public class Project
             }
         }
         #endregion
-        return openedProjectsList;
+        return ProjectsList;
 
     }
 }
