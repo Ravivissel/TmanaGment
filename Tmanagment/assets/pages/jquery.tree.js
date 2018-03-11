@@ -69,7 +69,7 @@ $( document ).ready(function() {
             },
             'data' : {
                 'url' : function (node) {
-                    return node.id === '#' ? '../plugins/jstree/ajax_roots.json' : '../plugins/jstree/ajax_children.json';
+                    return node.id === '#' ? './plugins/jstree/ajax_roots.json' : './plugins/jstree/ajax_children.json';
                 },
                 'data' : function (node) {
                     return { 'id' : node.id };
