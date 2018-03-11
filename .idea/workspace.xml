@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="1a6db33a-ae0d-4e60-8dd9-c5692fac8eee" name="Default" comment="Changed the calender to work without the dependency of the api call">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" afterPath="$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" />
       <change beforePath="$PROJECT_DIR$/Tmanagment/index.html" afterPath="$PROJECT_DIR$/Tmanagment/index.html" />
+=======
+    <list default="true" id="1a6db33a-ae0d-4e60-8dd9-c5692fac8eee" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js" afterPath="$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js" />
+      <change beforePath="$PROJECT_DIR$/Tmanagment/login.html" afterPath="$PROJECT_DIR$/Tmanagment/login.html" />
+      <change beforePath="$PROJECT_DIR$/Tmanagment/tasks.html" afterPath="$PROJECT_DIR$/Tmanagment/tasks.html" />
+>>>>>>> origin/tasks_page
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,21 +26,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tmanagment/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3105">
               <caret line="207" column="11" lean-forward="false" selection-start-line="207" selection-start-column="11" selection-end-line="207" selection-end-column="11" />
+=======
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+>>>>>>> origin/tasks_page
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="DashboardWS.asmx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tmanagment/DashboardWS.asmx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="tasks.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/tasks.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3705">
+              <caret line="247" column="132" lean-forward="false" selection-start-line="247" selection-start-column="132" selection-end-line="247" selection-end-column="132" />
+>>>>>>> origin/tasks_page
               <folding />
             </state>
           </provider>
@@ -48,16 +72,39 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Projects.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tmanagment/Projects.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2805">
               <caret line="187" column="78" lean-forward="false" selection-start-line="187" selection-start-column="78" selection-end-line="187" selection-end-column="78" />
+=======
+      <file leaf-file-name="Projects.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/Projects.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+>>>>>>> origin/tasks_page
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
+      <file leaf-file-name="tasksPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding>
+                <element signature="e#443#1424#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> origin/tasks_page
       <file leaf-file-name="ProjectWS.asmx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tmanagment/ProjectWS.asmx">
           <provider selected="true" editor-type-id="text-editor">
@@ -68,41 +115,73 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Projects.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/Projects.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+=======
+      <file leaf-file-name="jquery.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/jquery.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="1" column="2806" lean-forward="false" selection-start-line="1" selection-start-column="2806" selection-end-line="1" selection-end-column="2806" />
+>>>>>>> origin/tasks_page
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Tmanagment/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="249">
               <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+=======
+      <file leaf-file-name="tasks.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/assets/static_data/tasks.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="3" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
+>>>>>>> origin/tasks_page
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="378">
               <caret line="93" column="3" lean-forward="false" selection-start-line="93" selection-start-column="3" selection-end-line="93" selection-end-column="3" />
+=======
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1470">
+              <caret line="98" column="55" lean-forward="false" selection-start-line="98" selection-start-column="55" selection-end-line="98" selection-end-column="55" />
+>>>>>>> origin/tasks_page
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Web.config" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tmanagment/Web.config">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-167">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="Projects.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tmanagment/Projects.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2805">
+              <caret line="187" column="78" lean-forward="false" selection-start-line="187" selection-start-column="78" selection-end-line="187" selection-end-column="78" />
+>>>>>>> origin/tasks_page
               <folding />
             </state>
           </provider>
@@ -141,17 +220,33 @@
       <list>
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/Tmanagment/assets/js/changes/Projects.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/Tmanagment/login.html" />
+=======
+>>>>>>> origin/tasks_page
         <option value="$PROJECT_DIR$/dashboard_view.html" />
         <option value="$PROJECT_DIR$/Tmanagment/s.html" />
         <option value="$PROJECT_DIR$/Tmanagment/assets/js/controllers/dashboard_controller.js" />
         <option value="$PROJECT_DIR$/Tmanagment/dashboard_view.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/Tmanagment/views/dashboard_view.html" />
         <option value="$PROJECT_DIR$/s.html" />
         <option value="$PROJECT_DIR$/Tmanagment/SS.html" />
         <option value="$PROJECT_DIR$/a.html" />
         <option value="$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" />
         <option value="$PROJECT_DIR$/Tmanagment/index.html" />
+=======
+        <option value="$PROJECT_DIR$/Tmanagment/index.html" />
+        <option value="$PROJECT_DIR$/Tmanagment/views/dashboard_view.html" />
+        <option value="$PROJECT_DIR$/s.html" />
+        <option value="$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" />
+        <option value="$PROJECT_DIR$/Tmanagment/SS.html" />
+        <option value="$PROJECT_DIR$/a.html" />
+        <option value="$PROJECT_DIR$/Tmanagment/assets/static_data/tasks.json" />
+        <option value="$PROJECT_DIR$/Tmanagment/login.html" />
+        <option value="$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js" />
+        <option value="$PROJECT_DIR$/Tmanagment/tasks.html" />
+>>>>>>> origin/tasks_page
       </list>
     </option>
   </component>
@@ -172,10 +267,14 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+<<<<<<< HEAD
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/Tmanagment/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+>>>>>>> origin/tasks_page
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1053" />
@@ -273,6 +372,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="dashboard_view.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TmanaGment/Tmanagment/views/dashboard_view.html" />
     <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TmanaGment/Tmanagment/index.html" />
@@ -290,6 +390,27 @@
         <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
         <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.s.html" />
         <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.dashboard_view.html" />
+=======
+  <component name="RunManager" selected="JavaScript Debug.tasks.html">
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TmanaGment/Tmanagment/index.html" />
+    <configuration name="login.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TmanaGment/Tmanagment/login.html" />
+    <configuration name="s.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TmanaGment/Tmanagment/s.html" />
+    <configuration name="tasks.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TmanaGment/Tmanagment/tasks.html" />
+    <configuration name="tasksPage.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="tasksPage.js" working-dir="$PROJECT_DIR$/Tmanagment/assets/js/changes" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.s.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.tasks.html" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.tasksPage.js" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.tasks.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.tasksPage.js" />
+>>>>>>> origin/tasks_page
         <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.s.html" />
       </list>
     </recent_temporary>
@@ -317,11 +438,20 @@
       <workItem from="1520618152703" duration="423000" />
       <workItem from="1520618618235" duration="1498000" />
       <workItem from="1520679619966" duration="125000" />
+<<<<<<< HEAD
+=======
+      <workItem from="1520703413699" duration="2169000" />
+      <workItem from="1520799567190" duration="118000" />
+>>>>>>> origin/tasks_page
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="19262000" />
+=======
+    <option name="totallyTimeSpent" value="22129000" />
+>>>>>>> origin/tasks_page
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -337,6 +467,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16521049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.49815693" order="6" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890856" sideWeight="0.49722" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890856" sideWeight="0.50277996" order="7" side_tool="true" content_ui="tabs" />
@@ -363,6 +494,23 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.4678316" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+=======
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32448378" sideWeight="0.5099285" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3183716" sideWeight="0.49605057" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32448378" sideWeight="0.49007148" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.4678316" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> origin/tasks_page
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,15 +545,19 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+<<<<<<< HEAD
   <component name="VcsManagerConfiguration">
     <MESSAGE value="try to fix tasks_page" />
     <MESSAGE value="Changed the calender to work without the dependency of the api call" />
     <option name="LAST_COMMIT_MESSAGE" value="Changed the calender to work without the dependency of the api call" />
   </component>
+=======
+>>>>>>> origin/tasks_page
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
+<<<<<<< HEAD
           <url>file://$PROJECT_DIR$/Tmanagment/assets/js/changes/Projects.js</url>
           <line>1</line>
           <option name="timeStamp" value="6" />
@@ -422,6 +574,24 @@
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="26" />
+=======
+          <url>file://$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js</url>
+          <line>69</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js</url>
+          <line>55</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js</url>
+          <line>32</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="15" />
+>>>>>>> origin/tasks_page
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -430,7 +600,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+<<<<<<< HEAD
           <folding />
+=======
+>>>>>>> origin/tasks_page
         </state>
       </provider>
     </entry>
@@ -442,6 +615,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/node_modules/ejs/ejs.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -457,6 +631,10 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/node_modules/ejs/ejs.min.js" />
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/controllers/dashboard_controller.js" />
+>>>>>>> origin/tasks_page
     <entry file="file://$PROJECT_DIR$/Tmanagment/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4920">
@@ -466,6 +644,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/views/dashboard_view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5895">
@@ -473,6 +652,9 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/views/dashboard_view.html" />
+>>>>>>> origin/tasks_page
     <entry file="file://$PROJECT_DIR$/Tmanagment/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3105">
@@ -485,7 +667,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+<<<<<<< HEAD
           <folding />
+=======
+>>>>>>> origin/tasks_page
         </state>
       </provider>
     </entry>
@@ -497,6 +682,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/node_modules/ejs/ejs.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -512,6 +698,10 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/node_modules/ejs/ejs.min.js" />
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/controllers/dashboard_controller.js" />
+>>>>>>> origin/tasks_page
     <entry file="file://$PROJECT_DIR$/Tmanagment/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4920">
@@ -521,6 +711,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/views/dashboard_view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5925">
@@ -528,6 +719,9 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/views/dashboard_view.html" />
+>>>>>>> origin/tasks_page
     <entry file="file://$PROJECT_DIR$/Tmanagment/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -576,6 +770,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json" />
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/ajaxCalls.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -583,6 +778,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> origin/tasks_page
     <entry file="file://$PROJECT_DIR$/package.json" />
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/waves.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -606,6 +803,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tmanagment/views/dashboard_view.html" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/node_modules/ejs/ejs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -613,6 +811,9 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/node_modules/ejs/ejs.js" />
+>>>>>>> origin/tasks_page
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/jquery.app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -620,6 +821,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/jquery.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -635,15 +837,22 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/node_modules/ejs/ejs.min.js" />
+>>>>>>> origin/tasks_page
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/tables.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="222" column="14" lean-forward="true" selection-start-line="222" selection-start-column="14" selection-end-line="222" selection-end-column="14" />
+<<<<<<< HEAD
           <folding />
+=======
+>>>>>>> origin/tasks_page
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tmanagment/s.html" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/controllers/dashboard_controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -674,30 +883,77 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tmanagment/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3105">
-          <caret line="207" column="11" lean-forward="false" selection-start-line="207" selection-start-column="11" selection-end-line="207" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/controllers/dashboard_controller.js" />
+    <entry file="file://$PROJECT_DIR$/Tmanagment/views/dashboard_view.html" />
+    <entry file="file://$PROJECT_DIR$/s.html" />
+    <entry file="file://$PROJECT_DIR$/Tmanagment/SS.html" />
+    <entry file="file://$PROJECT_DIR$/a.html" />
     <entry file="file://$PROJECT_DIR$/Tmanagment/DashboardWS.asmx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/dashboard.js" />
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/ajaxCalls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="29" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tmanagment/ProjectWS.asmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> origin/tasks_page
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/Tmanagment/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3105">
+          <caret line="207" column="11" lean-forward="false" selection-start-line="207" selection-start-column="11" selection-end-line="207" selection-end-column="11" />
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="1" column="2806" lean-forward="false" selection-start-line="1" selection-start-column="2806" selection-end-line="1" selection-end-column="2806" />
+>>>>>>> origin/tasks_page
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/Tmanagment/DashboardWS.asmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/static_data/tasks.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="3" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
+>>>>>>> origin/tasks_page
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/packages.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1470">
+          <caret line="98" column="55" lean-forward="false" selection-start-line="98" selection-start-column="55" selection-end-line="98" selection-end-column="55" />
+>>>>>>> origin/tasks_page
           <folding />
         </state>
       </provider>
@@ -710,22 +966,36 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/ProjectWS.asmx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/tasks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3705">
+          <caret line="247" column="132" lean-forward="false" selection-start-line="247" selection-start-column="132" selection-end-line="247" selection-end-column="132" />
+>>>>>>> origin/tasks_page
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/Web.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-167">
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/packages.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+>>>>>>> origin/tasks_page
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/Projects.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -738,14 +1008,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="93" column="3" lean-forward="false" selection-start-line="93" selection-start-column="3" selection-end-line="93" selection-end-column="3" />
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/tasksPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding>
+            <element signature="e#443#1424#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tmanagment/assets/js/changes/Projects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+>>>>>>> origin/tasks_page
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Tmanagment/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/Tmanagment/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+>>>>>>> origin/tasks_page
           <folding />
         </state>
       </provider>

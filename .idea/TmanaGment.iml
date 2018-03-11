@@ -8,6 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" name="jquery" level="project" />
+=======
+>>>>>>> origin/tasks_page
   </component>
 </module>

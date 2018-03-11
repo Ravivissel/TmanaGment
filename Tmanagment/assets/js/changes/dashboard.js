@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿function init() {
+=======
+﻿function init()  {
+>>>>>>> Projects
 
     //Need to change to be dynamic from the user login session
     const userId = 75;
@@ -9,7 +13,11 @@
     };
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> Projects
 
 function getMyTaskCB(result) {
     //var myTasksArray = JSON.parse(result.d);
