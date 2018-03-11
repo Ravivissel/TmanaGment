@@ -46,6 +46,14 @@ public class Request
         this.contact_phone = contact_phone;
     }
 
+    public Request(string title, string contact_name, int contact_phone, Employee assign_to)
+    {
+        this.title = title;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.assign_to = assign_to;
+    }
+
     public int Id
     {
         get
@@ -168,6 +176,7 @@ public class Request
             try
             {
                 Request req = new Request();
+
                 req.Title = dr["request_title"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = (int)dr["contact_phone"];
@@ -186,6 +195,47 @@ public class Request
         #endregion
 
         return myReqList;
+
+    }
+
+    public List<Request> GetRequestsList()
+    {
+        #region DB functions
+        string query = "select r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
+            "where " +
+            "rs.is_current = 1;"; // TODO: should be change to the required status
+
+        List<Request> ReqList = new List<Request>();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Request req = new Request();
+                Employee emp = new Employee();
+
+                req.Title = dr["request_title"].ToString();
+                req.Contact_name = dr["contact_name"].ToString();
+                req.Contact_phone = (int)dr["contact_phone"];
+                emp.First_name = dr["assign_to"].ToString();
+                req.Assign_to = emp;
+
+                Request reqList = new Request(req.Title, req.Contact_name, req.Contact_phone, req.Assign_to);
+
+                ReqList.Add(reqList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+
+        return ReqList;
 
     }
 }

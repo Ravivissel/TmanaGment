@@ -7,16 +7,15 @@ using System.Web;
 using System.Web.Services;
 
 /// <summary>
-/// Summary description for ProjectWS
+/// Summary description for RequestWS
 /// </summary>
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
 [System.Web.Script.Services.ScriptService]
-public class ProjectWS : System.Web.Services.WebService
+public class RequestWS : System.Web.Services.WebService
 {
-
-    public ProjectWS()
+    public RequestWS()
     {
 
         //Uncomment the following line if using designed components 
@@ -24,18 +23,18 @@ public class ProjectWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string GetProjectsList(int employeeId)
+    public string GetRequestsList(int employeeId)
     {
 
         Employee employee = new Employee();
         employee.Id = Convert.ToInt32(employeeId);
 
-        Project projects = new Project();
+        Request requests = new Request();
         try
         {
-            List<Project> projects_list = projects.GetAllProjectsList();
-            string ProjectsListJson = JsonConvert.SerializeObject(projects_list, new IsoDateTimeConverter());
-            return ProjectsListJson;
+            List<Request> requests_list = requests.GetRequestsList();
+            string RequestsListJson = JsonConvert.SerializeObject(requests_list, new IsoDateTimeConverter());
+            return RequestsListJson;
         }
         catch (Exception ex)
         {
@@ -44,4 +43,5 @@ public class ProjectWS : System.Web.Services.WebService
         }
 
     }
+
 }
