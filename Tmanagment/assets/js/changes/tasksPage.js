@@ -1,6 +1,6 @@
 var configuration = {
 
-    staticData: false
+    staticData: true
 
 };
 
