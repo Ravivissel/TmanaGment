@@ -48,45 +48,47 @@ function renderMyRequestTable(myRequestData) {
         $('#myRequestsTableBody').append(dynamicLi);
     });
 
-    //Calender
-    $(document).ready(function () {
+
+}
+
+//Calender
+$(document).ready(function () {
 
 
-        var initialLocaleCode = 'he';
-        $('#calendar').fullCalendar({
+    var initialLocaleCode = 'he';
+    $('#calendar').fullCalendar({
 
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay,listMonth'
-            },
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay,listMonth'
+        },
 
-            defaultDate: '2018-03-12',
-            locale: initialLocaleCode,
-            buttonIcons: false, // show the prev/next text
-            weekNumbers: true,
-            eventLimit: true, // allow "more" link when too many events
-            height: 500,
-            width: 300,
-            navLinks: true, // can click day/week names to navigate views
-            displayEventTime: false, // don't show the time column in list view
+        defaultDate: '2018-03-12',
+        locale: initialLocaleCode,
+        buttonIcons: false, // show the prev/next text
+        weekNumbers: true,
+        eventLimit: true, // allow "more" link when too many events
+        height: 500,
+        width: 300,
+        navLinks: true, // can click day/week names to navigate views
+        displayEventTime: false, // don't show the time column in list view
 
-            googleCalendarApiKey: 'AIzaSyBj-sXH532hBn373ojVSNCkS8zRTETXlTw',
-            eventColor: '#3bafda',
-            lang: 'he',
-            events: 'hcpiii8esnk92cdeha13bm3ris@group.calendar.google.com',
+        googleCalendarApiKey: 'AIzaSyBj-sXH532hBn373ojVSNCkS8zRTETXlTw',
+        eventColor: '#3bafda',
+        lang: 'he',
+        events: 'hcpiii8esnk92cdeha13bm3ris@group.calendar.google.com',
 
-            eventClick: function (event) {
-                // opens events in a popup window
-                window.open(event.url, 'gcalevent', 'width=700,height=600');
-                return false;
-            },
+        eventClick: function (event) {
+            // opens events in a popup window
+            window.open(event.url, 'gcalevent', 'width=700,height=600');
+            return false;
+        },
 
-            loading: function (bool) {
-                $('#loading').toggle(bool);
-            }
-
-        });
+        loading: function (bool) {
+            $('#loading').toggle(bool);
+        }
 
     });
-}
+
+});
