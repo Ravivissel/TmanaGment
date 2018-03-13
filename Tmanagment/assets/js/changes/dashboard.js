@@ -25,7 +25,6 @@ function renderMyTaskTable(myTaskData) {
     //var counter = 0;
     //var str = "";
     results = $.parseJSON(myTaskData.d);
-    $("#myTasksTableBody").empty();
     $.each(results, function (i, row) {
         dynamicLi = '<tr id=""><td>1</td><td>' + row.Task_title + '</td><td>' + row.Project_name + '</td><td>' + row.Assign_to + '</td><td>' + row.End_date + '</td><td>' + row.Status + '</td></tr>';
         $('#myTasksTableBody').append(dynamicLi);
