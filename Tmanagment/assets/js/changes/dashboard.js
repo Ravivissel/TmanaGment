@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿function init() {
-=======
-﻿function init()  {
->>>>>>> Projects
+function init()  {
 
     //Need to change to be dynamic from the user login session
     const userId = 75;
@@ -13,11 +9,7 @@
     };
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
-<<<<<<< HEAD
-};
-=======
 }
->>>>>>> Projects
 
 function getMyTaskCB(result) {
     //var myTasksArray = JSON.parse(result.d);
@@ -55,8 +47,6 @@ function renderMyRequestTable(myRequestData) {
         dynamicLi = '<tr id=""><td>1</td><td>' + row.Title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
         $('#myRequestsTableBody').append(dynamicLi);
     });
-
-
 }
 
 //Calender
