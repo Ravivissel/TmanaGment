@@ -39,6 +39,17 @@ public class Request
         this.assign_to = assign_to;
     }
 
+    public Request(string title, string description, string contact_name, int contact_phone, DateTime created_at, Employee created_by, Employee assign_to)
+    {
+        this.title = title;
+        this.description = description;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.created_at = created_at;
+        this.created_by = created_by;
+        this.assign_to = assign_to;
+    }
+
     public Request(string title, string contact_name, int contact_phone)
     {
         this.title = title;
@@ -162,7 +173,7 @@ public class Request
     {
         #region DB functions
         string query = "select r.title request_title, r.contact_name, r.contact_phone from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
-            "where " + 
+            "where " +
             "rs.is_current = 1 " +
             "and " +
             "s.title = 'Mr';"; // TODO: should be shange to the required status
@@ -237,5 +248,12 @@ public class Request
 
         return ReqList;
 
+    }
+
+    public void SetRequest()
+    {
+        DbServices db = new DbServices();
+        string query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
+        db.ExecuteQuery(query);
     }
 }

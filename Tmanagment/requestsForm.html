@@ -10,6 +10,9 @@
 
     <title>פנייה חדשה</title>
 
+    <!-- Sweet Alert css -->
+    <link href="../plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
     <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" />
     <link href="../plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
 
@@ -101,16 +104,18 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect waves-primary">
                                 <i class="ti-write"></i><span> משימות </span>
+                                <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
-                                <li><a href="components-grid.html">Grid</a></li>
+                                <li><a href="tasks.html">כל המשימות</a></li>
+                                <li><a href="#" class="ion-plus-circled mark "> הוסף משימה</a></li>
                             </ul>
                         </li>
 
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-headphone-alt"></i>
-                                <span> פניות </span>
+                                <i class="ti-headphone-alt"></i><span> פניות </span>
+                                <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
                                 <li><a href="requests.html">כל הפניות</a></li>
@@ -165,11 +170,12 @@
                                         </div>
                                         <label class="control-label col-sm-2">שייך לעובד:</label>
                                         <div class="col-sm-3">
-                                            <select id="assign_to" name="assign_to" class="form-control"> <!--TODO: names will be added dynamicly-->
+                                            <select id="assign_to" name="assign_to" class="form-control">
+                                                <!--TODO: names will be added dynamicly-->
                                                 <option value="בחר" selected="" disabled="">בחר</option>
-                                                <option value="יד 1">תומר</option>
-                                                <option value="יד 2">צילה</option>
-                                                <option value="יד 3">גילה</option>
+                                                <option value="1">תומר</option>
+                                                <option value="2">צילה</option>
+                                                <option value="3">גילה</option>
                                             </select>
                                         </div>
                                     </div>
@@ -190,7 +196,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right m-b-30 m-r-5">
-                                        <button type="submit" id="saveProject" class="btn btn-success waves-effect w-md waves-light m-b-5  m-r-15"><i class="ti-save m-r-5"></i>שמור</button>
+                                        <button type="submit" id="saveRequest" class="btn btn-success waves-effect w-md waves-light m-b-5  m-r-15"><i class="ti-save m-r-5"></i>שמור</button>
                                     </div>
                                 </form>
                             </div>
@@ -245,6 +251,10 @@
     <!--Validation-->
     <script src="../plugins/jquery-validation/js/jquery.validate.min.js"></script>
 
+    <!-- Sweet Alert Js  -->
+    <script src="../plugins/sweet-alert/sweetalert2.min.js"></script>
+    <script src="assets/pages/jquery.sweet-alert.init.js"></script>
+
     <script>
         $(document).ready(function () {
 
@@ -272,8 +282,23 @@
                     },
                     contact_phone: {
                         required: true,
-                        number: true 
+                        number: true
                     },
+                },
+
+                submitHandler: function (form, event) {
+                    event.preventDefault();
+                    //Start of insert request code
+
+                    var request_title = $("#request_title").val();
+                    var assign_to = $("#assign_to option:selected").val();
+                    var contact_name = $("#contact_name").val();
+                    var contact_phone = $("#contact_phone").val();
+                    var description = $("#description").val();
+                    var created_by = "1"; // change to be the actual user
+                    var request = { request_title: request_title, assign_to: assign_to, contact_name: contact_name, contact_phone: contact_phone, description: description, created_by: created_by };
+                    //call the ajax func
+                    insertNewRequest(request, insertNewRequestCB, insertNewRequestErrorCB);
                 },
 
                 // Messages for form validation
@@ -294,6 +319,25 @@
                 },
 
             });
+
+            function insertNewRequestCB(result) {
+                swal({
+                    title: "נשמר",
+                    type: "success",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+                // send user to requests page
+                setTimeout(function () { returnToRequestPage() }, 1001);
+            }
+
+            function insertNewRequestErrorCB(error) {
+                console.log(error);
+            }
+
+            function returnToRequestPage() {
+                location.href = "requests.html";
+            }
         });
     </script>
 
