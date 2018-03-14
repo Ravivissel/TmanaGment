@@ -5,7 +5,6 @@ var configuration = {
 };
 
 
-
 $(document).ready(function () {
 
 

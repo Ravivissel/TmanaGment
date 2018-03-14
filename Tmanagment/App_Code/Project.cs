@@ -32,8 +32,9 @@ public class Project
         //
     }
 
-    public Project(string title, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string priority_key)
+    public Project(int id, string title, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string priority_key)
     {
+        this.id = id;
         this.Title = title;
         this.Project_manager = project_manager;
         this.Start_date = start_date;
@@ -246,7 +247,7 @@ public class Project
     {
 
         #region DB functions
-        string query = "select p.title project_title, p.project_manager, p.start_date, p.end_date, p.contact_name, p.priority_key from projects p"; // TODO: add a project status - active or not and change the query
+        string query = "select p.id, p.title project_title, p.project_manager, p.start_date, p.end_date, p.contact_name, p.priority_key from projects p"; // TODO: add a project status - active or not and change the query
 
         List<Project> ProjectsList = new List<Project>();
         DbServices db = new DbServices();
@@ -260,6 +261,7 @@ public class Project
                 Project project = new Project();
                 Employee emp = new Employee();
 
+                project.Id = (int)dr["id"];
                 project.Title = dr["project_title"].ToString();
                 project.Start_date = (DateTime)dr["start_date"];
                 project.End_date = (DateTime)dr["end_date"];
@@ -268,7 +270,7 @@ public class Project
                 project.Contact_name = dr["contact_name"].ToString();
                 project.Priority_key = dr["priority_key"].ToString();
 
-                Project proj = new Project(project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key);
+                Project proj = new Project(project.Id, project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key);
 
                 ProjectsList.Add(proj);
             }

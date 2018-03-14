@@ -38,9 +38,31 @@
 
     function renderRequestsPage(RequestsData) {
         results = $.parseJSON(RequestsData.d);
+        localStorage.requestList = results;
         $.each(results, function (i, row) {
-            table.row.add([row.Title, row.Contact_name, row.Contact_phone, row.Assign_to.First_name]).draw(false);
+
+            var btnStr = "";
+            var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button>";
+            var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='ערוך'><i class='ti-pencil'></i></button>";
+            btnStr += showBtn + " " + editBtn;
+
+            table.row.add([row.Id, row.Title, row.Contact_name, row.Contact_phone, row.Assign_to.First_name, btnStr]).draw(false);
+        });
+
+        $('#datatable-buttons tbody').on('click', '#show', function () {
+            var data = table.row($(this).parents('tr')).data();
+            arr_details = { requestID: data[0], func: "show" };
+            GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_details));
+            location.href = "requestsForm.html";
+        });
+
+        $('#datatable-buttons tbody').on('click', '#edit', function () {
+            var data = table.row($(this).parents('tr')).data();
+            arr_details = { requestID: data[0], func: "edit" };
+            GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_details));
+            location.href = "requestsForm.html";
         });
     }
-
 });
+
+

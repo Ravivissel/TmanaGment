@@ -27,6 +27,7 @@
 
     <script src="assets/js/changes/ajaxCalls.js"></script>
     <script src="assets/js/changes/Projects.js"></script>
+    <script src="assets/js/changes/master.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -101,16 +102,18 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect waves-primary">
                                 <i class="ti-write"></i><span> משימות </span>
+                                <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
-                                <li><a href="components-grid.html">Grid</a></li>
+                                <li><a href="tasks.html">כל המשימות</a></li>
+                                <li><a href="#" class="ion-plus-circled mark "> הוסף משימה</a></li>
                             </ul>
                         </li>
 
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-headphone-alt"></i>
-                                <span> פניות </span>
+                                <i class="ti-headphone-alt"></i><span> פניות </span>
+                                <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
                                 <li><a href="requests.html">כל הפניות</a></li>
@@ -155,17 +158,27 @@
                                     צפייה ועריכת פרוייקט קיים. לחץ על כפתור חזור בכדי לצפות בכל הפרוייקטים.
                                 </p>
                                 <div class="text-right m-b-30 m-r-5">
-                                    <button class="btn btn-secondary waves-effect w-md m-b-5"> <i class="ti-back-right m-r-5"></i><span>חזור</span></button>
+                                    <button onclick="returnToOpenedProjectsPage()" class="btn btn-secondary waves-effect w-md m-b-5"> <i class="ti-back-right m-r-5"></i><span>חזור</span></button>
                                 </div>
                                 <form class="form-horizontal" role="form" id="projectForm">
                                     <div class="form-group row">
+                                        <label class="control-label col-sm-2">שם הפרוייקט:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" required class="form-control" id="project_title" placeholder="">
+                                        </div>
                                         <label class="control-label col-sm-2">מנהל פרוייקט:</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" id="project_manager" placeholder="">
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="control-label col-sm-2">מס' פרוייקט מהפריוריטי:</label>
                                         <div class="col-sm-3">
                                             <input id="priority_num" type="text" placeholder="" required class="form-control">
+                                        </div>
+                                        <label class="control-label col-sm-2">לקוח:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" required class="form-control" id="customer_name" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -176,13 +189,6 @@
                                         <label class="control-label col-sm-2">תאריך יעד:</label>
                                         <div class="col-sm-3">
                                             <input type="text" required class="form-control" id="end_date" placeholder="dd/mm/yyyy">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-sm-2">לקוח:</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" required class="form-control" id="customer_name" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -243,6 +249,15 @@
     <!-- Custom main Js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
+
+    <script>
+
+        function returnToOpenedProjectsPage() { 
+            location.href = "openedProjects.html";
+        }
+
+
+    </script>
 
 </body>
 </html>

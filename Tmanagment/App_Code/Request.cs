@@ -57,8 +57,9 @@ public class Request
         this.contact_phone = contact_phone;
     }
 
-    public Request(string title, string contact_name, int contact_phone, Employee assign_to)
+    public Request(int id, string title, string contact_name, int contact_phone, Employee assign_to)
     {
+        this.id = id;
         this.title = title;
         this.contact_name = contact_name;
         this.contact_phone = contact_phone;
@@ -212,7 +213,7 @@ public class Request
     public List<Request> GetRequestsList()
     {
         #region DB functions
-        string query = "select r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
+        string query = "select r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
             "where " +
             "rs.is_current = 1;"; // TODO: should be change to the required status
 
@@ -227,13 +228,14 @@ public class Request
                 Request req = new Request();
                 Employee emp = new Employee();
 
+                req.Id = (int)dr["id"];
                 req.Title = dr["request_title"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = (int)dr["contact_phone"];
                 emp.First_name = dr["assign_to"].ToString();
                 req.Assign_to = emp;
 
-                Request reqList = new Request(req.Title, req.Contact_name, req.Contact_phone, req.Assign_to);
+                Request reqList = new Request(req.Id, req.Title, req.Contact_name, req.Contact_phone, req.Assign_to);
 
                 ReqList.Add(reqList);
             }
@@ -256,4 +258,41 @@ public class Request
         string query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
         db.ExecuteQuery(query);
     }
+
+    public Request GetRequest()
+    {
+        #region DB functions
+        string query = "select * from requests where id =" + Id + "";
+
+        Request Req = new Request();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Request req = new Request();
+                Employee emp = new Employee();
+
+                req.Id = (int)dr["id"];
+                req.Title = dr["title"].ToString();
+                req.Description = dr["description"].ToString();
+                req.Contact_name = dr["contact_name"].ToString();
+                req.Contact_phone = (int)dr["contact_phone"];
+                emp.First_name = dr["assign_to"].ToString();
+                req.Assign_to = emp;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+
+        return Req;
+    }
+
 }

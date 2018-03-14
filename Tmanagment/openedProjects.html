@@ -25,10 +25,6 @@
 
     <script src="assets/js/modernizr.min.js"></script>
 
-    <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/openedProjects.js"></script>
-
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,7 +34,7 @@
 
 </head>
 
-<body class="fixed-left" onload="initProjectsPage()">
+<body class="fixed-left"> <!--onload="initOpenedProjects()"-->
 
     <!-- Begin page -->
     <div id="wrapper">
@@ -150,149 +146,9 @@
                     </div>
 
                     <div class="row" id="openedProjects">
-                        <!--<div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-                          
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.
-                                    </p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.
-                                    </p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-
-
-                            <div class="card m-b-20">
-                                <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.
-                                    </p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-
-                        </div>-->
-                <!-- end container -->      
-                </div>
-            <!-- end content -->
+                     <!--dynamicly add openedProject here-->  
+                    </div>
+                    <!-- end content -->
 
             <footer class="footer">
                 <span class="hide-phone">2018 © TmanaGement System Powered by Roy Shoval, Raviv Vissel, Yarden Carmi</span>
@@ -338,6 +194,9 @@
     <!-- Custom main Js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
+
+    <script src="assets/js/changes/ajaxCalls.js"></script>
+    <script src="assets/js/changes/openedProjects.js"></script>
 
 </body>
 </html>

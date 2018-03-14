@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Web.Script.Serialization;
 
 /// <summary>
 /// Summary description for RequestWS
@@ -17,7 +18,6 @@ public class RequestWS : System.Web.Services.WebService
 {
     public RequestWS()
     {
-
         //Uncomment the following line if using designed components 
         //InitializeComponent(); 
     }
@@ -57,6 +57,14 @@ public class RequestWS : System.Web.Services.WebService
         r.SetRequest();
     }
 
-
+    [WebMethod]
+    public string GetRequest(int requestID)
+    {
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        Request r = new Request();
+        r.Id = requestID;
+        Request request = r.GetRequest();
+        return j.Serialize(request);
+    }
 
 }
