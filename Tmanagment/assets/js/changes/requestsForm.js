@@ -36,7 +36,7 @@ function getRequestCB(RequestData) {
     GENERAL.REQUESTS.setRequestsList(request);
 
     $("#request_title").val(request.Title);
-    $("#assign_to").val(request.Assign_to.First_name);
+    $("#assign_to").text(request.Assign_to.First_name); //needs to be changed
     $("#contact_name").val(request.Contact_name);
     $("#contact_phone").val(request.Contact_phone);
     $("#description").val(request.Description);

@@ -264,7 +264,7 @@ public class Request
         #region DB functions
         string query = "select * from requests where id =" + Id + "";
 
-        Request Req = new Request();
+        Request req = new Request();
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
 
@@ -272,7 +272,6 @@ public class Request
         {
             try
             {
-                Request req = new Request();
                 Employee emp = new Employee();
 
                 req.Id = (int)dr["id"];
@@ -283,7 +282,6 @@ public class Request
                 emp.First_name = dr["assign_to"].ToString();
                 req.Assign_to = emp;
 
-                Req = req;
             }
             catch (Exception ex)
             {
@@ -294,7 +292,7 @@ public class Request
         }
         #endregion
 
-        return Req;
+        return req;
     }
 
 }
