@@ -32,6 +32,7 @@
 
     <script src="assets/js/changes/ajaxCalls.js"></script>
     <script src="assets/js/changes/master.js"></script>
+    <script src="assets/js/changes/requestsForm.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,58 +40,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
-    <script>
-
-        //wait until the dom is loaded
-        $(document).ready(function () {
-
-            if (JSON.parse(GENERAL.REQUESTS.getRequestsList()).length != 0) {
-                arr_request = JSON.parse(GENERAL.REQUESTS.getRequestsList());
-                if (arr_request.func == "edit" || arr_request.func == "show") {
-                    uploadData(arr_request.requestID);
-                    if (arr_truck.func == "show") {
-                        $("#request_title").attr('disabled', 'disabled');
-                        $("#assign_to").attr('disabled', 'disabled');
-                        $("#contact_name").attr('disabled', 'disabled');
-                        $("#contact_phone").attr('disabled', 'disabled');
-                        $("#description").attr('disabled', 'disabled');
-                        $("#saveRequest").attr('disabled', 'disabled');
-                    }
-                }
-                //else {
-                //    $("#activeTrucks").prop('checked', 'checked');
-                //}
-            }
-        });
-
-        //function to fill form for edit
-        function uploadData(requestID) {
-
-            var request = {
-                requestID: requestID
-            };
-
-            GetRequest(request, getRequestCB, getRequestErrorCB);
-        }
-
-        function getRequestCB(RequestData) {
-
-            var request = JSON.parse(RequestData.d);
-            GENERAL.REQUESTS.setRequestsList(request);
-
-            $("#request_title").val(request.Title);
-            $("#assign_to").val(request.Assign_to.First_name);
-            $("#contact_name").val(request.Contact_name);
-            $("#contact_phone").val(request.Contact_phone);
-            $("#description").val(request.Description);
-        }
-
-        function getRequestErrorCB(error) {
-            console.log(error);
-        }
-
-    </script>
 
 </head>
 

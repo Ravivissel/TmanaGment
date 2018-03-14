@@ -282,6 +282,8 @@ public class Request
                 req.Contact_phone = (int)dr["contact_phone"];
                 emp.First_name = dr["assign_to"].ToString();
                 req.Assign_to = emp;
+
+                Req = req;
             }
             catch (Exception ex)
             {
