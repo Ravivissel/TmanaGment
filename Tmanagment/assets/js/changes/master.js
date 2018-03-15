@@ -3,7 +3,10 @@
     PROJECTS: {
         getOpenedProjectsList: function () {
             return localStorage.openedProjectsList;
-            }
+        },
+        setOpenedProjectsList: function (openedProjectsList) {
+            localStorage.openedProjectsList = openedProjectsList;
+        }
     },
 
     REQUESTS: {
@@ -14,8 +17,6 @@
             localStorage.requestList = requestList;
         }
     }
-
-
 
 
 }

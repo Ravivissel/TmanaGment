@@ -28,7 +28,12 @@
             $('#openedProjects').append(dynamicLi);
         });
 
+        $('#openedProjects button').on('click', '#show', function () {
+            var data = $('.card-body').attr('id');
+        });
+
     }
+
 
 });
 
