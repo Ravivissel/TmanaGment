@@ -24,7 +24,6 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
     <script src="assets/js/modernizr.min.js"></script>
-
     <!-- Plugins  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -56,7 +55,7 @@
     <!-- Custom main Js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
-
+    
     <!--- Page Scripts Dependencies!-->
     <script src="assets/js/changes/utils.js"></script>
     <script src="assets/js/changes/ajaxCalls.js"></script>
@@ -71,13 +70,10 @@
 
 </head>
 
-<body class="fixed-left">
+<body class="fixed-left"> <!--onload="initOpenedProjects()"-->
 
     <!-- Begin page -->
     <div id="wrapper">
-
-        <!-- Top Bar Start -->
-        <div class="topbar">
 
             <div id="masterPageContext"></div>
 
@@ -100,20 +96,21 @@
                     </div>
 
                     <div class="row" id="openedProjects">
-                     <!--dynamicly add openedProject here-->  
+                        <!--dynamicly add openedProject here-->
                     </div>
-                    
+                    <!-- end content -->
+
+
                 </div>
             </div>
-            <!-- end content -->
-        </div>
         </div>
     </div>
-  <!-- END wrapper -->
+    <!-- END wrapper -->
 
     <script>
         var resizefunc = [];
     </script>
+
 
 </body>
 </html>
