@@ -1,32 +1,66 @@
 ﻿//wait until the dom is loaded
 $(document).ready(function () {
 
- var projetID = JSON.parse(GENERAL.PROJECTS.getOpenProjectClicked());
-    if (projetID) {
-        getProjectFromServer(projetID);
+    try {
+        var projectId = JSON.parse(GENERAL.PROJECTS.getOpenProjectClicked());
+        if (projectId) {
+            getProjectFromServer(projectId);
+        }
+    }
+    catch (err) {
+        console.log(err);
+        throw err;
     }
 });
 
 //function to fill form for edit
-function uploadData(projetID) {
+function getProjectFromServer(projectId) {
 
-    var request = {
-        projetID: projetID
-    };
+    try {
+        var request = {
+            projectId: projectId
+        };
 
-    getProject(request, getProjectCB, getProjectError);
+        GetProject(request, getProjectCB, getProjectError);
+    }
+    catch (err) {
+        console.log(err);
+        throw err;
+    }
 }
 
-function getRequestCB(projectResult) {
+function getProjectCB(projectResult) {
 
-    var project = JSON.parse(projectResult);
-    $("#request_title").val(request.Title);
-    $("#assign_to").text(request.Assign_to.First_name); //needs to be changed
-    $("#contact_name").val(request.Contact_name);
-    $("#contact_phone").val(request.Contact_phone);
-    $("#description").val(request.Description);
+    try {
+        var project = JSON.parse(projectResult);
+        renderPage(project);
+    }
+    catch (err) {
+        console.log(err);
+        throw err
+    }
+
 }
 
-function getRequestErrorCB(error) {
-    console.log(error);
+function renderPage(project) {
+
+    try {
+
+        $("#project_title").val(project.Title);
+        $("#project_id").val(project.id);
+        $("#project_manager").val(project.project_manager);
+        $("#end_date").val(project.end_date);
+        $("#start_date").val(project.start_date);
+        $("#contact_name").val(project.contact_name);
+        $("#contact_phone").val(project.contact_phone);
+    }
+    catch (err) {
+        console.log(err);
+        throw err
+    }
+}
+
+function getProjectError(error) {
+    console.log(err);
+    throw error;
 }
