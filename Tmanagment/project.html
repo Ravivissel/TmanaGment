@@ -30,19 +30,12 @@
 
     <script src="assets/js/modernizr.min.js"></script>
 
-    <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/master.js"></script>
-    <script src="assets/js/changes/requestsForm.js"></script>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <!--- Page Scripts Dependencies!-->
-    <script src="assets/js/changes/utils.js"></script>
-
     <!-- Plugins  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -82,6 +75,12 @@
     <script src="./plugins/sweet-alert/sweetalert2.min.js"></script>
     <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
+    <!--- Page Scripts Dependencies!-->
+    <script src="assets/js/changes/ajaxCalls.js"></script>
+    <script src="assets/js/changes/project.js"></script>
+    <script src="assets/js/changes/utils.js"></script>
+
+
 </head>
 
 <body class="fixed-left">
@@ -97,7 +96,7 @@
             <!-- Start content -->
             <div class="content">
                 <div class="container-fluid">
-
+                
                     <!-- Page-Title -->
                     <div class="row">
                         <div class="col-sm-12">
@@ -111,8 +110,8 @@
 
                     <div class="col-sm-12 col-xs-12 ">
                         <div class="card m-b-20">
-                            <div class="card-header" id="ProjectTitle">
-                                כותרת הפרוייקט
+                            <div class="card-header">
+                                <span id="project_title"> </span>
                             </div>
                             <div class="card-body">
                                 <blockquote class="card-bodyquote  ">
@@ -121,38 +120,38 @@
                                         <div class="col-md-4">
                                             <p class="text-muted font-13">
                                                 <strong>מספר הפרוייקט:</strong>
-                                                <span class="m-l-15" id="project_id"> שם</span>
+                                                <span class="m-l-15" id="project_id"> </span>
                                             </p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="text-muted font-13">
                                                 <strong>מנהל הפרוייקט:</strong>
-                                                <span id="project_manager" class="m-l-15"> שם</span>
+                                                <span id="project_manager" class="m-l-15"> </span>
                                             </p>
                                         </div>
 
                                         <div class="col-md-4">
                                             <p class="text-muted font-13">
                                                 <strong>תאריך התחלה:</strong>
-                                                <span id="start_date" class="m-l-15"> שם</span>
+                                                <span id="start_date" class="m-l-15"> </span>
                                             </p>
                                         </div>
 
                                         <div class="col-md-4">
                                             <p class="text-muted font-13">
                                                 <strong>איש קשר:</strong>
-                                                <span id="contact_name" class="m-l-15"> שם</span>
+                                                <span id="contact_name" class="m-l-15"> </span>
                                             </p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="text-muted font-13">
-                                                <strong>טלפון איש קשר:</strong> <span id="contact_phone" class="m-l-15">שם</span>
+                                                <strong>טלפון איש קשר:</strong> <span id="contact_phone" class="m-l-15"></span>
                                             </p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="text-muted font-13">
                                                 <strong>תאריך סיום:</strong>
-                                                <span id="end_date" class="m-l-15"> שם</span>
+                                                <span id="end_date" class="m-l-15"> </span>
                                             </p>
                                         </div>
 

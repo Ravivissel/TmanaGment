@@ -291,9 +291,14 @@ public class Project
     {
         DbServices dbs = new DbServices();
 
+     
+
+
         Employee emp = new Employee();
         DataTable employeesTable = emp.getEmployeesTable();
         DataTable projectsTable = dbs.getFullTable("projects");
+
+
 
         var results = (from p
                        in projectsTable.AsEnumerable()

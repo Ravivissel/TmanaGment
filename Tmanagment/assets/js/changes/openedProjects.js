@@ -31,7 +31,7 @@ $(document).ready(function () {
     }
 
         $('#openedProjects').on('click', '#show', function () {
-            var projectCardId = $('.card-body').attr('id');
+            var projectCardId = $(this).parent().attr('id');
             GENERAL.PROJECTS.setOpenProjectClicked(projectCardId);
             location.href = "project.html";
             console.log(projectCardId);

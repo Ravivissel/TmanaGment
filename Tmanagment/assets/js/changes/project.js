@@ -32,8 +32,8 @@ function getProjectFromServer(projectId) {
 function getProjectCB(projectResult) {
 
     try {
-        var project = JSON.parse(projectResult);
-        renderPage(project);
+        var projects = JSON.parse(projectResult.d);
+        renderPage(projects[0]);
     }
     catch (err) {
         console.log(err);
@@ -46,13 +46,14 @@ function renderPage(project) {
 
     try {
 
-        $("#project_title").val(project.Title);
-        $("#project_id").val(project.id);
-        $("#project_manager").val(project.project_manager);
-        $("#end_date").val(project.end_date);
-        $("#start_date").val(project.start_date);
-        $("#contact_name").val(project.contact_name);
-        $("#contact_phone").val(project.contact_phone);
+        $("#project_title").text(project.Title);
+        $("#project_id").text(project.Id);
+        $("#project_manager").text(project.Project_manager.First_name);
+        $("#end_date").text(project.End_date);
+        $("#start_date").text(project.Start_date);
+        $("#contact_name").text(project.Contact_name);
+        $("#contact_phone").text(project.Contact_phone);
+        $("#description").text(project.Description);
     }
     catch (err) {
         console.log(err);
