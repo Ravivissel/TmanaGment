@@ -285,4 +285,41 @@ public class Project
         return ProjectsList;
 
     }
+
+    public void setProjectByID(int projectID) //for the "all projects page", only the active projects
+    {
+
+        #region DB functions
+        string query = "select * from projects p where p.id =" + projectID ; // TODO: add a project status - active or not and change the query
+
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+          
+            try
+            {
+                Employee emp = new Employee();
+                this.Title = dr["project_title"].ToString();
+                this.Start_date = (DateTime)dr["start_date"];
+                this.End_date = (DateTime)dr["end_date"];
+                emp.First_name = dr["project_manager"].ToString();
+                this.Project_manager = emp;
+                this.Contact_name = dr["contact_name"].ToString();
+                this.Priority_key = dr["priority_key"].ToString();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+
+    }
+   
 }

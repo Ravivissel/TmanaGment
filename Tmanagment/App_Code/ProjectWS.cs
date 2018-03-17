@@ -44,4 +44,27 @@ public class ProjectWS : System.Web.Services.WebService
         }
 
     }
+
+    [WebMethod]
+    public string GetProject(int projectId)
+    {
+        Project project = new Project();
+        project.Id = Convert.ToInt32(projectId);
+
+        try
+        {
+            project.setProjectByID(projectId);
+            string ProjectJson = JsonConvert.SerializeObject(project);
+            return ProjectJson;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+
+
+
+    }
 }
