@@ -49,12 +49,11 @@ public class ProjectWS : System.Web.Services.WebService
     public string GetProject(int projectId)
     {
         Project project = new Project();
-        project.Id = Convert.ToInt32(projectId);
-
+    
         try
         {
-            project.setProjectByID(projectId);
-            string ProjectJson = JsonConvert.SerializeObject(project);
+          List<Project> projectList = project.GetProjectsList(projectId);
+            string ProjectJson = JsonConvert.SerializeObject(projectList);
             return ProjectJson;
         }
         catch (Exception ex)

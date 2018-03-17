@@ -3,7 +3,8 @@ $(document).ready(function () {
 
  var projetID = JSON.parse(GENERAL.PROJECTS.getOpenProjectClicked());
     if (projetID) {
-            getProjectFromServer(projetID);
+        getProjectFromServer(projetID);
+    }
 });
 
 //function to fill form for edit

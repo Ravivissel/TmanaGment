@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Text;
 
 /// <summary>
 /// Summary description for Project
@@ -286,40 +287,40 @@ public class Project
 
     }
 
-    public void setProjectByID(int projectID) //for the "all projects page", only the active projects
+    public List<Project> GetProjectsList(int id)
     {
+        DbServices dbs = new DbServices();
 
-        #region DB functions
-        string query = "select * from projects p where p.id =" + projectID ; // TODO: add a project status - active or not and change the query
+        Employee emp = new Employee();
+        DataTable employeesTable = emp.getEmployeesTable();
+        DataTable projectsTable = dbs.getFullTable("projects");
 
-        DbServices db = new DbServices();
-        DataSet ds = db.GetDataSetByQuery(query);
+        var results = (from p
+                       in projectsTable.AsEnumerable()
+                       join pm in employeesTable.AsEnumerable()
+                       on p.Field<int>("project_manager") equals pm.Field<int>("id")
+                       join cb in employeesTable.AsEnumerable()
+                       on p.Field<int>("created_by") equals cb.Field<int>("id")
+                       where p.Field<int>("id") == id
+                       select new Project
 
-        
-        foreach (DataRow dr in ds.Tables[0].Rows)
-        {
-          
-            try
-            {
-                Employee emp = new Employee();
-                this.Title = dr["project_title"].ToString();
-                this.Start_date = (DateTime)dr["start_date"];
-                this.End_date = (DateTime)dr["end_date"];
-                emp.First_name = dr["project_manager"].ToString();
-                this.Project_manager = emp;
-                this.Contact_name = dr["contact_name"].ToString();
-                this.Priority_key = dr["priority_key"].ToString();
+                       {
+                           Title = p["title"].ToString(),
+                           Start_date = (DateTime)p["start_date"],
+                           Contact_name = p["contact_name"].ToString(),
+                           Created_at = (DateTime)p["created_at"],
+                           Description = p["description"].ToString(),
+                           End_date = (DateTime)p["end_date"],
+                           Id = Convert.ToInt32(p["id"]),
+                           Modified_at = (DateTime)p["modified_at"],
+                           Priority_key = p["priority_key"].ToString(),
+                           Contact_phone = Convert.ToInt32(p["contact_phone"]),
+                           Created_by = emp.GetEmployee(cb),
+                           Project_manager = emp.GetEmployee(pm)
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw ex;
+                       });
 
-            }
-        }
-        #endregion
-
+        return results.ToList(); ;
+       
     }
-   
 }

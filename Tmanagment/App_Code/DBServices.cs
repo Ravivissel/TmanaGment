@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Text;
 
 /// <summary>
 /// Summary description for DbService
@@ -72,6 +73,19 @@ public class DbServices
         }
 
         return row_affected;
+    }
+
+    public DataTable getFullTable(string table)
+    {
+        #region DB functions
+        StringBuilder sb = new StringBuilder();
+
+        string query = sb.AppendFormat("select * from {0} p;", table).ToString();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+        return ds.Tables[0];
+        #endregion
+
     }
 
 }
