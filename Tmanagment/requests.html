@@ -122,24 +122,32 @@
                                 <p class="text-muted font-14 m-b-30">
                                     מבט כללי על הפניות השונות.
                                 </p>
+                                <div class="row">
+                                    <div class="col-md-3 checkbox checkbox-primary text-left">
+                                        <input id="activeRequests" type="checkbox" checked>
+                                        <label for="activeRequests">
+                                            פניות פתוחות בלבד                                           
+                                        </label>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>מספר פנייה</th>
+                                                <th>כותרת</th>
+                                                <th>איש קשר</th>
+                                                <th>טלפון של איש קשר</th>
+                                                <th>משוייכת לעובד</th>
+                                                <th>ערוך פנייה</th>
+                                            </tr>
+                                        </thead>
 
-                                <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>מספר פנייה</th>
-                                            <th>כותרת</th>
-                                            <th>איש קשר</th>
-                                            <th>טלפון של איש קשר</th>
-                                            <th>משוייכת לעובד</th>
-                                            <th>ערוך פנייה</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <!--dynamic add of the closed projects-->
-                                    </tbody>
-                                </table>
-                            </div>
+                                        <tbody>
+                                            <!--dynamic add of the closed projects-->
+                                        </tbody>
+                                    </table>
+                                </div>
                         </div>
                     </div>
                     <!-- end row

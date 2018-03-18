@@ -89,11 +89,7 @@
                                         <label class="control-label col-sm-2">משוייכת לעובד:</label>
                                         <div class="col-sm-3">
                                             <select id="assign_to" name="assign_to" class="form-control">
-                                                <!--TODO: names will be added dynamicly-->
-                                                <option value="בחר" selected="" disabled="">בחר</option>
-                                                <option value="1">תומר</option>
-                                                <option value="2">צילה</option>
-                                                <option value="3">גילה</option>
+                                                <!--employees names are added dynamicly-->
                                             </select>
                                         </div>
                                     </div>
@@ -119,8 +115,6 @@
                                 </form>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -173,6 +167,9 @@
 
     <script>
         $(document).ready(function () {
+
+            //generate select options
+            generateAssignToList();
 
             // DO NOT REMOVE : GLOBAL FUNCTIONS!
             var errorClass = 'invalid';
@@ -258,6 +255,23 @@
 
         function returnToRequestPage() { //do not delete! again out side of the ready func for the return button
             location.href = "requests.html";
+        }
+
+        function generateAssignToList() {
+            GetAssignToList(request, getAssignToListCB, getAssignToListErrorCB);
+        }
+
+        function getAssignToListCB(AssignToListData) {
+            var arr_AssignTo = $.parseJSON(AssignToListData.d);
+            $select = $("#assign_to");
+            $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+            for (i in arr_AssignTo) {
+                $('<option>', { value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name }).appendTo($select);
+            }
+        }
+
+        function getAssignToListErrorCB(error) {
+            console.log(error);
         }
 
     </script>

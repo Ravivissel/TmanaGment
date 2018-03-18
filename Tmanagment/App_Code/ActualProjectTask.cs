@@ -50,4 +50,11 @@ public class ActualProjectTask
             actual_task = value;
         }
     }
+
+    public void SetTask()
+    {
+        DbServices db = new DbServices();
+        string query = "insert into actual_tasks values ('" + actual_task.Description + "','" + actual_task.Title + "','" + actual_task.Start_date + "','" + actual_task.End_date + "','" + actual_task.Created_by.Id + "','" + actual_task.Assign_to.Id + "')";
+        db.ExecuteQuery(query);
+    }
 }

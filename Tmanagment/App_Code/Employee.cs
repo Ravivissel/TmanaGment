@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -94,5 +95,38 @@ public class Employee
         {
             title = value;
         }
+    }
+
+    public List<Employee> GetAssignToList()
+    {
+        #region DB functions
+        string query = "select e.id emp_id, e.first_name from employees as e";
+
+        List<Employee> AssignToList = new List<Employee>();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Employee assign_to = new Employee();
+
+                assign_to.Id = (int)dr["emp_id"];
+                assign_to.First_name = dr["first_name"].ToString();
+
+                AssignToList.Add(assign_to);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+
+        return AssignToList;
+
     }
 }

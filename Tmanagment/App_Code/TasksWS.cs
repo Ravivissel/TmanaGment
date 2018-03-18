@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Globalization;
 
 /// <summary>
 /// Summary description for TasksWS
@@ -20,19 +21,44 @@ public class TasksWS : System.Web.Services.WebService
     [WebMethod]
     public string GetAllTasksList()
     {
-        ActualTask actualTask = new ActualTask();
-        List<ActualTask> allTasksList = actualTask.GetAllTasksList();
-        string allTasksListJson = JsonConvert.SerializeObject(allTasksList, new IsoDateTimeConverter());
-        return allTasksListJson;
+        try
+        {
+            ActualTask actualTask = new ActualTask();
+            List<ActualTask> allTasksList = actualTask.GetAllTasksList();
+            string allTasksListJson = JsonConvert.SerializeObject(allTasksList, new IsoDateTimeConverter());
+            return allTasksListJson;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
 
     }
 
-
- 
     [WebMethod]
-    public string HelloWorld()
+    public void SetActualProjectTask(string task_title, string end_date, int assign_to, int assign_to_project, string description, int created_by)
     {
-        return "Hello World";
-    }
+        DateTime task_end_date;
+        if (end_date.Contains("."))
+        {
+            task_end_date = DateTime.Parse(end_date);
+        }
+        else
+        {
+            task_end_date = DateTime.ParseExact(end_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        }
 
+        DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
+        Employee emp_creator = new Employee();
+        emp_creator.Id = created_by;
+        Employee emp_assign_to = new Employee();
+        emp_assign_to.Id = assign_to;
+
+        Project project = new Project();
+        project.Id = assign_to_project;
+        ActualTask actualTask = new ActualTask(description, task_title, created_at, task_end_date, emp_creator, emp_assign_to);
+        ActualProjectTask actualProjectTask = new ActualProjectTask(project, actualTask);
+        actualProjectTask.SetTask();
+    }
 }

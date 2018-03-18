@@ -27,10 +27,10 @@ public class DashboardWS : System.Web.Services.WebService
         Employee employee = new Employee();
         employee.Id = Convert.ToInt32(employeeId);
 
-        MyTasks my_tasks = new MyTasks();
+        Dashboard my_tasks = new Dashboard();
         try
         {
-            List<MyTasks> my_task_list = my_tasks.GetMyTasksList(employee);
+            List<Dashboard> my_task_list = my_tasks.GetMyTasksList(employee);
             string myTaskListJson = JsonConvert.SerializeObject(my_task_list, new IsoDateTimeConverter());
             return myTaskListJson;
         }
@@ -45,11 +45,11 @@ public class DashboardWS : System.Web.Services.WebService
     [WebMethod]
     public string GetMyRequestsList(int employeeId)
     {
-        Request my_requests = new Request();
+        Dashboard my_requests = new Dashboard();
 
         try
         {
-            List<Request> my_request_list = my_requests.GetMyRequestsList();
+            List<Dashboard> my_request_list = my_requests.GetMyRequestsList();
             string myRequestsListJson = JsonConvert.SerializeObject(my_request_list, new IsoDateTimeConverter());
             return myRequestsListJson;
         }

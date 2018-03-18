@@ -17,6 +17,10 @@
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
+    <!--DatePicker css-->
+    <link href="../plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="../plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
     <script src="assets/js/modernizr.min.js"></script>
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -164,12 +168,24 @@
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
 
+    <!--DatePicker js-->
+    <script src="../plugins/moment/moment.js"></script>
+    <script src="../plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="../plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
     <script>
 
         function returnToOpenedProjectsPage() { 
             location.href = "openedProjects.html";
         }
 
+        //DatePicker end_date
+        jQuery('#end_date').datepicker({
+            toggleActive: true,
+            clearBtn: true,
+            autoclose: true,
+            format: 'dd/mm/yyyy'
+        });
 
     </script>
 

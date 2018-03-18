@@ -36,6 +36,16 @@ public class ActualTask
         this.assign_to = assign_to;
     }
 
+    public ActualTask(string description, string title, DateTime start_date, DateTime end_date, Employee created_by, Employee assign_to)
+    {
+        this.description = description;
+        this.title = title;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.created_by = created_by;
+        this.assign_to = assign_to;
+    }
+
     public int Id
     {
         get
