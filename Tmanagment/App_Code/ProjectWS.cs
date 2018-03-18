@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.Services;
 
 /// <summary>
@@ -49,10 +50,10 @@ public class ProjectWS : System.Web.Services.WebService
     public string GetProject(int projectId)
     {
         Project project = new Project();
-    
+
         try
         {
-          List<Project> projectList = project.GetProjectsList(projectId);
+            List<Project> projectList = project.GetProjectsList(projectId);
             string ProjectJson = JsonConvert.SerializeObject(projectList);
             return ProjectJson;
         }
@@ -66,4 +67,26 @@ public class ProjectWS : System.Web.Services.WebService
 
 
     }
+    [WebMethod]
+    public string UpdateProject(object project)
+    {
+        Project tmp_project = new Project();
+
+        try
+        { 
+            object ProjectJson = project;
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+
+
+
+    }
+
+    
 }

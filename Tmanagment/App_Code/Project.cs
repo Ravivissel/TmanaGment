@@ -46,21 +46,23 @@ public class Project
 
     public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, int contact_phone, DateTime modified_at, DateTime created_at, Employee created_by)
     {
-        this.Id = id;
-        this.Title = title;
-        this.Description = description;
-        this.Customer_id = customer_id;
-        this.Priority_key = priority_key;
-        this.Request_id = request_id;
-        this.Project_manager = project_manager;
-        this.Start_date = start_date;
-        this.End_date = end_date;
-        this.Contact_name = contact_name;
-        this.Contact_phone = contact_phone;
-        this.Modified_at = modified_at;
-        this.Created_at = created_at;
-        this.Created_by = created_by;
+        Id = id;
+        Title = title;
+        Description = description;
+        Customer_id = customer_id;
+        Priority_key = priority_key;
+        Request_id = request_id;
+        Project_manager = project_manager;
+        Start_date = start_date;
+        End_date = end_date;
+        Contact_name = contact_name;
+        Contact_phone = contact_phone;
+        Modified_at = modified_at;
+        Created_at = created_at;
+        Created_by = created_by;
     }
+
+  
 
     public int Id
     {
@@ -290,15 +292,9 @@ public class Project
     public List<Project> GetProjectsList(int id)
     {
         DbServices dbs = new DbServices();
-
-     
-
-
         Employee emp = new Employee();
         DataTable employeesTable = emp.getEmployeesTable();
         DataTable projectsTable = dbs.getFullTable("projects");
-
-
 
         var results = (from p
                        in projectsTable.AsEnumerable()
@@ -308,7 +304,6 @@ public class Project
                        on p.Field<int>("created_by") equals cb.Field<int>("id")
                        where p.Field<int>("id") == id
                        select new Project
-
                        {
                            Title = p["title"].ToString(),
                            Start_date = (DateTime)p["start_date"],

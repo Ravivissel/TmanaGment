@@ -96,81 +96,80 @@
             <!-- Start content -->
             <div class="content">
                 <div class="container-fluid">
-                
-                    <!-- Page-Title -->
+
+
+
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="page-title-box">
-                                <h4 class="page-title" id="welcome-user">פרוייקט</h4>
-                                <ol class="breadcrumb float-right"></ol>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="col-lg-12">
+                            <div class="card-box">
+                                <h4 class="header-title m-t-0"></h4>
+                                <p class="text-muted font-14 m-b-20">
 
-                    <div class="col-sm-12 col-xs-12 ">
-                        <div class="card m-b-20">
-                            <div class="card-header">
-                                <span id="project_title"> </span>
-                            </div>
-                            <div class="card-body">
-                                <blockquote class="card-bodyquote  ">
-                                    <div class="row">
-
-                                        <div class="col-md-4">
-                                            <p class="text-muted font-13">
-                                                <strong>מספר הפרוייקט:</strong>
-                                                <span class="m-l-15" id="project_id"> </span>
-                                            </p>
+                                </p>
+                                <div class="text-right m-b-30 m-r-5">
+                                    <button type="button"  id="editButton" class="btn btn-rounded waves-effect w-md m-b-5"> <i class="ion-edit m-r-5"></i><span>ערוך</span></button>
+                                </div>
+                                <div class="text-right m-b-30 m-r-5">
+                                    <button type="button" hidden="hidden" id="cancelButton" class="btn btn-rounded waves-effect w-md m-b-5"> <i class="ion-close-circled m-r-5"></i><span>בטל</span></button>
+                                </div>
+                                <form class="form-horizontal" role="form" id="projectForm">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2">שם הפרוייקט:</label>
+                                        <div class="col-sm-8">
+                                            <input ty8e="text" disabled="disabled" class="form-control" id="project_title" name="project_title" placeholder="">
                                         </div>
-                                        <div class="col-md-4">
-                                            <p class="text-muted font-13">
-                                                <strong>מנהל הפרוייקט:</strong>
-                                                <span id="project_manager" class="m-l-15"> </span>
-                                            </p>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2">מספר הפרוייקט:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" disabled="disabled" class="form-control" id="project_id" name="project_id" placeholder="">
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <p class="text-muted font-13">
-                                                <strong>תאריך התחלה:</strong>
-                                                <span id="start_date" class="m-l-15"> </span>
-                                            </p>
+                                        <label class="control-label col-sm-2">מנהל הפרוייקט:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" disabled="disabled" class="form-control" id="project_manager" name="project_manager" placeholder="">
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-4">
-                                            <p class="text-muted font-13">
-                                                <strong>איש קשר:</strong>
-                                                <span id="contact_name" class="m-l-15"> </span>
-                                            </p>
+                                    <div class="form-group row">
+
+                                        <label class="control-label col-sm-2">איש קשר:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" disabled="disabled" placeholder="" class="form-control" id="contact_name" name="contact_name">
                                         </div>
-                                        <div class="col-md-4">
-                                            <p class="text-muted font-13">
-                                                <strong>טלפון איש קשר:</strong> <span id="contact_phone" class="m-l-15"></span>
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p class="text-muted font-13">
-                                                <strong>תאריך סיום:</strong>
-                                                <span id="end_date" class="m-l-15"> </span>
-                                            </p>
+                                        <label class="control-label col-sm-2">טלפון של איש קשר:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" disabled="disabled" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
                                         </div>
 
 
                                     </div>
-                                </blockquote>
+                                    <div class="form-group row">
+
+                                        <label class="control-label col-sm-2">תאריך התחלה:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" disabled="disabled" placeholder="" class="form-control" id="start_date" name="start_date">
+                                        </div>
+                                        <label class="control-label col-sm-2">תאריך סיום:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" disabled="disabled" placeholder="" class="form-control" id="end_date" name="end_date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2">תיאור:</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" disabled="disabled" rows="5" id="description" placeholder=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-right m-b-30 m-r-5">
+                                        <button type="submit" hidden="hidden" id="saveButton" class="btn btn-success waves-effect w-md waves-light m-b-5  m-r-15"><i class="ti-save m-r-5"></i>שמור</button>
+                                    </div>
+                                </form>
                             </div>
+                            
                         </div>
                     </div>
-                    <div class="col-sm-12 col-xs-12 ">
-                        <div class="card m-b-20">
-                            <div class="card-header">
-                                תיאור הפרוייקט
-                            </div>
-                            <div class="card-body">
-                                <blockquote class="card-bodyquote" id="description"></blockquote>
-                            </div>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>
@@ -179,7 +178,7 @@
     <!-- END wrapper -->
 
     <script>
-    var resizefunc = [];
+        var resizefunc = [];
     </script>
 
 

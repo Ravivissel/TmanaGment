@@ -18,6 +18,7 @@ var GENERAL = {
         getOpenProjectClicked: function (openProjectID) {
             return localStorage.openProjectClickd;
         }
+     
     },
 
     REQUESTS: {
