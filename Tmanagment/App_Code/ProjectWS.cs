@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.Services;
 
 /// <summary>
@@ -44,4 +45,55 @@ public class ProjectWS : System.Web.Services.WebService
         }
 
     }
+
+    [WebMethod]
+    public string GetProject(int projectId)
+    {
+        Project project = new Project();
+
+        try
+        {
+            List<Project> projectList = project.GetProjectsList(projectId);
+            string ProjectJson = JsonConvert.SerializeObject(projectList);
+            return ProjectJson;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+    }
+    [WebMethod]
+    public string UpdateProjects(string projects)
+    {
+        try
+        {
+            int total_rows_affected = 0;
+            List<Project> ProjectList = JsonConvert.DeserializeObject<List<Project>>(projects);
+
+            foreach (var p in ProjectList)
+            {
+                Project updatedProject = p;
+                total_rows_affected +=p.UpdateProject(updatedProject);
+                
+            }
+            if (total_rows_affected == ProjectList.Count())
+            {
+                string rows_affected_json = JsonConvert.SerializeObject(total_rows_affected);
+                return rows_affected_json;
+            }
+            return "rows affected not equal to the list count";
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+
+    
+    }
+
+    
 }
