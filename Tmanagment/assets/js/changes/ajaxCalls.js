@@ -65,7 +65,7 @@ function getRequests(request, successCB, errorCB) {
 function getAllTasks(successCB, errorCB) {
 
     // serialize the object to JSON string
-   
+
 
     $.ajax({ // ajax call starts
         url: 'TasksWS.asmx/GetAllTasksList',       // server side web service method
@@ -122,9 +122,6 @@ function GetRequest(request, successCB, errorCB) {
     }); // end of ajax call
 }
 
-
-function GetProject(request, successCB, errorCB) {
-
 function GetAssignToList(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
@@ -138,16 +135,11 @@ function GetAssignToList(successCB, errorCB) {
 }
 
 function GetTask(request, successCB, errorCB) {
-
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-
-        url: 'ProjectWS.asmx/GetProject',       // server side web service method
-
         url: 'TasksWS.asmx/GetTask',       // server side web service method
-         feature/taskForm
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -157,21 +149,13 @@ function GetTask(request, successCB, errorCB) {
     }); // end of ajax call
 }
 
-function UpdateProject(request, successCB, errorCB) {
-
-
 function loginCheck(request, successCB, errorCB) {
-
 
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-
-        url: 'ProjectWS.asmx/UpdateProjects',       // server side web service method
-
         url: 'LoginWS.asmx/LoginUser',       // server side web service method
-         feature/taskForm
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server

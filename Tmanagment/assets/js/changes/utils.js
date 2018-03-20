@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
-    $("#masterPageContext").load("MasterPage.html");
-<<<<<<< HEAD
+    $("#masterPageContext").load("MasterPage.html")
 });
 
 var GENERAL = {
@@ -33,9 +32,7 @@ var GENERAL = {
 
 
 }
-=======
 
-});
 
 $(document).on('click', '#newRequestForm', function () {
     var requestID = -1;
@@ -49,5 +46,5 @@ $(document).on('click', '#newTaskForm', function () {
     localStorage.taskList = JSON.stringify(arr_details);
     location.href = "taskForm.html";
 });
->>>>>>> feature/taskForm
+
 
