@@ -8,7 +8,7 @@ using System.Web;
 /// <summary>
 /// Summary description for Employee
 /// </summary>
-/// 
+///
 
 public class Employee
 {
@@ -17,6 +17,9 @@ public class Employee
     private string last_name;
     private int phone_number;
     private string title;
+    private string user_name;
+    private string password;
+    private string user_type;
 
 
     public Employee()
@@ -26,13 +29,22 @@ public class Employee
         //
     }
 
-    public Employee(int id, string first_name, string last_name, int phone_number, string title)
+    public Employee(int id, string first_name, string last_name, int phone_number, string title, string user_name, string password, string user_type)
     {
-        this.Id = id;
-        this.First_name = first_name;
-        this.Last_name = last_name;
-        this.Phone_number = phone_number;
-        this.Title = title;
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.phone_number = phone_number;
+        this.title = title;
+        this.user_name = user_name;
+        this.password = password;
+        this.user_type = user_type;
+    }
+
+    public Employee(string user_name, string password)
+    {
+        this.User_name = user_name;
+        this.Password = password;
     }
 
     public int Id
@@ -98,6 +110,102 @@ public class Employee
         {
             title = value;
         }
+    }
+
+    public string User_name
+    {
+        get
+        {
+            return user_name;
+        }
+
+        set
+        {
+            user_name = value;
+        }
+    }
+
+    public string Password
+    {
+        get
+        {
+            return password;
+        }
+
+        set
+        {
+            password = value;
+        }
+    }
+
+    public string User_type
+    {
+        get
+        {
+            return user_type;
+        }
+
+        set
+        {
+            user_type = value;
+        }
+    }
+
+    public List<Employee> GetAssignToList()
+    {
+        #region DB functions
+        string query = "select e.id emp_id, e.first_name from employees as e";
+
+        List<Employee> AssignToList = new List<Employee>();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Employee assign_to = new Employee();
+
+                assign_to.Id = (int)dr["emp_id"];
+                assign_to.First_name = dr["first_name"].ToString();
+
+                AssignToList.Add(assign_to);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+
+        return AssignToList;
+
+    }
+
+    public bool CheckLoginDetails()
+    {
+        #region DB functions
+        string query = "select * from employees where user_name ='" + user_name + "'";
+
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+        DataTable dt = ds.Tables[0];
+        bool userInDB = false;
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            DataRow dr = dt.Rows[0];
+            if (dr["Password"].ToString() == Password)
+            {
+                userInDB = true;
+            }
+        }
+
+        #endregion
+
+        return userInDB;
     }
 
 

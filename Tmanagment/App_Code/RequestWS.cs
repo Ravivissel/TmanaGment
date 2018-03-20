@@ -45,7 +45,7 @@ public class RequestWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void SetRequest(string request_title, int assign_to, string contact_name, int contact_phone, string description, int created_by)
+    public void SetRequest(int requestID, string request_title, int assign_to, string contact_name, int contact_phone, string description, int created_by, string func)
     {
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
         Employee emp_creator = new Employee();
@@ -53,8 +53,8 @@ public class RequestWS : System.Web.Services.WebService
         Employee emp_assign_to = new Employee();
         emp_assign_to.Id = assign_to;
 
-        Request r = new Request(request_title, description, contact_name, contact_phone, created_at, emp_creator, emp_assign_to);
-        r.SetRequest();
+        Request r = new Request(requestID, request_title, description, contact_name, contact_phone, created_at, emp_creator, emp_assign_to);
+        r.SetRequest(func);
     }
 
     [WebMethod]

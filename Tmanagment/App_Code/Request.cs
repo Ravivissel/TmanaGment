@@ -50,8 +50,9 @@ public class Request
         this.assign_to = assign_to;
     }
 
-    public Request(string title, string contact_name, int contact_phone)
+    public Request(int id, string title, string contact_name, int contact_phone)
     {
+        this.id = id;
         this.title = title;
         this.contact_name = contact_name;
         this.contact_phone = contact_phone;
@@ -170,46 +171,6 @@ public class Request
         }
     }
 
-    public List<Request> GetMyRequestsList()
-    {
-        #region DB functions
-        string query = "select r.title request_title, r.contact_name, r.contact_phone from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
-            "where " +
-            "rs.is_current = 1 " +
-            "and " +
-            "s.title = 'Mr';"; // TODO: should be shange to the required status
-
-        List<Request> myReqList = new List<Request>();
-        DbServices db = new DbServices();
-        DataSet ds = db.GetDataSetByQuery(query);
-
-        foreach (DataRow dr in ds.Tables[0].Rows)
-        {
-            try
-            {
-                Request req = new Request();
-
-                req.Title = dr["request_title"].ToString();
-                req.Contact_name = dr["contact_name"].ToString();
-                req.Contact_phone = (int)dr["contact_phone"];
-
-                Request reqList = new Request(req.Title, req.Contact_name, req.Contact_phone);
-
-                myReqList.Add(reqList);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw ex;
-
-            }
-        }
-        #endregion
-
-        return myReqList;
-
-    }
-
     public List<Request> GetRequestsList()
     {
         #region DB functions
@@ -252,17 +213,25 @@ public class Request
 
     }
 
-    public void SetRequest()
+    public void SetRequest(string func)
     {
         DbServices db = new DbServices();
-        string query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
+        string query = "";
+        if (func == "edit")
+        {
+            query = "UPDATE requests SET title = '" + title + "', description = '" + description + "', contact_name = '" + contact_name + "', contact_phone = '" + contact_phone + "', created_by = '" + created_by.Id + "', assign_to = '" + assign_to.Id + "' WHERE id = " + id;
+        }
+        else if (func == "new")
+        {
+            query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
+        }
         db.ExecuteQuery(query);
     }
 
     public Request GetRequest()
     {
         #region DB functions
-        string query = "select * from requests where id =" + Id + "";
+        string query = "select r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r inner join employees e on r.assign_to = e.id where r.id =" + Id + "";
 
         Request req = new Request();
         DbServices db = new DbServices();
@@ -279,7 +248,8 @@ public class Request
                 req.Description = dr["description"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = (int)dr["contact_phone"];
-                emp.First_name = dr["assign_to"].ToString();
+                emp.First_name = dr["first_name"].ToString();
+                emp.Id = (int)dr["assign_to"];
                 req.Assign_to = emp;
 
             }
