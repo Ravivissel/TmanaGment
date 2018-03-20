@@ -88,4 +88,11 @@ public class DbServices
 
     }
 
+    //public Northwind GetLinqDb()
+    //{
+
+    //    Northwind db = new Northwind("Data Source=Media.ruppin.ac.il;Initial Catalog=igroup82_test2;User ID=igroup82;Password=igroup82_18350");
+
+    //    return db;
+    //}
 }

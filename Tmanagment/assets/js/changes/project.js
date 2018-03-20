@@ -82,7 +82,7 @@ $(document).on('click', '#cancelButton', function () {
     $("#editButton").show();
 });
 $(document).on('click', '#saveButton', function () {
-
+    
     var projects = JSON.parse(GENERAL.PROJECTS.getOpenedProjectsList());
     var project = projects[0];
 
@@ -94,10 +94,13 @@ $(document).on('click', '#saveButton', function () {
     project.Contact_phone= $("#contact_phone").val();
     project.Description= $("#description").val();
 
-    
+    projects[0]= project;
+
+    var projectsString = JSON.stringify(projects);
+
     var request= {
 
-        project: project
+        projects: projectsString
 
     }
 

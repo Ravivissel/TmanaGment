@@ -308,11 +308,9 @@ public class Project
                            Title = p["title"].ToString(),
                            Start_date = (DateTime)p["start_date"],
                            Contact_name = p["contact_name"].ToString(),
-                           Created_at = (DateTime)p["created_at"],
                            Description = p["description"].ToString(),
                            End_date = (DateTime)p["end_date"],
                            Id = Convert.ToInt32(p["id"]),
-                           Modified_at = (DateTime)p["modified_at"],
                            Priority_key = p["priority_key"].ToString(),
                            Contact_phone = Convert.ToInt32(p["contact_phone"]),
                            Created_by = emp.GetEmployee(cb),
@@ -323,4 +321,66 @@ public class Project
         return results.ToList(); ;
        
     }
+
+    public int UpdateProject(Project project)
+    {
+        #region DB functions
+
+        StringBuilder query = new StringBuilder();
+        query.AppendFormat("Update Projects set ");
+        query.AppendFormat("contact_name = '{0}',", project.Contact_name);
+        query.AppendFormat("contact_phone = {0},", project.Contact_phone);
+        query.AppendFormat("start_date = '{0}',", project.Start_date.ToString());
+        query.AppendFormat("end_date = '{0}',", project.End_date.ToString());
+        query.AppendFormat("description = '{0}',", project.Description);
+        query.AppendFormat("priority_key = '{0}',", project.Priority_key);
+        query.AppendFormat("project_manager = {0},", project.Project_manager.Id);
+        query.AppendFormat("title = '{0}' ", project.Title);
+        query.AppendFormat("where  id={0};", project.Id);
+
+        DbServices dbs = new DbServices();
+        int rows_affected = dbs.ExecuteQuery(query.ToString());
+
+        return rows_affected;
+        #endregion
+
+
+    }
+
+
+    //public List<Project> GetProjectsList(int id)
+    //{
+    //    Northwind db = new Northwind("Data Source=Media.ruppin.ac.il;Initial Catalog=igroup82_test2");
+
+    //    DbServices dbs = new DbServices();
+    //    Employee emp = new Employee();
+
+    //    DataTable employeesTable = emp.getEmployeesTable();
+    //    DataTable projectsTable = dbs.getFullTable("projects");
+
+    //    var results = (from p in db.Projects
+    //                   join pm in db.Employees
+    //                   on p.Project_manager.Id equals pm.Id
+    //                   join cb in db.Employees
+    //                   on p.Created_by.Id equals cb.Id
+    //                   where p.Id == id
+    //                   select new Project
+    //                   {
+    //                       Title = p.Title,
+    //                       Start_date = p.Start_date,
+    //                       Contact_name = p.Contact_name,
+    //                       Description = p.Description,
+    //                       End_date = p.End_date,
+    //                       Id = p.Id,
+    //                       Priority_key = p.Priority_key,
+    //                       Contact_phone = p.Contact_phone,
+    //                       Created_by = cb,
+    //                       Project_manager = pm
+
+    //                   });
+
+    //    return results.ToList(); ;
+
+    //}
+
 }

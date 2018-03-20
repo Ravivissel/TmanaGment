@@ -126,7 +126,7 @@ function UpdateProject(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/UpdateProject',       // server side web service method
+        url: 'ProjectWS.asmx/UpdateProjects',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server

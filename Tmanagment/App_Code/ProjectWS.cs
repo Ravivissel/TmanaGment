@@ -63,19 +63,27 @@ public class ProjectWS : System.Web.Services.WebService
             return ex.ToString();
         }
 
-
-
-
     }
     [WebMethod]
-    public string UpdateProject(object project)
+    public string UpdateProjects(string projects)
     {
-        Project tmp_project = new Project();
-
         try
-        { 
-            object ProjectJson = project;
-            return null;
+        {
+            int total_rows_affected = 0;
+            List<Project> ProjectList = JsonConvert.DeserializeObject<List<Project>>(projects);
+
+            foreach (var p in ProjectList)
+            {
+                Project updatedProject = p;
+                total_rows_affected +=p.UpdateProject(updatedProject);
+                
+            }
+            if (total_rows_affected == ProjectList.Count())
+            {
+                string rows_affected_json = JsonConvert.SerializeObject(total_rows_affected);
+                return rows_affected_json;
+            }
+            return "rows affected not equal to the list count";
         }
         catch (Exception ex)
         {
@@ -84,8 +92,7 @@ public class ProjectWS : System.Web.Services.WebService
         }
 
 
-
-
+    
     }
 
     
