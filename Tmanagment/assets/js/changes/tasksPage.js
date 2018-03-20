@@ -15,8 +15,8 @@ $(document).ready(function () {
 
         function getAllTasksCB(results) {
 
-
             allTasks = $.parseJSON(results.d);
+            localStorage.taskList = allTasks;
             renderAllTaskTable(allTasks);
 
         }
@@ -60,30 +60,36 @@ $(document).ready(function () {
         var table = $('#datatable-buttons').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf'],
-            select: true
-
+            "oLanguage": {
+                "sSearch": "<span>חיפוש:</span> _INPUT_" //search
+            }
 
         });
         //Buttons examples
         $.each(allTasks, function (index, row) {
-            table.row.add([row.Id, row.Title, row.Description, row.Start_date, row.End_date, row.Created_by.First_name, row.Assign_to.First_name]).draw("false");
+
+            var btnStr = "";
+            var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button>";
+            var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='ערוך'><i class='ti-pencil'></i></button>";
+            btnStr += showBtn + " " + editBtn;
+
+            table.row.add([row.Id, row.Title, row.Description, row.Start_date, row.End_date, row.Created_by.First_name, row.Assign_to.First_name, btnStr]).draw("false");
         });
 
-        // Key Tables
-
-        $('#key-table').DataTable({
-            keys: true
+        $('#datatable-buttons tbody').on('click', '#show', function () {
+            var data = table.row($(this).parents('tr')).data();
+            arr_details = { taskID: data[0], func: "show" };
+            GENERAL.TASKS.setTasksList(JSON.stringify(arr_details));
+            location.href = "taskForm.html";
         });
 
-        // Responsive Datatable
-        $('#responsive-datatable').DataTable();
-
-        // Multi Selection Datatable
-        $('#selection-datatable').DataTable({
-            select: {
-                style: 'multi'
-            }
+        $('#datatable-buttons tbody').on('click', '#edit', function () {
+            var data = table.row($(this).parents('tr')).data();
+            arr_details = { taskID: data[0], func: "edit" };
+            GENERAL.TASKS.setTasksList(JSON.stringify(arr_details));
+            location.href = "taskForm.html";
         });
+
         table.buttons().container()
             .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
     }

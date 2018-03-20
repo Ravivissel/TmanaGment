@@ -2,13 +2,14 @@ function init()  {
 
     //Need to change to be dynamic from the user login session
     const userId = 75;
-
     var groupid = userId;
     var request = {
         employeeId: groupid
     };
+    userName = GENERAL.USERS.getUserName();
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
+    $('#welcome-user').append(userName);
 }
 
 function getMyTaskCB(result) {
@@ -26,7 +27,7 @@ function renderMyTaskTable(myTaskData) {
     //var str = "";
     results = $.parseJSON(myTaskData.d);
     $.each(results, function (i, row) {
-        dynamicLi = '<tr id=""><td>1</td><td>' + row.Task_title + '</td><td>' + row.Project_name + '</td><td>' + row.Assign_to + '</td><td>' + row.End_date + '</td><td>' + row.Status + '</td></tr>';
+        dynamicLi = '<tr id="' + row.Task_id + '"><td>' + row.Task_id + '</td><td>' + row.Task_title + '</td><td>' + row.Project_title + '</td><td>' + row.Assign_to + '</td><td>' + row.End_date + '</td><td>' + row.Status + '</td></tr>';
         $('#myTasksTableBody').append(dynamicLi);
     });
 }
@@ -43,7 +44,7 @@ function renderMyRequestTable(myRequestData) {
     results = $.parseJSON(myRequestData.d);
     $("#myRequestsTableBody").empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<tr id=""><td>1</td><td>' + row.Title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
+        dynamicLi = '<tr id="' + row.Request_id + '"><td>' + row.Request_id + '</td><td>' + row.Request_title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
         $('#myRequestsTableBody').append(dynamicLi);
     });
 }
