@@ -104,13 +104,13 @@ $(document).on('click', '#saveButton', function () {
 
     }
 
-    UpdateProject(request, setProjectCB, setProjectError);
+    UpdateProject(request, UpdateProjectCB, UpdateProjectError);
 
-    function setProjectCB(result)
+    function UpdateProjectCB(result)
     {
 
     }
-    function setProjectError(err)
+    function UpdateProjectError(err)
     {
         console.log(err);
     }
