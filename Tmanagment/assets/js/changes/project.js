@@ -1,7 +1,4 @@
 ﻿
-
-
-
 //wait until the dom is loaded
 $(document).ready(function () {
 
