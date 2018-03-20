@@ -81,8 +81,11 @@ $(document).on('click', '#cancelButton', function () {
     changeFormState(hidden);
     $("#editButton").show();
 });
+
 $(document).on('click', '#saveButton', function () {
-    
+
+    sweetAlert();
+
     var projects = JSON.parse(GENERAL.PROJECTS.getOpenedProjectsList());
     var project = projects[0];
 
@@ -115,6 +118,15 @@ $(document).on('click', '#saveButton', function () {
         console.log(err);
     }
 
+    function sweetAlert() {
+        swal({
+            title: "נשמר",
+            type: "success",
+            timer: 1000,
+            showConfirmButton: false
+        });
+    }
+
 });
 
 function changeFormState(state) {
@@ -133,8 +145,6 @@ function changeFormState(state) {
 
 
 }
-
-
 
 
 function getProjectError(error) {
