@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    checkCookie();
     $("#masterPageContext").load("MasterPage.html");
 
 });
@@ -63,6 +64,7 @@ var GENERAL = {
     }
 
 }
+
 
 
 
