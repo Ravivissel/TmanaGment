@@ -185,7 +185,7 @@ public class Dashboard
             "and " +
             "ats.is_current = 1 " +
             "and " +
-            "s.title = 'Mr';"; // TODO: should be shange to the required status
+            "s.title = 'Mr';"; // TODO: should be change to the required status
 
         List<Dashboard> myTaskList =  new List<Dashboard>();
         DbServices db = new DbServices();

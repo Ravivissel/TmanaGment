@@ -181,9 +181,40 @@ public class ActualTask
         #endregion
 
         return actualTasksList;
+    }
 
+    public ActualTask GetTask()
+    {
+        #region DB functions
+        string query = "select at.id, at.title, at.description, at.end_date, at.assign_to, e.first_name from actual_tasks at inner join employees e on at.assign_to = e.id where at.id =" + Id + "";
 
+        ActualTask task = new ActualTask();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
 
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Employee emp = new Employee();
 
+                task.Id = (int)dr["id"];
+                task.Title = dr["title"].ToString();
+                task.Description = dr["description"].ToString();
+                task.End_date = (DateTime)dr["end_date"];
+                emp.First_name = dr["first_name"].ToString();
+                emp.Id = (int)dr["assign_to"];
+                task.Assign_to = emp;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+        #endregion
+
+        return task;
     }
 }

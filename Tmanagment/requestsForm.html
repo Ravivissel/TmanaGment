@@ -40,6 +40,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
     <!--- Page Scripts Dependencies!-->
     <script src="assets/js/changes/utils.js"></script>
 
@@ -209,7 +210,10 @@
                     var contact_phone = $("#contact_phone").val();
                     var description = $("#description").val();
                     var created_by = "1"; // change to be the actual user
-                    var request = { request_title: request_title, assign_to: assign_to, contact_name: contact_name, contact_phone: contact_phone, description: description, created_by: created_by };
+                    //check's if it is a new request or an update
+                    var func = arr_request.func;
+                    var requestID = arr_request.requestID;
+                    var request = { requestID: requestID, request_title: request_title, assign_to: assign_to, contact_name: contact_name, contact_phone: contact_phone, description: description, created_by: created_by, func: func };
                     //call the ajax func
                     insertNewRequest(request, insertNewRequestCB, insertNewRequestErrorCB);
                 },
@@ -258,7 +262,11 @@
         }
 
         function generateAssignToList() {
-            GetAssignToList(request, getAssignToListCB, getAssignToListErrorCB);
+            GetAssignToList(getAssignToListCB, getAssignToListErrorCB);
+        }
+
+        function getAssignToListErrorCB(error) {
+            console.log(error);
         }
 
         function getAssignToListCB(AssignToListData) {
@@ -268,10 +276,6 @@
             for (i in arr_AssignTo) {
                 $('<option>', { value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name }).appendTo($select);
             }
-        }
-
-        function getAssignToListErrorCB(error) {
-            console.log(error);
         }
 
     </script>

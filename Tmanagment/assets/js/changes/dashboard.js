@@ -2,13 +2,14 @@ function init()  {
 
     //Need to change to be dynamic from the user login session
     const userId = 75;
-
     var groupid = userId;
     var request = {
         employeeId: groupid
     };
+    userName = GENERAL.USERS.getUserName();
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
+    $('#welcome-user').append(userName);
 }
 
 function getMyTaskCB(result) {

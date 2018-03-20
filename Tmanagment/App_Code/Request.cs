@@ -213,17 +213,25 @@ public class Request
 
     }
 
-    public void SetRequest()
+    public void SetRequest(string func)
     {
         DbServices db = new DbServices();
-        string query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
+        string query = "";
+        if (func == "edit")
+        {
+            query = "UPDATE requests SET title = '" + title + "', description = '" + description + "', contact_name = '" + contact_name + "', contact_phone = '" + contact_phone + "', created_by = '" + created_by.Id + "', assign_to = '" + assign_to.Id + "' WHERE id = " + id;
+        }
+        else if (func == "new")
+        {
+            query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
+        }
         db.ExecuteQuery(query);
     }
 
     public Request GetRequest()
     {
         #region DB functions
-        string query = "select * from requests where id =" + Id + "";
+        string query = "select r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r inner join employees e on r.assign_to = e.id where r.id =" + Id + "";
 
         Request req = new Request();
         DbServices db = new DbServices();
@@ -240,7 +248,8 @@ public class Request
                 req.Description = dr["description"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = (int)dr["contact_phone"];
-                emp.First_name = dr["assign_to"].ToString();
+                emp.First_name = dr["first_name"].ToString();
+                emp.Id = (int)dr["assign_to"];
                 req.Assign_to = emp;
 
             }

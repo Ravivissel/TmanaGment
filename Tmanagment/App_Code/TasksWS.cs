@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Globalization;
+using System.Web.Script.Serialization;
 
 /// <summary>
 /// Summary description for TasksWS
@@ -37,7 +38,7 @@ public class TasksWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void SetActualProjectTask(string task_title, string end_date, int assign_to, int assign_to_project, string description, int created_by)
+    public void SetActualProjectTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_project, string description, int created_by, string func)
     {
         DateTime task_end_date;
         if (end_date.Contains("."))
@@ -57,8 +58,19 @@ public class TasksWS : System.Web.Services.WebService
 
         Project project = new Project();
         project.Id = assign_to_project;
-        ActualTask actualTask = new ActualTask(description, task_title, created_at, task_end_date, emp_creator, emp_assign_to);
+        ActualTask actualTask = new ActualTask(taskID, description, task_title, created_at, task_end_date, emp_creator, emp_assign_to);
         ActualProjectTask actualProjectTask = new ActualProjectTask(project, actualTask);
-        actualProjectTask.SetTask();
+        actualProjectTask.SetTask(func);
     }
+
+    [WebMethod]
+    public string GetTask(int taskID)
+    {
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        ActualTask t = new ActualTask();
+        t.Id = taskID;
+        ActualTask task = t.GetTask();
+        return j.Serialize(task);
+    }
+
 }
