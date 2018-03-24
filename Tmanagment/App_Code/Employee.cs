@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Web;
 
 /// <summary>
 /// Summary description for Employee
 /// </summary>
+///
+
 public class Employee
 {
     private int id;
@@ -203,5 +206,29 @@ public class Employee
         #endregion
 
         return userInDB;
+    }
+
+
+
+    public DataTable getEmployeesTable()
+    {
+        DbServices dbs = new DbServices();
+        DataTable employeesTable = dbs.getFullTable("employees");
+        return employeesTable;
+
+    }
+
+    public Employee GetEmployee(DataRow dr)
+    {
+        Employee tmpEmployee = new Employee();
+
+        tmpEmployee.First_name = dr["first_name"].ToString();
+        tmpEmployee.Last_name = dr["last_name"].ToString();
+        tmpEmployee.Phone_number = Convert.ToInt32(dr["phone_num"]);
+        tmpEmployee.Id = Convert.ToInt32(dr["id"]);
+        tmpEmployee.Title = dr["title"].ToString();
+
+        return tmpEmployee;
+
     }
 }

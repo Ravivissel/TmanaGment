@@ -1,4 +1,4 @@
-var configuration = {
+ï»¿var configuration = {
 
     staticData: false
 
@@ -61,7 +61,7 @@ $(document).ready(function () {
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf'],
             "oLanguage": {
-                "sSearch": "<span>çéôåù:</span> _INPUT_" //search
+                "sSearch": "<span>×—×™×¤×•×©:</span> _INPUT_" //search
             }
 
         });
@@ -69,8 +69,8 @@ $(document).ready(function () {
         $.each(allTasks, function (index, row) {
 
             var btnStr = "";
-            var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='ôøèéí ðåñôéí'><i class='fa fa-wpforms'></i></button>";
-            var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='òøåê'><i class='ti-pencil'></i></button>";
+            var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='×¤×¨×˜×™× × ×•×¡×¤×™×'><i class='fa fa-wpforms'></i></button>";
+            var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='×¢×¨×•×š'><i class='ti-pencil'></i></button>";
             btnStr += showBtn + " " + editBtn;
 
             table.row.add([row.Id, row.Title, row.Description, row.Start_date, row.End_date, row.Created_by.First_name, row.Assign_to.First_name, btnStr]).draw("false");
