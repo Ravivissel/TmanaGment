@@ -30,5 +30,13 @@ public class LoginWS : System.Web.Services.WebService
         bool userInDB = u.CheckLoginDetails();
         return j.Serialize(userInDB);
     }
+    [WebMethod]
+    public string UserID(string userName)
+    {
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        Employee u = new Employee(userName);
+        string userInDB = u.getUserIDfromUserName(userName);
+        return j.Serialize(userInDB);
+    }
 
 }

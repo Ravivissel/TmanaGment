@@ -2,7 +2,7 @@
 <!-- Top Bar Start -->
 
 <link href="assets/css/changes.css" rel="stylesheet" />
-
+<script src="assets/js/CookiesFunctions.js"></script>
 <div class="topbar">
 
 
@@ -70,28 +70,28 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                         <!-- item-->
-                        <div class="dropdown-item noti-title">
+                        <!--<div class="dropdown-item noti-title">
                             <h5 class="text-overflow"><small>Welcome ! John</small> </h5>
-                        </div>
+                        </div>-->
 
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <!--<a href="javascript:void(0);" class="dropdown-item notify-item">
                             <i class="mdi mdi-account"></i> <span>Profile</span>
-                        </a>
+                        </a>-->
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <i class="mdi mdi-settings"></i> <span>Settings</span>
+                            <i class="mdi mdi-settings"></i> <span>הגדרות</span>
                         </a>
 
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <!--<a href="javascript:void(0);" class="dropdown-item notify-item">
                             <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
-                        </a>
+                        </a>-->
 
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <i class="mdi mdi-logout"></i> <span>Logout</span>
+                        <a href="javascript:void(0);" class="dropdown-item notify-item" onclick="deleteAllCookies()">
+                            <i class="mdi mdi-logout" ></i> <span>התנתק</span>
                         </a>
 
                     </div>

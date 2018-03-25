@@ -1,15 +1,36 @@
-function init()  {
+function getUserID(request) {
 
-    //Need to change to be dynamic from the user login session
-    const userId = 75;
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'LoginWS.asmx/UserID',                    // server side web service method
+        data: dataString,                                 // the parameters sent to the server
+        type: 'POST',                                     // can be also GET
+        async: false,
+        dataType: 'json',                                 // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: function (data)
+        {
+            userInDB = JSON.parse(data.d);                // data.d id the Variable data contains the data we get from serverside
+        },                
+        error: function (error)
+        { console.log(error); }
+    }); // end of ajax call
+    return userInDB;
+}
+
+function init() {
+    var user = checkCookie();
+    var request = { userName: user};
+    var userId = getUserID(request);
     var groupid = userId;
     var request = {
         employeeId: groupid
     };
-    userName = GENERAL.USERS.getUserName();
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
-    $('#welcome-user').append(userName);
+    $('#welcome-user').append(user);
 }
 
 function getMyTaskCB(result) {

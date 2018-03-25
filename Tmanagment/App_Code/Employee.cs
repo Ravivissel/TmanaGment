@@ -46,6 +46,10 @@ public class Employee
         this.User_name = user_name;
         this.Password = password;
     }
+    public Employee(string user_name)
+    {
+        this.User_name = user_name;
+    }
 
     public int Id
     {
@@ -201,6 +205,27 @@ public class Employee
             {
                 userInDB = true;
             }
+        }
+
+        #endregion
+
+        return userInDB;
+    }
+
+    public string getUserIDfromUserName(string user_name)
+    {
+        #region DB functions
+        string query = "select id from employees where user_name ='" + user_name + "'";
+
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+        DataTable dt = ds.Tables[0];
+        string userInDB = "";
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            DataRow dr = dt.Rows[0];
+            userInDB = dr["id"].ToString();
         }
 
         #endregion
