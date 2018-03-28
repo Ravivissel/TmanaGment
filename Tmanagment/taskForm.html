@@ -26,6 +26,10 @@
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
+    <!-- Select2 css+js -->
+    <link href="assets/css/select2.css" rel="stylesheet" />
+    <script src="assets/js/select2.min.js"></script>
+
     <script src="assets/js/jquery.min.js"></script>
 
     <script src="assets/js/modernizr.min.js"></script>
@@ -202,6 +206,7 @@
             generateAssignToList();
             generateAssignToProjectList();
             generateAssignToRequestList();
+            initializeSelect2();
 
             // DO NOT REMOVE : GLOBAL FUNCTIONS!
             var errorClass = 'invalid';

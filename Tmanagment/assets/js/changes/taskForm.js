@@ -39,7 +39,7 @@ function getTaskCB(TaskData) {
     e_date = e_date.toLocaleDateString("he-IL");
 
     $("#task_title").val(task.Title);
-    //$("#assign_to").text(task.Assign_to.First_name);
+    $("#assign_to").text(task.Assign_to.First_name);
     //$("#assign_to").val(task.Assign_to.Id); //needs to be changed
     $("#end_date").val(e_date);
     $("#description").val(task.Description);
@@ -48,4 +48,3 @@ function getTaskCB(TaskData) {
 function getTaskErrorCB(error) {
     console.log(error);
 }
-
