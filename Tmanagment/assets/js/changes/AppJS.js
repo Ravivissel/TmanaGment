@@ -2,7 +2,7 @@
 
     $.mobile.changePage("#Tasks", { transition: "slide", changeHash: false });
 
-    getAllTasks(getAllTasksCB, getAllTasksError);  
+    getAllTasks(getAllTasksCB, getAllTasksError);
 
     // Swipe to remove list item
     $(document).on("swipeleft swiperight", "#list li", function (event) {
@@ -101,3 +101,66 @@ function getAllTasksError(error) {
 //    autoclose: true,
 //    format: 'dd/mm/yyyy'
 //});
+
+$(document).on('vclick', "#calendarPage", function () {
+    $.mobile.changePage("#Calendar", { transition: "slide", changeHash: false });
+});
+
+$(document).on("pagebeforeshow", "#Calendar", function () {
+
+    var initialLocaleCode = 'he';
+    $('#calendar').fullCalendar({
+
+        header:
+            {
+                left: 'listMonth,month,agendaDay',
+                center: '',
+                right: 'title'
+            },
+
+
+        footer: {
+            center: 'next,today,prev'
+        },
+        businessHours: {
+            // days of week. an array of zero-based day of week integers (0=Sunday)
+            dow: [0, 1, 2, 3, 4], // Sunday - Thursday
+
+            start: '8:00', // a start time (10am in this example)
+            end: '17:00', // an end time (6pm in this example)
+        },
+        defaultView: 'month',
+        defaultDate: '2018-03-12',
+        locale: initialLocaleCode,
+        buttonIcons: false, // show the prev/next text
+        eventLimit: true, // allow "more" link when too many events
+
+        navLinks: true, // can click day/week names to navigate views
+        displayEventTime: false, // don't show the time column in list view
+        nowIndicator: true,
+        height: 'parent',
+        width: 'parent',
+        googleCalendarApiKey: 'AIzaSyBj-sXH532hBn373ojVSNCkS8zRTETXlTw',
+        lang: 'he',
+        
+        
+        eventBackgroudColor: '#2494be',
+        eventColor: '#2494be',
+        eventTextColor: "#ffffff",
+        events: 'hcpiii8esnk92cdeha13bm3ris@group.calendar.google.com',
+        loading: function (bool) {
+            if (bool) $('#loadingConfCalendarBlock').show();
+            else $('#loadingConfCalendarBlock').hide();
+        },
+        eventClick: function (event) {
+            // opens events in a popup window
+            window.open(event.url, 'gcalevent', 'width=700,height=600');
+            return false;
+        },
+        
+        loading: function (bool) {
+            $('#loading').toggle(bool);
+        }
+
+    });
+});

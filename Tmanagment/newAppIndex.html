@@ -13,6 +13,12 @@
     <script src="assets/js/changes/ajaxCalls.js"></script>
     <script src="assets/js/changes/AppJS.js"></script>
 
+    <script src='./fullcalendar-3.9.0/lib/moment.min.js'></script>
+    <script src='./fullcalendar-3.9.0/fullcalendar.min.js'></script>
+    <script src='./fullcalendar-3.9.0/locale-all.js'></script>
+    <script type='text/javascript' src='./fullcalendar-3.9.0/gcal.js'></script>
+    <link href="./plugins/fullcalendar/css/fullcalendar.min.css" rel="stylesheet" />
+
     <style>
         /* Left transition */
         li.left {
@@ -78,7 +84,7 @@
         <div class="ui-bar" data-role="footer" data-position="fixed" data-theme="a" style="text-align:center">
             <a href="" data-icon="" class="ti-write" id="taskPage">משימות</a>
             <a href="#AddTask" data-role="button" data-icon="" class="ion-plus-circled mark">הוספת משימה</a>
-            <a href="#Calendar" data-role="button" data-icon="" class="ti-calendar">יומן</a>
+            <a href="" data-icon="" class="ti-calendar" id="calendarPage">יומן</a>
             <a href="#Notifications" data-role="button" data-icon="" class="ti-bell">התראות</a>
         </div>
     </div>
@@ -154,7 +160,7 @@
             <h2>יומן</h2>
         </div>
         <div data-role="content" id="content">
-
+            <div id='calendar'></div>
         </div>
         <div data-role="footer" data-position="fixed" data-theme="a" style="text-align:center">
             <a href="#Tasks" data-role="button" data-icon="" class="ti-write" id="taskPage">משימות</a>
