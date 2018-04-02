@@ -6,6 +6,7 @@
     //generateAssignToRequestList();
     //initializeSelect2();
 
+
     // DO NOT REMOVE : GLOBAL FUNCTIONS!
     var errorClass = 'invalid';
     var errorElement = 'em';
@@ -88,7 +89,6 @@
                 required: "אנא בחר פנייה"
             }
         }
-
     });
 
     // DO NOT REMOVE : GLOBAL FUNCTIONS!
@@ -372,3 +372,4 @@ $(document).on("pagebeforeshow", "#Calendar", function () {
 
     });
 });
+

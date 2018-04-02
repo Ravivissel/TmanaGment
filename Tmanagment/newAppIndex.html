@@ -32,61 +32,12 @@
     <script src="assets/js/changes/ajaxCalls.js"></script>
     <script src="assets/js/changes/AppJS.js"></script>
 
+    <!--full calendar JS and css-->
     <script src='./fullcalendar-3.9.0/lib/moment.min.js'></script>
     <script src='./fullcalendar-3.9.0/fullcalendar.min.js'></script>
     <script src='./fullcalendar-3.9.0/locale-all.js'></script>
     <script type='text/javascript' src='./fullcalendar-3.9.0/gcal.js'></script>
     <link href="./plugins/fullcalendar/css/fullcalendar.min.css" rel="stylesheet" />
-
-    <style>
-        /* Left transition */
-        li.left {
-            -webkit-transition: -webkit-transform 250ms ease;
-            -webkit-transform: translateX(-100%);
-            -moz-transition: -moz-transform 250ms ease;
-            -moz-transform: translateX(-100%);
-            -o-transition: -o-transform 250ms ease;
-            -o-transform: translateX(-100%);
-            transition: transform 250ms ease;
-            transform: translateX(-100%);
-        }
-        /* Right transition */
-        li.right {
-            -webkit-transition: -webkit-transform 250ms ease;
-            -webkit-transform: translateX(100%);
-            -moz-transition: -moz-transform 250ms ease;
-            -moz-transform: translateX(100%);
-            -o-transition: -o-transform 250ms ease;
-            -o-transform: translateX(100%);
-            transition: transform 250ms ease;
-            transform: translateX(100%);
-        }
-            /* Border bottom for the previous button during the transition*/
-            li.left a.ui-btn,
-            li.right a.ui-btn {
-                border-top-width: 0;
-                border-left-width: 1px;
-                border-right-width: 1px;
-            }
-
-        li a.ui-btn.border-bottom {
-            border-bottom-width: 1px;
-        }
-        /* Hide the delete button on touch devices */
-        ul.touch li.ui-li-has-alt a.delete {
-            display: none;
-        }
-
-        ul.touch li.ui-li-has-alt a.ui-btn {
-            margin-right: 0;
-        }
-        /* Styling for the popup */
-        #confirm p {
-            text-align: center;
-            font-size: inherit;
-            margin-bottom: .75em;
-        }
-    </style>
 
 </head>
 <body>
@@ -149,8 +100,6 @@
             <a href="#mainDash" data-icon="" class="ti-home" id="mainDash">ראשי</a>
             <a href="" data-icon="" class="ti-write" id="taskPage">משימות</a>
             <a href="#AddTask" data-role="button" data-icon="" class="ti-plus">הוספת משימה</a>
-            <a href="#Calendar" data-role="button" data-icon="" class="ti-calendar">יומן</a>
-            <a href="#AddTask" data-role="button" data-icon="" class="ion-plus-circled mark">הוספת משימה</a>
             <a href="" data-icon="" class="ti-calendar" id="calendarPage">יומן</a>
             <a href="#Notifications" data-role="button" data-icon="" class="ti-bell">התראות</a>
         </div>
@@ -188,7 +137,7 @@
             <a href="#mainDash" data-icon="" class="ti-home" id="mainDash">ראשי</a>
             <a href="" data-icon="" class="ti-write" id="taskPage">משימות</a>
             <a href="#AddTask" data-role="button" data-icon="" class="ti-plus">הוספת משימה</a>
-            <a href="#Calendar" data-role="button" data-icon="" class="ti-calendar">יומן</a>
+            <a href="" data-icon="" class="ti-calendar" id="calendarPage">יומן</a>
             <a href="#Notifications" data-role="button" data-icon="" class="ti-bell">התראות</a>
         </div>
     </div>
@@ -233,7 +182,7 @@
             <a href="#mainDash" data-icon="" class="ti-home" id="mainDash">ראשי</a>
             <a href="" data-icon="" class="ti-write" id="taskPage">משימות</a>
             <a href="#AddTask" data-role="button" data-icon="" class="ti-plus">הוספת משימה</a>
-            <a href="#Calendar" data-role="button" data-icon="" class="ti-calendar">יומן</a>
+            <a href="" data-icon="" class="ti-calendar" id="calendarPage">יומן</a>
             <a href="#Notifications" data-role="button" data-icon="" class="ti-bell">התראות</a>
         </div>
     </div>
@@ -251,7 +200,7 @@
             <a href="#mainDash" data-icon="" class="ti-home" id="mainDash">ראשי</a>
             <a href="" data-icon="" class="ti-write" id="taskPage">משימות</a>
             <a href="#AddTask" data-role="button" data-icon="" class="ti-plus">הוספת משימה</a>
-            <a href="#Calendar" data-role="button" data-icon="" class="ti-calendar">יומן</a>
+            <a href="" data-icon="" class="ti-calendar" id="calendarPage">יומן</a>
             <a href="#Notifications" data-role="button" data-icon="" class="ti-bell">התראות</a>
         </div>
     </div>
@@ -269,7 +218,7 @@
             <a href="#mainDash" data-icon="" class="ti-home" id="mainDash">ראשי</a>
             <a href="" data-icon="" class="ti-write" id="taskPage">משימות</a>
             <a href="#AddTask" data-role="button" data-icon="" class="ti-plus">הוספת משימה</a>
-            <a href="#Calendar" data-role="button" data-icon="" class="ti-calendar">יומן</a>
+            <a href="" data-icon="" class="ti-calendar" id="calendarPage">יומן</a>
             <a href="#Notifications" data-role="button" data-icon="" class="ti-bell">התראות</a>
         </div>
     </div>
