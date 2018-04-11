@@ -61,6 +61,7 @@
     <!-- DataTables -->
     <link href="./plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="./plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
     <!-- Responsive datatable examples -->
     <link href="./plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
@@ -76,8 +77,6 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
     <script src="assets/js/modernizr.min.js"></script>
-    <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/closedProjects.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,7 +86,10 @@
     <![endif]-->
 
     <!--- Page Scripts Dependencies!-->
+    <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/utils.js"></script>
+    <script src="assets/js/changes/ajaxCalls.js"></script>
+    <script src="assets/js/changes/closedProjects.js"></script>
 
 </head>
 
@@ -96,94 +98,8 @@
     <!-- Begin page -->
     <div id="wrapper">
 
-        <!-- Top Bar Start -->
-        <div class="topbar">
+        <div id="masterPageContext"></div>
 
-            <!-- LOGO -->
-            <!--<div class="topbar-left">
-                <div class="text-center">
-                    <a href="index.html" class="logo"><i class="mdi mdi-radar"></i> <span>T-manaGment</span></a>
-                </div>
-            </div>-->
-            <!-- Button mobile view to collapse sidebar menu -->
-            <nav class="navbar-custom">
-                <ul class="list-inline menu-left mb-0">
-                    <li class="float-left">
-                        <button class="button-menu-mobile open-left waves-light waves-effect">
-                            <i class="mdi mdi-menu"></i>
-                        </button>
-                    </li>
-                    <li class="float-left">
-                        <a href="index.html" class="logo"> <span>T-manaGment</span></a>
-                    </li>
-                </ul>
-            </nav>
-
-        </div>
-        <!-- Top Bar End -->
-        <!-- ========== Right Sidebar Start ========== -->
-        <div class="left side-menu">
-            <div class="sidebar-inner slimscrollleft">
-                <!--- Divider -->
-                <div id="sidebar-menu">
-                    <ul>
-
-                        <li>
-                            <a href="index.html" class="waves-effect waves-primary">
-                                <i class="ti-home"></i><span> דף הבית </span>
-                            </a>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-briefcase"></i> <span> פרוייקטים </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-
-                            <ul class="list-unstyled">
-                                <li><a href="openedProjects.html">כל הפרוייקטים</a></li>
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-buttons.html" class="ion-plus-circled mark "> הוסף פרוייקט</a></li>
-
-                            </ul>
-
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-write"></i><span> משימות </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="tasks.html">כל המשימות</a></li>
-                                <li><a href="#" class="ion-plus-circled mark "> הוסף משימה</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-headphone-alt"></i><span> פניות </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="requests.html">כל הפניות</a></li>
-                                <li><a href="requestsForm.html" class="ion-plus-circled mark "> הוסף פנייה</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="ti-dashboard"></i><span> דאשבורד BI </span> </a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- Right Sidebar End -->
-        <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="content-page">
@@ -196,7 +112,10 @@
                         <div class="col-sm-12">
                             <div class="page-title-box">
                                 <h4 class="page-title" id="welcome-user">ארכיון הפרוייקטים&nbsp&nbsp<i class="ti-briefcase"></i></h4>
-                                <ol class="breadcrumb float-right"></ol>
+                                <ol class="breadcrumb float-right">
+                                    <li class="breadcrumb-item">פרוייקטים</li>
+                                    <li class="breadcrumb-item">ארכיון הפרוייקטים</li>
+                                </ol>
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -228,10 +147,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- end row 
-                       
-                    </div>
-                    <!-- end content -->
+                    <!-- end row         
+        <!-- end content -->
 
 
                 </div>

@@ -57,7 +57,7 @@
                 var assign_to_project = $("#assign_to_project option:selected").val();
                 var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_project: assign_to_project, description: description, created_by: created_by, func: func };
                 //call the ajax func
-                ////insertNewProjectTask(request, insertNewTaskCB, insertNewTaskErrorCB);
+                //insertNewProjectTask(request, insertNewTaskCB, insertNewTaskErrorCB);
             }
             if ($("#assign_to_p_or_r option:selected").val() === 2) {
                 var assign_to_request = $("#assign_to_request option:selected").val();
