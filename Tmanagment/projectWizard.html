@@ -82,11 +82,20 @@
     <script src="./plugins/sweet-alert/sweetalert2.min.js"></script>
     <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
+    <!--DatePicker css-->
+    <link href="./plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!--DatePicker js-->
+    <script src="./plugins/moment/moment.js"></script>
+    <script src="./plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="./plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
     <!-- Page Scripts Dependencies!-->
     <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/project.js"></script>
     <script src="assets/js/changes/utils.js"></script>
+    <script src="assets/js/changes/projWizard.js"></script>
 
 </head>
 
@@ -109,7 +118,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">פרוייקט חדש</h4>
+                                <h4 class="page-title">פרוייקט</h4>
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item">פרוייקטים</li>
                                     <li class="breadcrumb-item">פרוייקט חדש</li>
@@ -137,21 +146,22 @@
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-2">שם הפרוייקט:</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="project_title" name="project_title" placeholder="">
+                                                    <input type="text" class="required form-control" id="project_title" name="project_title" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="control-label col-sm-2">מספר הפרוייקט:</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="project_id" name="project_id" placeholder="">
-                                                </div>
-
                                                 <label class="control-label col-sm-2">מנהל הפרוייקט:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="project_manager" name="project_manager" placeholder="">
+                                                    <select id="project_manager" name="project_manager" class="required form-control">
+                                                        <!--employees names are added dynamicly-->
+                                                    </select>
+
+                                                </div>
+                                                <label class="control-label col-sm-2">תאריך יעד:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" placeholder="dd/mm/yyyy" class="required form-control" id="end_date" name="end_date">
                                                 </div>
                                             </div>
-
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-2">איש קשר:</label>
                                                 <div class="col-sm-3">
@@ -160,16 +170,6 @@
                                                 <label class="control-label col-sm-2">טלפון של איש קשר:</label>
                                                 <div class="col-sm-3">
                                                     <input type="text" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-sm-2">תאריך התחלה:</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" placeholder="dd/mm/yyyy" class="form-control" id="start_date" name="start_date">
-                                                </div>
-                                                <label class="control-label col-sm-2">תאריך סיום:</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" placeholder="dd/mm/yyyy" class="form-control" id="end_date" name="end_date">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -189,9 +189,9 @@
                                                 יצירת לקוח חדש או שיוך לקוח קיים.
                                             </p>
                                             <div class="form-group row">
-                                                <label class="control-label col-sm-2">לקוח קיים:</label>
+                                                <label id="customer" class="control-label col-sm-2">לקוח קיים:</label>
                                                 <div class="col-sm-3">
-                                                    <select id="customer" name="customer" class="form-control">
+                                                    <select id="customerCB" name="customerCB" class=" form-control" required>
                                                         <!--will be added dynamicly from the db-->
                                                         <option value="בחר" selected="" disabled="">בחר</option>
                                                         <option value="1">צילי</option>
@@ -199,18 +199,18 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <br />
-                                            <h4 class="m-t-0 header-title">יצירת לקוח חדש</h4>
+                                            <button type="button" id="createNCButton" class="btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5"> <i class="ion-edit m-r-5"></i><span>לקוח חדש</span></button>
                                             <div class="form-group row">
-                                                <label class="control-label col-sm-2">שם הלקוח:</label>
+                                                <label id="customer_name" name="customer_name" class="control-label col-sm-2" hidden>שם הלקוח:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" placeholder="" class="form-control" id="contact_name" name="contact_name">
+                                                    <input type="text" required hidden="hidden" placeholder="" class="form-control" id="customer_nameCB" name="customer_nameCB">
                                                 </div>
-                                                <label class="control-label col-sm-2">טלפון:</label>
+                                                <label id="customer_phone" name="customer_phone" class="control-label col-sm-2" hidden>טלפון:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
-                                                </div>
+                                                    <input type="text" required hidden="hidden" placeholder="" class="form-control" id="customer_phoneCB" name="customer_phoneCB">
+                                                </div> 
                                             </div>
+                                            <button type="button" hidden="hidden" id="cancelButton" class="btn btn-rounded waves-effect w-md m-b-5"> <i class="ion-close-circled m-r-5"></i><span>בטל</span></button>
                                         </section>
                                         <!--assign customer end-->
 
@@ -347,13 +347,22 @@
                                         <h3>סיום</h3>
                                         <section>
                                             <div class="form-group row">
-                                                <label class="control-label col-sm-2">מספר הפרוייקט:</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="project_id" name="project_id" placeholder="">
+                                                <label class="control-label col-sm-2">שם הפרוייקט:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class=" form-control" id="project_title" name="project_title" placeholder="">
                                                 </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label class="control-label col-sm-2">מנהל הפרוייקט:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="project_manager" name="project_manager" placeholder="">
+                                                    <select id="project_manager" name="project_manager" class=" form-control">
+                                                        <!--employees names are added dynamicly-->
+                                                    </select>
+
+                                                </div>
+                                                <label class="control-label col-sm-2">תאריך יעד:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" placeholder="dd/mm/yyyy" class=" form-control" id="end_date" name="end_date">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -364,16 +373,6 @@
                                                 <label class="control-label col-sm-2">טלפון של איש קשר:</label>
                                                 <div class="col-sm-3">
                                                     <input type="text" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-sm-2">תאריך התחלה:</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" placeholder="dd/mm/yyyy" class="form-control" id="start_date" name="start_date">
-                                                </div>
-                                                <label class="control-label col-sm-2">תאריך סיום:</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" placeholder="dd/mm/yyyy" class="form-control" id="end_date" name="end_date">
                                                 </div>
                                             </div>
                                             <div class="form-group row">

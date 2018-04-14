@@ -71,7 +71,6 @@ $(document).on('click', '#editButton', function () {
     changeFormState(hidden);
     $("#editButton").hide();
 
-
 });
 $(document).on('click', '#cancelButton', function () {
     var hidden = true;
