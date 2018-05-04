@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     //Need to change to be dynamic from the user login session
     const userId = 65;
@@ -34,9 +33,7 @@ $(document).ready(function () {
             var projectCardId = $(this).parent().attr('id');
             GENERAL.PROJECTS.setOpenProjectClicked(projectCardId);
             location.href = "project.html";
-            console.log(projectCardId);
-
-         
+            console.log(projectCardId);         
         });
 
 

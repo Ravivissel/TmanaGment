@@ -1,5 +1,4 @@
-﻿
-//wait until the dom is loaded
+﻿//wait until the dom is loaded
 $(document).ready(function () {
 
     try {
@@ -70,12 +69,14 @@ $(document).on('click', '#editButton', function () {
     var hidden = false;
     changeFormState(hidden);
     $("#editButton").hide();
+    $("#BackButton").hide();
 
 });
 $(document).on('click', '#cancelButton', function () {
     var hidden = true;
     changeFormState(hidden);
     $("#editButton").show();
+    $("#BackButton").show();
 });
 
 $(document).on('click', '#saveButton', function () {
@@ -142,8 +143,11 @@ function changeFormState(state) {
 
 }
 
-
 function getProjectError(error) {
     console.log(err);
     throw error;
+}
+
+function returnToProjectsPage() {
+    location.href = "openedProjects.html";
 }

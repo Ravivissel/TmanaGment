@@ -7,9 +7,12 @@ function init()  {
         employeeId: groupid
     };
     userName = GENERAL.USERS.getUserName();
+    var uName = {
+        userName: userName
+    };
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
-    $('#welcome-user').append(userName);
+    getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
 }
 
 function getMyTaskCB(result) {
@@ -47,6 +50,15 @@ function renderMyRequestTable(myRequestData) {
         dynamicLi = '<tr id="' + row.Request_id + '"><td>' + row.Request_id + '</td><td>' + row.Request_title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
         $('#myRequestsTableBody').append(dynamicLi);
     });
+}
+
+function getMyUserNameCB(result) {
+    userName = $.parseJSON(result.d);
+    $('#welcome-user').append(userName);
+}
+
+function getMyUserNameErrorCB(error) {
+    console.log(error);
 }
 
 //Calender

@@ -47,6 +47,11 @@ public class Employee
         this.Password = password;
     }
 
+    public Employee(string user_name)
+    {
+        this.User_name = user_name;
+    }
+
     public int Id
     {
         get
@@ -208,8 +213,6 @@ public class Employee
         return userInDB;
     }
 
-
-
     public DataTable getEmployeesTable()
     {
         DbServices dbs = new DbServices();
@@ -230,5 +233,56 @@ public class Employee
 
         return tmpEmployee;
 
+    }
+
+    public string GetUserName()
+    {
+        #region DB functions
+        string query = "select * from employees where user_name ='" + user_name + "'";
+
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+        DataTable dt = ds.Tables[0];
+        string userName = "";
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            DataRow dr = dt.Rows[0];
+            userName = dr["first_name"].ToString();
+        }
+
+        #endregion
+
+        return userName;
+    }
+
+    public Employee GetEmployeeDetails(int id)
+    {
+        #region DB functions
+        string query = "select * from employees where id ='" + id + "'";
+
+        Employee employee = new Employee();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                employee.First_name = dr["first_name"].ToString();
+                employee.Last_name = dr["last_name"].ToString();
+                employee.Phone_number = Convert.ToInt32(dr["phone_num"]);
+                employee.Id = Convert.ToInt32(dr["id"]);
+                employee.Title = dr["title"].ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }        
+        #endregion
+
+        return employee; 
     }
 }

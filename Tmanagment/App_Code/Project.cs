@@ -268,10 +268,11 @@ public class Project
                 project.Title = dr["project_title"].ToString();
                 project.Start_date = (DateTime)dr["start_date"];
                 project.End_date = (DateTime)dr["end_date"];
-                emp.First_name = dr["project_manager"].ToString();
-                project.Project_manager = emp;
                 project.Contact_name = dr["contact_name"].ToString();
                 project.Priority_key = dr["priority_key"].ToString();
+                int project_manager_id = (int)dr["project_manager"];
+                emp = emp.GetEmployeeDetails(project_manager_id); //call the func from employee to get employee details
+                project.Project_manager = emp;
 
                 Project proj = new Project(project.Id, project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key);
 

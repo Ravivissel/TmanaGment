@@ -193,7 +193,8 @@ public class Request
                 req.Title = dr["request_title"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = (int)dr["contact_phone"];
-                emp.First_name = dr["assign_to"].ToString();
+                int assign_to_id = (int)dr["assign_to"];
+                emp = emp.GetEmployeeDetails(assign_to_id); //call the func from employee to get employee details
                 req.Assign_to = emp;
 
                 Request reqList = new Request(req.Id, req.Title, req.Contact_name, req.Contact_phone, req.Assign_to);

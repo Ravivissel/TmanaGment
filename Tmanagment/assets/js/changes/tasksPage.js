@@ -73,7 +73,7 @@ $(document).ready(function () {
             var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='ערוך'><i class='ti-pencil'></i></button>";
             btnStr += showBtn + " " + editBtn;
 
-            table.row.add([row.Id, row.Title, row.Description, row.Start_date, row.End_date, row.Created_by.First_name, row.Assign_to.First_name, btnStr]).draw("false");
+            table.row.add([row.Id, row.Title, row.Created_by.First_name, row.Assign_to.First_name, row.Start_date, row.End_date, btnStr]).draw("false");
         });
 
         $('#datatable-buttons tbody').on('click', '#show', function () {

@@ -63,10 +63,7 @@ function getRequests(request, successCB, errorCB) {
 }
 
 function getAllTasks(successCB, errorCB) {
-
-    // serialize the object to JSON string
-   
-
+  
     $.ajax({ // ajax call starts
         url: 'TasksWS.asmx/GetAllTasksList',       // server side web service method
         type: 'POST',                              // can be also GET
@@ -185,6 +182,68 @@ function loginCheck(request, successCB, errorCB) {
 
     $.ajax({ // ajax call starts
         url: 'LoginWS.asmx/LoginUser',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
+}
+
+function getMyUserName(uName, successCB, errorCB) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(uName);
+
+    $.ajax({ // ajax call starts
+        url: 'DashboardWS.asmx/GetMyUserName',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
+}
+
+function getCustomers(request, successCB, errorCB) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'CustomerWS.asmx/GetCustomersList',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
+}
+
+function insertNewCustomer(request, successCB, errorCB) {
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'CustomerWS.asmx/SetCustomer',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
+}
+
+function GetCustomer(request, successCB, errorCB) {
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'CustomerWS.asmx/GetCustomer',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server

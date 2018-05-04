@@ -78,7 +78,7 @@
     <!--- Page Scripts Dependencies!-->
     <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/project.js"></script>
+    <script src="assets/js/changes/closedProject.js"></script>
     <script src="assets/js/changes/utils.js"></script>
 
 </head>
@@ -104,7 +104,8 @@
                                 <h4 class="page-title">פרוייקט</h4>
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item">פרוייקטים</li>
-                                    <li class="breadcrumb-item">פרוייקט</li>
+                                    <li class="breadcrumb-item">ארכיון הפרוייקטים</li>
+                                    <li class="breadcrumb-item">פרוייקט שהושלם</li>
                                 </ol>
                                 <div class="clearfix"></div>
                             </div>
@@ -116,14 +117,7 @@
                             <div class="card-box">
                                 <h4 class="header-title m-t-0"></h4>
                                 <p class="text-muted font-14 m-b-20">
-
                                 </p>
-                                <div class="text-right m-b-30 m-r-5">
-                                    <button type="button"  id="editButton" class="btn btn-rounded waves-effect w-md m-b-5"> <i class="ion-edit m-r-5"></i><span>ערוך</span></button>
-                                </div>
-                                <div class="text-right m-b-30 m-r-5">
-                                    <button type="button" hidden="hidden" id="cancelButton" class="btn btn-rounded waves-effect w-md m-b-5"> <i class="ion-close-circled m-r-5"></i><span>בטל</span></button>
-                                </div>
                                 <form class="form-horizontal" role="form" id="projectForm">
                                     <div class="form-group row">
                                         <label class="control-label col-sm-2">שם הפרוייקט:</label>
@@ -136,15 +130,12 @@
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" class="form-control" id="project_id" name="project_id" placeholder="">
                                         </div>
-
                                         <label class="control-label col-sm-2">מנהל הפרוייקט:</label>
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" class="form-control" id="project_manager" name="project_manager" placeholder="">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
-
                                         <label class="control-label col-sm-2">איש קשר:</label>
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="contact_name" name="contact_name">
@@ -153,16 +144,13 @@
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
                                         </div>
-
-
                                     </div>
                                     <div class="form-group row">
-
                                         <label class="control-label col-sm-2">תאריך התחלה:</label>
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="start_date" name="start_date">
                                         </div>
-                                        <label class="control-label col-sm-2">תאריך יעד:</label>
+                                        <label class="control-label col-sm-2">תאריך סיום:</label>
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="end_date" name="end_date">
                                         </div>
@@ -174,12 +162,11 @@
                                         </div>
                                     </div>
                                     <div class="text-right m-b-30 m-r-5">
-                                        <button type="submit" hidden="hidden" id="saveButton" class="btn btn-success waves-effect w-md waves-light m-b-5"><i class="ti-save m-r-5"></i>שמור</button>
-                                        <button type="button" id="BackButton" onclick="returnToProjectsPage()" class="btn btn-secondary waves-effect w-md m-b-5"><i class="ti-back-right m-r-5"></i><span>חזור</span></button>
+                                        <button id="returnButton" type="button" class="btn btn-secondary waves-effect w-md m-b-5 m-r-15"><i class="ti-back-right m-r-5"></i>חזור</button>
                                     </div>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -192,7 +179,6 @@
     <script>
         var resizefunc = [];
     </script>
-
 
 </body>
 </html>

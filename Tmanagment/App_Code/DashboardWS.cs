@@ -3,6 +3,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.Services;
 
 /// <summary>
@@ -59,5 +60,14 @@ public class DashboardWS : System.Web.Services.WebService
             return ex.ToString();
         }
 
+    }
+
+    [WebMethod]
+    public string GetMyUserName(string userName)
+    {
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        Employee e = new Employee(userName);
+        string uName = e.GetUserName();
+        return j.Serialize(uName);
     }
 }
