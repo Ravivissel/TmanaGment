@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    checkCookie();
+    //checkCookie();
     $("#masterPageContext").load("MasterPage.html");
 
 });
