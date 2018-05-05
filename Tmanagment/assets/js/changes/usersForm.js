@@ -9,7 +9,7 @@
 function sweetAlertError() {
     swal({
         title: "שמירת המשתמש נכשלה",
-        type: "error",
+        type: "warning",
         timer: 1000,
         showConfirmButton: false
     });

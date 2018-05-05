@@ -42,7 +42,7 @@ public class EmployeeWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string SetEmployee(Employee employee)
+    public string SetEmployee(string employee)
     {
         try
         {

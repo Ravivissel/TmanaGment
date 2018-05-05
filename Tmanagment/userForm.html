@@ -93,82 +93,85 @@
 
 <body class="fixed-left">
 
-<!-- Begin page -->
-<div id="wrapper">
+    <!-- Begin page -->
+    <div id="wrapper">
 
-    <div id="masterPageContext"></div>
+        <div id="masterPageContext"></div>
 
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container-fluid">
-                <div class="col-lg-12">
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="col-lg-12">
 
-                    <div class="card-box">
-                        <h4 class="header-title m-t-0">הוספת משתמש למערכת</h4>
-                        <br/>
+                        <div class="card-box">
+                            <h4 class="header-title m-t-0">הוספת משתמש למערכת</h4>
+                            <br />
 
-                        <form action="#">
-                            <div class="form-group">
-                                <label for="firstName">שם פרטי<span class="text-danger">*</span></label>
-                                <input type="text" name="nick" parsley-trigger="change" required
-                                       placeholder="הכנס שם פרטי" class="form-control" id="firstName">
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">שם משפחה<span class="text-danger">*</span></label>
-                                <input type="text" name="nick" parsley-trigger="change" required
-                                       placeholder="הכנס שם משפחה" class="form-control" id="lastName">
-                            </div>
-                            <div class="form-group">
-                                <label for="phoneNumber">מספר טלפון<span class="text-danger">*</span></label>
-                                <input type="tel" name="nick" parsley-trigger="change" required
-                                       placeholder="הכנס מספר טלפון" class="form-control" id="phoneNumber">
-                            </div>
-                            <div class="form-group">
-                                <label for="userName">שם משתמש<span class="text-danger">*</span></label>
-                                <input type="text" name="nick" parsley-trigger="change" required
-                                       placeholder="הכנס שם משתמש" class="form-control" id="userName">
-                            </div>
-                            <div class="form-group">
-                                <label for="pass1">סיסמא<span class="text-danger">*</span></label>
-                                <input id="pass1" type="password" placeholder="הכנס סיסמא" required
-                                       class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="passWord2">אישור סיסמא <span class="text-danger">*</span></label>
-                                <input data-parsley-equalto="#pass1" type="password" required
-                                       placeholder="הכנס סיסמא פעם נוספת" class="form-control" id="passWord2">
-                            </div>
-                            <div class="form-group text-right m-b-0">
-                                <button class="btn btn-primary waves-effect waves-light" id=submit type="submit">
-                                    אישור
-                                </button>
-                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">
-                                    ביטול
-                                </button>
-                            </div>
+                            <form action="#">
+                                <div class="form-group">
+                                    <label for="firstName">שם פרטי<span class="text-danger">*</span></label>
+                                    <input type="text" name="nick" parsley-trigger="change" required
+                                           placeholder="הכנס שם פרטי" class="form-control" id="firstName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">שם משפחה<span class="text-danger">*</span></label>
+                                    <input type="text" name="nick" parsley-trigger="change" required
+                                           placeholder="הכנס שם משפחה" class="form-control" id="lastName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">מספר טלפון<span class="text-danger">*</span></label>
+                                    <input type="tel" name="nick" parsley-trigger="change" required
+                                           placeholder="הכנס מספר טלפון" class="form-control" id="phoneNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userName">שם משתמש<span class="text-danger">*</span></label>
+                                    <input type="text" name="nick" parsley-trigger="change" required
+                                           placeholder="הכנס שם משתמש" class="form-control" id="userName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass1">סיסמא<span class="text-danger">*</span></label>
+                                    <input id="pass1" type="password" placeholder="הכנס סיסמא" required
+                                           class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord2">אישור סיסמא <span class="text-danger">*</span></label>
+                                    <input data-parsley-equalto="#pass1" type="password" required
+                                           placeholder="הכנס סיסמא פעם נוספת" class="form-control" id="passWord2">
+                                </div>
+                                <div class="form-group text-right m-b-0">
+                                    <button class="btn btn-primary waves-effect waves-light" id=submit type="submit">
+                                        אישור
+                                    </button>
+                                    <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                        ביטול
+                                    </button>
+                                </div>
 
-                        </form>
-                    </div> <!-- end card-box -->
+                            </form>
+                        </div> <!-- end card-box -->
+                    </div>
                 </div>
-            </div>
-            <!-- end content -->
+                <!-- end content -->
 
+            </div>
         </div>
     </div>
-</div>
 
-<!-- END wrapper -->
+    <!-- END wrapper -->
+    <!-- Sweet Alert Js  -->
+    <script src="./plugins/sweet-alert/sweetalert2.min.js"></script>
+    <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
-<script>
+    <script>
     var resizefunc = [];
-</script>
+    </script>
 
-<!-- Custom main Js -->
-<script src="assets/js/jquery.core.js"></script>
-<script src="assets/js/jquery.app.js"></script>
+    <!-- Custom main Js -->
+    <script src="assets/js/jquery.core.js"></script>
+    <script src="assets/js/jquery.app.js"></script>
 
 </body>
 
