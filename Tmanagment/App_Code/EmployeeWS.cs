@@ -41,4 +41,21 @@ public class EmployeeWS : System.Web.Services.WebService
 
     }
 
+    [WebMethod]
+    public string SetEmployee(Employee employee)
+    {
+        try
+        {
+            Employee emp = new Employee();
+            List<Employee> assignToList = emp.GetAssignToList();
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+    }
+
 }
