@@ -1,8 +1,22 @@
-﻿$(document).on('click', '#submit', function () {
+﻿
+$(document).on('click', '#submit', function () {
 
+    var password = $('#password');
+    var confirm_password = $('#confirm_password');
+
+    if (password.val() != confirm_password.val()) 
+        confirm_password.get(0).setCustomValidity('Passwords do not match');
+    else
+        confirm_password.get(0).setCustomValidity('');
+
+
+    var request = {}
     var employee = getEmployeeFromUserInput();
-    SetEmployee(employee, setEmployeeCB, setEmployeeError);
+    var employeeString = JSON.stringify(employee);
+    request.employee = employeeString;
+ 
 
+    SetEmployee(request, setEmployeeCB, setEmployeeError);
 
 });
 
@@ -25,17 +39,24 @@ function sweetAlertSuccess () {
 function getEmployeeFromUserInput() {
     var tmpEmployee = {};
 
-    tmpEmployee.firstName = $("#firstName").val();
-    tmpEmployee.lastName = $("#lastName").val();
-    tmpEmployee.phoneNumber = $("#phoneNumber").val();
-    tmpEmployee.password = $("#pass1").val();
+    tmpEmployee.first_name = $("#firstName").val();
+    tmpEmployee.last_name = $("#lastName").val();
+    tmpEmployee.user_name = $("#userName").val();
+    tmpEmployee.title = $("#title").val();
+    tmpEmployee.phone_number = $("#phoneNumber").val();
+    tmpEmployee.password = $("#password").val();
     return tmpEmployee;
 }
 function setEmployeeCB(result) {
-    sweetAlertSuccess();
+    //sweetAlertSuccess();
 }
 function setEmployeeError(err) {
 
     sweetAlertError();
+    console.log(err);
 }
 
+function confirmPassword() {
+
+
+}

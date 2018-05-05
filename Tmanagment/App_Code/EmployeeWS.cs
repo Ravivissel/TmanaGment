@@ -46,14 +46,15 @@ public class EmployeeWS : System.Web.Services.WebService
     {
         try
         {
-            Employee emp = new Employee();
-            List<Employee> assignToList = emp.GetAssignToList();
-            return null;
+            Employee emp = JsonConvert.DeserializeObject<Employee>(employee);
+            int rows_affected = emp.InsertEmployee(emp);
+            if (rows_affected != 0)
+                return "The new user has been saved";
+            return "The number of rows affected is zero, the user didn't saved";
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return ex.ToString();
+            return ex.Message;
         }
 
     }

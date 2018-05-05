@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Linq.Mapping;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -285,4 +286,16 @@ public class Employee
 
         return employee; 
     }
+    public int InsertEmployee(Employee emp)
+    {
+        DbServices dbs = new DbServices();
+
+        StringBuilder query = new StringBuilder();
+        query.AppendFormat("insert into employees (first_name,last_name,phone_num,title,user_name,password) ");
+        query.AppendFormat("values ('{0}','{1}','{2}','{3}','{4}','{5}')", emp.First_name.ToString(), emp.Last_name.ToString(), emp.Phone_number, emp.Title.ToString(), emp.User_name.ToString(), emp.Password.ToString());
+
+        int row_affected = dbs.ExecuteQuery(query.ToString());
+        return row_affected;
+    }
+
 }

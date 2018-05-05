@@ -257,7 +257,7 @@ function SetEmployee(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'Employee.asmx/SetEmployee',       // server side web service method
+        url: 'EmployeeWS.asmx/SetEmployee',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
