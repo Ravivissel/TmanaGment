@@ -5,7 +5,7 @@ $(document).on('click', '#submit', function () {
     var confirm_password = $('#confirm_password');
 
     if (password.val() != confirm_password.val()) 
-        confirm_password.get(0).setCustomValidity('Passwords do not match');
+        confirm_password.get(0).setCustomValidity('הסיסמאות שהוזנו לא תאומות');
     else
         confirm_password.get(0).setCustomValidity('');
 
