@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     generateProjectManagerList();
-
+    generateCustomersList();
 });
 
 //Assign to employee
@@ -19,6 +19,32 @@ function generateProjectManagerListCB(AssignToListData) {
 }
 
 function generateProjectManagerListErrorCB(error) {
+    console.log(error);
+}
+
+//Assign to customer
+function generateCustomersList() {
+
+    //Need to change to be dynamic from the user login session
+    const userId = 85;
+
+    var groupid = userId;
+    var request = {
+        employeeId: groupid
+    };
+    getCustomers(request, generateCustomersListCB, generateCustomersListErrorCB);
+}
+
+function generateCustomersListCB(customerData) {
+    var arr_customer = $.parseJSON(customerData.d);
+    $select = $("#customerCB");
+    $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+    for (i in arr_customer) {
+        $('<option>', { value: arr_customer[i].Id, text: arr_customer[i].First_name + " " + arr_customer[i].Last_name }).appendTo($select);
+    }
+}
+
+function generateCustomersListErrorCB(error) {
     console.log(error);
 }
 
@@ -50,6 +76,8 @@ function changeState(state) {
 
     $("#customer_name").prop('hidden', state);
     $("#customer_nameCB").prop('hidden', state);
+    $("#customer_f_name").prop('hidden', state);
+    $("#customer_f_nameCB").prop('hidden', state);
     $("#customer_phone").prop('hidden', state);
     $("#customer_phoneCB").prop('hidden', state);
     $("#cancelButton").prop('hidden', state);

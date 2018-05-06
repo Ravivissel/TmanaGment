@@ -64,6 +64,7 @@ public class ProjectWS : System.Web.Services.WebService
         }
 
     }
+
     [WebMethod]
     public string UpdateProjects(string projects)
     {
@@ -89,11 +90,6 @@ public class ProjectWS : System.Web.Services.WebService
         {
             Console.WriteLine(ex);
             return ex.ToString();
-        }
-
-
-    
-    }
-
-    
+        }   
+    }   
 }

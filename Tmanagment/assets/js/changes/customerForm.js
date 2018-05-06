@@ -9,6 +9,7 @@ $(document).ready(function () {
                 $("#first_name").attr('disabled', 'disabled');
                 $("#last_name").attr('disabled', 'disabled');
                 $("#phone_num").attr('disabled', 'disabled');
+                $("#saveCustomer").attr('disabled', 'disabled');
             }
         }
     }

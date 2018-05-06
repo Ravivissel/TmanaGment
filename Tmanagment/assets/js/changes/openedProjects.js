@@ -24,7 +24,7 @@
         localStorage.openedProjectsList = results;
         $("#openedProjects").empty();
         $.each(results, function (i, row) {
-            dynamicLi = '<div class="col-sm-4 col-lg-4 col-xs-12" style="text-align:right"><div class="card m-b-20"><div class="card-body" id="' + row.Id + '"><h2 class="card-title">' + row.Title + '</h2><p class="card-text">' + row.Project_manager.First_name + '</p><p class="card-text">' + row.End_date + '</p><p class="card-text">' + row.Contact_name + '</p><button type="button" id="show" class="btn btn-primary">כניסה</button></div></div></div>';
+            dynamicLi = '<div class="col-sm-4 col-lg-4 col-xs-12" style="text-align:right"><div class="card m-b-20"><div class="card-body" id="' + row.Id + '"><h2 class="card-title">' + row.Title + '</h2><p class="card-text"><b>מנהל הפרוייקט: </b>' + row.Project_manager.First_name + '</p><p class="card-text"><b>תאריך סיום: </b>' + row.End_date + '</p><p class="card-text"><b>איש קשר: </b>' + row.Contact_name + '</p><button type="button" id="show" class="btn btn-primary">כניסה</button></div></div></div>';
             $('#openedProjects').append(dynamicLi);
         });
     }

@@ -30,7 +30,7 @@ function renderMyTaskTable(myTaskData) {
     //var str = "";
     results = $.parseJSON(myTaskData.d);
     $.each(results, function (i, row) {
-        dynamicLi = '<tr id="' + row.Task_id + '"><td>' + row.Task_id + '</td><td>' + row.Task_title + '</td><td>' + row.Project_title + '</td><td>' + row.Assign_to + '</td><td>' + row.End_date + '</td><td>' + row.Status + '</td></tr>';
+        dynamicLi = '<tr id="' + row.Task_id + '"><td>' + row.Task_id + '</td><td>' + row.Task_title + '</td><td>' + row.Project_title + '</td><td>' + row.Assign_to + '</td><td>' + row.Status + '</td><td>' + row.End_date + '</td></tr>'; 
         $('#myTasksTableBody').append(dynamicLi);
     });
 }

@@ -104,7 +104,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="control-label col-sm-2">משוייכת ל:</label>
+                                        <label class="control-label col-sm-2">שייך ל:</label>
                                         <div class="col-sm-3">
                                             <select id="assign_to_p_or_r" name="assign_to_p_or_r" class="form-control">
                                                 <option value="בחר" selected="" disabled="">בחר</option>
@@ -112,7 +112,7 @@
                                                 <option value="2">פנייה</option>
                                             </select>
                                         </div>
-                                        <label class="control-label col-sm-2">משוייכת לעובד:</label>
+                                        <label class="control-label col-sm-2">שייך לעובד:</label>
                                         <div class="col-sm-3">
                                             <select id="assign_to" name="assign_to" class="form-control">
                                                 <!--employees names are added dynamicly-->
@@ -120,13 +120,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="control-label col-sm-2">משוייכת לפרוייקט:</label>
+                                        <label class="control-label col-sm-2">שייך לפרוייקט:</label>
                                         <div class="col-sm-3">
                                             <select id="assign_to_project" name="assign_to_project" class="form-control" disabled="disabled">
                                                 <!--projects names are added dynamicly-->
                                             </select>
                                         </div>
-                                        <label class="control-label col-sm-2">משוייכת לפנייה:</label>
+                                        <label class="control-label col-sm-2">שייך לפנייה:</label>
                                         <div class="col-sm-3">
                                             <select id="assign_to_request" name="assign_to_request" class="form-control" disabled="disabled">
                                                 <!--requests names are added dynamicly-->
@@ -204,12 +204,6 @@
 
     <script>
         $(document).ready(function () {
-
-            //generate select options
-            generateAssignToList();
-            generateAssignToProjectList();
-            generateAssignToRequestList();
-            initializeSelect2();
 
             // DO NOT REMOVE : GLOBAL FUNCTIONS!
             var errorClass = 'invalid';
@@ -339,76 +333,6 @@
                 $("#assign_to_project").attr('disabled', 'disabled');
             } 
         });
-
-        //all the select functions starts here
-
-        //Assign to employee
-        function generateAssignToList() {
-            GetAssignToList(getAssignToListCB, getAssignToListErrorCB);
-        }
-
-        function getAssignToListCB(AssignToListData) {
-            var arr_AssignTo = $.parseJSON(AssignToListData.d);
-            $select = $("#assign_to");
-            $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
-            for (i in arr_AssignTo) {
-                $('<option>', { value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name }).appendTo($select);
-            }
-        }
-
-        function getAssignToListErrorCB(error) {
-            console.log(error);
-        }
-
-        //Assign to project
-        function generateAssignToProjectList() {
-
-            //Need to change! no need for request here
-            const userId = 65;
-            var groupid = userId;
-            var request = {
-                employeeId: groupid
-            };
-            getProjects(request, getAssignToProjectListCB, getAssignToProjectListErrorCB);
-        }
-
-        function getAssignToProjectListCB(AssignToProjectListData) {
-            var arr_AssignToProject = $.parseJSON(AssignToProjectListData.d);
-            $select = $("#assign_to_project");
-            $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
-            for (i in arr_AssignToProject) {
-                $('<option>', { value: arr_AssignToProject[i].Id, text: arr_AssignToProject[i].Title }).appendTo($select);
-            }
-        }
-
-        function getAssignToProjectListErrorCB(error) {
-            console.log(error);
-        }
-
-        //Assign to Request                      TODO: need to change only the active request!
-        function generateAssignToRequestList() {
-
-            //Need to change! no need for request here
-            const userId = 65;
-            var groupid = userId;
-            var request = {
-                employeeId: groupid
-            };
-            getRequests(request, getAssignToRequestListCB, getAssignToRequestListErrorCB);
-        }
-
-        function getAssignToRequestListCB(AssignToRequestListData) {
-            var arr_AssignToRequest = $.parseJSON(AssignToRequestListData.d);
-            $select = $("#assign_to_request");
-            $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
-            for (i in arr_AssignToRequest) {
-                $('<option>', { value: arr_AssignToRequest[i].Id, text: arr_AssignToRequest[i].Title }).appendTo($select);
-            }
-        }
-
-        function getAssignToRequestListErrorCB(error) {
-            console.log(error);
-        }
             
     </script>
 
