@@ -70,4 +70,24 @@ public class DashboardWS : System.Web.Services.WebService
         string uName = e.GetUserName();
         return j.Serialize(uName);
     }
+
+    [WebMethod]
+    public string GetOpenRequestsNum()
+    {
+        int counter = 0;
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        Request request = new Request();
+        try
+        {
+            counter = request.GetOpenRequestsNum();
+            return j.Serialize(counter);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+    }
 }

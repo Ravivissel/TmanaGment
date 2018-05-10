@@ -6,13 +6,17 @@ function init()  {
     var request = {
         employeeId: groupid
     };
+
     userName = GENERAL.USERS.getUserName();
     var uName = {
         userName: userName
     };
+
+    getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
+    getOpenRequestsNum(getOpenRequestsNumCB, getOpenRequestsNumErrorCB);
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
-    getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
+
 }
 
 function getMyTaskCB(result) {
@@ -58,6 +62,15 @@ function getMyUserNameCB(result) {
 }
 
 function getMyUserNameErrorCB(error) {
+    console.log(error);
+}
+
+function getOpenRequestsNumCB(result) {
+    counter = $.parseJSON(result.d);
+    $('#openRequests').append(counter);
+}
+
+function getOpenRequestsNumErrorCB(error) {
     console.log(error);
 }
 

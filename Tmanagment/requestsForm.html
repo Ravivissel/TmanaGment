@@ -8,7 +8,7 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <title>פנייה חדשה</title>
+    <title>פנייה</title>
 
     <!-- Sweet Alert css -->
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -67,7 +67,7 @@
                                 <h4 class="page-title" id="welcome-user">פנייה</h4>
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item">פניות</li>
-                                    <li class="breadcrumb-item">פניה חדשה</li>
+                                    <li class="breadcrumb-item">פנייה</li>
                                 </ol>
                                 <div class="clearfix"></div>
                             </div>
@@ -79,7 +79,7 @@
                             <div class="card-box">
                                 <h4 class="header-title m-t-0">טופס פנייה</h4>
                                 <p class="text-muted font-14 m-b-20">
-                                    יצירת פנייה חדשה. לחץ על כפתור חזור בכדי לצפות בכל הפניות.
+                                    יצירה, צפייה ועריכת פנייה. לחץ על כפתור חזור בכדי לצפות בכל הפניות.
                                 </p>
                                 <div class="text-right m-b-30 m-r-5">
                                     <button type="button" onclick="returnToRequestPage()" class="btn btn-secondary waves-effect w-md m-b-5"><i class="ti-back-right m-r-5"></i><span>חזור</span></button>
@@ -105,6 +105,16 @@
                                         <label class="control-label col-sm-2">טלפון של איש קשר:</label>
                                         <div class="col-sm-3">
                                             <input type="text" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" id="statusDiv" hidden>
+                                        <label class="control-label col-sm-2">סטטוס:</label>
+                                        <div class="col-sm-3">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="1">פתוחה</option>
+                                                <option value="2">בתהליך</option>
+                                                <option value="3">סגורה</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">

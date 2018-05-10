@@ -8,7 +8,7 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <title>משימה חדשה</title>
+    <title>משימה</title>
 
     <!-- Sweet Alert css -->
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -75,7 +75,7 @@
                                 <h4 class="page-title" id="welcome-user">משימה</h4>
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item">משימות</li>
-                                    <li class="breadcrumb-item">משימה חדשה</li>
+                                    <li class="breadcrumb-item">משימה</li>
                                 </ol>
                                 <div class="clearfix"></div>
                             </div>
@@ -87,7 +87,7 @@
                             <div class="card-box">
                                 <h4 class="header-title m-t-0">טופס משימה</h4>
                                 <p class="text-muted font-14 m-b-20">
-                                    יצירת משימה חדשה. לחץ על כפתור חזור בכדי לצפות בכל המשימות.
+                                    יצירה, צפייה ועריכת משימה. לחץ על כפתור חזור בכדי לצפות בכל המשימות.
                                 </p>
                                 <div class="text-right m-b-30 m-r-5">
                                     <button type="button" onclick="returnToTasksPage()" class="btn btn-secondary waves-effect w-md m-b-5 m-r-15"><i class="ti-back-right m-r-5"></i>חזור</button>
@@ -145,8 +145,6 @@
                                 </form>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -247,6 +245,7 @@
                     var assign_to = $("#assign_to option:selected").val();
                     var description = $("#description").val();
                     var created_by = "1"; // change to be the actual user
+
                     //check's if it is a new request or an update
                     var func = arr_task.func;
                     var taskID = arr_task.taskID;

@@ -16,7 +16,7 @@ public class ActualTask
     private DateTime end_date;
     private Employee created_by;
     private Employee assign_to;
-
+    private Status status;
 
     public ActualTask()
     {
@@ -137,11 +137,25 @@ public class ActualTask
         }
     }
 
+    public Status Status
+    {
+        get
+        {
+            return status;
+        }
+
+        set
+        {
+            status = value;
+        }
+    }
 
     public List<ActualTask> GetAllTasksList()
     {
         #region DB functions
-        string query = "select at.*,e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id  inner join employees e_created_by on e_created_by.id = at.created_by;";
+        string query = "select s.title status_title, at.*,e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id  inner join employees e_created_by on e_created_by.id = at.created_by inner join actual_tasks_statuses ats on at.id = ats.task_id inner join statuses s on ats.status_id = s.id " +
+            "where " +
+            "ats.is_current = 1;";
 
         List<ActualTask> actualTasksList = new List<ActualTask>();
         DbServices db = new DbServices();
@@ -154,6 +168,7 @@ public class ActualTask
                 ActualTask actual_task_temp = new ActualTask();
                 Employee created_by = new Employee();
                 Employee assign_to = new Employee();
+                Status status = new Status();
 
                 created_by.First_name = dr["created_by_fn"].ToString();
                 created_by.Id = Convert.ToInt32(dr["created_by"]);
@@ -168,6 +183,9 @@ public class ActualTask
                 actual_task_temp.End_date = Convert.ToDateTime(dr["end_date"]);
                 actual_task_temp.Created_by = created_by;
                 actual_task_temp.Assign_to = assign_to;
+
+                status.Title = dr["status_title"].ToString();
+                actual_task_temp.Status = status;
 
                 actualTasksList.Add(actual_task_temp);
             }
@@ -216,5 +234,43 @@ public class ActualTask
         #endregion
 
         return task;
+    }
+
+    public int GetTasksNum(string status)
+    {
+        #region DB functions
+        string query = "select s.title status_title from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id  inner join employees e_created_by on e_created_by.id = at.created_by inner join actual_tasks_statuses ats on at.id = ats.task_id inner join statuses s on ats.status_id = s.id " +
+            "where " +
+            "ats.is_current = 1;";
+
+        int counter = 0;
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                ActualTask actual_task = new ActualTask();
+                Status s = new Status();
+
+                s.Title = dr["status_title"].ToString();
+                actual_task.Status = s;
+
+                if (actual_task.Status.Title == "פתוחה" && status == "פתוחה")
+                    counter++;
+                else if (actual_task.Status.Title == "בתהליך" && status == "בתהליך")
+                    counter++;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+
+        return counter;
     }
 }

@@ -20,6 +20,26 @@ public class TasksWS : System.Web.Services.WebService
 {
 
     [WebMethod]
+    public string GetTasksNum(string status)
+    {
+        int counter = 0;
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        ActualTask actualTask = new ActualTask();
+        try
+        {
+            counter = actualTask.GetTasksNum(status);
+            return j.Serialize(counter);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+    }
+
+    [WebMethod]
     public string GetAllTasksList()
     {
         try

@@ -64,4 +64,14 @@ public class CustomerWS : System.Web.Services.WebService
         return j.Serialize(customer);
     }
 
+    [WebMethod]
+    public void DeactivateCustomer(int customerID, string active)
+    {
+        Customer c = new Customer
+        {
+            Id = customerID
+        };
+        c.DeactivateCustomer(active);
+    }
+
 }

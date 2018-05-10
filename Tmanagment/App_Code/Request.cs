@@ -18,6 +18,7 @@ public class Request
     private DateTime created_at;
     private Employee created_by;
     private Employee assign_to;
+    private Status status;
 
 
     public Request()
@@ -65,6 +66,29 @@ public class Request
         this.contact_name = contact_name;
         this.contact_phone = contact_phone;
         this.assign_to = assign_to;
+    }
+
+    public Request(int id, string title, string contact_name, int contact_phone, Employee assign_to, Status status)
+    {
+        this.id = id;
+        this.title = title;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.assign_to = assign_to;
+        this.status = status;
+    }
+
+    public Request(int id, string title, string description, string contact_name, int contact_phone, DateTime created_at, Employee created_by, Employee assign_to, Status status)
+    {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.created_at = created_at;
+        this.created_by = created_by;
+        this.assign_to = assign_to;
+        this.status = status;
     }
 
     public int Id
@@ -171,10 +195,23 @@ public class Request
         }
     }
 
+    public Status Status
+    {
+        get
+        {
+            return status;
+        }
+
+        set
+        {
+            status = value;
+        }
+    }
+
     public List<Request> GetRequestsList()
     {
         #region DB functions
-        string query = "select r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
+        string query = "select s.title status_title, r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
             "where " +
             "rs.is_current = 1;"; // TODO: should be change to the required status
 
@@ -188,6 +225,7 @@ public class Request
             {
                 Request req = new Request();
                 Employee emp = new Employee();
+                Status status = new Status();
 
                 req.Id = (int)dr["id"];
                 req.Title = dr["request_title"].ToString();
@@ -196,8 +234,10 @@ public class Request
                 int assign_to_id = (int)dr["assign_to"];
                 emp = emp.GetEmployeeDetails(assign_to_id); //call the func from employee to get employee details
                 req.Assign_to = emp;
+                status.Title = dr["status_title"].ToString();
+                req.Status = status;
 
-                Request reqList = new Request(req.Id, req.Title, req.Contact_name, req.Contact_phone, req.Assign_to);
+                Request reqList = new Request(req.Id, req.Title, req.Contact_name, req.Contact_phone, req.Assign_to, req.Status);
 
                 ReqList.Add(reqList);
             }
@@ -264,6 +304,44 @@ public class Request
         #endregion
 
         return req;
+    }
+
+    public int GetOpenRequestsNum()
+    {
+        #region DB functions
+        string query = "select s.title status_title from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
+            "where " +
+            "rs.is_current = 1;"; // TODO: should be change to the required status
+
+        int counter = 0;
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Request req = new Request();
+                Status status = new Status();
+
+                status.Title = dr["status_title"].ToString();
+                req.Status = status;
+
+                if (req.Status.Title == "פתוחה")
+                    counter++;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+
+        return counter;
+
     }
 
 }

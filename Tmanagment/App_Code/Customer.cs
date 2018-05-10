@@ -14,6 +14,7 @@ public class Customer
     private string first_name;
     private string last_name;
     private int phone_num;
+    private string active;
 
     public Customer()
     {
@@ -28,6 +29,15 @@ public class Customer
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone_num = phone_num;
+    }
+
+    public Customer(int id, string first_name, string last_name, int phone_num, string active)
+    {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.phone_num = phone_num;
+        this.active = active;
     }
 
     public int Id
@@ -82,6 +92,19 @@ public class Customer
         }
     }
 
+    public string Active
+    {
+        get
+        {
+            return active;
+        }
+
+        set
+        {
+            active = value;
+        }
+    }
+
     public List<Customer> GetCustomersList()
     {
         #region DB functions
@@ -100,10 +123,11 @@ public class Customer
                     Id = (int)dr["id"],
                     First_name = dr["first_name"].ToString(),
                     Last_name = dr["last_name"].ToString(),
-                    Phone_num = (int)dr["phone_num"]
+                    Phone_num = (int)dr["phone_num"],
+                    Active = dr["active"].ToString()
                 };
 
-                Customer cusList = new Customer(cus.Id, cus.First_name, cus.Last_name, cus.Phone_num);
+                Customer cusList = new Customer(cus.Id, cus.First_name, cus.Last_name, cus.Phone_num, cus.Active);
 
                 CustomersList.Add(cusList);
             }
@@ -163,6 +187,12 @@ public class Customer
         #endregion
 
         return cus;
+    }
+
+    public void DeactivateCustomer(string active)
+    {
+        DbServices db = new DbServices();
+        db.ExecuteQuery("UPDATE customers SET active='" + active + "' WHERE id=" + Id);
     }
 
 }

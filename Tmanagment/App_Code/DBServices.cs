@@ -49,8 +49,10 @@ public class DbServices
         int row_affected = 0;
         using (con)
         {
-
-            con.Open();
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }     
             tran = con.BeginTransaction();
 
             cmd = new SqlCommand(sqlQuery, con, tran);
@@ -65,6 +67,7 @@ public class DbServices
             {
                 row_affected = cmd.ExecuteNonQuery();
                 tran.Commit();
+                con.Close();
             }
             catch (Exception e)
             {
@@ -95,4 +98,44 @@ public class DbServices
 
     //    return db;
     //}
+
+    public int GetLastIdInserted(string tableName)
+    {
+        Int32 lastValue = 0;
+        string sqlQuery = "SELECT IDENT_CURRENT('" + tableName + "')";
+
+        try
+        {
+            cmd = new SqlCommand(sqlQuery, con);
+            lastValue = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Dispose();
+        }
+        catch (Exception e)
+        {
+            //do something with the error            
+        }
+        
+        return lastValue;
+    }
+
+    public string Ga(string tableName)
+    {
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["db"].ConnectionString);
+        SqlCommand command = new SqlCommand("SELECT TOP(1) id FROM "+ tableName +" ORDER BY 1 DESC", connection);
+
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+
+        //won't need a while, since it will only retrieve one row
+        reader.Read();
+
+        //here is your data
+        string data = reader["id"].ToString();
+
+        reader.Close();
+        connection.Close();
+
+        return data;
+
+    }
 }

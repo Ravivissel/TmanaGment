@@ -230,7 +230,7 @@ public class Dashboard
             "where " +
             "rs.is_current = 1 " +
             "and " +
-            "s.title = 'Mr';"; // TODO: should be shange to the required status
+            "s.title = 'פתוחה';"; // TODO: should be shange to the required status
 
         List<Dashboard> myReqList = new List<Dashboard>();
         DbServices db = new DbServices();
