@@ -262,6 +262,7 @@ public class Project
             try
             {
                 Project project = new Project();
+                List<Employee> employees = new List<Employee>();
                 Employee emp = new Employee();
 
                 project.Id = (int)dr["id"];
@@ -271,7 +272,8 @@ public class Project
                 project.Contact_name = dr["contact_name"].ToString();
                 project.Priority_key = dr["priority_key"].ToString();
                 int project_manager_id = (int)dr["project_manager"];
-                emp = emp.GetEmployeeDetails(project_manager_id); //call the func from employee to get employee details
+                employees = emp.GetEmployees(project_manager_id); //call the func from employee to get employee details
+                emp = employees.First();
                 project.Project_manager = emp;
 
                 Project proj = new Project(project.Id, project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key);

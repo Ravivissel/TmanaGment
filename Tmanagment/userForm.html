@@ -40,8 +40,8 @@
     <!-- Todojs  -->
     <script src="assets/pages/jquery.todo.js"></script>
 
-    <link href="./plugins/switchery/switchery.min.css" rel="stylesheet"/>
-    <link href="./plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css"/>
+    <link href="./plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="./plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
 
     <!-- Required datatable js -->
     <script src="./plugins/datatables/jquery.dataTables.min.js"></script>
@@ -60,20 +60,30 @@
     <script src="./plugins/datatables/dataTables.keyTable.min.js"></script>
 
     <!-- DataTables -->
-    <link href="./plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-    <link href="./plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="./plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Responsive datatable examples -->
-    <link href="./plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="./plugins/switchery/switchery.min.css" rel="stylesheet"/>
-    <link href="./plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css"/>
+    <link href="./plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="./plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
     <script src="assets/js/modernizr.min.js"></script>
+   
+    <!-- Sweet Alert Js  -->
+    <script src="./plugins/sweet-alert/sweetalert2.min.js"></script>
+    <script src="assets/pages/jquery.sweet-alert.init.js"></script>
+    <!-- Sweet Alert css -->
+    <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
 
     <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/utils.js"></script>
@@ -105,57 +115,71 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card-box">
+                                        <h4 class="header-title m-t-0">הוספת משתמש למערכת</h4>
 
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">הוספת משתמש למערכת</h4>
-                            <br />
+                                        <div class="text-right m-b-30 m-r-5">
+                                            <button type="button" id="back" class="btn btn-secondary waves-effect w-md m-b-5 m-r-15"><i class="ti-back-right m-r-5"></i>חזור</button>
+                                        </div>
+                                        <form class="form-horizontal" role="form" id="form">
+                                            <div class="form-group row">
+                                                <label class="control-label col-sm-2" for="firstName">שם פרטי<span class="text-danger">*</span></label>
+                                                <div class="col-sm-3">
+                                                    <input type="text"  parsley-trigger="change" required
+                                                           placeholder="הכנס שם פרטי" class="form-control" id="firstName">
+                                                </div>
+                                                <label class="control-label col-sm-2" for="lastName">שם משפחה<span class="text-danger">*</span></label>
+                                                <div class="col-sm-3">
+                                                    <input type="text"  parsley-trigger="change" required
+                                                           placeholder="הכנס שם משפחה" class="form-control" id="lastName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-sm-2" for="title">תפקיד<span class="text-danger">*</span></label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" parsley-trigger="change" required
+                                                           placeholder="הכנס תפקיד" class="form-control" id="title">
+                                                </div>
+                                                <label class="control-label col-sm-2" for="phoneNumber">מספר טלפון<span class="text-danger">*</span></label>                                                <div class="col-sm-3">
+                                                    <div>
+                                                        <input type="tel"  parsley-trigger="change" required
+                                                               placeholder="הכנס מספר טלפון" pattern="[0-9]{4}[0-9]{3}[0-9]{3}" class="form-control" id="phoneNumber">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-sm-2" for="userName">שם משתמש<span class="text-danger">*</span></label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" parsley-trigger="change" required
+                                                           placeholder="הכנס שם משתמש" class="form-control" id="userName">
+                                                </div>
+                                            </div>
 
-                            <form action="#">
-                                <div class="form-group">
-                                    <label for="firstName">שם פרטי<span class="text-danger">*</span></label>
-                                    <input type="text" name="nick" parsley-trigger="change" required
-                                           placeholder="הכנס שם פרטי" class="form-control" id="firstName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">שם משפחה<span class="text-danger">*</span></label>
-                                    <input type="text" name="nick" parsley-trigger="change" required
-                                           placeholder="הכנס שם משפחה" class="form-control" id="lastName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="title">תפקיד<span class="text-danger">*</span></label>
-                                    <input type="text" name="nick" parsley-trigger="change" required
-                                           placeholder="הכנס תפקיד" class="form-control" id="title">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phoneNumber">מספר טלפון<span class="text-danger">*</span></label>
-                                    <input type="tel" name="nick" parsley-trigger="change" required
-                                           placeholder="הכנס מספר טלפון" pattern="[0-9]{4}[0-9]{3}[0-9]{3}" class="form-control" id="phoneNumber">
-                                </div>
-                                <div class="form-group">
-                                    <label for="userName">שם משתמש<span class="text-danger">*</span></label>
-                                    <input type="text" name="nick" parsley-trigger="change" required
-                                           placeholder="הכנס שם משתמש" class="form-control" id="userName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">סיסמא<span class="text-danger">*</span></label>
-                                    <input id="password" type="password" placeholder="הכנס סיסמא" required
-                                           class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirm_password">אישור סיסמא <span class="text-danger">*</span></label>
-                                    <input data-parsley-equalto="#pass1" type="password" required
-                                           placeholder="הכנס סיסמא פעם נוספת" class="form-control" id="confirm_password">
-                                </div>
-                                <div class="form-group text-right m-b-0">
-                                    <button class="btn btn-primary waves-effect waves-light" id=submit type="submit">
-                                        אישור
-                                    </button>
-                                    <button type="reset" class="btn btn-secondary waves-effect m-l-5">
-                                        ביטול
-                                    </button>
+                                            <div class="form-group row">
+                                                <label class="control-label col-sm-2" for="password">סיסמא<span class="text-danger">*</span></label>
+                                                <div class="col-sm-3">
+                                                    <input id="password" type="password" placeholder="הכנס סיסמא" required
+                                                           class="form-control">
+                                                </div>
+                                                <label class="control-label col-sm-2" for="password">אישור סיסמא<span class="text-danger">*</span></label>
+                                                <div class="col-sm-3">
+                                                    <input data-parsley-equalto="#pass1" type="password" required
+                                                           placeholder="הכנס סיסמא פעם נוספת" class="form-control" id="confirm_password">
+                                                </div>
+
+                                            </div>
+                                          
+                                            <div class="text-right m-b-30 m-r-5">
+                                                <button type="submit" id="submit" class="btn btn-success waves-effect w-md waves-light m-b-5  m-r-15"><i class="ti-save m-r-5"></i>שמור</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
 
-                            </form>
+
+                            </div>
                         </div> <!-- end card-box -->
                     </div>
                 </div>
@@ -163,20 +187,18 @@
 
             </div>
         </div>
-    </div>
+    
 
     <!-- END wrapper -->
-    <!-- Sweet Alert Js  -->
-    <script src="./plugins/sweet-alert/sweetalert2.min.js"></script>
-    <script src="assets/pages/jquery.sweet-alert.init.js"></script>
-
+ 
     <script>
-    var resizefunc = [];
+        var resizefunc = [];
     </script>
 
     <!-- Custom main Js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
+
 
 </body>
 

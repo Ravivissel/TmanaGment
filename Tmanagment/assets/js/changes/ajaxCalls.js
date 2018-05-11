@@ -252,6 +252,17 @@ function GetCustomer(request, successCB, errorCB) {
         error: errorCB
     }); // end of ajax call
 }
+function GetEmployees(successCB, errorCB) {
+
+    $.ajax({ // ajax call starts
+        url: 'EmployeeWS.asmx/GetEmployees',       // server side web service method
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
+}
 function SetEmployee(request, successCB, errorCB) {
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);

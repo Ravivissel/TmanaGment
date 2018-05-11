@@ -20,6 +20,12 @@ $(document).on('click', '#submit', function () {
 
 });
 
+
+$(document).on('click', '#back', function () {
+    location.href = "users.html";
+});
+
+
 function sweetAlertError() {
     swal({
         title: "שמירת המשתמש נכשלה",
@@ -48,7 +54,8 @@ function getEmployeeFromUserInput() {
     return tmpEmployee;
 }
 function setEmployeeCB(result) {
-    //sweetAlertSuccess();
+    sweetAlertSuccess();
+    setTimeout(function () { returnToEmployeesPage() }, 1001);
 }
 function setEmployeeError(err) {
 
@@ -56,7 +63,8 @@ function setEmployeeError(err) {
     console.log(err);
 }
 
-function confirmPassword() {
+function returnToEmployeesPage() {
+    location.href = "users.html";
 
 
 }

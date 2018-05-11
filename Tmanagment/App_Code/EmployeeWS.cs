@@ -59,4 +59,20 @@ public class EmployeeWS : System.Web.Services.WebService
 
     }
 
+    [WebMethod]
+    public string GetEmployees()
+    {
+        try
+        {
+            Employee emp = new Employee();
+            List<Employee> employeesList = emp.GetEmployees();
+            string employeesJson = JsonConvert.SerializeObject(employeesList, new IsoDateTimeConverter());
+            return employeesJson;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
 }

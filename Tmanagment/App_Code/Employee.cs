@@ -170,11 +170,11 @@ public class Employee
         {
             try
             {
-                Employee assign_to = new Employee();
-
-                assign_to.Id = (int)dr["emp_id"];
-                assign_to.First_name = dr["first_name"].ToString();
-
+                Employee assign_to = new Employee()
+                {
+                    Id = (int)dr["emp_id"],
+                    First_name = dr["first_name"].ToString()
+                };
                 AssignToList.Add(assign_to);
             }
             catch (Exception ex)
@@ -231,6 +231,9 @@ public class Employee
         tmpEmployee.Phone_number = Convert.ToInt32(dr["phone_num"]);
         tmpEmployee.Id = Convert.ToInt32(dr["id"]);
         tmpEmployee.Title = dr["title"].ToString();
+        tmpEmployee.User_name = dr["user_name"].ToString();
+        tmpEmployee.User_type = dr["user_type"].ToString();
+
 
         return tmpEmployee;
 
@@ -257,17 +260,28 @@ public class Employee
         return userName;
     }
 
-    public Employee GetEmployeeDetails(int id)
+    public List<Employee> GetEmployees(Int32? id=null)
     {
         #region DB functions
-        string query = "select * from employees where id ='" + id + "'";
+        string query = "select * from employees ";
+        string condition;
 
-        Employee employee = new Employee();
+        if (id != null)
+        {
+
+            condition = "where id = '" + id + "'";
+            query += condition;
+        }
+
+        List<Employee> employees = new List<Employee>();
+
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
 
         foreach (DataRow dr in ds.Tables[0].Rows)
         {
+            Employee employee = new Employee(); 
+
             try
             {
                 employee.First_name = dr["first_name"].ToString();
@@ -275,16 +289,19 @@ public class Employee
                 employee.Phone_number = Convert.ToInt32(dr["phone_num"]);
                 employee.Id = Convert.ToInt32(dr["id"]);
                 employee.Title = dr["title"].ToString();
+                employee.User_name = dr["user_name"].ToString();
+                employee.User_type = dr["user_type"].ToString();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
+            employees.Add(employee);
         }        
         #endregion
 
-        return employee; 
+        return employees; 
     }
     public int InsertEmployee(Employee emp)
     {
