@@ -82,7 +82,8 @@
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     
     
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <!--Validation-->
+    <script src="./plugins/jquery-validation/js/jquery.validate.min.js"></script>
 
 
     <script src="assets/js/CookiesFunctions.js"></script>
@@ -127,46 +128,46 @@
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-2" for="firstName">שם פרטי<span class="text-danger">*</span></label>
                                                 <div class="col-sm-3">
-                                                    <input type="text"  parsley-trigger="change" required
-                                                           placeholder="הכנס שם פרטי" class="form-control" id="firstName">
+                                                    <input type="text" 
+                                                           placeholder="הכנס שם פרטי" class="form-control" name="firstName" id="firstName">
                                                 </div>
                                                 <label class="control-label col-sm-2" for="lastName">שם משפחה<span class="text-danger">*</span></label>
                                                 <div class="col-sm-3">
-                                                    <input type="text"  parsley-trigger="change" required
-                                                           placeholder="הכנס שם משפחה" class="form-control" id="lastName">
+                                                    <input type="text"  
+                                                           placeholder="הכנס שם משפחה" class="form-control" name="lastName" id="lastName">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-2" for="title">תפקיד<span class="text-danger">*</span></label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" parsley-trigger="change" required
-                                                           placeholder="הכנס תפקיד" class="form-control" id="title">
+                                                    <input type="text" 
+                                                           placeholder="הכנס תפקיד" class="form-control" name="title" id="title">
                                                 </div>
                                                 <label class="control-label col-sm-2" for="phoneNumber">מספר טלפון<span class="text-danger">*</span></label>                                                <div class="col-sm-3">
                                                     <div>
-                                                        <input type="tel"  parsley-trigger="change" required
-                                                               placeholder="הכנס מספר טלפון" pattern="[0-9]{4}[0-9]{3}[0-9]{3}" class="form-control" id="phoneNumber">
+                                                        <input type="tel"  
+                                                               placeholder="הכנס מספר טלפון" class="form-control" name="phoneNumber"  id="phoneNumber">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-2" for="userName">שם משתמש<span class="text-danger">*</span></label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" parsley-trigger="change" required
-                                                           placeholder="הכנס שם משתמש" class="form-control" id="userName">
+                                                    <input type="text"
+                                                           placeholder="הכנס שם משתמש" class="form-control" name="userName" id="userName">
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-2" for="password">סיסמא<span class="text-danger">*</span></label>
                                                 <div class="col-sm-3">
-                                                    <input id="password" type="password" placeholder="הכנס סיסמא" required
+                                                    <input id="password"  name="password" type="password" placeholder="הכנס סיסמא"
                                                            class="form-control">
                                                 </div>
                                                 <label class="control-label col-sm-2" for="password">אישור סיסמא<span class="text-danger">*</span></label>
                                                 <div class="col-sm-3">
-                                                    <input data-parsley-equalto="#pass1" type="password" required
-                                                           placeholder="הכנס סיסמא פעם נוספת" class="form-control" id="confirm_password">
+                                                    <input type="password" 
+                                                           placeholder="הכנס סיסמא פעם נוספת" class="form-control" name="confirm_password"  id="confirm_password">
                                                 </div>
 
                                             </div>

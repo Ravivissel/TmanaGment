@@ -309,7 +309,22 @@ public class Employee
 
         StringBuilder query = new StringBuilder();
         query.AppendFormat("insert into employees (first_name,last_name,phone_num,title,user_name,password) ");
-        query.AppendFormat("values ('{0}','{1}','{2}','{3}','{4}','{5}')", emp.First_name.ToString(), emp.Last_name.ToString(), emp.Phone_number, emp.Title.ToString(), emp.User_name.ToString(), emp.Password.ToString());
+        query.AppendFormat("values ('{0}','{1}','{2}','{3}','{4}','{5}')", emp.First_name.ToString(), emp.Last_name.ToString(), emp.Phone_number, emp.Title.ToString(), emp.User_name.ToString(),emp.Password);
+
+        int row_affected = dbs.ExecuteQuery(query.ToString());
+        return row_affected;
+    }
+    public int UpdateEmployee(Employee emp)
+    {
+        DbServices dbs = new DbServices();
+
+        StringBuilder query = new StringBuilder();
+        query.AppendFormat("update employees ");
+        query.AppendFormat("set first_name='{0}',last_name='{1}',phone_num='{2}',title='{3}',user_name='{4}' ", emp.First_name.ToString(), emp.Last_name.ToString(), emp.Phone_number, emp.Title.ToString(), emp.User_name.ToString(), emp.Password.ToString());
+
+        if (emp.Password != null && emp.Password != "")
+            query.AppendFormat("password='{0}' ", emp.Password);
+        query.AppendFormat("where id={0}", emp.Id);
 
         int row_affected = dbs.ExecuteQuery(query.ToString());
         return row_affected;

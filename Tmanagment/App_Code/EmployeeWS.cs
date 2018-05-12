@@ -49,30 +49,52 @@ public class EmployeeWS : System.Web.Services.WebService
             Employee emp = JsonConvert.DeserializeObject<Employee>(employee);
             int rows_affected = emp.InsertEmployee(emp);
             if (rows_affected != 0)
-                return "The new user has been saved";
-            return "The number of rows affected is zero, the user didn't saved";
+                return JsonConvert.SerializeObject(new { success = true, description = "the new user has been saved" });
+            return JsonConvert.SerializeObject(new { success = false, description = "The number of rows affected is zero, the user didn't saved" });
+         
         }
         catch (Exception ex)
-        {
-            return ex.Message;
+        { 
+            return JsonConvert.SerializeObject(new { success = false, description = ex.Message});
+
         }
 
     }
 
     [WebMethod]
-    public string GetEmployees()
+    public string GetEmployees(int? id = null)
     {
         try
         {
             Employee emp = new Employee();
-            List<Employee> employeesList = emp.GetEmployees();
+            List<Employee> employeesList = emp.GetEmployees(id);
             string employeesJson = JsonConvert.SerializeObject(employeesList, new IsoDateTimeConverter());
             return employeesJson;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            return ex.ToString();
+            throw ex;
         }
+    }
+
+    [WebMethod]
+    public string UpdateEmployee(string employee)
+    {
+        try
+        {
+            Employee emp = JsonConvert.DeserializeObject<Employee>(employee);
+            int rows_affected = emp.UpdateEmployee (emp);
+            if (rows_affected != 0)
+                return JsonConvert.SerializeObject(new { success = true, description = "The user details has been updated" });
+            return JsonConvert.SerializeObject(new { success = false, description = "The number of rows affected is zero, the user didn't saved" });
+
+        }
+        catch (Exception ex)
+        {
+            return JsonConvert.SerializeObject(new { success = false, description = ex.Message });
+
+        }
+
     }
 }
