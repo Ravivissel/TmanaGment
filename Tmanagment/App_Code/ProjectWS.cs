@@ -34,9 +34,11 @@ public class ProjectWS : System.Web.Services.WebService
         Project projects = new Project();
         try
         {
+            JavaScriptSerializer j = new JavaScriptSerializer();
             List<Project> projects_list = projects.GetAllProjectsList();
-            string ProjectsListJson = JsonConvert.SerializeObject(projects_list, new IsoDateTimeConverter());
-            return ProjectsListJson;
+            //string ProjectsListJson = JsonConvert.SerializeObject(projects_list, new IsoDateTimeConverter());
+            //return ProjectsListJson;
+            return j.Serialize(projects_list);
         }
         catch (Exception ex)
         {
@@ -50,19 +52,19 @@ public class ProjectWS : System.Web.Services.WebService
     public string GetProject(int projectId)
     {
         Project project = new Project();
-
         try
         {
+            JavaScriptSerializer j = new JavaScriptSerializer();
             List<Project> projectList = project.GetProjectsList(projectId);
-            string ProjectJson = JsonConvert.SerializeObject(projectList);
-            return ProjectJson;
+            //string ProjectJson = JsonConvert.SerializeObject(projectList);
+            //return ProjectJson;
+            return j.Serialize(projectList);
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
             return ex.ToString();
         }
-
     }
 
     [WebMethod]
@@ -76,7 +78,7 @@ public class ProjectWS : System.Web.Services.WebService
             foreach (var p in ProjectList)
             {
                 Project updatedProject = p;
-                total_rows_affected +=p.UpdateProject(updatedProject);
+                total_rows_affected += p.UpdateProject(updatedProject);
                 
             }
             if (total_rows_affected == ProjectList.Count())

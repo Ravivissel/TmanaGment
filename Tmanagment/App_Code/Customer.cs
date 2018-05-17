@@ -9,7 +9,6 @@ using System.Web;
 /// </summary>
 public class Customer
 {
-
     private int id;
     private string first_name;
     private string last_name;
@@ -138,13 +137,12 @@ public class Customer
             }
         }
         #endregion
-
         return CustomersList;
-
     }
 
     public void SetCustomer(string func)
     {
+        #region DB functions
         DbServices db = new DbServices();
         string query = "";
         if (func == "edit")
@@ -153,9 +151,10 @@ public class Customer
         }
         else if (func == "new")
         {
-            query = "insert into customers values ('" + first_name + "','" + last_name + "','" + phone_num + "')";
+            query = "insert into customers values ('" + first_name + "','" + last_name + "','" + phone_num + "',' Y ')";
         }
         db.ExecuteQuery(query);
+        #endregion
     }
 
     public Customer GetCustomer()
@@ -185,14 +184,36 @@ public class Customer
             }
         }
         #endregion
-
         return cus;
     }
 
     public void DeactivateCustomer(string active)
     {
+        #region DB functions
         DbServices db = new DbServices();
         db.ExecuteQuery("UPDATE customers SET active='" + active + "' WHERE id=" + Id);
+        #endregion
     }
 
+    public DataTable getCustomersTable()
+    {
+        #region DB functions
+        DbServices dbs = new DbServices();
+        DataTable customersTable = dbs.getFullTable("customers");
+        #endregion
+        return customersTable;
+    }
+
+    public Customer GetCustomer(DataRow dr)
+    {
+        #region DB functions
+        Customer tmpCustomer = new Customer();
+        tmpCustomer.First_name = dr["first_name"].ToString();
+        tmpCustomer.Last_name = dr["last_name"].ToString();
+        tmpCustomer.Phone_num = Convert.ToInt32(dr["phone_num"]);
+        tmpCustomer.Id = Convert.ToInt32(dr["id"]);
+        tmpCustomer.Active = dr["active"].ToString();
+        #endregion
+        return tmpCustomer;
+    }
 }

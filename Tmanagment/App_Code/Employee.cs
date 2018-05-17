@@ -21,7 +21,6 @@ public class Employee
     private string password;
     private string user_type;
 
-
     public Employee()
     {
         //
@@ -184,9 +183,7 @@ public class Employee
             }
         }
         #endregion
-
         return AssignToList;
-
     }
 
     public bool CheckLoginDetails()
@@ -209,30 +206,29 @@ public class Employee
         }
 
         #endregion
-
         return userInDB;
     }
 
     public DataTable getEmployeesTable()
     {
+        #region DB functions
         DbServices dbs = new DbServices();
         DataTable employeesTable = dbs.getFullTable("employees");
+        #endregion
         return employeesTable;
-
     }
 
     public Employee GetEmployee(DataRow dr)
     {
+        #region DB functions
         Employee tmpEmployee = new Employee();
-
         tmpEmployee.First_name = dr["first_name"].ToString();
         tmpEmployee.Last_name = dr["last_name"].ToString();
         tmpEmployee.Phone_number = Convert.ToInt32(dr["phone_num"]);
         tmpEmployee.Id = Convert.ToInt32(dr["id"]);
         tmpEmployee.Title = dr["title"].ToString();
-
+        #endregion
         return tmpEmployee;
-
     }
 
     public string GetUserName()
@@ -252,7 +248,6 @@ public class Employee
         }
 
         #endregion
-
         return userName;
     }
 
@@ -282,7 +277,6 @@ public class Employee
             }
         }        
         #endregion
-
         return employee; 
     }
 }

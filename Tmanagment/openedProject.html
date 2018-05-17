@@ -75,10 +75,14 @@
     <script src="./plugins/sweet-alert/sweetalert2.min.js"></script>
     <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
+    <!--DatePicker css-->
+    <link href="./plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
     <!--- Page Scripts Dependencies!-->
     <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/project.js"></script>
+    <script src="assets/js/changes/openedProject.js"></script>
     <script src="assets/js/changes/utils.js"></script>
 
 </head>
@@ -110,13 +114,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card-box">
                                 <h4 class="header-title m-t-0"></h4>
                                 <p class="text-muted font-14 m-b-20">
-
                                 </p>
                                 <div class="text-right m-b-30 m-r-5">
                                     <button type="button"  id="editButton" class="btn btn-rounded waves-effect w-md m-b-5"> <i class="ion-edit m-r-5"></i><span>ערוך</span></button>
@@ -136,15 +138,26 @@
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" class="form-control" id="project_id" name="project_id" placeholder="">
                                         </div>
-
-                                        <label class="control-label col-sm-2">מנהל הפרוייקט:</label>
+                                        <label class="control-label col-sm-2">מספר הפריוריטי:</label>
                                         <div class="col-sm-3">
-                                            <input type="text" disabled="disabled" class="form-control" id="project_manager" name="project_manager" placeholder="">
+                                            <input type="text" disabled="disabled" class="form-control" id="project_priority_num" name="project_priority_num" placeholder="">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
-
+                                        <label class="control-label col-sm-2">מנהל הפרוייקט:</label>
+                                        <div class="col-sm-3">
+                                            <select disabled="disabled" id="project_manager" name="project_manager" class="form-control">
+                                                <!--project manager names are added dynamicly-->
+                                            </select>
+                                        </div>
+                                        <label class="control-label col-sm-2">לקוח:</label>
+                                        <div class="col-sm-3">
+                                            <select disabled="disabled" id="project_customer" name="project_customer" class=" form-control" required>
+                                                <!--customer names are added dynamicly-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="control-label col-sm-2">איש קשר:</label>
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="contact_name" name="contact_name">
@@ -153,11 +166,8 @@
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
                                         </div>
-
-
                                     </div>
                                     <div class="form-group row">
-
                                         <label class="control-label col-sm-2">תאריך התחלה:</label>
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="start_date" name="start_date">
@@ -165,6 +175,21 @@
                                         <label class="control-label col-sm-2">תאריך יעד:</label>
                                         <div class="col-sm-3">
                                             <input type="text" disabled="disabled" placeholder="" class="form-control" id="end_date" name="end_date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2">סטטוס:</label>
+                                        <div class="col-sm-3">
+                                            <select id="status" disabled="disabled" name="status" class="form-control">
+                                                <option value="4">פתוח</option>
+                                                <option value="5">הצעת מחיר</option>
+                                                <option value="6">תכנון</option>
+                                                <option value="7">פרשה טכנית</option>
+                                                <option value="8">רכש</option>
+                                                <option value="9">תפעול</option>
+                                                <option value="10">אספקה</option>
+                                                <option value="11">סגור</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -178,21 +203,23 @@
                                         <button type="button" id="BackButton" onclick="returnToProjectsPage()" class="btn btn-secondary waves-effect w-md m-b-5"><i class="ti-back-right m-r-5"></i><span>חזור</span></button>
                                     </div>
                                 </form>
-                            </div>
-                            
+                            </div>                         
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     <!-- END wrapper -->
 
+    <!--DatePicker js-->
+    <script src="./plugins/moment/moment.js"></script>
+    <script src="./plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="./plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
     <script>
         var resizefunc = [];
     </script>
-
 
 </body>
 </html>

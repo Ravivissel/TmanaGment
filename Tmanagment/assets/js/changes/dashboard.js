@@ -1,4 +1,4 @@
-function init()  {
+$(document).ready(function () {
 
     //Need to change to be dynamic from the user login session
     const userId = 75;
@@ -14,70 +14,75 @@ function init()  {
 
     getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
     getOpenRequestsNum(getOpenRequestsNumCB, getOpenRequestsNumErrorCB);
+    getOpenProjectsNum(getOpenProjectsNumCB, getOpenProjectsNumErrorCB);
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
 
-}
+    function getMyTaskCB(result) {
+        renderMyTaskTable(result);
+    }
 
-function getMyTaskCB(result) {
-    //var myTasksArray = JSON.parse(result.d);
-    //var myTasksData = myTasksArray[0];
-    renderMyTaskTable(result);
-}
+    function getMyTaskErrorCB(error) {
+        console.log(error);
+    }
 
-function getMyTaskErrorCB(error) {
-    console.log(error);
-}
+    function renderMyTaskTable(myTaskData) {
+        results = $.parseJSON(myTaskData.d);
+        $.each(results, function (i, row) {
 
-function renderMyTaskTable(myTaskData) {
-    //var counter = 0;
-    //var str = "";
-    results = $.parseJSON(myTaskData.d);
-    $.each(results, function (i, row) {
-        dynamicLi = '<tr id="' + row.Task_id + '"><td>' + row.Task_id + '</td><td>' + row.Task_title + '</td><td>' + row.Project_title + '</td><td>' + row.Assign_to + '</td><td>' + row.Status + '</td><td>' + row.End_date + '</td></tr>'; 
-        $('#myTasksTableBody').append(dynamicLi);
-    });
-}
+            var e_date = new Date(parseInt(row.End_date.replace('/Date(', '')));
+            e_date = e_date.toLocaleDateString("he-IL");
 
-function getMyRequestCB(result) {
-    renderMyRequestTable(result);
-}
+            dynamicLi = '<tr id="' + row.Task_id + '"><td>' + row.Task_id + '</td><td>' + row.Task_title + '</td><td>' + row.Project_title + '</td><td>' + row.Assign_to + '</td><td>' + e_date + '</td><td>' + row.Status + '</td></tr>';
+            $('#myTasksTableBody').append(dynamicLi);
+        });
+    }
 
-function getMyRequestErrorCB(error) {
-    console.log(error);
-}
+    function getMyRequestCB(result) {
+        renderMyRequestTable(result);
+    }
 
-function renderMyRequestTable(myRequestData) {
-    results = $.parseJSON(myRequestData.d);
-    $("#myRequestsTableBody").empty();
-    $.each(results, function (i, row) {
-        dynamicLi = '<tr id="' + row.Request_id + '"><td>' + row.Request_id + '</td><td>' + row.Request_title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
-        $('#myRequestsTableBody').append(dynamicLi);
-    });
-}
+    function getMyRequestErrorCB(error) {
+        console.log(error);
+    }
 
-function getMyUserNameCB(result) {
-    userName = $.parseJSON(result.d);
-    $('#welcome-user').append(userName);
-}
+    function renderMyRequestTable(myRequestData) {
+        results = $.parseJSON(myRequestData.d);
+        $("#myRequestsTableBody").empty();
+        $.each(results, function (i, row) {
+            dynamicLi = '<tr id="' + row.Request_id + '"><td>' + row.Request_id + '</td><td>' + row.Request_title + '</td><td>' + row.Contact_name + '</td><td>' + row.Contact_phone + '</td></tr>';
+            $('#myRequestsTableBody').append(dynamicLi);
+        });
+    }
 
-function getMyUserNameErrorCB(error) {
-    console.log(error);
-}
+    function getMyUserNameCB(result) {
+        userName = $.parseJSON(result.d);
+        $('#welcome-user').append(userName);
+    }
 
-function getOpenRequestsNumCB(result) {
-    counter = $.parseJSON(result.d);
-    $('#openRequests').append(counter);
-}
+    function getMyUserNameErrorCB(error) {
+        console.log(error);
+    }
 
-function getOpenRequestsNumErrorCB(error) {
-    console.log(error);
-}
+    function getOpenRequestsNumCB(result) {
+        counter = $.parseJSON(result.d);
+        $('#openRequests').append(counter);
+    }
 
-//Calender
-$(document).ready(function () {
+    function getOpenRequestsNumErrorCB(error) {
+        console.log(error);
+    }
 
+    function getOpenProjectsNumCB(result) {
+        counter = $.parseJSON(result.d);
+        $('#onProcessProjects').append(counter);
+    }
 
+    function getOpenProjectsNumErrorCB(error) {
+        console.log(error);
+    }
+
+    //Calender
     var initialLocaleCode = 'he';
     $('#calendar').fullCalendar({
 
@@ -111,7 +116,6 @@ $(document).ready(function () {
         loading: function (bool) {
             $('#loading').toggle(bool);
         }
-
     });
 
 });

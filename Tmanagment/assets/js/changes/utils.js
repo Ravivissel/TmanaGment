@@ -1,8 +1,6 @@
 $(document).ready(function () {
-
     checkCookie();
     $("#masterPageContext").load("MasterPage.html");
-
 });
 
 $(document).on('click', '#newRequestForm', function () {
@@ -11,12 +9,15 @@ $(document).on('click', '#newRequestForm', function () {
     localStorage.requestList = JSON.stringify(arr_details);
     location.href = "requestsForm.html";
 });
+
 $(document).on('click', '#newTaskForm', function () {
     var taskID = -1;
     var arr_details = { taskID: taskID, func: "new" };
-    localStorage.taskList = JSON.stringify(arr_details);
+    localStorage.projectsTaskList = JSON.stringify(arr_details);
+    localStorage.requestsTaskList = JSON.stringify(arr_details);
     location.href = "taskForm.html";
 });
+
 $(document).on('click', '#newCustomerForm', function () {
     var customerID = -1;
     var arr_details = { customerID: customerID, func: "new" };
@@ -58,11 +59,17 @@ var GENERAL = {
     },
 
     TASKS: {
-        getTasksList: function () {
-            return localStorage.taskList;
+        getProjectsTasksList: function () {
+            return localStorage.projectsTaskList;
         },
-        setTasksList: function (taskList) {
-            localStorage.taskList = taskList;
+        setProjectsTasksList: function (projectsTaskList) {
+            localStorage.projectsTaskList = projectsTaskList;
+        },
+        getRequestsTasksList: function () {
+            return localStorage.requestsTaskList;
+        },
+        setRequestsTasksList: function (requestsTaskList) {
+            localStorage.requestsTaskList = requestsTaskList;
         }
     },
 

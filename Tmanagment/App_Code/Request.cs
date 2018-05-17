@@ -20,7 +20,6 @@ public class Request
     private Employee assign_to;
     private Status status;
 
-
     public Request()
     {
         //
@@ -211,9 +210,9 @@ public class Request
     public List<Request> GetRequestsList()
     {
         #region DB functions
-        string query = "select s.title status_title, r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
-            "where " +
-            "rs.is_current = 1;"; // TODO: should be change to the required status
+        string query = "select s.title status_title, r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r " +
+            "inner join requests_statuses rs on r.id = rs.request_id " +
+            "inner join statuses s on rs.status_id = s.id ";
 
         List<Request> ReqList = new List<Request>();
         DbServices db = new DbServices();
@@ -251,28 +250,48 @@ public class Request
         #endregion
 
         return ReqList;
-
     }
 
     public void SetRequest(string func)
     {
+        #region DB functions
         DbServices db = new DbServices();
+        DbServices db2 = new DbServices();
         string query = "";
         if (func == "edit")
         {
+            //update the request
             query = "UPDATE requests SET title = '" + title + "', description = '" + description + "', contact_name = '" + contact_name + "', contact_phone = '" + contact_phone + "', created_by = '" + created_by.Id + "', assign_to = '" + assign_to.Id + "' WHERE id = " + id;
+            db.ExecuteQuery(query);
+
+            //update the request status
+            query = "UPDATE requests_statuses SET status_id = '" + status.Id + "', modified_by = '" + created_by.Id + "' WHERE request_id = " + id; 
+            db2.ExecuteQuery(query);
+
         }
         else if (func == "new")
         {
+            //insert a new request
             query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
+            db.ExecuteQuery(query);
+
+            //get the request id
+            string statusId = "1";
+            string tableName = "requests";
+            string requestId = db.Ga(tableName);
+
+            //insert the new request a status
+            query = "insert into requests_statuses values ('" + requestId + "','" + statusId + "','" + created_by.Id + "','1')";
+            db2.ExecuteQuery(query);
         }
-        db.ExecuteQuery(query);
+        #endregion
     }
 
     public Request GetRequest()
     {
         #region DB functions
-        string query = "select r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r inner join employees e on r.assign_to = e.id where r.id =" + Id + "";
+        string query = "select r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r " +
+            "inner join employees e on r.assign_to = e.id where r.id =" + Id + "";
 
         Request req = new Request();
         DbServices db = new DbServices();
@@ -302,16 +321,17 @@ public class Request
             }
         }
         #endregion
-
         return req;
     }
 
     public int GetOpenRequestsNum()
     {
         #region DB functions
-        string query = "select s.title status_title from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
+        string query = "select s.title status_title from requests r " +
+            "inner join requests_statuses rs on r.id = rs.request_id " +
+            "inner join statuses s on rs.status_id = s.id " +
             "where " +
-            "rs.is_current = 1;"; // TODO: should be change to the required status
+            "s.title = 'פתוחה';"; // TODO: should be change to the required status
 
         int counter = 0;
         DbServices db = new DbServices();
@@ -339,9 +359,6 @@ public class Request
             }
         }
         #endregion
-
         return counter;
-
     }
-
 }

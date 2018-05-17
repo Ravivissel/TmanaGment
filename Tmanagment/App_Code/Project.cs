@@ -10,7 +10,6 @@ using System.Text;
 /// </summary>
 public class Project
 {
-
     private int id;
     private string title;
     private string description;
@@ -25,6 +24,7 @@ public class Project
     private DateTime modified_at;
     private DateTime created_at;
     private Employee created_by;
+    private Status status;
 
     public Project()
     {
@@ -42,6 +42,18 @@ public class Project
         this.End_date = end_date;
         this.Contact_name = contact_name;
         this.Priority_key = priority_key;
+    }
+
+    public Project(int id, string title, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string priority_key, Status status)
+    {
+        this.id = id;
+        this.Title = title;
+        this.Project_manager = project_manager;
+        this.Start_date = start_date;
+        this.End_date = end_date;
+        this.Contact_name = contact_name;
+        this.Priority_key = priority_key;
+        this.status = status;
     }
 
     public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, int contact_phone, DateTime modified_at, DateTime created_at, Employee created_by)
@@ -62,7 +74,24 @@ public class Project
         Created_by = created_by;
     }
 
-  
+    public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, int contact_phone, DateTime modified_at, DateTime created_at, Employee created_by, Status status)
+    {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.customer_id = customer_id;
+        this.priority_key = priority_key;
+        this.request_id = request_id;
+        this.project_manager = project_manager;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.modified_at = modified_at;
+        this.created_at = created_at;
+        this.created_by = created_by;
+        this.status = status;
+    }
 
     public int Id
     {
@@ -246,11 +275,25 @@ public class Project
         }
     }
 
+    public Status Status
+    {
+        get
+        {
+            return status;
+        }
+
+        set
+        {
+            status = value;
+        }
+    }
+
     public List<Project> GetAllProjectsList() //for the "all projects page", only the active projects
     {
-
         #region DB functions
-        string query = "select p.id, p.title project_title, p.project_manager, p.start_date, p.end_date, p.contact_name, p.priority_key from projects p"; // TODO: add a project status - active or not and change the query
+        string query = "select s.title project_status, p.id, p.title project_title, p.project_manager, p.start_date, p.end_date, p.contact_name, p.priority_key from projects p " +
+            "inner join projects_statuses ps on p.id = ps.project_id " +
+            "inner join statuses s on ps.status_id = s.id ";
 
         List<Project> ProjectsList = new List<Project>();
         DbServices db = new DbServices();
@@ -258,11 +301,11 @@ public class Project
 
         foreach (DataRow dr in ds.Tables[0].Rows)
         {
-
             try
             {
                 Project project = new Project();
                 Employee emp = new Employee();
+                Status status = new Status();
 
                 project.Id = (int)dr["id"];
                 project.Title = dr["project_title"].ToString();
@@ -273,8 +316,10 @@ public class Project
                 int project_manager_id = (int)dr["project_manager"];
                 emp = emp.GetEmployeeDetails(project_manager_id); //call the func from employee to get employee details
                 project.Project_manager = emp;
+                status.Title = dr["project_status"].ToString();
+                project.Status = status;
 
-                Project proj = new Project(project.Id, project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key);
+                Project proj = new Project(project.Id, project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key, project.Status);
 
                 ProjectsList.Add(proj);
             }
@@ -282,18 +327,21 @@ public class Project
             {
                 Console.WriteLine(ex.ToString());
                 throw ex;
-
             }
         }
         #endregion
         return ProjectsList;
-
     }
 
     public List<Project> GetProjectsList(int id)
     {
+        #region DB functions
         DbServices dbs = new DbServices();
         Employee emp = new Employee();
+        Customer cus = new Customer();
+        Status status = new Status();
+        DataTable projectStatusesTable = status.getProjectsStatusesTable();
+        DataTable customersTable = cus.getCustomersTable();
         DataTable employeesTable = emp.getEmployeesTable();
         DataTable projectsTable = dbs.getFullTable("projects");
 
@@ -303,6 +351,10 @@ public class Project
                        on p.Field<int>("project_manager") equals pm.Field<int>("id")
                        join cb in employeesTable.AsEnumerable()
                        on p.Field<int>("created_by") equals cb.Field<int>("id")
+                       join ci in customersTable.AsEnumerable()
+                       on p.Field<int>("customer_id") equals ci.Field<int>("id")
+                       join ps in projectStatusesTable.AsEnumerable()
+                       on p.Field<int>("id") equals ps.Field<int>("project_id")
                        where p.Field<int>("id") == id
                        select new Project
                        {
@@ -315,18 +367,17 @@ public class Project
                            Priority_key = p["priority_key"].ToString(),
                            Contact_phone = Convert.ToInt32(p["contact_phone"]),
                            Created_by = emp.GetEmployee(cb),
-                           Project_manager = emp.GetEmployee(pm)
-
+                           Project_manager = emp.GetEmployee(pm),
+                           Customer_id = cus.GetCustomer(ci),
+                           Status = status.GetProjectStatus(ps)
                        });
-
+        #endregion
         return results.ToList(); ;
-       
     }
 
     public int UpdateProject(Project project)
     {
         #region DB functions
-
         StringBuilder query = new StringBuilder();
         query.AppendFormat("Update Projects set ");
         query.AppendFormat("contact_name = '{0}',", project.Contact_name);
@@ -336,52 +387,51 @@ public class Project
         query.AppendFormat("description = '{0}',", project.Description);
         query.AppendFormat("priority_key = '{0}',", project.Priority_key);
         query.AppendFormat("project_manager = {0},", project.Project_manager.Id);
+        query.AppendFormat("customer_id = {0},", project.Customer_id.Id);
         query.AppendFormat("title = '{0}' ", project.Title);
         query.AppendFormat("where  id={0};", project.Id);
 
         DbServices dbs = new DbServices();
         int rows_affected = dbs.ExecuteQuery(query.ToString());
-
-        return rows_affected;
         #endregion
-
-
+        return rows_affected;  
     }
 
+    public int GetOpenProjectsNum()
+    {
+        #region DB functions
+        string query = "select s.title status_title from projects p " +
+            "inner join projects_statuses ps on p.id = ps.project_id " +
+            "inner join statuses s on ps.status_id = s.id " +
+            "where " +
+            "s.title != 'סגור';"; // TODO: should be change to the required status
 
-    //public List<Project> GetProjectsList(int id)
-    //{
-    //    Northwind db = new Northwind("Data Source=Media.ruppin.ac.il;Initial Catalog=igroup82_test2");
+        int counter = 0;
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
 
-    //    DbServices dbs = new DbServices();
-    //    Employee emp = new Employee();
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Project proj = new Project();
+                Status status = new Status();
 
-    //    DataTable employeesTable = emp.getEmployeesTable();
-    //    DataTable projectsTable = dbs.getFullTable("projects");
+                status.Title = dr["status_title"].ToString();
+                proj.Status = status;
 
-    //    var results = (from p in db.Projects
-    //                   join pm in db.Employees
-    //                   on p.Project_manager.Id equals pm.Id
-    //                   join cb in db.Employees
-    //                   on p.Created_by.Id equals cb.Id
-    //                   where p.Id == id
-    //                   select new Project
-    //                   {
-    //                       Title = p.Title,
-    //                       Start_date = p.Start_date,
-    //                       Contact_name = p.Contact_name,
-    //                       Description = p.Description,
-    //                       End_date = p.End_date,
-    //                       Id = p.Id,
-    //                       Priority_key = p.Priority_key,
-    //                       Contact_phone = p.Contact_phone,
-    //                       Created_by = cb,
-    //                       Project_manager = pm
+                if (proj.Status.Title != "סגורה")
+                    counter++;
 
-    //                   });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
 
-    //    return results.ToList(); ;
-
-    //}
-
+            }
+        }
+        #endregion
+        return counter;
+    }
 }

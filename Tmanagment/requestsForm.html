@@ -97,6 +97,20 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row" id="statusDiv" hidden>
+                                        <label class="control-label col-sm-2">מספר הפנייה:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" disabled="disabled" class="form-control" id="project_id" name="project_id">
+                                        </div>
+                                        <label class="control-label col-sm-2">סטטוס:</label>
+                                        <div class="col-sm-3">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="1">פתוחה</option>
+                                                <option value="2">בתהליך</option>
+                                                <option value="3">סגורה</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label class="control-label col-sm-2">איש קשר:</label>
                                         <div class="col-sm-3">
@@ -105,16 +119,6 @@
                                         <label class="control-label col-sm-2">טלפון של איש קשר:</label>
                                         <div class="col-sm-3">
                                             <input type="text" placeholder="" class="form-control" id="contact_phone" name="contact_phone">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row" id="statusDiv" hidden>
-                                        <label class="control-label col-sm-2">סטטוס:</label>
-                                        <div class="col-sm-3">
-                                            <select id="status" name="status" class="form-control">
-                                                <option value="1">פתוחה</option>
-                                                <option value="2">בתהליך</option>
-                                                <option value="3">סגורה</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -224,8 +228,12 @@
                     var created_by = "1"; // change to be the actual user
                     //check's if it is a new request or an update
                     var func = arr_request.func;
+                    if (func == "edit") {
+                        status = $("#status").val();
+                    }
+                    else status = -1;
                     var requestID = arr_request.requestID;
-                    var request = { requestID: requestID, request_title: request_title, assign_to: assign_to, contact_name: contact_name, contact_phone: contact_phone, description: description, created_by: created_by, func: func };
+                    var request = { requestID: requestID, request_title: request_title, assign_to: assign_to, contact_name: contact_name, contact_phone: contact_phone, description: description, created_by: created_by, status: status, func: func };
                     //call the ajax func
                     insertNewRequest(request, insertNewRequestCB, insertNewRequestErrorCB);
                 },

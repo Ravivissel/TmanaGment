@@ -36,29 +36,49 @@ public class TasksWS : System.Web.Services.WebService
             Console.WriteLine(ex);
             return ex.ToString();
         }
-
     }
 
     [WebMethod]
-    public string GetAllTasksList()
+    public string GetAllProjectsTasksList()
     {
         try
         {
-            ActualTask actualTask = new ActualTask();
-            List<ActualTask> allTasksList = actualTask.GetAllTasksList();
-            string allTasksListJson = JsonConvert.SerializeObject(allTasksList, new IsoDateTimeConverter());
-            return allTasksListJson;
+            JavaScriptSerializer j = new JavaScriptSerializer();
+            ActualProjectTask actualProjectTask = new ActualProjectTask();
+            List<ActualProjectTask> allProjectsTasksList = actualProjectTask.GetAllProjectsTasksList();
+            //string allProjectsTasksListJson = JsonConvert.SerializeObject(allProjectsTasksList, new IsoDateTimeConverter());
+            //return allProjectsTasksListJson;
+            return j.Serialize(allProjectsTasksList);
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
             return ex.ToString();
         }
-
     }
 
     [WebMethod]
-    public void SetActualProjectTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_project, string description, int created_by, string func)
+    public string GetAllRequestsTasksList()
+    {
+        try
+        {
+            JavaScriptSerializer j = new JavaScriptSerializer();
+            ActualRequestTask actualRequestTask = new ActualRequestTask();
+            List<ActualRequestTask> allRequestsTasksList = actualRequestTask.GetAllRequestsTasksList();
+            //string allRequestsTasksListJson = JsonConvert.SerializeObject(allRequestsTasksList, new IsoDateTimeConverter());
+            //return allRequestsTasksListJson;
+            return j.Serialize(allRequestsTasksList);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
+
+    [WebMethod]
+    public void SetActualProjectTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_project, string description, int created_by, int status, string func)
     {
         DateTime task_end_date;
         if (end_date.Contains("."))
@@ -75,22 +95,67 @@ public class TasksWS : System.Web.Services.WebService
         emp_creator.Id = created_by;
         Employee emp_assign_to = new Employee();
         emp_assign_to.Id = assign_to;
+        Status taskStatus = new Status();
+        taskStatus.Id = status;
 
         Project project = new Project();
         project.Id = assign_to_project;
-        ActualTask actualTask = new ActualTask(taskID, description, task_title, created_at, task_end_date, emp_creator, emp_assign_to);
+        ActualTask actualTask = new ActualTask(taskID, description, task_title, created_at, task_end_date, emp_creator, emp_assign_to, taskStatus);
         ActualProjectTask actualProjectTask = new ActualProjectTask(project, actualTask);
         actualProjectTask.SetTask(func);
     }
 
     [WebMethod]
-    public string GetTask(int taskID)
+    public string GetProjectTask(int taskID)
     {
         JavaScriptSerializer j = new JavaScriptSerializer();
+        ActualProjectTask apt = new ActualProjectTask();
         ActualTask t = new ActualTask();
         t.Id = taskID;
-        ActualTask task = t.GetTask();
-        return j.Serialize(task);
+        apt.Actual_task = t;
+        ActualProjectTask actualProjectTask = apt.GetProjectTask();
+        return j.Serialize(actualProjectTask);
+    }
+
+    [WebMethod]
+    public string GetRequestTask(int taskID)
+    {
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        ActualRequestTask art = new ActualRequestTask();
+        ActualTask t = new ActualTask();
+        t.Id = taskID;
+        art.Actual_task = t;
+        ActualRequestTask ActualRequestTask = art.GetRequestTask();
+        return j.Serialize(ActualRequestTask);
+    }
+
+    [WebMethod]
+    public void SetActualRequestTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_request, string description, int created_by, int status, string func)
+    {
+        DateTime task_end_date;
+        if (end_date.Contains("."))
+        {
+            task_end_date = DateTime.Parse(end_date);
+        }
+        else
+        {
+            task_end_date = DateTime.ParseExact(end_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        }
+
+        DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
+        Employee emp_creator = new Employee();
+        emp_creator.Id = created_by;
+        Employee emp_assign_to = new Employee();
+        emp_assign_to.Id = assign_to;
+        Status taskStatus = new Status();
+        taskStatus.Id = status;
+
+        Request request = new Request();
+        request.Id = assign_to_request;
+
+        ActualTask actualTask = new ActualTask(taskID, description, task_title, created_at, task_end_date, emp_creator, emp_assign_to, taskStatus);
+        ActualRequestTask actualRequestTask = new ActualRequestTask(request, actualTask);
+        actualRequestTask.SetTask(func);
     }
 
 }

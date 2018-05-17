@@ -16,63 +16,67 @@ $(document).ready(function () {
                 $("#contact_phone").attr('disabled', 'disabled');
                 $("#status").attr('disabled', 'disabled');
                 $("#description").attr('disabled', 'disabled');
-                $("#saveRequest").attr('disabled', 'disabled');
+                $("#saveRequest").prop('hidden', true);
             } 
         }
     }
 
+    function generateAssignToList() {
+        GetAssignToList(getAssignToListCB, getAssignToListErrorCB);
+    }
+
+    function getAssignToListCB(AssignToListData) {
+        var arr_AssignTo = $.parseJSON(AssignToListData.d);
+        $select = $("#assign_to");
+        $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+        for (i in arr_AssignTo) {
+            $('<option>', { value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name }).appendTo($select);
+        }
+    }
+
+    function getAssignToListErrorCB(error) {
+        console.log(error);
+    }
+
+    //function to fill form for edit
+    function uploadData(requestID) {
+
+        var request = {
+            requestID: requestID
+        };
+
+        GetRequest(request, getRequestCB, getRequestErrorCB);
+    }
+
+    function getRequestCB(RequestData) {
+
+        var request = JSON.parse(RequestData.d);
+        requestStatus = JSON.parse(GENERAL.REQUESTS.getRequestsList());
+        requestStatus = requestStatus.status;
+        GENERAL.REQUESTS.setRequestsList(request);
+
+        if (requestStatus == "פתוחה")
+            id = 1;
+        if (requestStatus == "בתהליך")
+            id = 2;
+        if (requestStatus == "סגורה")
+            id = 3;
+
+        $("#request_title").val(request.Title);
+        $("#assign_to").val(request.Assign_to.Id); //needs to be changed
+        $("#project_id").val(request.Id);
+        $("#status").val(id);
+        $("#contact_name").val(request.Contact_name);
+        $("#contact_phone").val(request.Contact_phone);  
+        $("#description").val(request.Description);
+    }
+
+    function getRequestErrorCB(error) {
+        console.log(error);
+    }
+
 });
 
-//function to fill form for edit
-function uploadData(requestID) {
 
-    var request = {
-        requestID: requestID
-    };
 
-    GetRequest(request, getRequestCB, getRequestErrorCB);
-}
-
-function getRequestCB(RequestData) {
-
-    var request = JSON.parse(RequestData.d);
-    requestStatus = JSON.parse(GENERAL.REQUESTS.getRequestsList());
-    requestStatus = requestStatus.status;
-    GENERAL.REQUESTS.setRequestsList(request);
-
-    if (requestStatus == "פתוחה")
-        id = 1;
-    if (requestStatus == "בתהליך")
-        id = 2;
-    if (requestStatus == "סגורה")
-        id = 3;
-
-    $("#request_title").val(request.Title);
-    $("#assign_to").val(request.Assign_to.Id); //needs to be changed
-    $("#contact_name").val(request.Contact_name);
-    $("#contact_phone").val(request.Contact_phone);
-    $("#status").val(id);
-    $("#description").val(request.Description);
-}
-
-function getRequestErrorCB(error) {
-    console.log(error);
-}
-
-function generateAssignToList() {
-    GetAssignToList(getAssignToListCB, getAssignToListErrorCB);
-}
-
-function getAssignToListCB(AssignToListData) {
-    var arr_AssignTo = $.parseJSON(AssignToListData.d);
-    $select = $("#assign_to");
-    $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
-    for (i in arr_AssignTo) {
-        $('<option>', { value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name }).appendTo($select);
-    }
-}
-
-function getAssignToListErrorCB(error) {
-    console.log(error);
-}
 
