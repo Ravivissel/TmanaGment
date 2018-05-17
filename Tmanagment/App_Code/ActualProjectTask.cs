@@ -189,10 +189,9 @@ public class ActualProjectTask
             query = "insert into actual_project_task values ('" + Project.Id + "','" + actualTaskId + "')";
             db2.ExecuteQuery(query);
 
-            //insert the new taks a status
-            
+            //insert the new task a status
             string statusId = "1";
-            query = "insert into actual_tasks_statuses values ('" + actualTaskId + "','" + statusId + "','True','" + actual_task.Created_by.Id + "')";
+            query = "insert into actual_tasks_statuses values ('" + actualTaskId + "','" + statusId + "','" + actual_task.Created_by.Id + "')";
             db3.ExecuteQuery(query);
         }
         #endregion

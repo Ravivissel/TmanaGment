@@ -200,4 +200,36 @@ public class ActualTask
         #endregion
         return counter;
     }
+
+    public int GetTodaysTasksNum()
+    {
+        #region DB functions
+        string query = "select at.end_date from actual_tasks as at";
+
+        int counter = 0;
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                ActualTask actual_task = new ActualTask();
+                actual_task.End_date = (DateTime)dr["end_date"];
+
+                string taskDate = actual_task.End_date.ToString("dd/MM/yyyy");
+                string TodaysDate = DateTime.Now.ToString("dd/MM/yyyy");
+
+                if (taskDate == TodaysDate)
+                    counter++;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+        #endregion
+        return counter;
+    }
 }

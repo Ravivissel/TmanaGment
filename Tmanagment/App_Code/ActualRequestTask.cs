@@ -168,12 +168,12 @@ public class ActualRequestTask
             db.ExecuteQuery(query);
 
             //update the matching request task
-            query = "UPDATE actual_request_task SET project_id = '" + Request.Id + "' WHERE actual_tasks_id = " + actual_task.Id;
+            query = "UPDATE actual_request_task SET request_id = '" + Request.Id + "' WHERE actual_tasks_id = " + actual_task.Id;
             db2.ExecuteQuery(query);
 
             //update the request status
             query = "UPDATE actual_tasks_statuses SET status_id = '" + actual_task.Status.Id + "', modified_by = '" + actual_task.Created_by.Id + "' WHERE task_id = " + actual_task.Id;
-            db2.ExecuteQuery(query);
+            db3.ExecuteQuery(query);
         }
         else if (func == "new")
         {

@@ -15,6 +15,7 @@ $(document).ready(function () {
     getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
     getOpenRequestsNum(getOpenRequestsNumCB, getOpenRequestsNumErrorCB);
     getOpenProjectsNum(getOpenProjectsNumCB, getOpenProjectsNumErrorCB);
+    getTodaysTasksNum(getTodayTasksNumCB, getTodayTasksNumErrorCB);
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
 
@@ -79,6 +80,15 @@ $(document).ready(function () {
     }
 
     function getOpenProjectsNumErrorCB(error) {
+        console.log(error);
+    }
+
+    function getTodayTasksNumCB(result) {
+        counter = $.parseJSON(result.d);
+        $('#TodayTasks').append(counter);
+    }
+
+    function getTodayTasksNumErrorCB(error) {
         console.log(error);
     }
 

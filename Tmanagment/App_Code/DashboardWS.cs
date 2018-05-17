@@ -110,4 +110,23 @@ public class DashboardWS : System.Web.Services.WebService
         }
 
     }
+
+    [WebMethod]
+    public string GetTodaysTasksNum()
+    {
+        int counter = 0;
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        ActualTask actualTask = new ActualTask();
+        try
+        {
+            counter = actualTask.GetTodaysTasksNum();
+            return j.Serialize(counter);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
 }
