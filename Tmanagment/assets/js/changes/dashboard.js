@@ -13,6 +13,7 @@ $(document).ready(function () {
     };
 
     getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
+    getLateTasksNum(getLateTasksNumCB, getLateTasksNumErrorCB);
     getOpenRequestsNum(getOpenRequestsNumCB, getOpenRequestsNumErrorCB);
     getOpenProjectsNum(getOpenProjectsNumCB, getOpenProjectsNumErrorCB);
     getTodaysTasksNum(getTodayTasksNumCB, getTodayTasksNumErrorCB);
@@ -62,6 +63,15 @@ $(document).ready(function () {
     }
 
     function getMyUserNameErrorCB(error) {
+        console.log(error);
+    }
+
+    function getLateTasksNumCB(result) {
+        userName = $.parseJSON(result.d);
+        $('#lateTasks').append(userName);
+    }
+
+    function getLateTasksNumErrorCB(error) {
         console.log(error);
     }
 

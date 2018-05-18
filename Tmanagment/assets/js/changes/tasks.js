@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
 
+    getLateTasksNum(getLateTasksNumCB, getLateTasksNumErrorCB);
     var status = "פתוחה";
     var request = {
         status: status
@@ -30,6 +31,15 @@
     }
 
     function getAllRequestsTasksErrorCB(error) {
+        console.log(error);
+    }
+
+    function getLateTasksNumCB(result) {
+        userName = $.parseJSON(result.d);
+        $('#lateTasks').append(userName);
+    }
+
+    function getLateTasksNumErrorCB(error) {
         console.log(error);
     }
 

@@ -129,4 +129,23 @@ public class DashboardWS : System.Web.Services.WebService
             return ex.ToString();
         }
     }
+
+    [WebMethod]
+    public string GetLateTasksNum()
+    {
+        int counter = 0;
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        ActualTask actualTask = new ActualTask();
+        try
+        {
+            counter = actualTask.GetLateTasksNum();
+            return j.Serialize(counter);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
 }
