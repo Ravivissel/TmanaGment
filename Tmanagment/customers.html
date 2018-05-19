@@ -125,10 +125,20 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-box table-responsive">
-                                <h4 class="m-t-0 header-title">טבלת לקוחות</h4>
-                                <p class="text-muted font-14 m-b-30">
-                                    מבט כללי על הלקוחות השונים.
-                                </p>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="m-t-0 header-title">טבלת לקוחות</h4>
+                                        <p class="text-muted font-14 m-b-30">
+                                            מבט כללי על הלקוחות השונים.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button> צפייה
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='ערוך'><i class='ti-pencil'></i></button> עריכה
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-danger btn-sm m-b-5' id='remove' title='הפוך ללא פעיל'><i class='fa fa-remove'></i></button> הפוך ללא פעיל
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='הפוך פעיל'><i class='fa fa-undo'></i></button> הפוך לפעיל
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-3 checkbox checkbox-primary text-left">
                                         <input id="activeCustomers" type="checkbox" checked>

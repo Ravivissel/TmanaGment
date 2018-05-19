@@ -265,4 +265,38 @@ public class ActualTask
         #endregion
         return counter;
     }
+
+    public int GetAlmostLateTasksNum()
+    {
+        #region DB functions
+        string query = "select at.end_date from actual_tasks as at";
+
+        int counter = 0;
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                ActualTask actual_task = new ActualTask();
+                actual_task.End_date = (DateTime)dr["end_date"];
+                DateTime TodaysDate = DateTime.Now;
+                TodaysDate = DateTime.Today.AddDays(2); //almost late is two days from now
+
+                int result = DateTime.Compare(actual_task.End_date, TodaysDate);
+
+                if (result == 0)
+                    counter++;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+        #endregion
+        return counter;
+    }
 }

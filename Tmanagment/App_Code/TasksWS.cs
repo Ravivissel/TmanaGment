@@ -158,4 +158,42 @@ public class TasksWS : System.Web.Services.WebService
         actualRequestTask.SetTask(func);
     }
 
+    [WebMethod]
+    public string GetAlmostLateTasksNum()
+    {
+        int counter = 0;
+        JavaScriptSerializer j = new JavaScriptSerializer();
+        ActualTask actualTask = new ActualTask();
+        try
+        {
+            counter = actualTask.GetAlmostLateTasksNum();
+            return j.Serialize(counter);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
+
+    [WebMethod]
+    public string GetProjectTasksList(int projectId)
+    {
+        try
+        {
+            JavaScriptSerializer j = new JavaScriptSerializer();
+            ActualProjectTask actualProjectTask = new ActualProjectTask();
+            List<ActualProjectTask> allProjectsTasksList = actualProjectTask.GetProjectTasksList(projectId);
+            //string allProjectsTasksListJson = JsonConvert.SerializeObject(allProjectsTasksList, new IsoDateTimeConverter());
+            //return allProjectsTasksListJson;
+            return j.Serialize(allProjectsTasksList);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
+
 }

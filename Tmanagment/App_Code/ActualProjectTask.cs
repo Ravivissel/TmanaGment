@@ -196,4 +196,65 @@ public class ActualProjectTask
         }
         #endregion
     }
+
+    public List<ActualProjectTask> GetProjectTasksList(int projectId)
+    {
+        #region DB functions
+        string query = "select at.*, e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn, s.title status_title, p.title project_name " +
+            "from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id " +
+            "inner join employees e_created_by on e_created_by.id = at.created_by " +
+            "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
+            "inner join statuses s on ats.status_id = s.id " +
+            "inner join actual_project_task apt on at.id = apt.actual_tasks_id " +
+            "inner join projects p on apt.project_id = p.id " +
+            "where p.id = " + projectId + "";
+
+        List<ActualProjectTask> actualTasksList = new List<ActualProjectTask>();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                ActualProjectTask actual_project_task_temp = new ActualProjectTask();
+                ActualTask act_task = new ActualTask();
+                Employee created_by = new Employee();
+                Employee assign_to = new Employee();
+                Project project = new Project();
+                Status status = new Status();
+
+                created_by.First_name = dr["created_by_fn"].ToString();
+                created_by.Id = Convert.ToInt32(dr["created_by"]);
+
+                assign_to.First_name = dr["assign_to_fn"].ToString();
+                assign_to.Id = Convert.ToInt32(dr["assign_to"]);
+
+                status.Title = dr["status_title"].ToString();
+
+                act_task.Title = dr["title"].ToString();
+                //act_task.Description = dr["description"].ToString();
+                act_task.Id = Convert.ToInt32(dr["id"]);
+                act_task.Start_date = Convert.ToDateTime(dr["start_date"]);
+                act_task.End_date = Convert.ToDateTime(dr["end_date"]);
+                act_task.Created_by = created_by;
+                act_task.Assign_to = assign_to;
+                act_task.Status = status;
+
+                actual_project_task_temp.Actual_task = act_task;
+
+                project.Title = dr["project_name"].ToString();
+                actual_project_task_temp.Project = project;
+
+                actualTasksList.Add(actual_project_task_temp);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+        #endregion
+        return actualTasksList;
+    }
 }
