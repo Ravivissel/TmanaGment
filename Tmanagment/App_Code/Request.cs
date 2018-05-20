@@ -223,6 +223,7 @@ public class Request
             try
             {
                 Request req = new Request();
+                List<Employee> employees = new List<Employee>();
                 Employee emp = new Employee();
                 Status status = new Status();
 
@@ -231,7 +232,8 @@ public class Request
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = (int)dr["contact_phone"];
                 int assign_to_id = (int)dr["assign_to"];
-                emp = emp.GetEmployeeDetails(assign_to_id); //call the func from employee to get employee details
+                employees = emp.GetEmployees(assign_to_id); //call the func from employee to get employee details
+                emp = employees.First();
                 req.Assign_to = emp;
                 status.Title = dr["status_title"].ToString();
                 req.Status = status;

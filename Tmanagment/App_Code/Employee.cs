@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Linq.Mapping;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -168,11 +169,11 @@ public class Employee
         {
             try
             {
-                Employee assign_to = new Employee();
-
-                assign_to.Id = (int)dr["emp_id"];
-                assign_to.First_name = dr["first_name"].ToString();
-
+                Employee assign_to = new Employee()
+                {
+                    Id = (int)dr["emp_id"],
+                    First_name = dr["first_name"].ToString()
+                };
                 AssignToList.Add(assign_to);
             }
             catch (Exception ex)
@@ -227,6 +228,8 @@ public class Employee
         tmpEmployee.Phone_number = Convert.ToInt32(dr["phone_num"]);
         tmpEmployee.Id = Convert.ToInt32(dr["id"]);
         tmpEmployee.Title = dr["title"].ToString();
+        tmpEmployee.User_name = dr["user_name"].ToString();
+        tmpEmployee.User_type = dr["user_type"].ToString();
         #endregion
         return tmpEmployee;
     }
@@ -251,17 +254,28 @@ public class Employee
         return userName;
     }
 
-    public Employee GetEmployeeDetails(int id)
+    public List<Employee> GetEmployees(Int32? id=null)
     {
         #region DB functions
-        string query = "select * from employees where id ='" + id + "'";
+        string query = "select * from employees ";
+        string condition;
 
-        Employee employee = new Employee();
+        if (id != null)
+        {
+
+            condition = "where id = '" + id + "'";
+            query += condition;
+        }
+
+        List<Employee> employees = new List<Employee>();
+
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
 
         foreach (DataRow dr in ds.Tables[0].Rows)
         {
+            Employee employee = new Employee();
+
             try
             {
                 employee.First_name = dr["first_name"].ToString();
@@ -269,14 +283,45 @@ public class Employee
                 employee.Phone_number = Convert.ToInt32(dr["phone_num"]);
                 employee.Id = Convert.ToInt32(dr["id"]);
                 employee.Title = dr["title"].ToString();
+                employee.User_name = dr["user_name"].ToString();
+                employee.User_type = dr["user_type"].ToString();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
-        }        
+            employees.Add(employee);
+        }
         #endregion
-        return employee; 
+
+        return employees;
     }
+    public int InsertEmployee(Employee emp)
+    {
+        DbServices dbs = new DbServices();
+
+        StringBuilder query = new StringBuilder();
+        query.AppendFormat("insert into employees (first_name,last_name,phone_num,title,user_name,password) ");
+        query.AppendFormat("values ('{0}','{1}','{2}','{3}','{4}','{5}')", emp.First_name.ToString(), emp.Last_name.ToString(), emp.Phone_number, emp.Title.ToString(), emp.User_name.ToString(),emp.Password);
+
+        int row_affected = dbs.ExecuteQuery(query.ToString());
+        return row_affected;
+    }
+    public int UpdateEmployee(Employee emp)
+    {
+        DbServices dbs = new DbServices();
+
+        StringBuilder query = new StringBuilder();
+        query.AppendFormat("update employees ");
+        query.AppendFormat("set first_name='{0}',last_name='{1}',phone_num='{2}',title='{3}',user_name='{4}' ", emp.First_name.ToString(), emp.Last_name.ToString(), emp.Phone_number, emp.Title.ToString(), emp.User_name.ToString(), emp.Password.ToString());
+
+        if (emp.Password != null && emp.Password != "")
+            query.AppendFormat("password='{0}' ", emp.Password);
+        query.AppendFormat("where id={0}", emp.Id);
+
+        int row_affected = dbs.ExecuteQuery(query.ToString());
+        return row_affected;
+    }
+
 }

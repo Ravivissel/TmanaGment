@@ -79,6 +79,12 @@ var GENERAL = {
         },
         setUserName: function (userName) {
             localStorage.userName = userName;
+        },
+        getUser: function () {
+            return localStorage.user;
+        },
+        setUser: function (user) {
+            localStorage.user = user;
         }
     },
 
