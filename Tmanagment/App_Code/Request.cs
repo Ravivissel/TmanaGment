@@ -18,7 +18,7 @@ public class Request
     private DateTime created_at;
     private Employee created_by;
     private Employee assign_to;
-
+    private Status status;
 
     public Request()
     {
@@ -65,6 +65,29 @@ public class Request
         this.contact_name = contact_name;
         this.contact_phone = contact_phone;
         this.assign_to = assign_to;
+    }
+
+    public Request(int id, string title, string contact_name, int contact_phone, Employee assign_to, Status status)
+    {
+        this.id = id;
+        this.title = title;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.assign_to = assign_to;
+        this.status = status;
+    }
+
+    public Request(int id, string title, string description, string contact_name, int contact_phone, DateTime created_at, Employee created_by, Employee assign_to, Status status)
+    {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.created_at = created_at;
+        this.created_by = created_by;
+        this.assign_to = assign_to;
+        this.status = status;
     }
 
     public int Id
@@ -171,12 +194,25 @@ public class Request
         }
     }
 
+    public Status Status
+    {
+        get
+        {
+            return status;
+        }
+
+        set
+        {
+            status = value;
+        }
+    }
+
     public List<Request> GetRequestsList()
     {
         #region DB functions
-        string query = "select r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
-            "where " +
-            "rs.is_current = 1;"; // TODO: should be change to the required status
+        string query = "select s.title status_title, r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r " +
+            "inner join requests_statuses rs on r.id = rs.request_id " +
+            "inner join statuses s on rs.status_id = s.id ";
 
         List<Request> ReqList = new List<Request>();
         DbServices db = new DbServices();
@@ -188,15 +224,19 @@ public class Request
             {
                 Request req = new Request();
                 Employee emp = new Employee();
+                Status status = new Status();
 
                 req.Id = (int)dr["id"];
                 req.Title = dr["request_title"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = (int)dr["contact_phone"];
-                emp.First_name = dr["assign_to"].ToString();
+                int assign_to_id = (int)dr["assign_to"];
+                emp = emp.GetEmployeeDetails(assign_to_id); //call the func from employee to get employee details
                 req.Assign_to = emp;
+                status.Title = dr["status_title"].ToString();
+                req.Status = status;
 
-                Request reqList = new Request(req.Id, req.Title, req.Contact_name, req.Contact_phone, req.Assign_to);
+                Request reqList = new Request(req.Id, req.Title, req.Contact_name, req.Contact_phone, req.Assign_to, req.Status);
 
                 ReqList.Add(reqList);
             }
@@ -210,28 +250,48 @@ public class Request
         #endregion
 
         return ReqList;
-
     }
 
     public void SetRequest(string func)
     {
+        #region DB functions
         DbServices db = new DbServices();
+        DbServices db2 = new DbServices();
         string query = "";
         if (func == "edit")
         {
+            //update the request
             query = "UPDATE requests SET title = '" + title + "', description = '" + description + "', contact_name = '" + contact_name + "', contact_phone = '" + contact_phone + "', created_by = '" + created_by.Id + "', assign_to = '" + assign_to.Id + "' WHERE id = " + id;
+            db.ExecuteQuery(query);
+
+            //update the request status
+            query = "UPDATE requests_statuses SET status_id = '" + status.Id + "', modified_by = '" + created_by.Id + "' WHERE request_id = " + id; 
+            db2.ExecuteQuery(query);
+
         }
         else if (func == "new")
         {
+            //insert a new request
             query = "insert into requests values ('" + title + "','" + description + "','" + contact_name + "','" + contact_phone + "','" + created_at + "'," + created_by.Id + ",'" + assign_to.Id + "')";
+            db.ExecuteQuery(query);
+
+            //get the request id
+            string statusId = "1";
+            string tableName = "requests";
+            string requestId = db.Ga(tableName);
+
+            //insert the new request a status
+            query = "insert into requests_statuses values ('" + requestId + "','" + statusId + "','" + created_by.Id + "','1')";
+            db2.ExecuteQuery(query);
         }
-        db.ExecuteQuery(query);
+        #endregion
     }
 
     public Request GetRequest()
     {
         #region DB functions
-        string query = "select r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r inner join employees e on r.assign_to = e.id where r.id =" + Id + "";
+        string query = "select r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r " +
+            "inner join employees e on r.assign_to = e.id where r.id =" + Id + "";
 
         Request req = new Request();
         DbServices db = new DbServices();
@@ -261,8 +321,44 @@ public class Request
             }
         }
         #endregion
-
         return req;
     }
 
+    public int GetOpenRequestsNum()
+    {
+        #region DB functions
+        string query = "select s.title status_title from requests r " +
+            "inner join requests_statuses rs on r.id = rs.request_id " +
+            "inner join statuses s on rs.status_id = s.id " +
+            "where " +
+            "s.title = 'פתוחה';"; // TODO: should be change to the required status
+
+        int counter = 0;
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Request req = new Request();
+                Status status = new Status();
+
+                status.Title = dr["status_title"].ToString();
+                req.Status = status;
+
+                if (req.Status.Title == "פתוחה")
+                    counter++;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+
+            }
+        }
+        #endregion
+        return counter;
+    }
 }

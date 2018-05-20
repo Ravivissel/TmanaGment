@@ -8,7 +8,7 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <title>משימה חדשה</title>
+    <title>משימה</title>
 
     <!-- Sweet Alert css -->
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -26,13 +26,17 @@
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
+    <!-- Select2 css+js -->
+    <link href="assets/css/select2.css" rel="stylesheet" />
+    <script src="assets/js/select2.min.js"></script>
+
     <script src="assets/js/jquery.min.js"></script>
 
     <script src="assets/js/modernizr.min.js"></script>
 
     <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/taskForm.js"></script>
+    <script src="assets/js/changes/tasksForm.js"></script>
 
     <!--- Page Scripts Dependencies!-->
     <script src="assets/js/changes/utils.js"></script>
@@ -69,7 +73,10 @@
                         <div class="col-sm-12">
                             <div class="page-title-box">
                                 <h4 class="page-title" id="welcome-user">משימה</h4>
-                                <ol class="breadcrumb float-right"></ol>
+                                <ol class="breadcrumb float-right">
+                                    <li class="breadcrumb-item">משימות</li>
+                                    <li class="breadcrumb-item">משימה</li>
+                                </ol>
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -80,7 +87,7 @@
                             <div class="card-box">
                                 <h4 class="header-title m-t-0">טופס משימה</h4>
                                 <p class="text-muted font-14 m-b-20">
-                                    יצירת משימה חדשה. לחץ על כפתור חזור בכדי לצפות בכל המשימות.
+                                    יצירה, צפייה ועריכת משימה. לחץ על כפתור חזור בכדי לצפות בכל המשימות.
                                 </p>
                                 <div class="text-right m-b-30 m-r-5">
                                     <button type="button" onclick="returnToTasksPage()" class="btn btn-secondary waves-effect w-md m-b-5 m-r-15"><i class="ti-back-right m-r-5"></i>חזור</button>
@@ -96,33 +103,49 @@
                                             <input type="text" placeholder="dd/mm/yyyy" class="form-control" id="end_date" name="end_date">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-sm-2">משוייכת ל:</label>
+                                    <div class="form-group row" id="statusDiv" hidden>
+                                        <label class="control-label col-sm-2">מספר המשימה:</label>
                                         <div class="col-sm-3">
-                                            <select id="assign_to_p_or_r" name="assign_to_p_or_r" class="form-control">
-                                                <option value="בחר" selected="" disabled="">בחר</option>
-                                                <option value="1">פרוייקט</option>
-                                                <option value="2">פנייה</option>
+                                            <input type="text" disabled="disabled" class="form-control" id="task_id" name="task_id">
+                                        </div>
+                                        <label class="control-label col-sm-2">סטטוס:</label>
+                                        <div class="col-sm-3">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="1">פתוחה</option>
+                                                <option value="2">בתהליך</option>
+                                                <option value="3">סגורה</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="control-label col-sm-2">משוייכת לעובד:</label>
                                         <div class="col-sm-3">
                                             <select id="assign_to" name="assign_to" class="form-control">
                                                 <!--employees names are added dynamicly-->
                                             </select>
                                         </div>
+                                        <label class="control-label col-sm-2" id="proj_req_assign_label">משוייכת ל:</label>
+                                        <div class="col-sm-3" id="proj_req_assignDiv">
+                                            <select id="proj_req_assign" name="proj_req_assign" class="form-control">
+                                                <option value="בחר" selected="" disabled="">בחר</option>
+                                                <option value="1">פרוייקט</option>
+                                                <option value="2">פנייה</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row" id="projectDiv" hidden>
                                         <label class="control-label col-sm-2">משוייכת לפרוייקט:</label>
                                         <div class="col-sm-3">
-                                            <select id="assign_to_project" name="assign_to_project" class="form-control" disabled="disabled">
+                                            <select id="assign_to_project" name="assign_to_project" class="form-control">
                                                 <!--projects names are added dynamicly-->
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group row" id="requestDiv" hidden>
                                         <label class="control-label col-sm-2">משוייכת לפנייה:</label>
                                         <div class="col-sm-3">
-                                            <select id="assign_to_request" name="assign_to_request" class="form-control" disabled="disabled">
-                                                <!--requests names are added dynamicly-->
+                                            <select id="assign_to_request" name="assign_to_request" class="form-control">
+                                                <!--open requests names are added dynamicly-->
                                             </select>
                                         </div>
                                     </div>
@@ -138,8 +161,6 @@
                                 </form>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -198,11 +219,6 @@
     <script>
         $(document).ready(function () {
 
-            //generate select options
-            generateAssignToList();
-            generateAssignToProjectList();
-            generateAssignToRequestList();
-
             // DO NOT REMOVE : GLOBAL FUNCTIONS!
             var errorClass = 'invalid';
             var errorElement = 'em';
@@ -225,7 +241,7 @@
                     end_date: {
                         required: true
                     },
-                    assign_to_p_or_r: {
+                    proj_req_assign: {
                         required: true
                     },
                     assign_to_project: {
@@ -240,26 +256,36 @@
                     event.preventDefault();
                     //Start of insert request code
 
+                    var description = $("#description").val();
                     var task_title = $("#task_title").val();
                     var end_date = $("#end_date").val();
                     var assign_to = $("#assign_to option:selected").val();
-                    var description = $("#description").val();
                     var created_by = "1"; // change to be the actual user
-                    //check's if it is a new request or an update
-                    var func = arr_task.func;
-                    var taskID = arr_task.taskID;
 
-                    if ($("#assign_to_p_or_r option:selected").val() == 1) {
+                    if ($("#proj_req_assign option:selected").val() == 1) {
+                        //check's if it is a new task or an update
+                        var func = arr_project_task.func;
+                        if (func == "edit") {
+                            status = $("#status").val();
+                        }
+                        else status = -1;
+                        var taskID = arr_project_task.taskID;
                         var assign_to_project = $("#assign_to_project option:selected").val();
-                        var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_project: assign_to_project, description: description, created_by: created_by, func: func };
+                        var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_project: assign_to_project, description: description, created_by: created_by, status: status, func: func };
                         //call the ajax func
                         insertNewProjectTask(request, insertNewTaskCB, insertNewTaskErrorCB);
                     }
-                    if ($("#assign_to_p_or_r option:selected").val() == 2) {
+                    else if ($("#proj_req_assign option:selected").val() == 2) {
+                        var func = arr_request_task.func;
+                        if (func == "edit") {
+                            status = $("#status").val();
+                        }
+                        else status = -1;
+                        var taskID = arr_request_task.taskID;
                         var assign_to_request = $("#assign_to_request option:selected").val();
-                        var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_request: assign_to_request, description: description, created_by: created_by, func: func };
+                        var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_request: assign_to_request, description: description, created_by: created_by, status: status, func: func };
                         //call the ajax func
-                        //insertNewRequestTask(request, insertNewTaskCB, insertNewTaskErrorCB); TODO: create this func
+                        insertNewRequestTask(request, insertNewTaskCB, insertNewTaskErrorCB);
                     }
 
                 },
@@ -275,7 +301,7 @@
                     end_date: {
                         required: "אנא בחר תאריך יעד"
                     },
-                    assign_to_p_or_r: {
+                    proj_req_assign: {
                         required: "אנא בחר שיוך, פרוייקט או פנייה"
                     },
                     assign_to_project: {
@@ -295,7 +321,7 @@
                     timer: 1000,
                     showConfirmButton: false
                 });
-                // send user to requests page
+                // send user to tasks page
                 setTimeout(function () { returnToTasksPage() }, 1001);
             }
 
@@ -321,86 +347,16 @@
         });
 
         //open project_assign or request_assign
-        $('#assign_to_p_or_r').change(function () {
-            if ($("#assign_to_p_or_r option:selected").val() == 1) {
-                $("#assign_to_project").attr('disabled', false);
-                $("#assign_to_request").attr('disabled', 'disabled');
+        $('#proj_req_assign').change(function () {
+            if ($("#proj_req_assign option:selected").val() == 1) {
+                $("#projectDiv").prop('hidden', false);
+                $("#requestDiv").prop('hidden', true);
             }
-            if ($("#assign_to_p_or_r option:selected").val() == 2) {
-                $("#assign_to_request").attr('disabled', false);
-                $("#assign_to_project").attr('disabled', 'disabled');
+            if ($("#proj_req_assign option:selected").val() == 2) {
+                $("#requestDiv").prop('hidden', false); 
+                $("#projectDiv").prop('hidden', true);
             } 
         });
-
-        //all the select functions starts here
-
-        //Assign to employee
-        function generateAssignToList() {
-            GetAssignToList(getAssignToListCB, getAssignToListErrorCB);
-        }
-
-        function getAssignToListCB(AssignToListData) {
-            var arr_AssignTo = $.parseJSON(AssignToListData.d);
-            $select = $("#assign_to");
-            $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
-            for (i in arr_AssignTo) {
-                $('<option>', { value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name }).appendTo($select);
-            }
-        }
-
-        function getAssignToListErrorCB(error) {
-            console.log(error);
-        }
-
-        //Assign to project
-        function generateAssignToProjectList() {
-
-            //Need to change! no need for request here
-            const userId = 65;
-            var groupid = userId;
-            var request = {
-                employeeId: groupid
-            };
-            getProjects(request, getAssignToProjectListCB, getAssignToProjectListErrorCB);
-        }
-
-        function getAssignToProjectListCB(AssignToProjectListData) {
-            var arr_AssignToProject = $.parseJSON(AssignToProjectListData.d);
-            $select = $("#assign_to_project");
-            $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
-            for (i in arr_AssignToProject) {
-                $('<option>', { value: arr_AssignToProject[i].Id, text: arr_AssignToProject[i].Title }).appendTo($select);
-            }
-        }
-
-        function getAssignToProjectListErrorCB(error) {
-            console.log(error);
-        }
-
-        //Assign to Request                      TODO: need to change only the active request!
-        function generateAssignToRequestList() {
-
-            //Need to change! no need for request here
-            const userId = 65;
-            var groupid = userId;
-            var request = {
-                employeeId: groupid
-            };
-            getRequests(request, getAssignToRequestListCB, getAssignToRequestListErrorCB);
-        }
-
-        function getAssignToRequestListCB(AssignToRequestListData) {
-            var arr_AssignToRequest = $.parseJSON(AssignToRequestListData.d);
-            $select = $("#assign_to_request");
-            $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
-            for (i in arr_AssignToRequest) {
-                $('<option>', { value: arr_AssignToRequest[i].Id, text: arr_AssignToRequest[i].Title }).appendTo($select);
-            }
-        }
-
-        function getAssignToRequestListErrorCB(error) {
-            console.log(error);
-        }
             
     </script>
 

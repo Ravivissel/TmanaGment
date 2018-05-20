@@ -176,16 +176,18 @@ public class Dashboard
     }
 
     public List<Dashboard> GetMyTasksList(Employee employee)
-    {
-    
+    { 
         #region DB functions
-        string query = "select at.id task_id, p.title project_title, emp.first_name, at.end_date,at.title task_title, s.title status from projects p inner join actual_project_task apt on apt.project_id = p.id inner join actual_tasks at on at.id = apt.actual_tasks_id inner join actual_tasks_statuses ats on ats.task_id = at.id inner join employees emp on emp.id = at.assign_to inner join statuses s on s.id = ats.status_id " +
+        string query = "select at.id task_id, p.title project_title, emp.first_name, at.end_date,at.title task_title, s.title status from projects p " +
+            "inner join actual_project_task apt on apt.project_id = p.id " +
+            "inner join actual_tasks at on at.id = apt.actual_tasks_id " +
+            "inner join actual_tasks_statuses ats on ats.task_id = at.id " +
+            "inner join employees emp on emp.id = at.assign_to " +
+            "inner join statuses s on s.id = ats.status_id " +
             "where " +
             "emp.id =" + employee.Id +
             "and " +
-            "ats.is_current = 1 " +
-            "and " +
-            "s.title = 'Mr';"; // TODO: should be change to the required status
+            "s.title != 'סגורה';"; // TODO: should be change to the required status
 
         List<Dashboard> myTaskList =  new List<Dashboard>();
         DbServices db = new DbServices();
@@ -220,17 +222,30 @@ public class Dashboard
         }
         #endregion
         return myTaskList;
-  
     }
 
-    public List<Dashboard> GetMyRequestsList()
+    public List<Dashboard> GetMyRequestsList(Employee employee)
     {
         #region DB functions
-        string query = "select r.id request_id, r.title request_title, r.contact_name, r.contact_phone from requests r inner join requests_statuses rs on r.id = rs.request_id inner join statuses s on rs.status_id = s.id " +
+        string query2 = "select at.id task_id, p.title project_title, emp.first_name, at.end_date,at.title task_title, s.title status from projects p " +
+            "inner join actual_project_task apt on apt.project_id = p.id " +
+            "inner join actual_tasks at on at.id = apt.actual_tasks_id " +
+            "inner join actual_tasks_statuses ats on ats.task_id = at.id " +
+            "inner join employees emp on emp.id = at.assign_to " +
+            "inner join statuses s on s.id = ats.status_id " +
             "where " +
-            "rs.is_current = 1 " +
+            "emp.id =" + employee.Id +
             "and " +
-            "s.title = 'Mr';"; // TODO: should be shange to the required status
+            "s.title != 'סגורה';"; // TODO: should be change to the required status
+
+        string query = "select r.id request_id, r.title request_title, r.contact_name, r.contact_phone from requests r " +
+            "inner join requests_statuses rs on r.id = rs.request_id " +
+            "inner join statuses s on rs.status_id = s.id " +
+            "inner join employees emp on emp.id = r.assign_to " +
+            "where " +
+            "emp.id =" + employee.Id +
+            "and " +
+            "s.title != 'סגורה';"; // TODO: should be shange to the required status
 
         List<Dashboard> myReqList = new List<Dashboard>();
         DbServices db = new DbServices();
@@ -259,8 +274,6 @@ public class Dashboard
             }
         }
         #endregion
-
         return myReqList;
-
     }
 }

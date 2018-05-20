@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -48,5 +49,23 @@ public class Status
         {
             title = value;
         }
+    }
+
+    public DataTable getProjectsStatusesTable()
+    {
+        #region DB functions
+        DbServices dbs = new DbServices();
+        DataTable projectsStatusesTable = dbs.getFullTable("projects_statuses");
+        #endregion
+        return projectsStatusesTable;
+    }
+
+    public Status GetProjectStatus(DataRow dr)
+    {
+        #region DB functions
+        Status tmpStatus = new Status();
+        tmpStatus.Id = Convert.ToInt32(dr["status_id"]);
+        #endregion
+        return tmpStatus;
     }
 }

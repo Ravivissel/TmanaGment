@@ -79,7 +79,7 @@
 .wizard > .steps > ul > li,
 .wizard > .actions > ul > li
 {
-    float: left;
+    float: right;
 }
 
 .wizard.vertical > .steps > ul > li
@@ -221,7 +221,7 @@
 {
     position: relative;
     display: block;
-    text-align: right;
+    text-align: left;
     width: 100%;
 }
 

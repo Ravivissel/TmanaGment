@@ -14,7 +14,6 @@ public class ActualTaskStatus
     private bool is_current;
     private Employee modified_by;
 
-
     public ActualTaskStatus()
     {
         //

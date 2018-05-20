@@ -86,11 +86,6 @@
 
     <script src="assets/js/modernizr.min.js"></script>
 
-    <!-- page scripts -->
-    <script src="assets/js/CookiesFunctions.js"></script>
-    <script src="assets/js/changes/ajaxCalls.js"></script>
-    <script src="assets/js/changes/tasksPage.js"></script>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -99,107 +94,187 @@
     <![endif]-->
 
     <!--- Page Scripts Dependencies!-->
+    <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/utils.js"></script>
+    <script src="assets/js/changes/ajaxCalls.js"></script>
+    <script src="assets/js/changes/tasks.js"></script>
 
 </head>
 
 <body class="fixed-left">
 
-<!-- Begin page -->
-<div id="wrapper">
+    <!-- Begin page -->
+    <div id="wrapper">
+        <div id="masterPageContext"></div>
 
-    <div id="masterPageContext"></div>
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
 
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container-fluid">
-
-                <!-- Page-Title -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-title-box">
-                            <h4 class="page-title" id="welcome-user">משימות&nbsp&nbsp<i class="ti-write"></i></h4>
-                            <ol class="breadcrumb float-right"></ol>
-                            <div class="clearfix"></div>
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title" id="welcome-user"><i class="ti-write"></i>&nbsp משימות</h4>
+                                <ol class="breadcrumb float-right">
+                                    <li class="breadcrumb-item">משימות</li>
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget-simple-chart text-right card-box">
+                                <div class="circliful-chart" data-dimension="90" data-text="35%" data-width="5" data-fontsize="14" data-percent="35" data-fgcolor="#5fbeaa" data-bgcolor="#ebeff2"></div>
+                                <h3 class="text-success counter m-t-10" id="openTasks"></h3>
+                                <p class="text-muted text-nowrap m-b-10">משימות פתוחות</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget-simple-chart text-right card-box">
+                                <div class="circliful-chart" data-dimension="90" data-text="75%" data-width="5" data-fontsize="14" data-percent="75" data-fgcolor="#3bafda" data-bgcolor="#ebeff2"></div>
+                                <h3 class="text-primary counter m-t-10" id="inProcessTasks"></h3>
+                                <p class="text-muted text-nowrap m-b-10">משימות בתהליך</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget-simple-chart text-right card-box">
+                                <div class="circliful-chart" data-dimension="90" data-text="58%" data-width="5" data-fontsize="14" data-percent="58" data-fgcolor="#f76397" data-bgcolor="#ebeff2"></div>
+                                <h3 class="text-pink m-t-10" id="lateTasks"></h3>
+                                <p class="text-muted text-nowrap m-b-10">משימות מאחרות</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget-simple-chart text-right card-box">
+                                <div class="circliful-chart" data-dimension="90" data-text="49%" data-width="5" data-fontsize="14" data-percent="49" data-fgcolor="#98a6ad" data-bgcolor="#ebeff2"></div>
+                                <h3 class="text-inverse counter m-t-10" id="almostLateTasks"></h3>
+                                <p class="text-muted text-nowrap m-b-10">משימות קרובות לאיחור</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box table-responsive">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="m-t-0 header-title">טבלת משימות לפרוייקטים</h4>
+                                        <p class="text-muted font-14 m-b-30">
+                                            מבט כללי על המשימות שמשוייכות לפרוייקטים.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button> פרטים נוספים
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='ערוך'><i class='ti-pencil'></i></button> עריכה
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 checkbox checkbox-primary text-left">
+                                        <input id="activeProjectsTasks" type="checkbox" checked>
+                                        <label for="activeProjectsTasks">
+                                            משימות פתוחות בלבד
+                                        </label>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <table id="datatable-buttons" class="table table-striped table-bordered" data-pattern="priority-columns">
+                                        <thead>
+                                            <tr>
+                                                <th>מס' המשימה</th>
+                                                <th>שם המשימה</th>
+                                                <th>משוייכת לפרוייקט</th>
+                                                <th>נפתחה על ידי</th>
+                                                <th>משוייכת לעובד</th>
+                                                <th>תאריך התחלה</th>
+                                                <th>תאריך סיום</th>
+                                                <th>סטטוס</th>
+                                                <th>ערוך משימה</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box table-responsive">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="m-t-0 header-title">טבלת משימות לפניות</h4>
+                                        <p class="text-muted font-14 m-b-30">
+                                            מבט כללי על המשימות שמשוייכות לפניות.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button> פרטים נוספים
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='ערוך'><i class='ti-pencil'></i></button> עריכה
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 checkbox checkbox-primary text-left">
+                                        <input id="activeRequestsTasks" type="checkbox" checked>
+                                        <label for="activeRequestsTasks">
+                                            משימות פתוחות בלבד
+                                        </label>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <table id="datatable-buttons2" class="table table-striped table-bordered" data-pattern="priority-columns">
+                                        <thead>
+                                            <tr>
+                                                <th>מס' המשימה</th>
+                                                <th>שם המשימה</th>
+                                                <th>משוייכת לפנייה</th>
+                                                <th>נפתחה על ידי</th>
+                                                <th>משוייכת לעובד</th>
+                                                <th>תאריך התחלה</th>
+                                                <th>תאריך סיום</th>
+                                                <th>סטטוס</th>
+                                                <th>ערוך משימה</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="widget-simple-chart text-right card-box">
-                            <div class="circliful-chart" data-dimension="90" data-text="35%" data-width="5" data-fontsize="14" data-percent="35" data-fgcolor="#5fbeaa" data-bgcolor="#ebeff2"></div>
-                            <h3 class="text-success counter m-t-10">2562</h3>
-                            <p class="text-muted text-nowrap m-b-10">סה״כ משימות פתוחות</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="widget-simple-chart text-right card-box">
-                            <div class="circliful-chart" data-dimension="90" data-text="75%" data-width="5" data-fontsize="14" data-percent="75" data-fgcolor="#3bafda" data-bgcolor="#ebeff2"></div>
-                            <h3 class="text-primary counter m-t-10">5685</h3>
-                            <p class="text-muted text-nowrap m-b-10">סה״כ משימות בתהליך</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="widget-simple-chart text-right card-box">
-                            <div class="circliful-chart" data-dimension="90" data-text="58%" data-width="5" data-fontsize="14" data-percent="58" data-fgcolor="#f76397" data-bgcolor="#ebeff2"></div>
-                            <h3 class="text-pink m-t-10">$ <span class="counter">12480</span></h3>
-                            <p class="text-muted text-nowrap m-b-10">סה״כ משימות מאחרות</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="widget-simple-chart text-right card-box">
-                            <div class="circliful-chart" data-dimension="90" data-text="49%" data-width="5" data-fontsize="14" data-percent="49" data-fgcolor="#98a6ad" data-bgcolor="#ebeff2"></div>
-                            <h3 class="text-inverse counter m-t-10">62</h3>
-                            <p class="text-muted text-nowrap m-b-10">סה״כ משימות קרובות לאיחור</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card-box table-responsive">
-                            <h4 class="m-t-0 header-title">טבלת משימות</h4>
-                            <p class="text-muted font-14 m-b-30">
-                                מבט כללי על המשימות השונות.
-                            </p>
-
-                            <table id="datatable-buttons" class="table table-striped table-bordered" data-pattern="priority-columns">
-                                <thead>
-                                    <tr>
-                                        <th>מספר משימה</th>
-                                        <th>כותרת</th>
-                                        <th>תקציר</th>
-                                        <th>תאריך התחלה</th>
-                                        <th>תאריך סיום</th>
-                                        <th>נפתחה על ידי</th>
-                                        <th>משוייכת לעובד</th>
-                                        <th>ערוך משימה</th>
-                                    </tr>
-                                </thead>
-                                <tbody ></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-                </div>
-        <!-- END wrapper -->
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Custom main Js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
+
+    <!-- circliful Chart -->
+    <script src="./plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
+    <script src="./plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function ($) {
+            $('.circliful-chart').circliful();
+        });
+
+    </script>
 
 </body>
 </html>
