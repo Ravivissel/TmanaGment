@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     //Need to change to be dynamic from the user login session
@@ -13,12 +14,40 @@ $(document).ready(function () {
     };
 
     getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
-    getLateTasksNum(getLateTasksNumCB, getLateTasksNumErrorCB);
-    getOpenRequestsNum(getOpenRequestsNumCB, getOpenRequestsNumErrorCB);
-    getOpenProjectsNum(getOpenProjectsNumCB, getOpenProjectsNumErrorCB);
-    getTodaysTasksNum(getTodayTasksNumCB, getTodayTasksNumErrorCB);
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
+
+    GetDashboardStatistics(GetDashboardStatisticsCB, GetDashboardStatisticsErrorCB)
+
+
+    function GetDashboardStatisticsCB(results) {
+        var resultsArray = $.parseJSON(results.d);
+        var statistics = resultsArray[0];
+
+        $('#projectsInProcessChart').attr("data-percent", statistics.projects_in_progress_percent);
+        $('#projectsInProcessChart').attr("data-text", statistics.projects_in_progress_percent+"%");
+
+        $('#lateTasksChart').attr("data-percent", statistics.late_tasks_percent);
+        $('#lateTasksChart').attr("data-text", statistics.late_tasks_percent+"%");
+
+        $('#openRequestsChart').attr("data-percent", statistics.open_requests_percent);
+        $('#openRequestsChart').attr("data-text", statistics.open_requests_percent+"%");
+
+        $('#todayTasksChart').attr("data-percent", statistics.tasks_for_today_percent);
+        $('#todayTasksChart').attr("data-text", statistics.tasks_for_today_percent+"%");
+
+        $('#openRequests').append(statistics.open_requests);
+        $('#inProcessProjects').append(statistics.projects_in_progress);
+        $('#todayTasks').append(statistics.tasks_for_today);
+        $('#lateTasks').append(statistics.late_tasks);
+
+        $('.circliful-chart').circliful();
+    }
+
+    function GetDashboardStatisticsErrorCB(err) {
+        console.log(err);
+
+    }
 
     function getMyTaskCB(result) {
         renderMyTaskTable(result);
@@ -66,41 +95,6 @@ $(document).ready(function () {
         console.log(error);
     }
 
-    function getLateTasksNumCB(result) {
-        userName = $.parseJSON(result.d);
-        $('#lateTasks').append(userName);
-    }
-
-    function getLateTasksNumErrorCB(error) {
-        console.log(error);
-    }
-
-    function getOpenRequestsNumCB(result) {
-        counter = $.parseJSON(result.d);
-        $('#openRequests').append(counter);
-    }
-
-    function getOpenRequestsNumErrorCB(error) {
-        console.log(error);
-    }
-
-    function getOpenProjectsNumCB(result) {
-        counter = $.parseJSON(result.d);
-        $('#onProcessProjects').append(counter);
-    }
-
-    function getOpenProjectsNumErrorCB(error) {
-        console.log(error);
-    }
-
-    function getTodayTasksNumCB(result) {
-        counter = $.parseJSON(result.d);
-        $('#TodayTasks').append(counter);
-    }
-
-    function getTodayTasksNumErrorCB(error) {
-        console.log(error);
-    }
 
     //Calender
     var initialLocaleCode = 'he';

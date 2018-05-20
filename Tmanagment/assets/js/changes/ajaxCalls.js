@@ -447,4 +447,17 @@ function getProjectTasksList(request, successCB, errorCB) {
         success: successCB,                // data.d id the Variable data contains the data we get from serverside
         error: errorCB
     }); // end of ajax call
+
+   
+}
+
+function GetDashboardStatistics(successCB, errorCB) {
+    $.ajax({
+        url: 'DashboardWS.asmx/GetStatistics',       
+        type: 'POST',                             
+        dataType: 'json',
+        contentType: 'application/json; charset = utf-8', 
+        success: successCB,
+        error: errorCB
+    }); 
 }

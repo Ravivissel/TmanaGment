@@ -148,4 +148,21 @@ public class DashboardWS : System.Web.Services.WebService
             return ex.ToString();
         }
     }
+
+    [WebMethod]
+    public string GetStatistics()
+    {
+        try
+        {
+            Dashboard dashboard = new Dashboard();
+            string statistics = dashboard.GetStatistics();
+            return statistics;
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
+
 }

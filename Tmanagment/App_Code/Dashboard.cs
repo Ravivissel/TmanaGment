@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -176,7 +178,7 @@ public class Dashboard
     }
 
     public List<Dashboard> GetMyTasksList(Employee employee)
-    { 
+    {
         #region DB functions
         string query = "select at.id task_id, p.title project_title, emp.first_name, at.end_date,at.title task_title, s.title status from projects p " +
             "inner join actual_project_task apt on apt.project_id = p.id " +
@@ -189,7 +191,7 @@ public class Dashboard
             "and " +
             "s.title != 'סגורה';"; // TODO: should be change to the required status
 
-        List<Dashboard> myTaskList =  new List<Dashboard>();
+        List<Dashboard> myTaskList = new List<Dashboard>();
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
 
@@ -205,7 +207,7 @@ public class Dashboard
                 actual_task.Id = (int)dr["task_id"];
                 actual_task.End_date = (DateTime)dr["end_date"];
                 actual_task.Title = dr["task_title"].ToString();
-                employee.First_name = dr["first_name"].ToString(); 
+                employee.First_name = dr["first_name"].ToString();
                 actual_task.Assign_to = employee;
                 status.Title = dr["status"].ToString();
 
@@ -213,7 +215,7 @@ public class Dashboard
 
                 myTaskList.Add(tmpMyTask);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 throw ex;
@@ -275,5 +277,73 @@ public class Dashboard
         }
         #endregion
         return myReqList;
+    }
+
+
+    public string GetStatistics()
+    {
+        #region DB functions
+
+
+        #region query 
+
+        // BuildMyString.com generated code. Please enjoy your string responsibly.
+        string query = "declare @almost_late_date datetime " +
+        "declare @today datetime " +
+        "declare @late_tasks int  " +
+        "declare @almost_late_tasks int  " +
+        "declare @tasks_for_today int  " +
+        "declare @open_requests int  " +
+        "declare @projects_in_progress int  " +
+        "declare @total_projects int  " +
+        "declare @total_actual_tasks int " +
+        "declare @total_requests int " +
+        "declare @late_tasks_percent int  " +
+        "declare @open_requests_percent int  " +
+        "declare @projects_in_progress_percent int  " +
+        "declare @tasks_for_today_percent int " +
+        "set @today = getdate() " +
+        "set @almost_late_date = dateadd(day,-2,@today) " +
+        "set @late_tasks = (select count(*) as late_tasks " +
+        "from actual_tasks as at " +
+        "where at.end_date < @today) " +
+        "set @almost_late_tasks = (select count(*) as almost_late_tasks " +
+        "from actual_tasks as at " +
+        "where at.end_date <= @almost_late_date) " +
+        "set @tasks_for_today = (select count(*) as tasks_for_today " +
+        "from actual_tasks as at " +
+        "where at.end_date = @today) " +
+        "set @open_requests = ( " +
+        "select count(*) as open_requests " +
+        "from requests as r " +
+        "join requests_statuses rs on rs.request_id = r.id " +
+        "join  statuses s on s.id = rs.status_id " +
+        "where s.title ='פתוחה' " +
+        ") " +
+        "set @projects_in_progress =( " +
+        "select count(*) as projects_in_progress " +
+        "from projects p  " +
+        "join projects_statuses ps on p.id = ps.project_id " +
+        "join statuses s on s.id = ps.status_id " +
+        "where s.title != 'סגור' " +
+        ") " +
+        "set @total_projects = (select count(*) as total_projects  from projects) " +
+        "set @total_actual_tasks =(select count(*) as total_actual_tasks from actual_tasks) " +
+        "set @total_requests = (select count(*) as total_requests from requests) " +
+        "set @open_requests_percent = (round((cast(@open_requests as float) / cast (@total_requests as float))*100,0)) " +
+        "set @late_tasks_percent = (round((cast(@late_tasks as float) / cast (@total_actual_tasks as float))*100,0)) " +
+        "set @projects_in_progress_percent = (round((cast(@projects_in_progress as float) / cast (@total_projects as float))*100,0)) " +
+        "set @tasks_for_today_percent = (round((cast(@tasks_for_today as float) / cast (@total_actual_tasks as float))*100,0)) " +
+        "select @late_tasks late_tasks, @projects_in_progress projects_in_progress, @tasks_for_today tasks_for_today, @open_requests open_requests, @projects_in_progress_percent projects_in_progress_percent, @late_tasks_percent late_tasks_percent, @tasks_for_today_percent tasks_for_today_percent , @open_requests_percent open_requests_percent ";
+        #endregion
+
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+        string statistics = JsonConvert.SerializeObject(ds.Tables[0]);
+
+        return statistics;
+        #endregion
+
+
     }
 }
