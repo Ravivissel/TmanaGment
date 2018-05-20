@@ -81,16 +81,13 @@
     <!-- Sweet Alert css -->
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     
-    
     <!--Validation-->
     <script src="./plugins/jquery-validation/js/jquery.validate.min.js"></script>
-
 
     <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/utils.js"></script>
     <script src="assets/js/changes/ajaxCalls.js"></script>
     <script src="assets/js/changes/usersForm.js"></script>
-
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -115,81 +112,94 @@
             <!-- Start content -->
             <div class="content">
                 <div class="container-fluid">
+
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title" id="welcome-user"><i class="ti-user"></i>&nbsp משתמשים</h4>
+                                <ol class="breadcrumb float-right">
+                                    <li class="breadcrumb-item">משתמשים</li>
+                                    <li class="breadcrumb-item">משתמש</li>
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card-box">
-                                        <h4 class="header-title m-t-0">הוספת משתמש למערכת</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card-box">
+                                    <h4 class="header-title m-t-0">טופס משתמש</h4>
+                                    <p class="text-muted font-14 m-b-20">
+                                        יצירה, צפייה ועריכת משתמש. לחץ על כפתור חזור בכדי לצפות בכל המשתמשים.
+                                    </p>
+                                    <div class="text-right m-b-30 m-r-5">
+                                        <button type="button" id="back" class="btn btn-secondary waves-effect w-md m-b-5 m-r-15"><i class="ti-back-right m-r-5"></i>חזור</button>
+                                    </div>
+                                    <form class="form-horizontal" role="form" id="form">
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-2" for="firstName">שם פרטי<span class="text-danger">*</span></label>
+                                            <div class="col-sm-3">
+                                                <input type="text"
+                                                       placeholder="הכנס שם פרטי" class="form-control" name="firstName" id="firstName">
+                                            </div>
+                                            <label class="control-label col-sm-2" for="lastName">שם משפחה<span class="text-danger">*</span></label>
+                                            <div class="col-sm-3">
+                                                <input type="text"
+                                                       placeholder="הכנס שם משפחה" class="form-control" name="lastName" id="lastName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-2" for="title">תפקיד<span class="text-danger">*</span></label>
+                                            <div class="col-sm-3">
+                                                <input type="text"
+                                                       placeholder="הכנס תפקיד" class="form-control" name="title" id="title">
+                                            </div>
+                                            <label class="control-label col-sm-2" for="phoneNumber">מספר טלפון<span class="text-danger">*</span></label>                                                <div class="col-sm-3">
+                                                <div>
+                                                    <input type="tel"
+                                                           placeholder="הכנס מספר טלפון" class="form-control" name="phoneNumber" id="phoneNumber">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-2" for="userName">שם משתמש<span class="text-danger">*</span></label>
+                                            <div class="col-sm-3">
+                                                <input type="text"
+                                                       placeholder="הכנס שם משתמש" class="form-control" name="userName" id="userName">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-2" for="password">סיסמא<span class="text-danger">*</span></label>
+                                            <div class="col-sm-3">
+                                                <input id="password" name="password" type="password" placeholder="הכנס סיסמא"
+                                                       class="form-control">
+                                            </div>
+                                            <label class="control-label col-sm-2" for="password">אישור סיסמא<span class="text-danger">*</span></label>
+                                            <div class="col-sm-3">
+                                                <input type="password"
+                                                       placeholder="הכנס סיסמא פעם נוספת" class="form-control" name="confirm_password" id="confirm_password">
+                                            </div>
+
+                                        </div>
 
                                         <div class="text-right m-b-30 m-r-5">
-                                            <button type="button" id="back" class="btn btn-secondary waves-effect w-md m-b-5 m-r-15"><i class="ti-back-right m-r-5"></i>חזור</button>
+                                            <button type="submit" id="submit" class="btn btn-success waves-effect w-md waves-light m-b-5  m-r-15"><i class="ti-save m-r-5"></i>שמור</button>
                                         </div>
-                                        <form class="form-horizontal" role="form" id="form">
-                                            <div class="form-group row">
-                                                <label class="control-label col-sm-2" for="firstName">שם פרטי<span class="text-danger">*</span></label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" 
-                                                           placeholder="הכנס שם פרטי" class="form-control" name="firstName" id="firstName">
-                                                </div>
-                                                <label class="control-label col-sm-2" for="lastName">שם משפחה<span class="text-danger">*</span></label>
-                                                <div class="col-sm-3">
-                                                    <input type="text"  
-                                                           placeholder="הכנס שם משפחה" class="form-control" name="lastName" id="lastName">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-sm-2" for="title">תפקיד<span class="text-danger">*</span></label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" 
-                                                           placeholder="הכנס תפקיד" class="form-control" name="title" id="title">
-                                                </div>
-                                                <label class="control-label col-sm-2" for="phoneNumber">מספר טלפון<span class="text-danger">*</span></label>                                                <div class="col-sm-3">
-                                                    <div>
-                                                        <input type="tel"  
-                                                               placeholder="הכנס מספר טלפון" class="form-control" name="phoneNumber"  id="phoneNumber">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-sm-2" for="userName">שם משתמש<span class="text-danger">*</span></label>
-                                                <div class="col-sm-3">
-                                                    <input type="text"
-                                                           placeholder="הכנס שם משתמש" class="form-control" name="userName" id="userName">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="control-label col-sm-2" for="password">סיסמא<span class="text-danger">*</span></label>
-                                                <div class="col-sm-3">
-                                                    <input id="password"  name="password" type="password" placeholder="הכנס סיסמא"
-                                                           class="form-control">
-                                                </div>
-                                                <label class="control-label col-sm-2" for="password">אישור סיסמא<span class="text-danger">*</span></label>
-                                                <div class="col-sm-3">
-                                                    <input type="password" 
-                                                           placeholder="הכנס סיסמא פעם נוספת" class="form-control" name="confirm_password"  id="confirm_password">
-                                                </div>
-
-                                            </div>
-                                          
-                                            <div class="text-right m-b-30 m-r-5">
-                                                <button type="submit" id="submit" class="btn btn-success waves-effect w-md waves-light m-b-5  m-r-15"><i class="ti-save m-r-5"></i>שמור</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
-
-
                             </div>
-                        </div> <!-- end card-box -->
-                    </div>
+                        </div>
+                    </div> <!-- end card-box -->
+                </div>
                 </div>
                 <!-- end content -->
-
             </div>
         </div>
     
-
     <!-- END wrapper -->
  
     <script>
@@ -199,7 +209,6 @@
     <!-- Custom main Js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
-
 
 </body>
 
