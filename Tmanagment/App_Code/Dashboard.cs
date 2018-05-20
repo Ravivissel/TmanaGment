@@ -279,12 +279,9 @@ public class Dashboard
         return myReqList;
     }
 
-
     public string GetStatistics()
     {
         #region DB functions
-
-
         #region query 
 
         // BuildMyString.com generated code. Please enjoy your string responsibly.
@@ -343,7 +340,5 @@ public class Dashboard
 
         return statistics;
         #endregion
-
-
     }
 }
