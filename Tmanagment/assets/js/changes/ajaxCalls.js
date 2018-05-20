@@ -63,7 +63,7 @@ function getRequests(request, successCB, errorCB) {
 }
 
 function getAllProjectsTasks(successCB, errorCB) {
-  
+
     $.ajax({ // ajax call starts
         url: 'TasksWS.asmx/GetAllProjectsTasksList',       // server side web service method
         type: 'POST',                              // can be also GET
@@ -279,10 +279,9 @@ function GetCustomer(request, successCB, errorCB) {
         error: errorCB
     }); // end of ajax call
 }
-function GetEmployees(request,successCB, errorCB) {
+function GetEmployees(request, successCB, errorCB) {
 
-    if (request)
-    {
+    if (request) {
         var dataString = JSON.stringify(request);
     }
 
@@ -448,16 +447,27 @@ function getProjectTasksList(request, successCB, errorCB) {
         error: errorCB
     }); // end of ajax call
 
-   
+
 }
 
 function GetDashboardStatistics(successCB, errorCB) {
     $.ajax({
-        url: 'DashboardWS.asmx/GetStatistics',       
-        type: 'POST',                             
+        url: 'DashboardWS.asmx/GetStatistics',
+        type: 'POST',
         dataType: 'json',
-        contentType: 'application/json; charset = utf-8', 
+        contentType: 'application/json; charset = utf-8',
         success: successCB,
         error: errorCB
-    }); 
+    });
+
+}
+function GetTasksStatistics(successCB, errorCB) {
+    $.ajax({
+        url: 'TasksWS.asmx/GetStatistics',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json; charset = utf-8',
+        success: successCB,
+        error: errorCB
+    });
 }

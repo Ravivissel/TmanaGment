@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -298,5 +299,69 @@ public class ActualTask
         }
         #endregion
         return counter;
+    }
+
+
+    public string GetStatistics()
+    {
+        #region DB functions
+
+
+        #region query 
+        // BuildMyString.com generated code. Please enjoy your string responsibly.
+
+        // BuildMyString.com generated code. Please enjoy your string responsibly.
+
+        string query = "declare @almost_late_date datetime " +
+        "declare @today datetime " +
+        "declare @open_tasks int " +
+        "declare @late_tasks int  " +
+        "declare @tasks_in_progress int " +
+        "declare @almost_late_tasks int  " +
+        "declare @open_tasks_percent int  " +
+        "declare @tasks_in_progress_percent int  " +
+        "declare @late_tasks_percent int " +
+        "declare @almost_late_tasks_percent int " +
+        "declare @total_actual_tasks int " +
+        "set @today = getdate() " +
+        "set @almost_late_date = dateadd(day,+2,@today) " +
+        "set @almost_late_tasks = (select count(*) as almost_late_tasks " +
+        "from actual_tasks as at " +
+        "where at.end_date > @today and at.end_date <= @almost_late_date) " +
+        "set @late_tasks = (select count(*) as late_tasks " +
+        "from actual_tasks as at " +
+        "where at.end_date < @today) " +
+        "set @open_tasks = ( " +
+        "select count(*) as open_tasks " +
+        "from actual_tasks as at " +
+        "join actual_tasks_statuses ats on ats.task_id = at.id " +
+        "join  statuses s on s.id = ats.status_id " +
+        "where s.title ='פתוחה' " +
+        ") " +
+        "set @tasks_in_progress =( " +
+        "select count(*) as tasks_in_progress " +
+        "from actual_tasks as at " +
+        "join actual_tasks_statuses ats on ats.task_id = at.id " +
+        "join  statuses s on s.id = ats.status_id " +
+        "where s.title = 'בתהליך' " +
+        ") " +
+        "set @total_actual_tasks =(select count(*) as total_actual_tasks from actual_tasks) " +
+        "set @almost_late_tasks_percent = (round((cast(@almost_late_tasks as float) / cast (@total_actual_tasks as float))*100,0)) " +
+        "set @late_tasks_percent = (round((cast(@late_tasks as float) / cast (@total_actual_tasks as float))*100,0)) " +
+        "set @open_tasks_percent = (round((cast(@open_tasks as float) / cast (@total_actual_tasks as float))*100,0)) " +
+        "set @tasks_in_progress_percent = (round((cast(@tasks_in_progress as float) / cast (@total_actual_tasks as float))*100,0)) " +
+        "select @open_tasks open_tasks, @late_tasks late_tasks, @tasks_in_progress tasks_in_progress, @almost_late_tasks almost_late_tasks, @almost_late_tasks_percent almost_late_tasks_percent, @late_tasks_percent late_tasks_percent, @open_tasks_percent open_tasks_percent , @tasks_in_progress_percent tasks_in_progress_percent ";
+
+
+
+        #endregion
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+        string statistics = JsonConvert.SerializeObject(ds.Tables[0]);
+
+        return statistics;
+        #endregion
+
+
     }
 }

@@ -1,17 +1,36 @@
 ﻿$(document).ready(function () {
 
-    getAlmostLateTasksNum(getAlmostLateTasksNumCB, getAlmostLateTasksNumErrorCB);
-    getLateTasksNum(getLateTasksNumCB, getLateTasksNumErrorCB);
-    var status = "פתוחה";
-    var request = {
-        status: status
-    };
-    getTasksNum(request, getOpenTasksNumCB, getOpenTasksNumErrorCB);
-    var status = "בתהליך";
-    var request = {
-        status: status
-    };
-    getTasksNum(request, getOnProcessTasksNumCB, getOnProcessTasksNumErrorCB);
+
+
+    GetTasksStatistics(GetTasksStatisticsCB, GetTasksStatisticsErrorCB)
+
+
+    function GetTasksStatisticsCB(results) {
+        var resultsArray = $.parseJSON(results.d);
+        var statistics = resultsArray[0];
+
+        $('#almostLateChart').attr("data-percent", statistics.almost_late_tasks_percent);
+        $('#almostLateChart').attr("data-text", statistics.almost_late_tasks_percent + "%");
+
+        $('#lateTasksChart').attr("data-percent", statistics.late_tasks_percent);
+        $('#lateTasksChart').attr("data-text", statistics.late_tasks_percent + "%");
+
+        $('#openTasksChart').attr("data-percent", statistics.open_tasks_percent);
+        $('#openTasksChart').attr("data-text", statistics.open_tasks_percent + "%");
+
+        $('#inProgressTasksChart').attr("data-percent", statistics.tasks_in_progress_percent);
+        $('#inProgressTasksChart').attr("data-text", statistics.tasks_in_progress_percent + "%");
+
+        $('#almostLateTasks').append(statistics.almost_late_tasks);
+        $('#lateTasks').append(statistics.late_tasks);
+        $('#openTasks').append(statistics.open_tasks);
+        $('#inProcessTasks').append(statistics.tasks_in_progress);
+
+        $('.circliful-chart').circliful();
+    }
+    function GetTasksStatisticsErrorCB(err) {
+        console.log(err);
+    }
     getAllProjectsTasks(getAllProjectsTasksCB, getAllProjectsTasksErrorCB);
     getAllRequestsTasks(getAllRequestsTasksCB, getAllRequestsTasksErrorCB);
 
@@ -35,49 +54,27 @@
         console.log(error);
     }
 
-    function getAlmostLateTasksNumCB(result) {
-        userName = $.parseJSON(result.d);
-        $('#almostLateTasks').append(userName);
-    }
-
-    function getAlmostLateTasksNumErrorCB(error) {
-        console.log(error);
-    }
-
-    function getLateTasksNumCB(result) {
-        userName = $.parseJSON(result.d);
-        $('#lateTasks').append(userName);
-    }
-
-    function getLateTasksNumErrorCB(error) {
-        console.log(error);
-    }
-
-    function getOpenTasksNumCB(result) {
-        counter = $.parseJSON(result.d);
-        $('#openTasks').append(counter);
-    }
-
-    function getOpenTasksNumErrorCB(error) {
-        console.log(error);
-    }
-
-    function getOnProcessTasksNumCB(result) {
-        counter = $.parseJSON(result.d);
-        $('#inProcessTasks').append(counter);
-    }
-
-    function getOnProcessTasksNumErrorCB(error) {
-        console.log(error);
-    }
-
     function renderAllProjectsTaskTable(allProjectsTasks) {
 
         ProjectsTaskTable = $('#datatable-buttons').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf'],
             "oLanguage": {
-                "sSearch": "<span>חיפוש:</span> _INPUT_" //search
+                "sSearch": "<span>חיפוש:</span> _INPUT_", //search
+                "sProcessing": "מעבד...",
+                "sLengthMenu": "הצג _MENU_ פריטים",
+                "sZeroRecords": "לא נמצאו רשומות מתאימות",
+                "sInfo": "_START_ עד _END_ מתוך _TOTAL_ רשומות",
+                "sInfoEmpty": "0 עד 0 מתוך 0 רשומות",
+                "sInfoFiltered": "(מסונן מסך _MAX_  רשומות)",
+                "sInfoPostFix": "",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "ראשון",
+                    "sPrevious": "קודם",
+                    "sNext": "הבא",
+                    "sLast": "אחרון"
+                }
             }
         });
 
@@ -118,7 +115,7 @@
 
         $('#activeProjectsTasks').change(function () {
             refreshProjectsTaskTable();
-        }); 
+        });
 
         ProjectsTaskTable.buttons().container()
             .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
@@ -175,8 +172,23 @@
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf'],
             "oLanguage": {
-                "sSearch": "<span>חיפוש:</span> _INPUT_" //search
+                "sSearch": "<span>חיפוש:</span> _INPUT_", //search
+                "sProcessing": "מעבד...",
+                "sLengthMenu": "הצג _MENU_ פריטים",
+                "sZeroRecords": "לא נמצאו רשומות מתאימות",
+                "sInfo": "_START_ עד _END_ מתוך _TOTAL_ רשומות",
+                "sInfoEmpty": "0 עד 0 מתוך 0 רשומות",
+                "sInfoFiltered": "(מסונן מסך _MAX_  רשומות)",
+                "sInfoPostFix": "",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "ראשון",
+                    "sPrevious": "קודם",
+                    "sNext": "הבא",
+                    "sLast": "אחרון"
+                }
             }
+
         });
 
         //Buttons examples

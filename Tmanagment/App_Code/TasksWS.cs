@@ -196,4 +196,19 @@ public class TasksWS : System.Web.Services.WebService
         }
     }
 
+    [WebMethod]
+    public string GetStatistics()
+    {
+        try
+        {
+            ActualTask tasks = new ActualTask();
+            string statistics = tasks.GetStatistics();
+            return statistics;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+    }
 }
