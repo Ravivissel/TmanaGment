@@ -71,7 +71,7 @@
                 "sUrl": "",
                 "oPaginate": {
                     "sFirst": "ראשון",
-                    "sPrevious": "קודם",
+                    "sPrevious": "הקודם",
                     "sNext": "הבא",
                     "sLast": "אחרון"
                 }
@@ -183,7 +183,7 @@
                 "sUrl": "",
                 "oPaginate": {
                     "sFirst": "ראשון",
-                    "sPrevious": "קודם",
+                    "sPrevious": "הקודם",
                     "sNext": "הבא",
                     "sLast": "אחרון"
                 }
