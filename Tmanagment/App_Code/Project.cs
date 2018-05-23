@@ -398,6 +398,10 @@ public class Project
     {
         #region DB functions
         StringBuilder query = new StringBuilder();
+
+        query.AppendFormat("BEGIN transaction; ");
+
+        //Update Projects
         query.AppendFormat("Update Projects set ");
         query.AppendFormat("contact_name = '{0}',", project.Contact_name);
         query.AppendFormat("contact_phone = '{0}',", project.Contact_phone);
@@ -409,6 +413,18 @@ public class Project
         query.AppendFormat("customer_id = {0},", project.Customer_id.Id);
         query.AppendFormat("title = '{0}' ", project.Title);
         query.AppendFormat("where  id={0};", project.Id);
+
+        //Update projects_statuses
+        query.AppendFormat("UPDATE projects_statuses set ");
+        query.AppendFormat("status_id = '{0}' ", project.Status.Id);
+        query.AppendFormat("where project_id = '{0}'; ", project.Id);
+
+        //Need to handle modified_by field or add it to the project_statuses_history table
+
+        query.AppendFormat("COMMIT");
+
+
+
 
         DbServices dbs = new DbServices();
         int rows_affected = dbs.ExecuteQuery(query.ToString());
