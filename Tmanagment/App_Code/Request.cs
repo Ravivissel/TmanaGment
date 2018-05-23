@@ -14,7 +14,7 @@ public class Request
     private string title;
     private string description;
     private string contact_name;
-    private int contact_phone;
+    private string contact_phone;
     private DateTime created_at;
     private Employee created_by;
     private Employee assign_to;
@@ -27,7 +27,7 @@ public class Request
         //
     }
 
-    public Request(int id, string title, string description, string contact_name, int contact_phone, DateTime created_at, Employee created_by, Employee assign_to)
+    public Request(int id, string title, string description, string contact_name, string contact_phone, DateTime created_at, Employee created_by, Employee assign_to)
     {
         this.id = id;
         this.title = title;
@@ -39,7 +39,7 @@ public class Request
         this.assign_to = assign_to;
     }
 
-    public Request(string title, string description, string contact_name, int contact_phone, DateTime created_at, Employee created_by, Employee assign_to)
+    public Request(string title, string description, string contact_name, string contact_phone, DateTime created_at, Employee created_by, Employee assign_to)
     {
         this.title = title;
         this.description = description;
@@ -50,7 +50,7 @@ public class Request
         this.assign_to = assign_to;
     }
 
-    public Request(int id, string title, string contact_name, int contact_phone)
+    public Request(int id, string title, string contact_name, string contact_phone)
     {
         this.id = id;
         this.title = title;
@@ -58,7 +58,7 @@ public class Request
         this.contact_phone = contact_phone;
     }
 
-    public Request(int id, string title, string contact_name, int contact_phone, Employee assign_to)
+    public Request(int id, string title, string contact_name, string contact_phone, Employee assign_to)
     {
         this.id = id;
         this.title = title;
@@ -67,7 +67,7 @@ public class Request
         this.assign_to = assign_to;
     }
 
-    public Request(int id, string title, string contact_name, int contact_phone, Employee assign_to, Status status)
+    public Request(int id, string title, string contact_name, string contact_phone, Employee assign_to, Status status)
     {
         this.id = id;
         this.title = title;
@@ -77,7 +77,7 @@ public class Request
         this.status = status;
     }
 
-    public Request(int id, string title, string description, string contact_name, int contact_phone, DateTime created_at, Employee created_by, Employee assign_to, Status status)
+    public Request(int id, string title, string description, string contact_name, string contact_phone, DateTime created_at, Employee created_by, Employee assign_to, Status status)
     {
         this.id = id;
         this.title = title;
@@ -142,7 +142,7 @@ public class Request
         }
     }
 
-    public int Contact_phone
+    public string Contact_phone
     {
         get
         {
@@ -230,7 +230,7 @@ public class Request
                 req.Id = (int)dr["id"];
                 req.Title = dr["request_title"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
-                req.Contact_phone = (int)dr["contact_phone"];
+                req.Contact_phone = dr["contact_phone"].ToString();
                 int assign_to_id = (int)dr["assign_to"];
                 employees = emp.GetEmployees(assign_to_id); //call the func from employee to get employee details
                 emp = employees.First();
@@ -250,7 +250,6 @@ public class Request
             }
         }
         #endregion
-
         return ReqList;
     }
 
@@ -283,7 +282,7 @@ public class Request
             string requestId = db.Ga(tableName);
 
             //insert the new request a status
-            query = "insert into requests_statuses values ('" + requestId + "','" + statusId + "','" + created_by.Id + "','1')";
+            query = "insert into requests_statuses values ('" + requestId + "','" + statusId + "','" + created_by.Id + "')";
             db2.ExecuteQuery(query);
         }
         #endregion
@@ -309,7 +308,7 @@ public class Request
                 req.Title = dr["title"].ToString();
                 req.Description = dr["description"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
-                req.Contact_phone = (int)dr["contact_phone"];
+                req.Contact_phone = dr["contact_phone"].ToString();
                 emp.First_name = dr["first_name"].ToString();
                 emp.Id = (int)dr["assign_to"];
                 req.Assign_to = emp;

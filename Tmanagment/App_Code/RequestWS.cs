@@ -32,9 +32,13 @@ public class RequestWS : System.Web.Services.WebService
         Request requests = new Request();
         try
         {
+            JavaScriptSerializer j = new JavaScriptSerializer();
+
             List<Request> requests_list = requests.GetRequestsList();
-            string RequestsListJson = JsonConvert.SerializeObject(requests_list, new IsoDateTimeConverter());
-            return RequestsListJson;
+            //string RequestsListJson = JsonConvert.SerializeObject(requests_list, new IsoDateTimeConverter());
+            //return RequestsListJson;
+            return j.Serialize(requests_list);
+
         }
         catch (Exception ex)
         {
@@ -45,7 +49,7 @@ public class RequestWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void SetRequest(int requestID, string request_title, int assign_to, string contact_name, int contact_phone, string description, int created_by, int status, string func)
+    public void SetRequest(int requestID, string request_title, int assign_to, string contact_name, string contact_phone, string description, int created_by, int status, string func)
     {
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
         Employee emp_creator = new Employee();

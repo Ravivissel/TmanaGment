@@ -186,8 +186,6 @@
     <script>
         $(document).ready(function () {
 
-
-
             // DO NOT REMOVE : GLOBAL FUNCTIONS!
             var errorClass = 'invalid';
             var errorElement = 'em';
@@ -269,7 +267,17 @@
             }
 
             function insertNewRequestErrorCB(error) {
+                sweetAlertError();
                 console.log(error);
+            }
+
+            function sweetAlertError() {
+                swal({
+                    title: "שמירת הפנייה נכשלה",
+                    type: "warning",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
             }
 
             function returnToRequestPage() {

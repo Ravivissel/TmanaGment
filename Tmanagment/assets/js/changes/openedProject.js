@@ -135,8 +135,8 @@ $(document).ready(function () {
         project.Project_manager.Id = $("#project_manager").val();
         project.Priority_key = $("#project_priority_num").val();
         project.Customer_id.Id = $("#project_customer").val();
-        project.End_date = $("#end_date").val();
-        project.Start_date = $("#start_date").val();
+        project.End_date = $("#e_date").val();
+        project.Start_date = $("#s_date").val();
         project.Contact_name = $("#contact_name").val();
         project.Contact_phone = $("#contact_phone").val();
         project.Status.Id = $("#status").val();
@@ -153,17 +153,31 @@ $(document).ready(function () {
     });
 
     function UpdateProjectCB(result) {
+        sweetAlertSuccess();
+        setTimeout(function () { returnToProjectsPage() }, 1001);
+    }
+
+    function UpdateProjectError(err) {
+        sweetAlertError();
+        console.log(err);
+    }
+
+    function sweetAlertSuccess() {
         swal({
             title: "נשמר",
             type: "success",
             timer: 1000,
             showConfirmButton: false
         });
-        setTimeout(function () { returnToProjectsPage() }, 1001);
     }
 
-    function UpdateProjectError(err) {
-        console.log(err);
+    function sweetAlertError() {
+        swal({
+            title: "שמירת הפרוייקט נכשלה",
+            type: "warning",
+            timer: 1000,
+            showConfirmButton: false
+        });
     }
 
     function changeFormState(state) {

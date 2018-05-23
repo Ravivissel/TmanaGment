@@ -10,8 +10,6 @@ $(document).ready(function () {
         newUserRoute();
     }
 
-
-
 });
 
 
@@ -95,8 +93,6 @@ function newUserRoute() {
         $.validator.addMethod("telVal", function (phone_number, element) {
             return phone_number.match("[0-9]{4}[0-9]{3}[0-9]{3}")
         }, "אנא הזן מספר טלפון תקין");
-
-
 
 
     }
@@ -224,8 +220,6 @@ function updateUserRoute(userID) {
             return phone_number.match("[0-9]{4}[0-9]{3}[0-9]{3}")
         }, "אנא הזן מספר טלפון תקין");
 
-
-
     }
 }
 
@@ -258,8 +252,6 @@ function sweetAlertSuccess() {
 }
 function returnToEmployeesPage() {
     location.href = "users.html";
-
-
 }
 
 $(document).on('click', '#back', function () {

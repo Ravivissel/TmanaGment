@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -93,5 +94,41 @@ public class ProjectWS : System.Web.Services.WebService
             Console.WriteLine(ex);
             return ex.ToString();
         }   
-    }   
+    }
+
+    [WebMethod]
+    public void InsertNewProject(string project_title, int project_manager, string project_priority_num, string end_date, string contact_name, string contact_phone, int request_id, string description, int created_by, int customer_id, string customer_name, string customer_f_name, string customer_phone)
+    {
+        DateTime project_end_date;
+        if (end_date.Contains("."))
+        {
+            project_end_date = DateTime.Parse(end_date);
+        }
+        else
+        {
+            project_end_date = DateTime.ParseExact(end_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        }
+
+        DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
+        Employee emp_creator = new Employee();
+        emp_creator.Id = created_by;
+        Employee emp_project_manager = new Employee();
+        emp_project_manager.Id = project_manager;
+        Customer project_customer = new Customer();
+
+        if (customer_id != -1)
+        {
+            project_customer.Id = customer_id;
+        }
+        else
+        {
+            project_customer.Id = customer_id;
+            project_customer.First_name = customer_name;
+            project_customer.Last_name = customer_f_name;
+            project_customer.Phone_num = customer_phone;
+        }
+
+        Project p = new Project(project_title, description, project_customer, project_priority_num, request_id, emp_project_manager, created_at, project_end_date, contact_name, contact_phone, created_at, created_at, emp_creator);
+        p.SetProject();
+    }
 }

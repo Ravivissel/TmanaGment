@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     //Need to change to be dynamic from the user login session
-    const userId = 75;
+    const userId = 102;
     var groupid = userId;
     var request = {
         employeeId: groupid
@@ -18,7 +18,6 @@ $(document).ready(function () {
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
 
     GetDashboardStatistics(GetDashboardStatisticsCB, GetDashboardStatisticsErrorCB)
-
 
     function GetDashboardStatisticsCB(results) {
         var resultsArray = $.parseJSON(results.d);
@@ -106,7 +105,7 @@ $(document).ready(function () {
             right: 'month,agendaWeek,agendaDay,listMonth'
         },
 
-        defaultDate: '2018-03-12',
+        //defaultDate: '2018-03-12',
         locale: initialLocaleCode,
         buttonIcons: false, // show the prev/next text
         weekNumbers: true,

@@ -30,6 +30,7 @@
     }
 
     GetEmployees(request, getEmployeesCB, getEmployeesError);
+
     $('#datatable-buttons tbody').on('click', '#edit', function () {
         var data = table.row($(this).parents('tr')).data();
         var arr_details = { userID: data[0], func: "edit" };

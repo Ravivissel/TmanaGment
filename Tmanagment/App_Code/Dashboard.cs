@@ -20,7 +20,7 @@ public class Dashboard
     private int request_id;
     private string request_title;
     private string contact_name;
-    private int contact_phone;
+    private string contact_phone;
 
     public Dashboard()
     {
@@ -29,7 +29,7 @@ public class Dashboard
         //
     }
 
-    public Dashboard(int request_id, string request_title, string contact_name, int contact_phone)
+    public Dashboard(int request_id, string request_title, string contact_name, string contact_phone)
     {
         this.request_id = request_id;
         this.request_title = request_title;
@@ -164,7 +164,7 @@ public class Dashboard
         }
     }
 
-    public int Contact_phone
+    public string Contact_phone
     {
         get
         {
@@ -262,7 +262,7 @@ public class Dashboard
                 req.Id = (int)dr["request_id"];
                 req.Title = dr["request_title"].ToString();
                 req.Contact_name = dr["contact_name"].ToString();
-                req.Contact_phone = (int)dr["contact_phone"];
+                req.Contact_phone = dr["contact_phone"].ToString();
 
                 Dashboard tmpMyTask = new Dashboard(req.Id, req.Title, req.Contact_name, req.Contact_phone);
 

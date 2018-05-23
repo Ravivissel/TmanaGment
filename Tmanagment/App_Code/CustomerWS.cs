@@ -48,7 +48,7 @@ public class CustomerWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void SetCustomer(int customerID, string first_name, string last_name, int phone_num, string func)
+    public void SetCustomer(int customerID, string first_name, string last_name, string phone_num, string func)
     {
         Customer c = new Customer(customerID, first_name, last_name, phone_num);
         c.SetCustomer(func);

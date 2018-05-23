@@ -230,7 +230,17 @@
             }
 
             function insertNewCustomerErrorCB(error) {
+                sweetAlertError();
                 console.log(error);
+            }
+
+            function sweetAlertError() {
+                swal({
+                    title: "שמירת הלקוח נכשלה",
+                    type: "warning",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
             }
 
             function returnToCustomersPage() {

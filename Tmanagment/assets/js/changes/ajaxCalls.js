@@ -40,6 +40,7 @@ function getProjects(request, successCB, errorCB) {
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
+        async: false,
         contentType: 'application/json; charset = utf-8', // sent to the server
         success: successCB,                // data.d id the Variable data contains the data we get from serverside
         error: errorCB
@@ -56,6 +57,7 @@ function getRequests(request, successCB, errorCB) {
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
+        async: false,
         contentType: 'application/json; charset = utf-8', // sent to the server
         success: successCB,                // data.d id the Variable data contains the data we get from serverside
         error: errorCB
@@ -166,6 +168,7 @@ function GetAssignToList(successCB, errorCB) {
         url: 'EmployeeWS.asmx/GetAssignToList',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
+        async: false,                             
         contentType: 'application/json; charset = utf-8', // sent to the server
         success: successCB,                // data.d id the Variable data contains the data we get from serverside
         error: errorCB
@@ -244,6 +247,7 @@ function getCustomers(request, successCB, errorCB) {
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
+        async: false,
         contentType: 'application/json; charset = utf-8', // sent to the server
         success: successCB,                // data.d id the Variable data contains the data we get from serverside
         error: errorCB
@@ -280,12 +284,9 @@ function GetCustomer(request, successCB, errorCB) {
     }); // end of ajax call
 }
 function GetEmployees(request, successCB, errorCB) {
-
     if (request) {
         var dataString = JSON.stringify(request);
     }
-
-
 
     $.ajax({ // ajax call starts
         url: 'EmployeeWS.asmx/GetEmployees',       // server side web service method
@@ -446,8 +447,6 @@ function getProjectTasksList(request, successCB, errorCB) {
         success: successCB,                // data.d id the Variable data contains the data we get from serverside
         error: errorCB
     }); // end of ajax call
-
-
 }
 
 function GetDashboardStatistics(successCB, errorCB) {
@@ -461,6 +460,7 @@ function GetDashboardStatistics(successCB, errorCB) {
     });
 
 }
+
 function GetTasksStatistics(successCB, errorCB) {
     $.ajax({
         url: 'TasksWS.asmx/GetStatistics',
@@ -470,4 +470,19 @@ function GetTasksStatistics(successCB, errorCB) {
         success: successCB,
         error: errorCB
     });
+}
+
+function insertNewProject(request, successCB, errorCB) {
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'ProjectWS.asmx/InsertNewProject',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
 }

@@ -12,7 +12,7 @@ public class Customer
     private int id;
     private string first_name;
     private string last_name;
-    private int phone_num;
+    private string phone_num;
     private string active;
 
     public Customer()
@@ -22,7 +22,7 @@ public class Customer
         //
     }
 
-    public Customer(int id, string first_name, string last_name, int phone_num)
+    public Customer(int id, string first_name, string last_name, string phone_num)
     {
         this.id = id;
         this.first_name = first_name;
@@ -30,7 +30,7 @@ public class Customer
         this.phone_num = phone_num;
     }
 
-    public Customer(int id, string first_name, string last_name, int phone_num, string active)
+    public Customer(int id, string first_name, string last_name, string phone_num, string active)
     {
         this.id = id;
         this.first_name = first_name;
@@ -78,7 +78,7 @@ public class Customer
         }
     }
 
-    public int Phone_num
+    public string Phone_num
     {
         get
         {
@@ -122,7 +122,7 @@ public class Customer
                     Id = (int)dr["id"],
                     First_name = dr["first_name"].ToString(),
                     Last_name = dr["last_name"].ToString(),
-                    Phone_num = (int)dr["phone_num"],
+                    Phone_num = dr["phone_num"].ToString(),
                     Active = dr["active"].ToString()
                 };
 
@@ -173,7 +173,7 @@ public class Customer
                 cus.Id = (int)dr["id"];
                 cus.First_name = dr["first_name"].ToString();
                 cus.Last_name = dr["last_name"].ToString();
-                cus.Phone_num = (int)dr["phone_num"];
+                cus.Phone_num = dr["phone_num"].ToString();
 
             }
             catch (Exception ex)
@@ -210,7 +210,7 @@ public class Customer
         Customer tmpCustomer = new Customer();
         tmpCustomer.First_name = dr["first_name"].ToString();
         tmpCustomer.Last_name = dr["last_name"].ToString();
-        tmpCustomer.Phone_num = Convert.ToInt32(dr["phone_num"]);
+        tmpCustomer.Phone_num = dr["phone_num"].ToString();
         tmpCustomer.Id = Convert.ToInt32(dr["id"]);
         tmpCustomer.Active = dr["active"].ToString();
         #endregion

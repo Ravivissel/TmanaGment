@@ -20,7 +20,7 @@ public class Project
     private DateTime start_date;
     private DateTime end_date;
     private string contact_name;
-    private int contact_phone;
+    private string contact_phone;
     private DateTime modified_at;
     private DateTime created_at;
     private Employee created_by;
@@ -56,7 +56,7 @@ public class Project
         this.status = status;
     }
 
-    public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, int contact_phone, DateTime modified_at, DateTime created_at, Employee created_by)
+    public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string contact_phone, DateTime modified_at, DateTime created_at, Employee created_by)
     {
         Id = id;
         Title = title;
@@ -74,7 +74,7 @@ public class Project
         Created_by = created_by;
     }
 
-    public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, int contact_phone, DateTime modified_at, DateTime created_at, Employee created_by, Status status)
+    public Project(int id, string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string contact_phone, DateTime modified_at, DateTime created_at, Employee created_by, Status status)
     {
         this.id = id;
         this.title = title;
@@ -91,6 +91,23 @@ public class Project
         this.created_at = created_at;
         this.created_by = created_by;
         this.status = status;
+    }
+
+    public Project(string title, string description, Customer customer_id, string priority_key, int request_id, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string contact_phone, DateTime modified_at, DateTime created_at, Employee created_by)
+    {
+        this.title = title;
+        this.description = description;
+        this.customer_id = customer_id;
+        this.priority_key = priority_key;
+        this.request_id = request_id;
+        this.project_manager = project_manager;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.contact_name = contact_name;
+        this.contact_phone = contact_phone;
+        this.modified_at = modified_at;
+        this.created_at = created_at;
+        this.created_by = created_by;
     }
 
     public int Id
@@ -223,7 +240,7 @@ public class Project
         }
     }
 
-    public int Contact_phone
+    public string Contact_phone
     {
         get
         {
@@ -293,7 +310,7 @@ public class Project
         #region DB functions
         string query = "select s.title project_status, p.id, p.title project_title, p.project_manager, p.start_date, p.end_date, p.contact_name, p.priority_key from projects p " +
             "inner join projects_statuses ps on p.id = ps.project_id " +
-            "inner join statuses s on ps.status_id = s.id ";
+            "inner join statuses s on ps.status_id = s.id";
 
         List<Project> ProjectsList = new List<Project>();
         DbServices db = new DbServices();
@@ -367,14 +384,14 @@ public class Project
                            End_date = (DateTime)p["end_date"],
                            Id = Convert.ToInt32(p["id"]),
                            Priority_key = p["priority_key"].ToString(),
-                           Contact_phone = Convert.ToInt32(p["contact_phone"]),
+                           Contact_phone = p["contact_phone"].ToString(),
                            Created_by = emp.GetEmployee(cb),
                            Project_manager = emp.GetEmployee(pm),
                            Customer_id = cus.GetCustomer(ci),
                            Status = status.GetProjectStatus(ps)
                        });
         #endregion
-        return results.ToList(); ;
+        return results.ToList();
     }
 
     public int UpdateProject(Project project)
@@ -383,7 +400,7 @@ public class Project
         StringBuilder query = new StringBuilder();
         query.AppendFormat("Update Projects set ");
         query.AppendFormat("contact_name = '{0}',", project.Contact_name);
-        query.AppendFormat("contact_phone = {0},", project.Contact_phone);
+        query.AppendFormat("contact_phone = '{0}',", project.Contact_phone);
         query.AppendFormat("start_date = '{0}',", project.Start_date.ToString());
         query.AppendFormat("end_date = '{0}',", project.End_date.ToString());
         query.AppendFormat("description = '{0}',", project.Description);
@@ -435,5 +452,42 @@ public class Project
         }
         #endregion
         return counter;
+    }
+
+    public void SetProject()
+    {
+        #region DB functions
+        DbServices db = new DbServices();
+        DbServices db2 = new DbServices();
+        DbServices db3 = new DbServices();
+        string query = "";
+
+        //chek if the customer is new 
+        if (customer_id.Id == -1)
+        {
+            query = "insert into customers values ('" + customer_id.First_name + "','" + customer_id.Last_name + "','" + customer_id.Phone_num + "','Y')";
+            db.ExecuteQuery(query);
+
+            //get the customer id
+            string customerId = db.Ga("customers");
+
+            query = "insert into projects values ('" + title + "','" + description + "','" + customerId + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "')";
+            db2.ExecuteQuery(query);
+
+        }
+        else
+        {
+            query = "insert into projects values ('" + title + "','" + description + "','" + Customer_id.Id + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "')";
+            db.ExecuteQuery(query);
+        }
+
+        //get the project id
+        string statusId = "4";
+        string projectId = db.Ga("projects");
+
+        //insert the new project a status
+        query = "insert into projects_statuses values ('" + projectId + "','" + statusId + "','" + created_by.Id + "')";
+        db3.ExecuteQuery(query);
+        #endregion
     }
 }

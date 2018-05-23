@@ -10,11 +10,10 @@
 
     <title>פרוייקט</title>
 
-    <link href="plugins/Horizontal-Vertical-Timeline/dist/css/timeline.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
-            crossorigin="anonymous">
-    </script>
+    <!--horizontal-timeline css-->
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Fira+Sans:400,400italic' rel='stylesheet' type='text/css'>
+    <link href="plugins/horizontal-timeline-master/css/reset.css" rel="stylesheet" />
+    <link href="plugins/horizontal-timeline-master/css/style.css" rel="stylesheet" />
 
     <!-- Sweet Alert css -->
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -42,6 +41,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
     <!-- Plugins  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -155,42 +155,32 @@
                                     צפייה ועריכת פרוייקט. לחץ על כפתור חזור על מנת לצפות בכל הפרוייקטים.
                                 </p>
 
-                                <div class="timeline">
-                                    <div class="timeline__wrap">
-                                        <div class="timeline__items">
-                                            <div class="timeline__item">
-                                                <div class="timeline__content">
-                                                    <h2>הצעת מחיר</h2>
-                                                </div>
-                                            </div>
-                                            <div class="timeline__item">
-                                                <div class="timeline__content">
-                                                    <h2>תכנון</h2>
-                                                </div>
-                                            </div>
-                                            <div class="timeline__item">
-                                                <div class="timeline__content">
-                                                    <h2>פרשה טכנית</h2>
-                                                </div>
-                                            </div>
-                                            <div class="timeline__item">
-                                                <div class="timeline__content">
-                                                    <h2>רכש</h2>
-                                                </div>
-                                            </div>
-                                            <div class="timeline__item">
-                                                <div class="timeline__content">
-                                                    <h2>תפעול</h2>
-                                                </div>
-                                            </div>
-                                            <div class="timeline__item">
-                                                <div class="timeline__content">
-                                                    <h2>אספקה</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Timeline start-->
+                                <section class="cd-horizontal-timeline">
+                                    <div class="timeline">
+                                        <div class="events-wrapper">
+                                            <div class="events">
+                                                <ol>
+                                                    <li><a href="#0" id="4" data-date="16/01/2014" class="selected">פתוח</a></li>
+                                                    <li><a href="#0" id="5" data-date="28/02/2014">הצעת מחיר</a></li>
+                                                    <li><a href="#0" id="6" data-date="20/04/2014">תכנון</a></li>
+                                                    <li><a href="#0" id="7" data-date="20/05/2014">פרשה טכנית</a></li>
+                                                    <li><a href="#0" id="8" data-date="09/07/2014">רכש</a></li>
+                                                    <li><a href="#0" id="9" data-date="30/08/2014">תפעול</a></li>
+                                                    <li><a href="#0" id="10" data-date="15/09/2014">אספקה</a></li>
+                                                    <li><a href="#0" id="11" data-date="01/11/2014">סגור</a></li>
+                                                </ol>
+                                                <span class="filling-line" aria-hidden="true"></span>
+                                            </div> <!-- .events -->
+                                        </div> <!-- .events-wrapper -->
+
+                                        <ul class="cd-timeline-navigation">
+                                            <li><a href="#0" class="prev inactive">Prev</a></li>
+                                            <li><a href="#0" class="next">Next</a></li>
+                                        </ul> <!-- .cd-timeline-navigation -->
+                                    </div> <!-- .timeline -->
+                                </section>
+                                <!-- Timeline end-->
 
                                 <div class="text-right m-b-30 m-r-5">
                                     <button type="button" id="editButton" class="btn btn-rounded waves-effect w-md m-b-5"> <i class="ion-edit m-r-5"></i><span>ערוך</span></button>
@@ -320,6 +310,7 @@
         </div>
     </div>
     <!-- END wrapper -->
+
     <!--DatePicker js-->
     <script src="./plugins/moment/moment.js"></script>
     <script src="./plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
@@ -329,16 +320,9 @@
         var resizefunc = [];
     </script>
 
-    <script src="plugins/Horizontal-Vertical-Timeline/dist/js/timeline.min.js"></script>
-
-    <script>
-        timeline(document.querySelectorAll('.timeline'), {
-            forceVerticalMode: 600,
-            mode: 'horizontal',
-            verticalStartPosition: 'left',
-            visibleItems: 4
-        });
-    </script>
+    <!--horizontal-timeline js-->
+    <script src="plugins/horizontal-timeline-master/js/jquery.mobile.custom.min.js"></script>
+    <script src="plugins/horizontal-timeline-master/js/main.js"></script>
 
 </body>
 </html>
