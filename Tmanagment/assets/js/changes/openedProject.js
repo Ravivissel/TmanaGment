@@ -91,10 +91,10 @@ $(document).ready(function () {
     function renderPage(project) {
         try {
 
-            var s_date = new Date(parseInt(project.Start_date.replace('/Date(', '')));
+            var s_date = new Date(moment(project.Start_date).format());
             s_date = s_date.toLocaleDateString("he-IL");
 
-            var e_date = new Date(parseInt(project.End_date.replace('/Date(', '')));
+            var e_date = new Date(moment(project.End_date).format());
             e_date = e_date.toLocaleDateString("he-IL");
 
 
@@ -169,7 +169,8 @@ $(document).ready(function () {
                 required: true,
             },
             end_date: {
-                required: true
+                required: true,
+                greaterThan: ["#start_date", "תאריך התחלת הפרוייקט"]
             },
             start_date: {
                 required: true
@@ -189,8 +190,8 @@ $(document).ready(function () {
             project.Project_manager.Id = $("#project_manager").val();
             project.Priority_key = $("#project_priority_num").val();
             project.Customer_id.Id = $("#project_customer").val();
-            project.End_date = $("#end_date").datepicker('getDate');
-            project.Start_date = $("#start_date").datepicker('getDate');
+            project.End_date = moment($("#end_date").datepicker('getDate')).format();;
+            project.Start_date = moment($("#start_date").datepicker('getDate')).format();;
             project.Contact_name = $("#contact_name").val();
             project.Contact_phone = $("#contact_phone").val();
             project.Status.Id = $("#status").val();
@@ -221,7 +222,7 @@ $(document).ready(function () {
                 required: "אנא הזן לקוח"
             },
             end_date: {
-                required: "אנא בחר תאריך סיום"
+                required: "אנא בחר תאריך סיום",
             },
             start_date: {
                 required: "אנא בחר תאריך התחלה"
@@ -229,10 +230,18 @@ $(document).ready(function () {
             status: {
                 required: "אנא בחר סטטוס פרוייקט",
             }
-
+      
         }
 
-    });
+        });
+
+    jQuery.validator.addMethod("greaterThan", function () {
+        var End_date = $("#end_date").datepicker('getDate');
+        var Start_date = $("#start_date").datepicker('getDate');
+
+        return End_date >= Start_date;
+    
+    }, 'תאריך היעד הפרוייקט חייב להיות מוגדר לאחר או באותו תאריך ההתחלה');
 
     function UpdateProjectCB(result) {
         sweetAlertSuccess();
