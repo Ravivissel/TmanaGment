@@ -1,4 +1,6 @@
-﻿//wait until the dom is loaded
+﻿
+var resizefunc = [];
+//wait until the dom is loaded
 $(document).ready(function () {
     
     //generate select options
@@ -89,19 +91,36 @@ $(document).ready(function () {
     function renderPage(project) {
         try {
 
-            var s_date = new Date(parseInt(project.Start_date.replace('/Date(', '')));
+            var s_date = new Date(moment(project.Start_date).format());
             s_date = s_date.toLocaleDateString("he-IL");
 
-            var e_date = new Date(parseInt(project.End_date.replace('/Date(', '')));
+            var e_date = new Date(moment(project.End_date).format());
             e_date = e_date.toLocaleDateString("he-IL");
+
+
+            //DatePicker end_date
+            $('#start_date').datepicker({
+                toggleActive: true,
+                clearBtn: true,
+                autoclose: true,
+                format: 'dd.mm.yyyy'
+            });
+
+            //DatePicker end_date
+            $('#end_date').datepicker({
+                toggleActive: true,
+                clearBtn: true,
+                autoclose: true,
+                format: 'dd.mm.yyyy'
+            });
 
             $("#project_title").val(project.Title);
             $("#project_id").val(project.Id);
             $("#project_priority_num").val(project.Priority_key);
             $("#project_manager").val(project.Project_manager.Id);
             $("#project_customer").val(project.Customer_id.Id);
-            $("#end_date").val(e_date);
-            $("#start_date").val(s_date);
+            $("#end_date").datepicker('setDate', e_date);
+            $("#start_date").datepicker('setDate', s_date);
             $("#contact_name").val(project.Contact_name);
             $("#contact_phone").val(project.Contact_phone);
             $("#status").val(project.Status.Id);
@@ -126,31 +145,103 @@ $(document).ready(function () {
         $("#editButton").show();
         $("#BackButton").show();
     });
+    $("#projectForm").submit(function (e) {
+        e.preventDefault();
+    }).validate({
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        // Rules for form validation
+        rules: {
+            project_title: {
+                required: true
+            },
+            project_manager: {
+                required: true
+            },
+            project_priority_num: {
+                required: true
+            },
+            project_customer: {
+                required: true,
+            },
+            end_date: {
+                required: true,
+                greaterThan: ["#start_date", "תאריך התחלת הפרוייקט"]
+            },
+            start_date: {
+                required: true
+            },
+            status: {
+                required: true,
 
-    $(document).on('click', '#saveButton', function () {
-        var projects = JSON.parse(GENERAL.PROJECTS.getOpenedProjectsList());
-        var project = projects[0];
+            }
+        },
 
-        project.Title = $("#project_title").val();
-        project.Project_manager.Id = $("#project_manager").val();
-        project.Priority_key = $("#project_priority_num").val();
-        project.Customer_id.Id = $("#project_customer").val();
-        project.End_date = $("#e_date").val();
-        project.Start_date = $("#s_date").val();
-        project.Contact_name = $("#contact_name").val();
-        project.Contact_phone = $("#contact_phone").val();
-        project.Status.Id = $("#status").val();
-        project.Description = $("#description").val();
+        submitHandler: function (form, event) {
+            event.preventDefault();
+            var projects = JSON.parse(GENERAL.PROJECTS.getOpenedProjectsList());
+            var project = projects[0];
 
-        projects[0] = project;
+            project.Title = $("#project_title").val();
+            project.Project_manager.Id = $("#project_manager").val();
+            project.Priority_key = $("#project_priority_num").val();
+            project.Customer_id.Id = $("#project_customer").val();
+            project.End_date = moment($("#end_date").datepicker('getDate')).format();;
+            project.Start_date = moment($("#start_date").datepicker('getDate')).format();;
+            project.Contact_name = $("#contact_name").val();
+            project.Contact_phone = $("#contact_phone").val();
+            project.Status.Id = $("#status").val();
+            project.Description = $("#description").val();
 
-        var projectsString = JSON.stringify(projects);
+            projects[0] = project;
 
-        var request = {
-            projects: projectsString
-        };
-        UpdateProject(request, UpdateProjectCB, UpdateProjectError);
-    });
+            var projectsString = JSON.stringify(projects);
+
+            var request = {
+                projects: projectsString
+            };
+            UpdateProject(request, UpdateProjectCB, UpdateProjectError);
+
+        },
+        // Messages for form validation
+        messages: {
+            project_title: {
+                required: "אנא הזן שם פרוייקט"
+            },
+            project_manager: {
+                required: "אנא בחר מנהל פרוייקט"
+            },
+            project_priority_num: {
+                required: "אנא הזן מספר פרוייקט מהפריוריטי"
+            },
+            project_customer: {
+                required: "אנא הזן לקוח"
+            },
+            end_date: {
+                required: "אנא בחר תאריך סיום",
+            },
+            start_date: {
+                required: "אנא בחר תאריך התחלה"
+            },
+            status: {
+                required: "אנא בחר סטטוס פרוייקט",
+            }
+      
+        }
+
+        });
+
+    jQuery.validator.addMethod("greaterThan", function () {
+        var End_date = $("#end_date").datepicker('getDate');
+        var Start_date = $("#start_date").datepicker('getDate');
+
+        return End_date >= Start_date;
+    
+    }, 'תאריך היעד הפרוייקט חייב להיות מוגדר לאחר או באותו תאריך ההתחלה');
 
     function UpdateProjectCB(result) {
         sweetAlertSuccess();
@@ -327,21 +418,6 @@ $(document).ready(function () {
         }
     }
 
-    //DatePicker end_date
-    jQuery('#start_date').datepicker({
-        toggleActive: true,
-        clearBtn: true,
-        autoclose: true,
-        format: 'dd/mm/yyyy'
-    });
-
-    //DatePicker end_date
-    jQuery('#end_date').datepicker({
-        toggleActive: true,
-        clearBtn: true,
-        autoclose: true,
-        format: 'dd/mm/yyyy'
-    });
 });
 
 function returnToProjectsPage() {
