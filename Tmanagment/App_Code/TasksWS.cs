@@ -81,15 +81,7 @@ public class TasksWS : System.Web.Services.WebService
     public void SetActualProjectTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_project, string description, int created_by, int status, string func)
     {
         DateTime task_end_date;
-        if (end_date.Contains("."))
-        {
-            task_end_date = DateTime.Parse(end_date);
-        }
-        else
-        {
-            task_end_date = DateTime.ParseExact(end_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        }
-
+        task_end_date = DateTime.Parse(end_date);
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
         Employee emp_creator = new Employee();
         emp_creator.Id = created_by;
@@ -133,15 +125,7 @@ public class TasksWS : System.Web.Services.WebService
     public void SetActualRequestTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_request, string description, int created_by, int status, string func)
     {
         DateTime task_end_date;
-        if (end_date.Contains("."))
-        {
-            task_end_date = DateTime.Parse(end_date);
-        }
-        else
-        {
-            task_end_date = DateTime.ParseExact(end_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        }
-
+        task_end_date = DateTime.Parse(end_date);
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
         Employee emp_creator = new Employee();
         emp_creator.Id = created_by;

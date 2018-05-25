@@ -190,8 +190,8 @@ $(document).ready(function () {
             project.Project_manager.Id = $("#project_manager").val();
             project.Priority_key = $("#project_priority_num").val();
             project.Customer_id.Id = $("#project_customer").val();
-            project.End_date = moment($("#end_date").datepicker('getDate')).format();;
-            project.Start_date = moment($("#start_date").datepicker('getDate')).format();;
+            project.End_date = moment($("#end_date").datepicker('getDate')).format();
+            project.Start_date = moment($("#start_date").datepicker('getDate')).format();
             project.Contact_name = $("#contact_name").val();
             project.Contact_phone = $("#contact_phone").val();
             project.Status.Id = $("#status").val();

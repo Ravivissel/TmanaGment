@@ -96,7 +96,7 @@
                                         </div>
                                         <label class="control-label col-sm-2">תאריך יעד:</label>
                                         <div class="col-sm-3">
-                                            <input type="text" placeholder="dd/mm/yyyy" class="form-control" id="end_date" name="end_date">
+                                            <input type="text" placeholder="dd.mm.yyyy" class="form-control" id="end_date" name="end_date">
                                         </div>
                                     </div>
                                     <div class="form-group row" id="statusDiv" hidden>
@@ -254,30 +254,63 @@
 
                     var description = $("#description").val();
                     var task_title = $("#task_title").val();
-                    var end_date = $("#end_date").val();
+                    var end_date = moment($("#end_date").datepicker('getDate')).format();
                     var assign_to = $("#assign_to option:selected").val();
                     var created_by = "1"; // change to be the actual user
 
                     if ($("#proj_req_assign option:selected").val() == 1) {
                         //check's if it is a new task or an update
-                        var func = arr_project_task.func;
-                        if (func == "edit") {
-                            status = $("#status").val();
+                        try {
+                            new_project_task = JSON.parse(localStorage.arr_project_task);
+                            if (new_project_task.taskID == -1) {
+                                taskID = new_project_task.taskID;
+                                func = new_project_task.func;
+                                status = -1;
+                            }
+                            else {
+                                func = arr_project_task.func;
+                                if (func == "edit") {
+                                    status = $("#status").val();
+                                }
+                                taskID = arr_project_task.taskID;
+                            }
                         }
-                        else status = -1;
-                        var taskID = arr_project_task.taskID;
+                        catch {
+                            func = arr_project_task.func;
+                            if (func == "edit") {
+                                status = $("#status").val();
+                            }
+                            taskID = arr_project_task.taskID;
+                        }
                         var assign_to_project = $("#assign_to_project option:selected").val();
                         var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_project: assign_to_project, description: description, created_by: created_by, status: status, func: func };
                         //call the ajax func
                         insertNewProjectTask(request, insertNewTaskCB, insertNewTaskErrorCB);
                     }
                     else if ($("#proj_req_assign option:selected").val() == 2) {
-                        var func = arr_request_task.func;
-                        if (func == "edit") {
-                            status = $("#status").val();
+                        //check's if it is a new task or an update
+                        try {
+                            new_request_task = JSON.parse(localStorage.arr_request_task);
+                            if (new_request_task.taskID == -1) {
+                                taskID = new_request_task.taskID;
+                                func = new_request_task.func;
+                                status = -1;
+                            }
+                            else {
+                                func = arr_request_task.func;
+                                if (func == "edit") {
+                                    status = $("#status").val();
+                                }
+                                taskID = arr_request_task.taskID;
+                            }
                         }
-                        else status = -1;
-                        var taskID = arr_request_task.taskID;
+                        catch {
+                            func = arr_request_task.func;
+                            if (func == "edit") {
+                                status = $("#status").val();
+                            }
+                            taskID = arr_request_task.taskID;
+                        }
                         var assign_to_request = $("#assign_to_request option:selected").val();
                         var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_request: assign_to_request, description: description, created_by: created_by, status: status, func: func };
                         //call the ajax func
@@ -347,7 +380,7 @@
             toggleActive: true,
             clearBtn: true,
             autoclose: true,
-            format: 'dd/mm/yyyy'
+            format: 'dd.mm.yyyy'
         });
 
         //open project_assign or request_assign

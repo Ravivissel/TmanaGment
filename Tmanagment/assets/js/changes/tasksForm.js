@@ -9,6 +9,9 @@ $(document).ready(function () {
     if (JSON.parse(GENERAL.TASKS.getProjectsTasksList()).length != 0) {
         arr_project_task = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
         if (arr_project_task.func == "edit" || arr_project_task.func == "show") {
+            var taskID = 1;
+            var arr_details = { taskID: taskID, func: "new" };
+            localStorage.arr_project_task = JSON.stringify(arr_details);
             $("#proj_req_assignDiv").prop('hidden', true);
             $("#proj_req_assign_label").prop('hidden', true);
             $("#statusDiv").prop('hidden', false);
@@ -30,6 +33,9 @@ $(document).ready(function () {
     if (JSON.parse(GENERAL.TASKS.getRequestsTasksList()).length != 0) {
         arr_request_task = JSON.parse(GENERAL.TASKS.getRequestsTasksList());
         if (arr_request_task.func == "edit" || arr_request_task.func == "show") {
+            var taskID = 1;
+            var arr_details = { taskID: taskID, func: "new" };
+            localStorage.arr_request_task = JSON.stringify(arr_details);
             $("#proj_req_assignDiv").prop('hidden', true);
             $("#proj_req_assign_label").prop('hidden', true);
             $("#statusDiv").prop('hidden', false);
@@ -135,7 +141,7 @@ $(document).ready(function () {
         taskStatus = taskStatus.status;
         GENERAL.TASKS.setProjectsTasksList(projectTask);
 
-        var e_date = new Date(parseInt(projectTask.Actual_task.End_date.replace('/Date(', '')));
+        var e_date = new Date(moment(projectTask.Actual_task.End_date).format());
         e_date = e_date.toLocaleDateString("he-IL");
 
         if (taskStatus == "פתוחה")
@@ -148,7 +154,7 @@ $(document).ready(function () {
         selected = 1;
         $("#proj_req_assign").val(selected);
         $("#task_title").val(projectTask.Actual_task.Title);
-        $("#end_date").val(e_date);
+        $("#end_date").datepicker('setDate', e_date);
         $("#task_id").val(projectTask.Actual_task.Id);
         $("#status").val(id);
         $("#assign_to").val(projectTask.Actual_task.Assign_to.Id); //needs to be changed
@@ -175,7 +181,7 @@ $(document).ready(function () {
         taskStatus = taskStatus.status;
         GENERAL.TASKS.setRequestsTasksList(requestTask);
 
-        var e_date = new Date(parseInt(requestTask.Actual_task.End_date.replace('/Date(', '')));
+        var e_date = new Date(moment(requestTask.Actual_task.End_date).format());
         e_date = e_date.toLocaleDateString("he-IL");
 
         if (taskStatus == "פתוחה")
@@ -188,7 +194,7 @@ $(document).ready(function () {
         selected = 2;
         $("#proj_req_assign").val(selected);
         $("#task_title").val(requestTask.Actual_task.Title);
-        $("#end_date").val(e_date);
+        $("#end_date").datepicker('setDate', e_date);
         $("#task_id").val(requestTask.Actual_task.Id);
         $("#status").val(id);
         $("#assign_to").val(requestTask.Actual_task.Assign_to.Id); //needs to be changed

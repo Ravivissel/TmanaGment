@@ -1,9 +1,6 @@
 ﻿$(document).ready(function () {
 
-
-
-    GetTasksStatistics(GetTasksStatisticsCB, GetTasksStatisticsErrorCB)
-
+    GetTasksStatistics(GetTasksStatisticsCB, GetTasksStatisticsErrorCB);
 
     function GetTasksStatisticsCB(results) {
         var resultsArray = $.parseJSON(results.d);

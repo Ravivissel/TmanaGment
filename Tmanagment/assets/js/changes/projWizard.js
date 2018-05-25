@@ -80,7 +80,7 @@
         toggleActive: true,
         clearBtn: true,
         autoclose: true,
-        format: 'dd/mm/yyyy'
+        format: 'dd.mm.yyyy'
     });
 
     $(document).on('click', '#createNCButton', function () {
