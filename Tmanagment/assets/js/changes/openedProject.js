@@ -1,6 +1,6 @@
 ﻿//wait until the dom is loaded
 $(document).ready(function () {
-
+    
     //generate select options
     generateProjectManagerList();
     generateCustomersList();
