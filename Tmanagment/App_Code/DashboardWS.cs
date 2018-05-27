@@ -63,15 +63,6 @@ public class DashboardWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string GetUserDetails(string userName)
-    {
-        JavaScriptSerializer j = new JavaScriptSerializer();
-        Employee e = new Employee(userName);
-        e = e.GetUserDetails();
-        return j.Serialize(e);
-    }
-
-    [WebMethod]
     public string GetOpenRequestsNum()
     {
         int counter = 0;

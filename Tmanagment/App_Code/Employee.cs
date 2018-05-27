@@ -326,20 +326,22 @@ public class Employee
         return row_affected;
     }
 
-    public Employee GetUserDetails()
+    public Employee GetUserDetails(string userName, string password)
     {
         #region DB functions
-        string query = "select * from employees where user_name ='" + user_name + "'";
+        string query = "select * from employees where user_name ='" + userName + "'";
 
         Employee emp = new Employee();
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
+        DataTable dt = ds.Tables[0];
 
-        foreach (DataRow dr in ds.Tables[0].Rows)
+        if (dt != null && dt.Rows.Count > 0)
         {
             try
             {
-                if (dr["Password"].ToString() == Password)
+                DataRow dr = dt.Rows[0];
+                if (dr["Password"].ToString() == password && dr["user_name"].ToString() == userName)
                 {
                     emp.Id = (int)dr["id"];
                     emp.First_name = dr["first_name"].ToString();

@@ -164,24 +164,28 @@
             function LoginCheckCB(result) {
                 var user = JSON.parse(result.d);
                 localStorage.employee = JSON.stringify(user);
-                swal({
-                    title: "ברוך הבא",
-                    type: "success",
-                    timer: 1000,
-                    showConfirmButton: false
-                });
-                setTimeout(function () {
-                    location.href = "index.html";
-                }, 1001);        
+                if (user.User_name) {
+                    swal({
+                        title: "ברוך הבא",
+                        type: "success",
+                        timer: 1000,
+                        showConfirmButton: false
+                    });
+                    setTimeout(function () {
+                        location.href = "index.html";
+                    }, 1001);
+                }
+                else {
+                    swal({
+                        title: "שם משתמש או סיסמא שגוי",
+                        type: "warning",
+                        timer: 1000,
+                        showConfirmButton: false
+                    });
+                }
             }
 
             function LoginCheckErrorCB(error) {
-                swal({
-                    title: "שם משתמש או סיסמא שגוי",
-                    type: "warning",
-                    timer: 1000,
-                    showConfirmButton: false
-                });
                 console.log(error);
             }
         });
