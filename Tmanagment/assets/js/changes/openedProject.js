@@ -304,7 +304,7 @@ $(document).ready(function () {
             buttons: ['copy', 'excel', 'pdf'],
             "oLanguage": {
                 "sSearch": "<span>חיפוש:</span> _INPUT_", //search
-                            "sProcessing": "מעבד...",
+                "sProcessing": "מעבד...",
                 "sLengthMenu": "הצג _MENU_ פריטים",
                 "sZeroRecords": "לא נמצאו רשומות מתאימות",
                 "sInfo": "_START_ עד _END_ מתוך _TOTAL_ רשומות",
@@ -320,6 +320,9 @@ $(document).ready(function () {
                 }
             }
         });
+
+        $('#datatable-buttons_filter').find('label').css({ "float": "left" });
+
 
         //Buttons examples
         $.each(allProjectsTasks, function (index, row) {
