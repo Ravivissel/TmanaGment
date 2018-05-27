@@ -16,7 +16,7 @@ public class Employee
     private int id;
     private string first_name;
     private string last_name;
-    private int phone_number;
+    private string phone_number;
     private string title;
     private string user_name;
     private string password;
@@ -29,7 +29,7 @@ public class Employee
         //
     }
 
-    public Employee(int id, string first_name, string last_name, int phone_number, string title, string user_name, string password, string user_type)
+    public Employee(int id, string first_name, string last_name, string phone_number, string title, string user_name, string password, string user_type)
     {
         this.id = id;
         this.first_name = first_name;
@@ -91,7 +91,7 @@ public class Employee
         }
     }
 
-    public int Phone_number
+    public string Phone_number
     {
         get
         {
@@ -225,7 +225,7 @@ public class Employee
         Employee tmpEmployee = new Employee();
         tmpEmployee.First_name = dr["first_name"].ToString();
         tmpEmployee.Last_name = dr["last_name"].ToString();
-        tmpEmployee.Phone_number = Convert.ToInt32(dr["phone_num"]);
+        tmpEmployee.Phone_number = dr["phone_num"].ToString();
         tmpEmployee.Id = Convert.ToInt32(dr["id"]);
         tmpEmployee.Title = dr["title"].ToString();
         tmpEmployee.User_name = dr["user_name"].ToString();
@@ -279,7 +279,7 @@ public class Employee
             {
                 employee.First_name = dr["first_name"].ToString();
                 employee.Last_name = dr["last_name"].ToString();
-                employee.Phone_number = Convert.ToInt32(dr["phone_num"]);
+                employee.Phone_number = dr["phone_num"].ToString();
                 employee.Id = Convert.ToInt32(dr["id"]);
                 employee.Title = dr["title"].ToString();
                 employee.User_name = dr["user_name"].ToString();
@@ -326,4 +326,37 @@ public class Employee
         return row_affected;
     }
 
+    public Employee GetUserDetails()
+    {
+        #region DB functions
+        string query = "select * from employees where user_name ='" + user_name + "'";
+
+        Employee emp = new Employee();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                if (dr["Password"].ToString() == Password)
+                {
+                    emp.Id = (int)dr["id"];
+                    emp.First_name = dr["first_name"].ToString();
+                    emp.Last_name = dr["last_name"].ToString();
+                    emp.Phone_number = dr["phone_num"].ToString();
+                    emp.Title = dr["title"].ToString();
+                    emp.User_name = dr["user_name"].ToString();
+                    emp.User_type = dr["user_type"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+        #endregion
+        return emp;
+    }
 }

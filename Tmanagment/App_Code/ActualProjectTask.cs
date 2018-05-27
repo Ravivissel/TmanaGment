@@ -51,16 +51,31 @@ public class ActualProjectTask
         }
     }
 
-    public List<ActualProjectTask> GetAllProjectsTasksList()
+    public List<ActualProjectTask> GetAllProjectsTasksList(Employee emp)
     {
         #region DB functions
-        string query = "select at.*, e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn, s.title status_title, p.title project_name " +
-            "from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id " +
-            "inner join employees e_created_by on e_created_by.id = at.created_by " +
-            "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
-            "inner join statuses s on ats.status_id = s.id " +
-            "inner join actual_project_task apt on at.id = apt.actual_tasks_id " +
-            "inner join projects p on apt.project_id = p.id";
+        string query = "";
+        if (emp.User_type == "A")
+        {
+            query = "select at.*, e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn, s.title status_title, p.title project_name " +
+                "from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id " +
+                "inner join employees e_created_by on e_created_by.id = at.created_by " +
+                "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
+                "inner join statuses s on ats.status_id = s.id " +
+                "inner join actual_project_task apt on at.id = apt.actual_tasks_id " +
+                "inner join projects p on apt.project_id = p.id";
+        }
+        else
+        {
+            query = "select at.*, e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn, s.title status_title, p.title project_name " +
+                "from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id " +
+                "inner join employees e_created_by on e_created_by.id = at.created_by " +
+                "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
+                "inner join statuses s on ats.status_id = s.id " +
+                "inner join actual_project_task apt on at.id = apt.actual_tasks_id " +
+                "inner join projects p on apt.project_id = p.id " +
+                "where at.assign_to = " + emp.Id + "";
+        }
 
         List<ActualProjectTask> actualTasksList = new List<ActualProjectTask>();
         DbServices db = new DbServices();
@@ -114,9 +129,10 @@ public class ActualProjectTask
     public ActualProjectTask GetProjectTask()
     {
         #region DB functions
-        string query = "select at.id, at.title, at.description, at.end_date, at.assign_to, e.first_name, apt.project_id project_id from actual_tasks at " +
+        string query = "select ats.status_id, at.id, at.title, at.description, at.end_date, at.assign_to, e.first_name, apt.project_id project_id from actual_tasks at " +
             "inner join employees e on at.assign_to = e.id " +
             "inner join actual_project_task apt on at.id = actual_tasks_id " +
+            "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
             "where at.id =" + Actual_task.Id + "";
 
         ActualProjectTask actualProjectTask = new ActualProjectTask(); 
@@ -130,6 +146,7 @@ public class ActualProjectTask
             {
                 Employee emp = new Employee();
                 Project project = new Project();
+                Status status = new Status();
 
                 project.Id = (int)dr["project_id"];
                 actualProjectTask.Project = project;
@@ -141,8 +158,10 @@ public class ActualProjectTask
                 emp.First_name = dr["first_name"].ToString();
                 emp.Id = (int)dr["assign_to"];
                 task.Assign_to = emp;
+                status.Id = (int)dr["status_id"];
+                task.Status = status;
                 actualProjectTask.Actual_task = task;
-
+                
             }
             catch (Exception ex)
             {

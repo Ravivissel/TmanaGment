@@ -25,11 +25,21 @@
 
         $('.circliful-chart').circliful();
     }
+
     function GetTasksStatisticsErrorCB(err) {
         console.log(err);
     }
-    getAllProjectsTasks(getAllProjectsTasksCB, getAllProjectsTasksErrorCB);
-    getAllRequestsTasks(getAllRequestsTasksCB, getAllRequestsTasksErrorCB);
+
+    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    var userId = user.Id;
+    var userType = user.User_type;
+    var request = {
+        employeeId: userId,
+        userType: userType
+    };
+
+    getAllProjectsTasks(request, getAllProjectsTasksCB, getAllProjectsTasksErrorCB);
+    getAllRequestsTasks(request, getAllRequestsTasksCB, getAllRequestsTasksErrorCB);
 
     function getAllProjectsTasksCB(results) {
         allProjectsTasks = $.parseJSON(results.d);
@@ -98,14 +108,14 @@
 
         $('#datatable-buttons tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "show", status: data[7] };
+            arr_details = { taskID: data[0], func: "show" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
             location.href = "taskForm.html";
         });
 
         $('#datatable-buttons tbody').on('click', '#edit', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "edit", status: data[7] };
+            arr_details = { taskID: data[0], func: "edit" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
             location.href = "taskForm.html";
         });

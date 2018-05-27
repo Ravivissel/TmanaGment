@@ -25,13 +25,8 @@ public class CustomerWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string GetCustomersList(int employeeId)
+    public string GetCustomersList()
     {
-        Employee employee = new Employee
-        {
-            Id = Convert.ToInt32(employeeId)
-        };
-
         Customer customers = new Customer();
         try
         {

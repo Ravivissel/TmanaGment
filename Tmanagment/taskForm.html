@@ -256,7 +256,9 @@
                     var task_title = $("#task_title").val();
                     var end_date = moment($("#end_date").datepicker('getDate')).format();
                     var assign_to = $("#assign_to option:selected").val();
-                    var created_by = "1"; // change to be the actual user
+                    //get the user id from session
+                    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+                    var created_by = user.Id;
 
                     if ($("#proj_req_assign option:selected").val() == 1) {
                         //check's if it is a new task or an update

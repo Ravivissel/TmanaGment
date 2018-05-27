@@ -223,7 +223,9 @@
                     var contact_name = $("#contact_name").val();
                     var contact_phone = $("#contact_phone").val();
                     var description = $("#description").val();
-                    var created_by = "1"; // change to be the actual user
+                    //get the user id from session
+                    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+                    var created_by = user.Id;
                     //check's if it is a new request or an update
                     var func = arr_request.func;
                     if (func == "edit") {

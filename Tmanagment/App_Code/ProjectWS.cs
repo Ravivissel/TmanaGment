@@ -100,15 +100,7 @@ public class ProjectWS : System.Web.Services.WebService
     public void InsertNewProject(string project_title, int project_manager, string project_priority_num, string end_date, string contact_name, string contact_phone, int request_id, string description, int created_by, int customer_id, string customer_name, string customer_f_name, string customer_phone)
     {
         DateTime project_end_date;
-        if (end_date.Contains("."))
-        {
-            project_end_date = DateTime.Parse(end_date);
-        }
-        else
-        {
-            project_end_date = DateTime.ParseExact(end_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        }
-
+        project_end_date = DateTime.Parse(end_date);
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
         Employee emp_creator = new Employee();
         emp_creator.Id = created_by;

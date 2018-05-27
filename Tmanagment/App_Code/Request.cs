@@ -207,12 +207,23 @@ public class Request
         }
     }
 
-    public List<Request> GetRequestsList()
+    public List<Request> GetRequestsList(Employee emp)
     {
         #region DB functions
-        string query = "select s.title status_title, r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r " +
+        string query = "";
+        if (emp.User_type == "A")
+        {
+            query = "select s.title status_title, r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r " +
             "inner join requests_statuses rs on r.id = rs.request_id " +
             "inner join statuses s on rs.status_id = s.id ";
+        }
+        else
+        {
+            query = "select s.title status_title, r.id, r.title request_title, r.contact_name, r.contact_phone, r.assign_to from requests r " +
+            "inner join requests_statuses rs on r.id = rs.request_id " +
+            "inner join statuses s on rs.status_id = s.id " +
+            "where r.assign_to = " + emp.Id + "";
+        }
 
         List<Request> ReqList = new List<Request>();
         DbServices db = new DbServices();
@@ -224,7 +235,7 @@ public class Request
             {
                 Request req = new Request();
                 List<Employee> employees = new List<Employee>();
-                Employee emp = new Employee();
+                Employee employee = new Employee();
                 Status status = new Status();
 
                 req.Id = (int)dr["id"];
@@ -232,9 +243,9 @@ public class Request
                 req.Contact_name = dr["contact_name"].ToString();
                 req.Contact_phone = dr["contact_phone"].ToString();
                 int assign_to_id = (int)dr["assign_to"];
-                employees = emp.GetEmployees(assign_to_id); //call the func from employee to get employee details
-                emp = employees.First();
-                req.Assign_to = emp;
+                employees = employee.GetEmployees(assign_to_id); //call the func from employee to get employee details
+                employee = employees.First();
+                req.Assign_to = employee;
                 status.Title = dr["status_title"].ToString();
                 req.Status = status;
 
@@ -291,7 +302,8 @@ public class Request
     public Request GetRequest()
     {
         #region DB functions
-        string query = "select r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r " +
+        string query = "select rs.status_id, r.id, r.title, r.description, r.contact_name, r.contact_phone, r.assign_to, e.first_name from requests r " +
+            "inner join requests_statuses rs on r.id = rs.request_id " +
             "inner join employees e on r.assign_to = e.id where r.id =" + Id + "";
 
         Request req = new Request();
@@ -303,6 +315,7 @@ public class Request
             try
             {
                 Employee emp = new Employee();
+                Status status = new Status();
 
                 req.Id = (int)dr["id"];
                 req.Title = dr["title"].ToString();
@@ -312,6 +325,8 @@ public class Request
                 emp.First_name = dr["first_name"].ToString();
                 emp.Id = (int)dr["assign_to"];
                 req.Assign_to = emp;
+                status.Id = (int)dr["status_id"];
+                req.Status = status;
 
             }
             catch (Exception ex)

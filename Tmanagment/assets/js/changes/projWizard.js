@@ -7,11 +7,12 @@
 
     //Assign to Request                      
     function generateAssignToRequestList() {
-        //Need to change! no need for request here
-        const userId = 65;
-        var groupid = userId;
+        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var userId = user.Id;
+        var userType = user.User_type;
         var request = {
-            employeeId: groupid
+            employeeId: userId,
+            userType: userType
         };
         getRequests(request, getAssignToRequestListCB, getAssignToRequestListErrorCB);
     }
@@ -52,14 +53,7 @@
 
     //Assign to customer
     function generateCustomersList() {
-        //Need to change to be dynamic from the user login session
-        const userId = 85;
-
-        var groupid = userId;
-        var request = {
-            employeeId: groupid
-        };
-        getCustomers(request, generateCustomersListCB, generateCustomersListErrorCB);
+        getCustomers(generateCustomersListCB, generateCustomersListErrorCB);
     }
 
     function generateCustomersListCB(customerData) {
@@ -167,12 +161,14 @@
         var project_title = $("#project_title").val();
         var project_manager = $("#project_manager option:selected").val();
         var project_priority_num = $("#project_priority_num").val();
-        var end_date = $("#end_date").val();
+        var end_date = moment($("#end_date").datepicker('getDate')).format();
         var contact_name = $("#contact_name").val();
         var contact_phone = $("#contact_phone").val();
         var request_id = $("#request_id").val();
         var description = $("#description").val();
-        var created_by = "1"; // change to be the actual user
+        //get the user id from session
+        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var created_by = user.Id;
 
         if ($("#customerCB option:selected").val() != -1) {
             var customer_id = $("#customerCB option:selected").val();

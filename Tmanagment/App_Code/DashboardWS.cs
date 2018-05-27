@@ -63,12 +63,12 @@ public class DashboardWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string GetMyUserName(string userName)
+    public string GetUserDetails(string userName)
     {
         JavaScriptSerializer j = new JavaScriptSerializer();
         Employee e = new Employee(userName);
-        string uName = e.GetUserName();
-        return j.Serialize(uName);
+        e = e.GetUserDetails();
+        return j.Serialize(e);
     }
 
     [WebMethod]

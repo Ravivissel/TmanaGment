@@ -102,11 +102,12 @@ $(document).ready(function () {
 
     //Assign to Request                      
     function generateAssignToRequestList() {
-        //Need to change! no need for request here
-        const userId = 65;
-        var groupid = userId;
+        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var userId = user.Id;
+        var userType = user.User_type;
         var request = {
-            employeeId: groupid
+            employeeId: userId,
+            userType: userType
         };
         getRequests(request, getAssignToRequestListCB, getAssignToRequestListErrorCB);
     }
@@ -137,26 +138,17 @@ $(document).ready(function () {
 
     function getProjectTaskCB(TaskData) {
         var projectTask = JSON.parse(TaskData.d);
-        taskStatus = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
-        taskStatus = taskStatus.status;
         GENERAL.TASKS.setProjectsTasksList(projectTask);
 
         var e_date = new Date(moment(projectTask.Actual_task.End_date).format());
         e_date = e_date.toLocaleDateString("he-IL");
-
-        if (taskStatus == "פתוחה")
-            id = 1;
-        if (taskStatus == "בתהליך")
-            id = 2;
-        if (taskStatus == "סגורה")
-            id = 3;
 
         selected = 1;
         $("#proj_req_assign").val(selected);
         $("#task_title").val(projectTask.Actual_task.Title);
         $("#end_date").datepicker('setDate', e_date);
         $("#task_id").val(projectTask.Actual_task.Id);
-        $("#status").val(id);
+        $("#status").val(projectTask.Actual_task.Status.Id);
         $("#assign_to").val(projectTask.Actual_task.Assign_to.Id); //needs to be changed
         $("#assign_to_project").val(projectTask.Project.Id);
         $("#description").val(projectTask.Actual_task.Description);
@@ -177,26 +169,17 @@ $(document).ready(function () {
 
     function getRequestTaskCB(TaskData) {
         var requestTask = JSON.parse(TaskData.d);
-        taskStatus = JSON.parse(GENERAL.TASKS.getRequestsTasksList());
-        taskStatus = taskStatus.status;
         GENERAL.TASKS.setRequestsTasksList(requestTask);
 
         var e_date = new Date(moment(requestTask.Actual_task.End_date).format());
         e_date = e_date.toLocaleDateString("he-IL");
-
-        if (taskStatus == "פתוחה")
-            id = 1;
-        if (taskStatus == "בתהליך")
-            id = 2;
-        if (taskStatus == "סגורה")
-            id = 3;
 
         selected = 2;
         $("#proj_req_assign").val(selected);
         $("#task_title").val(requestTask.Actual_task.Title);
         $("#end_date").datepicker('setDate', e_date);
         $("#task_id").val(requestTask.Actual_task.Id);
-        $("#status").val(id);
+        $("#status").val(requestTask.Actual_task.Status.Id);
         $("#assign_to").val(requestTask.Actual_task.Assign_to.Id); //needs to be changed
         $("#assign_to_request").val(requestTask.Request.Id);
         $("#description").val(requestTask.Actual_task.Description);

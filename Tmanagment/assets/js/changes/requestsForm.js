@@ -49,23 +49,13 @@ $(document).ready(function () {
     }
 
     function getRequestCB(RequestData) {
-
         var request = JSON.parse(RequestData.d);
-        requestStatus = JSON.parse(GENERAL.REQUESTS.getRequestsList());
-        requestStatus = requestStatus.status;
         GENERAL.REQUESTS.setRequestsList(request);
-
-        if (requestStatus == "פתוחה")
-            id = 1;
-        if (requestStatus == "בתהליך")
-            id = 2;
-        if (requestStatus == "סגורה")
-            id = 3;
 
         $("#request_title").val(request.Title);
         $("#assign_to").val(request.Assign_to.Id); //needs to be changed
         $("#project_id").val(request.Id);
-        $("#status").val(id);
+        $("#status").val(request.Status.Id);
         $("#contact_name").val(request.Contact_name);
         $("#contact_phone").val(request.Contact_phone);  
         $("#description").val(request.Description);

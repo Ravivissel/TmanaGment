@@ -33,7 +33,6 @@
         <script src="assets/js/changes/ajaxCalls.js"></script>
         <script src="assets/js/CookiesFunctions.js"></script>
 
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -163,30 +162,26 @@
             });
 
             function LoginCheckCB(result) {
-                var userInDB = JSON.parse(result.d);
-                if (userInDB) {
-                    swal({
-                        title: "ברוך הבא",
-                        type: "success",
-                        timer: 1000,
-                        showConfirmButton: false
-                    });
-                    setTimeout(function () {
-                        location.href = "index.html";
-                    }, 1001);
-                }
-                else {
-                    //alert("פרטים שגויים");
-                    swal({
-                        title: "שם משתמש או סיסמא שגוי",
-                        type: "warning",
-                        timer: 1000,
-                        showConfirmButton: false
-                    });
-                }
+                var user = JSON.parse(result.d);
+                localStorage.employee = JSON.stringify(user);
+                swal({
+                    title: "ברוך הבא",
+                    type: "success",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+                setTimeout(function () {
+                    location.href = "index.html";
+                }, 1001);        
             }
 
             function LoginCheckErrorCB(error) {
+                swal({
+                    title: "שם משתמש או סיסמא שגוי",
+                    type: "warning",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
                 console.log(error);
             }
         });

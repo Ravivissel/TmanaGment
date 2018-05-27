@@ -31,12 +31,12 @@
     function addDataToTable() {
         table.clear().draw();
 
-        //Need to change to be dynamic from the user login session
-        const userId = 85;
-
-        var groupid = userId;
+        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var userId = user.Id;
+        var userType = user.User_type;
         var request = {
-            employeeId: groupid
+            employeeId: userId,
+            userType: userType
         };
 
         getRequests(request, getRequestsCB, getRequestsErrorCB);
@@ -71,7 +71,7 @@
 
         $('#datatable-buttons tbody').on('click', '#show', function () {
             var data = table.row($(this).parents('tr')).data();
-            arr_details = { requestID: data[0], func: "show", status: data[5] };
+            arr_details = { requestID: data[0], func: "show" };
             GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_details));
             location.href = "requestsForm.html";
         });

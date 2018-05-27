@@ -1,6 +1,10 @@
 $(document).ready(function () {
     checkCookie();
-    $("#masterPageContext").load("MasterPage.html");
+    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    if (user.User_type == "A") {
+        $("#masterPageContext").load("AdminMasterPage.html");
+    }
+    else $("#masterPageContext").load("RegMasterPage.html");
 });
 
 $(document).on('click', '#newRequestForm', function () {
@@ -23,6 +27,10 @@ $(document).on('click', '#newCustomerForm', function () {
     var arr_details = { customerID: customerID, func: "new" };
     localStorage.customerList = JSON.stringify(arr_details);
     location.href = "customerForm.html";
+});
+
+$(document).on('click', '#logOut', function () {
+    deleteCookie();
 });
 
 var GENERAL = {
@@ -94,6 +102,15 @@ var GENERAL = {
         },
         setCustomersList: function (customerList) {
             localStorage.customerList = customerList;
+        }
+    },
+
+    EMPLOYEES: {
+        getEmployee: function () {
+            return localStorage.employee;
+        },
+        setEmployee: function (employee) {
+            localStorage.employee = employee;
         }
     }
 

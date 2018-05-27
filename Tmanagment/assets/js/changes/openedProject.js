@@ -1,5 +1,4 @@
-﻿
-var resizefunc = [];
+﻿var resizefunc = [];
 //wait until the dom is loaded
 $(document).ready(function () {
     
@@ -26,15 +25,7 @@ $(document).ready(function () {
     }
 
     function generateCustomersList() {
-
-        //Need to change to be dynamic from the user login session
-        const userId = 85;
-
-        var groupid = userId;
-        var request = {
-            employeeId: groupid
-        };
-        getCustomers(request, generateCustomersListCB, generateCustomersListErrorCB);
+        getCustomers(generateCustomersListCB, generateCustomersListErrorCB);
     }
 
     function generateCustomersListCB(customerData) {
@@ -97,7 +88,6 @@ $(document).ready(function () {
             var e_date = new Date(moment(project.End_date).format());
             e_date = e_date.toLocaleDateString("he-IL");
 
-
             //DatePicker end_date
             $('#start_date').datepicker({
                 toggleActive: true,
@@ -145,6 +135,7 @@ $(document).ready(function () {
         $("#editButton").show();
         $("#BackButton").show();
     });
+
     $("#projectForm").submit(function (e) {
         e.preventDefault();
     }).validate({
@@ -222,13 +213,13 @@ $(document).ready(function () {
                 required: "אנא הזן לקוח"
             },
             end_date: {
-                required: "אנא בחר תאריך סיום",
+                required: "אנא בחר תאריך סיום"
             },
             start_date: {
                 required: "אנא בחר תאריך התחלה"
             },
             status: {
-                required: "אנא בחר סטטוס פרוייקט",
+                required: "אנא בחר סטטוס פרוייקט"
             }
       
         }
@@ -241,7 +232,7 @@ $(document).ready(function () {
 
         return End_date >= Start_date;
     
-    }, 'תאריך היעד הפרוייקט חייב להיות מוגדר לאחר או באותו תאריך ההתחלה');
+    }, 'תאריך יעד הפרוייקט חייב להיות מוגדר לאחר או באותו תאריך ההתחלה');
 
     function UpdateProjectCB(result) {
         sweetAlertSuccess();
@@ -353,14 +344,14 @@ $(document).ready(function () {
 
         $('#datatable-buttons tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "show", status: data[7] };
+            arr_details = { taskID: data[0], func: "show" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
             location.href = "taskForm.html";
         });
 
         $('#datatable-buttons tbody').on('click', '#edit', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "edit", status: data[7] };
+            arr_details = { taskID: data[0], func: "edit" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
             location.href = "taskForm.html";
         });

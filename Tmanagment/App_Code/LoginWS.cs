@@ -26,9 +26,9 @@ public class LoginWS : System.Web.Services.WebService
     public string LoginUser(string userName, string password)
     {
         JavaScriptSerializer j = new JavaScriptSerializer();
-        Employee u = new Employee(userName, password);
-        bool userInDB = u.CheckLoginDetails();
-        return j.Serialize(userInDB);
+        Employee e = new Employee(userName, password);
+        e = e.GetUserDetails();
+        return j.Serialize(e);
     }
 
 }

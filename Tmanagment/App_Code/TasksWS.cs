@@ -39,13 +39,17 @@ public class TasksWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string GetAllProjectsTasksList()
+    public string GetAllProjectsTasksList(int employeeId, string userType)
     {
+        Employee employee = new Employee();
+        employee.Id = Convert.ToInt32(employeeId);
+        employee.User_type = userType.ToString();
+
         try
         {
             JavaScriptSerializer j = new JavaScriptSerializer();
             ActualProjectTask actualProjectTask = new ActualProjectTask();
-            List<ActualProjectTask> allProjectsTasksList = actualProjectTask.GetAllProjectsTasksList();
+            List<ActualProjectTask> allProjectsTasksList = actualProjectTask.GetAllProjectsTasksList(employee);
             //string allProjectsTasksListJson = JsonConvert.SerializeObject(allProjectsTasksList, new IsoDateTimeConverter());
             //return allProjectsTasksListJson;
             return j.Serialize(allProjectsTasksList);
@@ -58,13 +62,17 @@ public class TasksWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string GetAllRequestsTasksList()
+    public string GetAllRequestsTasksList(int employeeId, string userType)
     {
+        Employee employee = new Employee();
+        employee.Id = Convert.ToInt32(employeeId);
+        employee.User_type = userType.ToString();
+
         try
         {
             JavaScriptSerializer j = new JavaScriptSerializer();
             ActualRequestTask actualRequestTask = new ActualRequestTask();
-            List<ActualRequestTask> allRequestsTasksList = actualRequestTask.GetAllRequestsTasksList();
+            List<ActualRequestTask> allRequestsTasksList = actualRequestTask.GetAllRequestsTasksList(employee);
             //string allRequestsTasksListJson = JsonConvert.SerializeObject(allRequestsTasksList, new IsoDateTimeConverter());
             //return allRequestsTasksListJson;
             return j.Serialize(allRequestsTasksList);

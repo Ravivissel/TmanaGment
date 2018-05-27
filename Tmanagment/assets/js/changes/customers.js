@@ -30,15 +30,7 @@
     function addDataToTable() {
         table.clear().draw();
 
-        //Need to change to be dynamic from the user login session
-        const userId = 85;
-
-        var groupid = userId;
-        var request = {
-            employeeId: groupid
-        };
-
-        getCustomers(request, getCustomersCB, getCustomersErrorCB);
+        getCustomers(getCustomersCB, getCustomersErrorCB);
     }
 
     function getCustomersCB(result) {

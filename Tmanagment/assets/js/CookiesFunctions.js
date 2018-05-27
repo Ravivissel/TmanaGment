@@ -37,3 +37,11 @@ function getCookie(cname) {
     }
     return "";
 }
+
+function deleteCookie() {
+    var username = getCookie("username");
+    if (username != "") {
+        document.cookie = "username= " + username +"; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+        location.href = "login.html";
+    }
+}

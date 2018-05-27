@@ -51,16 +51,32 @@ public class ActualRequestTask
         }
     }
 
-    public List<ActualRequestTask> GetAllRequestsTasksList()
+    public List<ActualRequestTask> GetAllRequestsTasksList(Employee emp)
     {
         #region DB functions
-        string query = "select at.*, e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn, s.title status_title, r.title request_name " +
-            "from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id " +
-            "inner join employees e_created_by on e_created_by.id = at.created_by " +
-            "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
-            "inner join statuses s on ats.status_id = s.id " +
-            "inner join actual_request_task art on at.id = art.actual_tasks_id " +
-            "inner join requests r on art.request_id = r.id";
+        string query = "";
+        if (emp.User_type == "A")
+        {
+            query = "select at.*, e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn, s.title status_title, r.title request_name " +
+                "from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id " +
+                "inner join employees e_created_by on e_created_by.id = at.created_by " +
+                "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
+                "inner join statuses s on ats.status_id = s.id " +
+                "inner join actual_request_task art on at.id = art.actual_tasks_id " +
+                "inner join requests r on art.request_id = r.id";
+        }
+        else
+        {
+            query = "select at.*, e_assign_to.first_name as assign_to_fn, e_created_by.first_name created_by_fn, s.title status_title, r.title request_name " +
+                "from actual_tasks as at inner join employees e_assign_to on at.assign_to = e_assign_to.id " +
+                "inner join employees e_created_by on e_created_by.id = at.created_by " +
+                "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
+                "inner join statuses s on ats.status_id = s.id " +
+                "inner join actual_request_task art on at.id = art.actual_tasks_id " +
+                "inner join requests r on art.request_id = r.id " +
+                "where at.assign_to = " + emp.Id + "";
+        }
+
 
         List<ActualRequestTask> actualTasksList = new List<ActualRequestTask>();
         DbServices db = new DbServices();
@@ -114,9 +130,10 @@ public class ActualRequestTask
     public ActualRequestTask GetRequestTask()
     {
         #region DB functions
-        string query = "select at.id, at.title, at.description, at.end_date, at.assign_to, e.first_name, art.request_id request_id from actual_tasks at " +
+        string query = "select ats.status_id, at.id, at.title, at.description, at.end_date, at.assign_to, e.first_name, art.request_id request_id from actual_tasks at " +
             "inner join employees e on at.assign_to = e.id " +
             "inner join actual_request_task art on at.id = actual_tasks_id " +
+            "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
             "where at.id =" + Actual_task.Id + "";
 
         ActualRequestTask ActualRequestTask = new ActualRequestTask();
@@ -130,6 +147,7 @@ public class ActualRequestTask
             {
                 Employee emp = new Employee();
                 Request request = new Request();
+                Status status = new Status();
 
                 request.Id = (int)dr["request_id"];
                 ActualRequestTask.Request = request;
@@ -141,6 +159,8 @@ public class ActualRequestTask
                 emp.First_name = dr["first_name"].ToString();
                 emp.Id = (int)dr["assign_to"];
                 task.Assign_to = emp;
+                status.Id = (int)dr["status_id"];
+                task.Status = status;
                 ActualRequestTask.Actual_task = task;
 
             }

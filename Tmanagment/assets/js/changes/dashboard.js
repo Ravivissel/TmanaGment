@@ -1,23 +1,16 @@
-
 $(document).ready(function () {
 
-    //Need to change to be dynamic from the user login session
-    const userId = 102;
-    var groupid = userId;
+    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    $('#welcome-user').append(user.First_name);
+
+    var userId = user.Id;
     var request = {
-        employeeId: groupid
+        employeeId: userId
     };
 
-    userName = GENERAL.USERS.getUserName();
-    var uName = {
-        userName: userName
-    };
-
-    getMyUserName(uName, getMyUserNameCB, getMyUserNameErrorCB);
     getMyTasks(request, getMyTaskCB, getMyTaskErrorCB);
     getMyRequestes(request, getMyRequestCB, getMyRequestErrorCB);
-
-    GetDashboardStatistics(GetDashboardStatisticsCB, GetDashboardStatisticsErrorCB)
+    GetDashboardStatistics(GetDashboardStatisticsCB, GetDashboardStatisticsErrorCB);
 
     function GetDashboardStatisticsCB(results) {
         var resultsArray = $.parseJSON(results.d);
@@ -84,16 +77,6 @@ $(document).ready(function () {
             $('#myRequestsTableBody').append(dynamicLi);
         });
     }
-
-    function getMyUserNameCB(result) {
-        userName = $.parseJSON(result.d);
-        $('#welcome-user').append(userName);
-    }
-
-    function getMyUserNameErrorCB(error) {
-        console.log(error);
-    }
-
 
     //Calender
     var initialLocaleCode = 'he';

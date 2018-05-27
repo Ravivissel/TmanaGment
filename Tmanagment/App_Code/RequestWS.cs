@@ -23,18 +23,18 @@ public class RequestWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string GetRequestsList(int employeeId)
+    public string GetRequestsList(int employeeId, string userType)
     {
 
         Employee employee = new Employee();
         employee.Id = Convert.ToInt32(employeeId);
+        employee.User_type = userType.ToString();
 
         Request requests = new Request();
         try
         {
             JavaScriptSerializer j = new JavaScriptSerializer();
-
-            List<Request> requests_list = requests.GetRequestsList();
+            List<Request> requests_list = requests.GetRequestsList(employee);
             //string RequestsListJson = JsonConvert.SerializeObject(requests_list, new IsoDateTimeConverter());
             //return RequestsListJson;
             return j.Serialize(requests_list);
