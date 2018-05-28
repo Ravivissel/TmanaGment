@@ -18,6 +18,8 @@
     <!-- Sweet Alert css -->
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="./plugins/custombox/dist/custombox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./plugins/morris/morris.css">
     <link href="./plugins/switchery/switchery.min.css" rel="stylesheet" />
     <link href="./plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
 
@@ -41,7 +43,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
     <!-- Plugins  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -111,6 +112,7 @@
     <!--DatePicker css-->
     <link href="./plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
     <!--DatePicker js-->
     <script src="./plugins/moment/moment.js"></script>
     <script src="./plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
@@ -276,13 +278,22 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card-box table-responsive">
-                                <h4 class="m-t-0 header-title">טבלת משימות לפרוייקט</h4>
-                                <p class="text-muted font-14 m-b-30">
-                                    מבט כללי על המשימות שמשוייכות לפרוייקט זה.
-                                </p>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="m-t-0 header-title">טבלת משימות לפרוייקט</h4>
+                                        <p class="text-muted font-14 m-b-30">
+                                            מבט כללי על המשימות שמשוייכות לפרוייקט זה.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button> פרטים נוספים
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='ערוך'><i class='ti-pencil'></i></button> עריכה
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-3 checkbox checkbox-primary text-left">
                                         <input id="activeProjectsTasks" type="checkbox" checked>
@@ -313,11 +324,120 @@
                         </div>
                     </div>
                     <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box table-responsive">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="m-t-0 header-title">טבלת הוצאות לפרוייקט</h4>
+                                        <p class="text-muted font-14 m-b-30">
+                                            מבט כללי על ההוצאות של פרוייקט זה.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal"><span class="fa fa-plus-circle m-r-5"></span>חדש</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <table id="expenses-datatable" class="table table-striped table-bordered" data-pattern="priority-columns">
+                                        <thead>
+                                            <tr>
+                                                <th>מס' הוצאה</th>
+                                                <th>שם הוצאה</th>
+                                                <th>משוייכת לפרוייקט</th>
+                                                <th>נוצרה על ידי</th>
+                                                <th>סוג</th>
+                                                <th>סכום</th>
+                                                <th>ערוך הוצאה</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
                 </div>
             </div>
         </div>
     </div>
     <!-- END wrapper -->
 
+    <!-- modal -->
+    <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">הוצאה חדשה</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="field-1" class="control-label" style="float:right">שם ההוצאה</label>
+                                    <input type="text" class="form-control" id="field-1" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="field-2" class="control-label" style="float:right">משוייכת לפרוייקט</label>
+                                    <input type="text" class="form-control" id="field-2" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="field-4" class="control-label" style="float:right">סוג</label>
+                                    <select id="status" name="status" class="form-control">
+                                        <option value="-1" selected="selected" disabled="disabled">בחר</option>
+                                        <option value="2">תקורה</option>
+                                        <option value="3">הוצאה חד פעמית</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="field-5" class="control-label" style="float:right">סכום</label>
+                                    <input type="text" class="form-control" id="field-5" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="field-6" class="control-label" style="float:right">הוסף תמונה</label>
+                                    <input type="file" class="form-control" id="field-5" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="field-7" class="control-label" style="float:right">תיאור</label>
+                                    <textarea class="form-control" id="field-7" placeholder=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect m-b-5" data-dismiss="modal">בטל</button>
+                    <button type="submit" id="saveExpense" class="btn btn-success waves-effect w-md waves-light m-b-5"><i class="ti-save m-r-5"></i>שמור</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+
+    <!-- Modal-Effect -->
+    <script src="./plugins/custombox/dist/custombox.min.js"></script>
+    <script src="./plugins/custombox/dist/legacy.min.js"></script>
+
 </body>
 </html>
+

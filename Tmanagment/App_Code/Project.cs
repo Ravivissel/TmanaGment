@@ -476,6 +476,7 @@ public class Project
         DbServices db = new DbServices();
         DbServices db2 = new DbServices();
         DbServices db3 = new DbServices();
+        DbServices db4 = new DbServices();
         string query = "";
 
         //chek if the customer is new 
@@ -504,6 +505,11 @@ public class Project
         //insert the new project a status
         query = "insert into projects_statuses values ('" + projectId + "','" + statusId + "','" + created_by.Id + "')";
         db3.ExecuteQuery(query);
+
+        //update the request status to close
+        statusId = "3";
+        query = "UPDATE requests_statuses SET status_id = '" + statusId + "', modified_by = '" + Created_by.Id + "' WHERE request_id = " + Request_id;
+        db4.ExecuteQuery(query);
         #endregion
     }
 }
