@@ -12,6 +12,7 @@ $(document).ready(function () {
                 $("#saveCustomer").prop('hidden', true);
             }
         }
+        else $("#backButton").prop('hidden', true);
     }
 
 });

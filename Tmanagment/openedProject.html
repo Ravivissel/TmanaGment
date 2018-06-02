@@ -43,6 +43,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
     <!-- Plugins  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -171,24 +172,24 @@
                                         <div class="events-wrapper">
                                             <div class="events">
                                                 <ol>
-                                                    <li><a href="#0" id="4" data-date="16/01/2014" class="selected">פתוח</a></li>
-                                                    <li><a href="#0" id="5" data-date="28/02/2014">הצעת מחיר</a></li>
-                                                    <li><a href="#0" id="6" data-date="20/04/2014">תכנון</a></li>
-                                                    <li><a href="#0" id="7" data-date="20/05/2014">פרשה טכנית</a></li>
-                                                    <li><a href="#0" id="8" data-date="09/07/2014">רכש</a></li>
-                                                    <li><a href="#0" id="9" data-date="30/08/2014">תפעול</a></li>
-                                                    <li><a href="#0" id="10" data-date="15/09/2014">אספקה</a></li>
-                                                    <li><a href="#0" id="11" data-date="01/11/2014">סגור</a></li>
+                                                    <li><a href="" data-date="16/01/2014" class="selected">פתוח</a></li>
+                                                    <li><a href="" data-date="28/02/2014">הצעת מחיר</a></li>
+                                                    <li><a href="" data-date="20/04/2014">תכנון</a></li>
+                                                    <li><a href="" data-date="20/05/2014">פרשה טכנית</a></li>
+                                                    <li><a href="" data-date="09/07/2014">רכש</a></li>
+                                                    <li><a href="" data-date="30/08/2014">תפעול</a></li>
+                                                    <li><a href="" data-date="15/09/2014">אספקה</a></li>
+                                                    <li><a href="" data-date="01/11/2014">סגור</a></li>
                                                 </ol>
                                                 <span class="filling-line" aria-hidden="true"></span>
-                                            </div> <!-- .events -->
-                                        </div> <!-- .events-wrapper -->
+                                            </div> 
+                                        </div> 
 
                                         <ul class="cd-timeline-navigation">
                                             <li><a href="#0" class="prev inactive">Prev</a></li>
                                             <li><a href="#0" class="next">Next</a></li>
-                                        </ul> <!-- .cd-timeline-navigation -->
-                                    </div> <!-- .timeline -->
+                                        </ul> 
+                                    </div> 
                                 </section>
                                 <!-- Timeline end-->
 
@@ -336,7 +337,7 @@
                                         </p>
                                     </div>
                                     <div class="col-md-4 text-right">
-                                        <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal"><span class="fa fa-plus-circle m-r-5"></span>חדש</button>
+                                        <button type="button" id="newExpense" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal"><span class="fa fa-plus-circle m-r-5"></span>חדש</button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -374,62 +375,56 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title">הוצאה חדשה</h4>
                 </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" role="form" id="">
+                <form class="form-horizontal" role="form" id="expenseForm">
+                    <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="field-1" class="control-label" style="float:right">שם ההוצאה</label>
-                                    <input type="text" class="form-control" id="field-1" placeholder="">
+                                    <label for="expense_assign_to" class="control-label" style="float:right">משוייכת לפרוייקט</label>
+                                    <input type="text" disabled="disabled" class="form-control" id="expense_assign_to" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="field-2" class="control-label" style="float:right">משוייכת לפרוייקט</label>
-                                    <input type="text" class="form-control" id="field-2" placeholder="">
+                                    <label for="expense_desc" class="control-label" style="float:right">תיאור</label>
+                                    <input class="form-control" id="expense_desc" name="expense_desc" placeholder="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="field-4" class="control-label" style="float:right">סוג</label>
-                                    <select id="status" name="status" class="form-control">
+                                    <label for="expense_type" class="control-label" style="float:right">סוג</label>
+                                    <select id="expense_type" name="expense_type" class="form-control">
                                         <option value="-1" selected="selected" disabled="disabled">בחר</option>
-                                        <option value="2">תקורה</option>
-                                        <option value="3">הוצאה חד פעמית</option>
+                                        <option value="1">תקורה</option>
+                                        <option value="2">הוצאה חד פעמית</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="field-5" class="control-label" style="float:right">סכום</label>
-                                    <input type="text" class="form-control" id="field-5" placeholder="">
+                                    <label for="expense_amount" class="control-label" style="float:right">סכום</label>
+                                    <input type="text" name="expense_amount" class="form-control" id="expense_amount" placeholder="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="field-6" class="control-label" style="float:right">הוסף תמונה</label>
-                                    <input type="file" class="form-control" id="field-5" placeholder="">
+                                    <label for="expense_img" class="control-label" style="float:right">הוסף תמונה</label>
+                                    <input type="file" class="form-control" id="expense_img" placeholder="">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="field-7" class="control-label" style="float:right">תיאור</label>
-                                    <textarea class="form-control" id="field-7" placeholder=""></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary waves-effect m-b-5" data-dismiss="modal">בטל</button>
-                    <button type="submit" id="saveExpense" class="btn btn-success waves-effect w-md waves-light m-b-5"><i class="ti-save m-r-5"></i>שמור</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary waves-effect m-b-5" data-dismiss="modal">בטל</button>
+                        <button type="submit" id="saveExpense" class="btn btn-success waves-effect w-md waves-light m-b-5"><i class="ti-save m-r-5"></i>שמור</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div><!-- /.modal -->

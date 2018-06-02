@@ -28,6 +28,7 @@ $(document).ready(function () {
                 $("#saveTask").prop('hidden', true);
             }
         }
+        else $("#backButton").prop('hidden', true);
     }
 
     if (JSON.parse(GENERAL.TASKS.getRequestsTasksList()).length != 0) {

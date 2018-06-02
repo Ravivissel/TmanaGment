@@ -19,6 +19,7 @@ $(document).ready(function () {
                 $("#saveRequest").prop('hidden', true);
             } 
         }
+        else $("#backButton").prop('hidden', true);
     }
 
     function generateAssignToList() {

@@ -75,7 +75,7 @@ $(document).ready(function () {
         }
         catch (err) {
             console.log(err);
-            throw err
+            throw err;
         }
     }
 
@@ -118,7 +118,7 @@ $(document).ready(function () {
         }
         catch (err) {
             console.log(err);
-            throw err
+            throw err;
         }
     }
 
@@ -157,7 +157,7 @@ $(document).ready(function () {
                 required: true
             },
             project_customer: {
-                required: true,
+                required: true
             },
             end_date: {
                 required: true,
@@ -167,8 +167,7 @@ $(document).ready(function () {
                 required: true
             },
             status: {
-                required: true,
-
+                required: true
             }
         },
 
@@ -224,7 +223,7 @@ $(document).ready(function () {
       
         }
 
-        });
+    });
 
     jQuery.validator.addMethod("greaterThan", function () {
         var End_date = $("#end_date").datepicker('getDate');
@@ -236,7 +235,7 @@ $(document).ready(function () {
 
     function UpdateProjectCB(result) {
         sweetAlertSuccess();
-        setTimeout(function () { returnToProjectsPage() }, 1001);
+        setTimeout(function () { returnToProjectsPage(); }, 1001);
     }
 
     function UpdateProjectError(err) {
@@ -410,6 +409,90 @@ $(document).ready(function () {
                 ProjectsTaskTable.row.add([row.Actual_task.Id, row.Actual_task.Title, row.Project.Title, row.Actual_task.Created_by.First_name, row.Actual_task.Assign_to.First_name, s_date, e_date, row.Actual_task.Status.Title, btnStr]).draw("false");
             });
         }
+    }
+
+    $(document).on('click', '#newExpense', function () {
+        $("#expense_assign_to").val($("#project_id").val());
+    });
+
+    $("#expenseForm").submit(function (e) {
+        e.preventDefault();
+    }).validate({
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+
+        // Rules for form validation
+        rules: {
+            expense_desc: {
+                required: true
+            },
+            expense_type: {
+                required: true
+            },
+            expense_amount: {
+                required: true,
+                number: true
+            }
+        },
+
+        submitHandler: function (form, event) {
+            event.preventDefault();
+
+            var expense_desc = $("#expense_desc").val();
+            var expense_assign_to = $("#expense_assign_to").val();
+            var expense_type = $("#expense_type option:selected").val();
+            var expense_amount = $("#expense_amount").val();
+            var expense_img_name = $("#expense_img").val();
+            //get the user id from session
+            user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+            var created_by = user.Id;           
+            var request = { expense_desc: expense_desc, expense_assign_to: expense_assign_to, expense_type: expense_type, expense_amount: expense_amount, expense_img_name: expense_img_name, created_by: created_by };
+            //call the ajax func
+            setExpense(request, setExpenseCB, setExpenseCBError);
+
+        },
+
+        // Messages for form validation
+        messages: {
+            expense_desc: {
+                required: "אנא הזן תיאור הוצאה"
+            },
+            expense_type: {
+                required: "אנא בחר סוג הוצאה"
+            },
+            expense_amount: {
+                required: "אנא הזן סכום",
+                number: "הכנס רק ספרות"
+            }
+        }
+
+    });
+
+    function setExpenseCB(result) {
+        sweetAlertSuccess();
+        setTimeout(function () { returnToOpenProjectPage(); }, 1001);
+    }
+
+    function setExpenseCBError(err) {
+        sweetAlertExpenseError();
+        console.log(err);
+    }
+
+    function sweetAlertExpenseError() {
+        swal({
+            title: "שמירת ההוצאה נכשלה",
+            type: "warning",
+            timer: 1000,
+            showConfirmButton: false
+        });
+    }
+
+    function returnToOpenProjectPage() {
+        location.href = "openedProject.html";
     }
 
 });

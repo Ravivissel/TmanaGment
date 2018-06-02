@@ -11,7 +11,7 @@ $(document).on('click', '#newRequestForm', function () {
     var requestID = -1;
     var arr_details = { requestID: requestID, func: "new" };
     localStorage.requestList = JSON.stringify(arr_details);
-    location.href = "requestsForm.html";
+    //location.href = "requestsForm.html";
 });
 
 $(document).on('click', '#newTaskForm', function () {
@@ -19,14 +19,14 @@ $(document).on('click', '#newTaskForm', function () {
     var arr_details = { taskID: taskID, func: "new" };
     localStorage.arr_project_task = JSON.stringify(arr_details);
     localStorage.arr_request_task = JSON.stringify(arr_details);
-    location.href = "taskForm.html";
+    //location.href = "taskForm.html";
 });
 
 $(document).on('click', '#newCustomerForm', function () {
     var customerID = -1;
     var arr_details = { customerID: customerID, func: "new" };
     localStorage.customerList = JSON.stringify(arr_details);
-    location.href = "customerForm.html";
+    //location.href = "customerForm.html";
 });
 
 $(document).on('click', '#logOut', function () {
