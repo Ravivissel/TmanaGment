@@ -7,11 +7,6 @@ $(document).ready(function () {
     generateCustomersList();
     generateConstTasks();
 
-
-    $(".last").on('change', function () {
-        console.log("dsadsa")
-    });
-
     function generateConstTasks() {
 
         GetConstActualTasks(GetConstActualTasksCB, GetConstActualTasksErrorCB)
@@ -21,14 +16,13 @@ $(document).ready(function () {
 
             var results = $.parseJSON(results.d);
             var tasks = JSON.stringify(results);
-            GENERAL.TASKS.setProjectsTasksList(tasks);
-
 
             var constTasks = $('#constTasks');
             $.each(results, function (val, result) {
-                var dynamicLi = "<li class='dd-item' data-id={id}><div class='dd-handle'>{title}</div></li>"
+                var dynamicLi = "<li class='dd-item' data-id={id}><div class='dd-handle' data-task={task}>{title}</div></li>"
                 dynamicLi = dynamicLi.replace("{id}", result.id);
                 dynamicLi = dynamicLi.replace("{title}", result.title);
+                dynamicLi = dynamicLi.replace("{task}", JSON.stringify(result));
                 constTasks.append(
                     dynamicLi
                 );
@@ -192,13 +186,7 @@ $(document).ready(function () {
     $('#customer_f_nameCB').change(function () {
         $('#customer2').val($('#customer_nameCB').val() + " " + $(this).val());
     });
-    $('#nestable_list_1').on('change',function () {
-
-        $("#finish_tasks").html('');
-        $('#finish_tasks').append($('#nestable_list_2').prop('outerHTML'));
-    });
-
-    $('#nestable_list_2').on('change', function () {
+    $('.dd').on('change',function () {
 
         $("#finish_tasks").html('');
         $('#finish_tasks').append($('#nestable_list_2').prop('outerHTML'));
@@ -213,13 +201,6 @@ $(document).ready(function () {
         var contact_phone = $("#contact_phone").val();
         var request_id = $("#request_id").val();
         var description = $("#description").val();
-
-        var tasks_to_update = $('.dd-item').toArray();
-        var tasks_list = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
-
-       
-
-
 
         //get the user id from session
         user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
