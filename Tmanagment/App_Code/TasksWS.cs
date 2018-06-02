@@ -203,4 +203,22 @@ public class TasksWS : System.Web.Services.WebService
             return ex.ToString();
         }
     }
+
+    [WebMethod]
+    public string GetConstActualTasks()
+    {
+        try
+        {
+            ActualTask tasks = new ActualTask();
+            string const_actual_tasks =tasks.GetConstActualTasks();
+            return const_actual_tasks;
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.Message;
+           
+        }
+    }
 }

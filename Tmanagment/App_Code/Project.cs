@@ -429,7 +429,7 @@ public class Project
         DbServices dbs = new DbServices();
         int rows_affected = dbs.ExecuteQuery(query.ToString());
         #endregion
-        return rows_affected;  
+        return rows_affected;
     }
 
     public int GetOpenProjectsNum()
@@ -474,42 +474,36 @@ public class Project
     {
         #region DB functions
         DbServices db = new DbServices();
-        DbServices db2 = new DbServices();
-        DbServices db3 = new DbServices();
-        DbServices db4 = new DbServices();
-        string query = "";
 
-        //chek if the customer is new 
+        string query = "";
+        const int status_done = 3;
+        string project_query;
+        string customer_query;
+
+        query = "Begin TRANSACTION DECLARE @output_projects TABLE (ID INT) DECLARE @output_customers TABLE(ID INT) ";
+
         if (customer_id.Id == -1)
         {
-            query = "insert into customers values ('" + customer_id.First_name + "','" + customer_id.Last_name + "','" + customer_id.Phone_num + "','Y')";
-            db.ExecuteQuery(query);
 
-            //get the customer id
-            string customerId = db.Ga("customers");
-
-            query = "insert into projects values ('" + title + "','" + description + "','" + customerId + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "')";
-            db2.ExecuteQuery(query);
+            customer_query = "insert into customers INSERTED.ID into @output_projects(id) values ('" + customer_id.First_name + "','" + customer_id.Last_name + "','" + customer_id.Phone_num + "','Y') ";
+            project_query = "insert into projects OUTPUT INSERTED.ID into @output_projects(id) values ('" + title + "','" + description + "','" + "(select id from @output_customers)" + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "') ";
 
         }
         else
         {
-            query = "insert into projects values ('" + title + "','" + description + "','" + Customer_id.Id + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "')";
-            db.ExecuteQuery(query);
+            customer_query = "";
+            project_query = "insert into projects OUTPUT INSERTED.ID into @output_projects(id) values ('" + title + "','" + description + "','" + Customer_id.Id + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "') ";
+
+
         }
+        string project_statuses_query = "INSERT into projects_statuses(project_id, status_id, modified_by) values((select id from @output_projects)," + 3 + "," + Created_by.Id + ") ";
+        string update_requests_statuses_query = "UPDATE requests_statuses SET status_id = '" + status_done + "', modified_by = '" + Created_by.Id + "' WHERE request_id = " + Request_id + " ";
 
-        //get the project id
-        string statusId = "4";
-        string projectId = db.Ga("projects");
+        query += customer_query + project_query + project_statuses_query + update_requests_statuses_query;
+        query += "COMMIT";
 
-        //insert the new project a status
-        query = "insert into projects_statuses values ('" + projectId + "','" + statusId + "','" + created_by.Id + "')";
-        db3.ExecuteQuery(query);
+        db.ExecuteQuery(query);
 
-        //update the request status to close
-        statusId = "3";
-        query = "UPDATE requests_statuses SET status_id = '" + statusId + "', modified_by = '" + Created_by.Id + "' WHERE request_id = " + Request_id;
-        db4.ExecuteQuery(query);
         #endregion
     }
 }

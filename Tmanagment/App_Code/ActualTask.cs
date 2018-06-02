@@ -18,6 +18,9 @@ public class ActualTask
     private Employee created_by;
     private Employee assign_to;
     private Status status;
+    private bool is_const;
+    private int estimate_time;
+
 
     public ActualTask()
     {
@@ -57,6 +60,19 @@ public class ActualTask
         this.created_by = created_by;
         this.assign_to = assign_to;
         this.status = status;
+    }
+    public ActualTask(int id, string description, string title, DateTime start_date, DateTime end_date, Employee created_by, Employee assign_to, Status status,int estimate_time,bool is_const)
+    {
+        this.id = id;
+        this.description = description;
+        this.title = title;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.created_by = created_by;
+        this.assign_to = assign_to;
+        this.status = status;
+        this.Is_const = is_const;
+        this.Estimate_time = estimate_time;
     }
 
     public int Id
@@ -160,6 +176,32 @@ public class ActualTask
         set
         {
             status = value;
+        }
+    }
+
+    public bool Is_const
+    {
+        get
+        {
+            return is_const;
+        }
+
+        set
+        {
+            is_const = value;
+        }
+    }
+
+    public int Estimate_time
+    {
+        get
+        {
+            return estimate_time;
+        }
+
+        set
+        {
+            estimate_time = value;
         }
     }
 
@@ -360,6 +402,40 @@ public class ActualTask
         string statistics = JsonConvert.SerializeObject(ds.Tables[0]);
 
         return statistics;
+        #endregion
+
+
+    }
+
+    public string GetConstActualTasks()
+    {
+        #region DB functions
+
+
+        #region query 
+        // BuildMyString.com generated code. Please enjoy your string responsibly.
+
+        // BuildMyString.com generated code. Please enjoy your string responsibly.
+
+        string query = "select * from actual_tasks where is_const='True'";
+
+
+        #endregion
+        try
+        {
+            DbServices db = new DbServices();
+            DataSet ds = db.GetDataSetByQuery(query);
+            string const_actual_tasks = JsonConvert.SerializeObject(ds.Tables[0]);
+            return const_actual_tasks;
+        }
+
+        catch(Exception e)
+        {
+
+            throw (e);
+        }
+
+      
         #endregion
 
 

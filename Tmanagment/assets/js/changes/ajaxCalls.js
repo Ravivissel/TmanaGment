@@ -504,3 +504,14 @@ function setExpense(request, successCB, errorCB) {
         error: errorCB
     }); // end of ajax call
 }
+function GetConstActualTasks(successCB, errorCB) {
+
+    $.ajax({ // ajax call starts
+        url: 'TasksWS.asmx/GetConstActualTasks',         
+        type: 'POST',                              
+        dataType: 'json',                      
+        contentType: 'application/json; charset = utf-8', 
+        success: successCB,
+        error: errorCB
+    }); 
+}

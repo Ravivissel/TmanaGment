@@ -1,9 +1,45 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
 
     //generate select options
     generateAssignToRequestList();
     generateProjectManagerList();
     generateCustomersList();
+    generateConstTasks();
+
+
+    $(".last").on('change', function () {
+        console.log("dsadsa")
+    });
+
+    function generateConstTasks() {
+
+        GetConstActualTasks(GetConstActualTasksCB, GetConstActualTasksErrorCB)
+
+
+        function GetConstActualTasksCB(results) {
+
+            var results = $.parseJSON(results.d);
+            var tasks = JSON.stringify(results);
+            GENERAL.TASKS.setProjectsTasksList(tasks);
+
+
+            var constTasks = $('#constTasks');
+            $.each(results, function (val, result) {
+                var dynamicLi = "<li class='dd-item' data-id={id}><div class='dd-handle'>{title}</div></li>"
+                dynamicLi = dynamicLi.replace("{id}", result.id);
+                dynamicLi = dynamicLi.replace("{title}", result.title);
+                constTasks.append(
+                    dynamicLi
+                );
+            });
+        }
+        function GetConstActualTasksErrorCB(err) {
+
+            console.log(err);
+        }
+
+    }
 
     //Assign to Request                      
     function generateAssignToRequestList() {
@@ -156,6 +192,17 @@
     $('#customer_f_nameCB').change(function () {
         $('#customer2').val($('#customer_nameCB').val() + " " + $(this).val());
     });
+    $('#nestable_list_1').on('change',function () {
+
+        $("#finish_tasks").html('');
+        $('#finish_tasks').append($('#nestable_list_2').prop('outerHTML'));
+    });
+
+    $('#nestable_list_2').on('change', function () {
+
+        $("#finish_tasks").html('');
+        $('#finish_tasks').append($('#nestable_list_2').prop('outerHTML'));
+    });
 
     $('#wizard-validation-form').find('a[href="#finish"]').click(function () {
         var project_title = $("#project_title").val();
@@ -166,6 +213,14 @@
         var contact_phone = $("#contact_phone").val();
         var request_id = $("#request_id").val();
         var description = $("#description").val();
+
+        var tasks_to_update = $('.dd-item').toArray();
+        var tasks_list = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
+
+       
+
+
+
         //get the user id from session
         user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
         var created_by = user.Id;
