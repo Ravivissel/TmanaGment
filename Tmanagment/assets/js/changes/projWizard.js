@@ -20,13 +20,13 @@ $(document).ready(function () {
             var constTasks = $('#constTasks');
             $.each(results, function (val, result) {
                 var dynamicLi = "<li class='dd-item' id={id} data-id={data-id}><div class='dd-handle'>{title}</div></li>"
-                dynamicLi = dynamicLi.replace("{data-id}", result.id);
-                dynamicLi = dynamicLi.replace("{title}", result.title);
-                dynamicLi = dynamicLi.replace("{id}", "task" + result.id);
+                dynamicLi = dynamicLi.replace("{data-id}", result.Id);
+                dynamicLi = dynamicLi.replace("{title}", result.Title);
+                dynamicLi = dynamicLi.replace("{id}", "task" + result.Id);
                 constTasks.append(
                     dynamicLi
                 );
-                $("#task" + result.id).data("task", result);
+                $("#task" + result.Id).data("task", result);
             });
           
         }
@@ -212,7 +212,7 @@ $(document).ready(function () {
             tasks_array.push(($(v).data('task')))
         })
 
-        var string_tasks = tasks_array;
+        var string_tasks = JSON.stringify(tasks_array);
       
         //get the user id from session
         user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());

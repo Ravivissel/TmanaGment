@@ -98,10 +98,10 @@ public class ProjectWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void InsertNewProject(string project_title, int project_manager, string project_priority_num, string end_date, string contact_name, string contact_phone, int request_id, string description, int created_by, int customer_id, string customer_name, string customer_f_name, string customer_phone, object actual_tasks)
+    public void InsertNewProject(string project_title, int project_manager, string project_priority_num, string end_date, string contact_name, string contact_phone, int request_id, string description, int created_by, int customer_id, string customer_name, string customer_f_name, string customer_phone, string actual_tasks)
     {
+        List<ActualTask> actualTasksList = JsonConvert.DeserializeObject<List<ActualTask>>(actual_tasks);
 
-        var x = actual_tasks;
         DateTime project_end_date;
         project_end_date = DateTime.Parse(end_date);
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
@@ -111,7 +111,7 @@ public class ProjectWS : System.Web.Services.WebService
         emp_project_manager.Id = project_manager;
         Customer project_customer = new Customer();
 
-        DataSet ds = new DataSet();
+    
        
 
 
@@ -128,6 +128,18 @@ public class ProjectWS : System.Web.Services.WebService
         }
 
         Project p = new Project(project_title, description, project_customer, project_priority_num, request_id, emp_project_manager, created_at, project_end_date, contact_name, contact_phone, created_at, created_at, emp_creator);
-        p.SetProject();
+        List<ActualProjectTask> actualProjectTasksList = new List<ActualProjectTask>();
+
+        foreach (ActualTask at in actualTasksList)
+        {
+            ActualProjectTask apt = new ActualProjectTask();
+            apt.Actual_task = at;
+            apt.Project = p;
+
+            actualProjectTasksList.Add(apt);
+
+        }
+
+        p.SetProject(actualProjectTasksList);
     }
 }

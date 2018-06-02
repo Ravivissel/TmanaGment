@@ -470,7 +470,7 @@ public class Project
         return counter;
     }
 
-    public void SetProject()
+    public void SetProject(List<ActualProjectTask> actualProjectTasksList)
     {
         #region DB functions
         DbServices db = new DbServices();

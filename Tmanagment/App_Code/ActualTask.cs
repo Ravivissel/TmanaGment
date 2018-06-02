@@ -407,7 +407,7 @@ public class ActualTask
 
     }
 
-    public string GetConstActualTasks()
+    public List<ActualTask> GetConstActualTasks()
     {
         #region DB functions
 
@@ -425,8 +425,28 @@ public class ActualTask
         {
             DbServices db = new DbServices();
             DataSet ds = db.GetDataSetByQuery(query);
-            string const_actual_tasks = JsonConvert.SerializeObject(ds.Tables[0]);
-            return const_actual_tasks;
+            List<ActualTask> actList = new List<ActualTask>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                try
+                {   
+                    ActualTask at =new ActualTask();
+                    at.Id = Convert.ToInt32(dr["id"]);
+                    at.Title = dr["title"].ToString();
+                    at.Description = dr["description"].ToString();
+                    actList.Add(at);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    throw ex;
+                }
+            }
+
+
+          
+            return actList;
         }
 
         catch(Exception e)
