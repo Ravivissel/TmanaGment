@@ -19,14 +19,16 @@ $(document).ready(function () {
 
             var constTasks = $('#constTasks');
             $.each(results, function (val, result) {
-                var dynamicLi = "<li class='dd-item' data-id={id}><div class='dd-handle' data-task={task}>{title}</div></li>"
-                dynamicLi = dynamicLi.replace("{id}", result.id);
+                var dynamicLi = "<li class='dd-item' id={id} data-id={data-id}><div class='dd-handle'>{title}</div></li>"
+                dynamicLi = dynamicLi.replace("{data-id}", result.id);
                 dynamicLi = dynamicLi.replace("{title}", result.title);
-                dynamicLi = dynamicLi.replace("{task}", JSON.stringify(result));
+                dynamicLi = dynamicLi.replace("{id}", "task" + result.id);
                 constTasks.append(
                     dynamicLi
                 );
+                $("#task" + result.id).data("task", result);
             });
+          
         }
         function GetConstActualTasksErrorCB(err) {
 
@@ -190,6 +192,7 @@ $(document).ready(function () {
 
         $("#finish_tasks").html('');
         $('#finish_tasks').append($('#nestable_list_2').prop('outerHTML'));
+
     });
 
     $('#wizard-validation-form').find('a[href="#finish"]').click(function () {
@@ -201,7 +204,16 @@ $(document).ready(function () {
         var contact_phone = $("#contact_phone").val();
         var request_id = $("#request_id").val();
         var description = $("#description").val();
+        var finish_tasks_list = $("#nestable_list_2").children().children();
+        var tasks_array = []
 
+        finish_tasks_list.each(function (i, v) {
+            // push in fruits array, an array of data-fruit
+            tasks_array.push(($(v).data('task')))
+        })
+
+        var string_tasks = tasks_array;
+      
         //get the user id from session
         user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
         var created_by = user.Id;
@@ -219,7 +231,7 @@ $(document).ready(function () {
             var customer_id = -1;
         }
 
-        var request = { project_title: project_title, project_manager: project_manager, project_priority_num: project_priority_num, end_date: end_date, contact_name: contact_name, contact_phone: contact_phone, request_id: request_id, description: description, created_by: created_by, customer_id: customer_id, customer_name: customer_name, customer_f_name: customer_f_name, customer_phone: customer_phone };
+        var request = { project_title: project_title, project_manager: project_manager, project_priority_num: project_priority_num, end_date: end_date, contact_name: contact_name, contact_phone: contact_phone, request_id: request_id, description: description, created_by: created_by, customer_id: customer_id, customer_name: customer_name, customer_f_name: customer_f_name, customer_phone: customer_phone, actual_tasks: string_tasks };
         //call the ajax func
         insertNewProject(request, insertNewProjectCB, insertNewProjectErrorCB);
     });
