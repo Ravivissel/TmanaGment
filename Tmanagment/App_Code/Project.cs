@@ -498,11 +498,18 @@ public class Project
         }
         string project_statuses_query = "INSERT into projects_statuses(project_id, status_id, modified_by) values((select id from @output_projects)," + 3 + "," + Created_by.Id + ") ";
         string update_requests_statuses_query = "UPDATE requests_statuses SET status_id = '" + status_done + "', modified_by = '" + Created_by.Id + "' WHERE request_id = " + Request_id + " ";
-
+       
         query += customer_query + project_query + project_statuses_query + update_requests_statuses_query;
         query += "COMMIT";
 
         db.ExecuteQuery(query);
+
+        foreach(ActualProjectTask apt in actualProjectTasksList)
+        {
+
+            apt.SetTask("new");
+
+        }
 
         #endregion
     }
