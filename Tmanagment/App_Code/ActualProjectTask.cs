@@ -129,7 +129,7 @@ public class ActualProjectTask
     public ActualProjectTask GetProjectTask()
     {
         #region DB functions
-        string query = "select ats.status_id, at.id, at.title, at.description, at.end_date, at.assign_to, e.first_name, apt.project_id project_id from actual_tasks at " +
+        string query = "select ats.status_id, at.id, at.title, at.description, at.start_date, at.end_date, at.assign_to, e.first_name, apt.project_id project_id from actual_tasks at " +
             "inner join employees e on at.assign_to = e.id " +
             "inner join actual_project_task apt on at.id = actual_tasks_id " +
             "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
@@ -154,6 +154,7 @@ public class ActualProjectTask
                 task.Id = (int)dr["id"];
                 task.Title = dr["title"].ToString();
                 task.Description = dr["description"].ToString();
+                task.Start_date = (DateTime)dr["start_date"];
                 task.End_date = (DateTime)dr["end_date"];
                 emp.First_name = dr["first_name"].ToString();
                 emp.Id = (int)dr["assign_to"];
@@ -183,7 +184,7 @@ public class ActualProjectTask
         if (func == "edit")
         {
             //update the task
-            query = "UPDATE actual_tasks SET description = '" + actual_task.Description + "', title = '" + actual_task.Title + "', end_date = '" + actual_task.End_date + "', created_by = '" + actual_task.Created_by.Id + "', assign_to = '" + actual_task.Assign_to.Id + "' WHERE id = " + actual_task.Id;
+            query = "UPDATE actual_tasks SET description = '" + actual_task.Description + "', title = '" + actual_task.Title + "', start_date = '" + actual_task.Start_date + "', end_date = '" + actual_task.End_date + "', created_by = '" + actual_task.Created_by.Id + "', assign_to = '" + actual_task.Assign_to.Id + "' WHERE id = " + actual_task.Id;
             db.ExecuteQuery(query);
 
             //update the matching project task
@@ -197,7 +198,7 @@ public class ActualProjectTask
         else if (func == "new")
         {       
             //insert a new task
-            query = "insert into actual_tasks values ('" + actual_task.Description + "','" + actual_task.Title + "','" + actual_task.Start_date + "','" + actual_task.End_date + "','" + actual_task.Created_by.Id + "','" + actual_task.Assign_to.Id + "')";
+            query = "insert into actual_tasks (description, title, start_date, end_date, created_by, assign_to, is_const, created_at ) values ('" + actual_task.Description + "','" + actual_task.Title + "','" + actual_task.Start_date + "','" + actual_task.End_date + "','" + actual_task.Created_by.Id + "','" + actual_task.Assign_to.Id + "','0','" + actual_task.Created_at + "')";
             db.ExecuteQuery(query);
 
             //get the task id

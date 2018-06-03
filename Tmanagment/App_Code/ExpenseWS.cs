@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.Services;
 
 /// <summary>
@@ -21,6 +22,27 @@ public class ExpenseWS : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public string GetProjectExpenses(int projectId)
+    {
+        try
+        {
+            JavaScriptSerializer j = new JavaScriptSerializer();
+            ActualProjectExpense actualProjectExpense = new ActualProjectExpense();
+            List<ActualProjectExpense> allProjectsExpensesList = actualProjectExpense.GetProjectExpensesList(projectId);
+            //string allProjectsTasksListJson = JsonConvert.SerializeObject(allProjectsTasksList, new IsoDateTimeConverter());
+            //return allProjectsTasksListJson;
+            return j.Serialize(allProjectsExpensesList);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+    }
+
+    [WebMethod]
     public void SetActualProjectExpense(string expense_desc, int expense_assign_to, int expense_type, int expense_amount, string expense_img_name, int created_by)
     {
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
@@ -37,6 +59,16 @@ public class ExpenseWS : System.Web.Services.WebService
         Expense expense = new Expense(expense_desc, expense_type, expense_amount, imgUrl, emp_creator, created_at);
         ActualProjectExpense actualProjectExpense = new ActualProjectExpense(project, expense);
         actualProjectExpense.SetExpense();
+    }
+
+    [WebMethod]
+    public void DeactivateExpense(int expenseID, string active)
+    {
+        Expense expense = new Expense
+        {
+            Id = expenseID
+        };
+        expense.DeactivateExpense(active);
     }
 
 }

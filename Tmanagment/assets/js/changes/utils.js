@@ -29,6 +29,20 @@ $(document).on('click', '#newCustomerForm', function () {
     //location.href = "customerForm.html";
 });
 
+$(document).on('click', '#newUserForm', function () {
+    var userID = -1;
+    var arr_details = { userID: userID, func: "new" };
+    GENERAL.USERS.setUser(JSON.stringify(arr_details));
+    //location.href = "userForm.html";
+});
+
+$(document).on('click', '#profile', function () {
+    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    var arr_details = { userID: user.Id, func: "edit" };
+    GENERAL.USERS.setUser(JSON.stringify(arr_details));
+    location.href = "userForm.html";
+});
+
 $(document).on('click', '#logOut', function () {
     deleteCookie();
 });

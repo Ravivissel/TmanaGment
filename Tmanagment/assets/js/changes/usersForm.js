@@ -1,10 +1,10 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     if (JSON.parse(GENERAL.USERS.getUser())) {
         arr_user = JSON.parse(GENERAL.USERS.getUser());
         if (arr_user.func == "edit") {
             updateUserRoute(arr_user.userID);
         }
+        else newUserRoute();
     }
     else {
         newUserRoute();
@@ -12,8 +12,8 @@ $(document).ready(function () {
 
 });
 
-
 function newUserRoute() {
+    $("#back").prop('hidden', true);
     setNewUserFromForm();
 
     function setNewUserFromForm() {
@@ -123,23 +123,22 @@ function updateUserRoute(userID) {
     updateExistingUserFromForm(userID);
 
     function getCustomerCB(result) {
-
         var resultObj = $.parseJSON(result.d);
         setEmployeeToForm(resultObj[0])
-
     }
+
     function getCustomerErrorCB(err) {
 
-
     }
+
     function setEmployeeToForm(employee) {
         $("#firstName").val(employee.First_name);
         $("#lastName").val(employee.Last_name);
         $("#userName").val(employee.User_name);
         $("#title").val(employee.Title);
         $("#phoneNumber").val(employee.Phone_number);
-
     }
+
     function updateEmployeeCB(result) {
         var resultObj = JSON.parse(result.d);
         if (resultObj != null && resultObj.success) {
@@ -150,11 +149,12 @@ function updateUserRoute(userID) {
         }
         GENERAL.USERS.setUser(null);
     }
-    function updateEmployeeError(err) {
 
+    function updateEmployeeError(err) {
         sweetAlertError();
         console.log(err);
     }
+
     function updateExistingUserFromForm(userId) {
         var $serviceForm = $('#form').validate({
 
@@ -234,6 +234,7 @@ function getEmployeeFromUserInput() {
     tmpEmployee.password = $("#password").val();
     return tmpEmployee;
 }
+
 function sweetAlertError() {
     swal({
         title: "שמירת המשתמש נכשלה",
@@ -242,6 +243,7 @@ function sweetAlertError() {
         showConfirmButton: false
     });
 }
+
 function sweetAlertSuccess() {
     swal({
         title: "נשמר",
@@ -250,6 +252,7 @@ function sweetAlertSuccess() {
         showConfirmButton: false
     });
 }
+
 function returnToEmployeesPage() {
     location.href = "users.html";
 }

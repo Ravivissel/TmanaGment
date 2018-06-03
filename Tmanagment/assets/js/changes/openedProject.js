@@ -60,6 +60,7 @@ $(document).ready(function () {
             };
             GetProject(request, getProjectCB, getProjectError);
             getProjectTasksList(request, getProjectTasksListCB, getProjectTasksListErrorCB);
+            getProjectExpenses(request, getProjectExpensesCB, getProjectExpensesErrorCB);
         }
         catch (err) {
             console.log(err);
@@ -322,7 +323,6 @@ $(document).ready(function () {
 
         $('#datatable-buttons_filter').find('label').css({ "float": "left" });
 
-
         //Buttons examples
         $.each(allProjectsTasks, function (index, row) {
 
@@ -346,14 +346,14 @@ $(document).ready(function () {
 
         $('#datatable-buttons tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "show" };
+            arr_details = { taskID: data[0], func: "show", proj: "proj" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
             location.href = "taskForm.html";
         });
 
         $('#datatable-buttons tbody').on('click', '#edit', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "edit" };
+            arr_details = { taskID: data[0], func: "edit", proj: "proj" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
             location.href = "taskForm.html";
         });
@@ -412,7 +412,7 @@ $(document).ready(function () {
     }
 
     $(document).on('click', '#newExpense', function () {
-        $("#expense_assign_to").val($("#project_id").val());
+        $("#expense_assign_to").val($("#project_title").val());
     });
 
     $("#expenseForm").submit(function (e) {
@@ -443,7 +443,7 @@ $(document).ready(function () {
             event.preventDefault();
 
             var expense_desc = $("#expense_desc").val();
-            var expense_assign_to = $("#expense_assign_to").val();
+            var expense_assign_to = $("#project_id").val();
             var expense_type = $("#expense_type option:selected").val();
             var expense_amount = $("#expense_amount").val();
             var expense_img_name = $("#expense_img").val();
@@ -493,6 +493,138 @@ $(document).ready(function () {
 
     function returnToOpenProjectPage() {
         location.href = "openedProject.html";
+    }
+
+    function getProjectExpensesCB(results) {
+        allProjectsExpenses = $.parseJSON(results.d);
+        renderAllProjectsExpensesTable(allProjectsExpenses);
+    }
+
+    function getProjectExpensesErrorCB(error) {
+        console.log(error);
+    }
+
+    function renderAllProjectsExpensesTable(allProjectsExpenses) {
+
+        ProjectsExpensesTable = $('#datatable-buttons2').DataTable({
+            lengthChange: false,
+            buttons: ['copy', 'excel', 'pdf'],
+            "oLanguage": {
+                "sSearch": "<span>חיפוש:</span> _INPUT_", //search
+                "sProcessing": "מעבד...",
+                "sLengthMenu": "הצג _MENU_ פריטים",
+                "sZeroRecords": "לא נמצאו רשומות מתאימות",
+                "sInfo": "_START_ עד _END_ מתוך _TOTAL_ רשומות",
+                "sInfoEmpty": "0 עד 0 מתוך 0 רשומות",
+                "sInfoFiltered": "(מסונן מסך _MAX_  רשומות)",
+                "sInfoPostFix": "",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "ראשון",
+                    "sPrevious": "הקודם",
+                    "sNext": "הבא",
+                    "sLast": "אחרון"
+                }
+            }
+        });
+
+        $('#datatable-buttons2_filter').find('label').css({ "float": "left" });
+
+        total_expenses = 0;
+
+        //Buttons examples
+        $.each(allProjectsExpenses, function (index, row) {
+
+            var btnStr = "";
+            if (row.Expense.Active == "Y") {
+                var deleteBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-danger btn-sm m-b-5' id='remove' title='מחק'><i class='fa fa-remove' ></i></button>";
+                btnStr += deleteBtn;
+                total_expenses += row.Expense.Amount;
+            }
+            else {
+                var reactiveBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='שחזר'><i class='fa fa-undo' ></i></button>";
+                btnStr += reactiveBtn;
+            }
+
+            var created_date = new Date(parseInt(row.Expense.Created_at.replace('/Date(', '')));
+            created_date = created_date.toLocaleDateString("he-IL");
+
+            if (row.Expense.Type == 1) {
+                typeName = "תקורה";
+            }
+            else if (row.Expense.Type == 2) {
+                typeName = "חנייה";
+            }
+            else if (row.Expense.Type == 3) {
+                typeName = "דלק";
+            }
+            else typeName = "אחר";
+
+            ProjectsExpensesTable.row.add([row.Expense.Id, row.Expense.Description, row.Project.Title, row.Expense.Created_by.First_name, created_date, typeName, row.Expense.Amount, btnStr]).draw("false");
+        });
+
+        $('#datatable-buttons2 tbody').on('click', '#remove', function () {
+            var data = ProjectsExpensesTable.row($(this).parents('tr')).data();
+            swal({
+                title: "אתה בטוח שברצונך למחוק את ההוצאה?",
+                type: "warning",
+                text: data[1],
+                showCancelButton: true,
+                cancelButtonText: "ביטול",
+                confirmButtonClass: 'btn-warning',
+                confirmButtonText: "אישור",
+                closeOnConfirm: false
+            }, function () {
+                deactivateExpense(data[0], 'N');
+                swal({
+                    title: "ההוצאה נמחקה",
+                    timer: 1000,
+                    type: "success",
+                    showConfirmButton: false
+                });
+                setTimeout(function () { refreshPage() }, 1001);
+            });
+        });
+
+        $('#datatable-buttons2 tbody').on('click', '#reactive', function () {
+            var data = ProjectsExpensesTable.row($(this).parents('tr')).data();
+            swal({
+                title: "אתה בטוח שברצונך לשחזר את ההוצאה?",
+                type: "warning",
+                text: data[1],
+                showCancelButton: true,
+                cancelButtonText: "ביטול",
+                confirmButtonClass: 'btn-warning',
+                confirmButtonText: "אישור",
+                closeOnConfirm: false
+            }, function () {
+                deactivateExpense(data[0], 'Y');
+                swal({
+                    title: "ההוצאה שוחזרה",
+                    timer: 1000,
+                    type: "success",
+                    showConfirmButton: false
+                });
+                setTimeout(function () { refreshPage() }, 1001);
+            });
+        });
+
+        ProjectsExpensesTable.buttons().container()
+            .appendTo('#datatable-buttons2_wrapper .col-md-6:eq(0)');
+
+        $("#total_expenses").val(total_expenses);
+    }
+
+    function refreshPage() {
+        location.href = "openedProject.html";
+    }
+
+    function deactivateExpense(expenseID, active) {
+        var request = {
+            expenseID: expenseID,
+            active: active
+        };
+        DeactivateExpense(request);
     }
 
 });

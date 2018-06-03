@@ -495,12 +495,60 @@ function setExpense(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ExpenseWS.cs.asmx/SetActualProjectExpense',       // server side web service method
+        url: 'ExpenseWS.asmx/SetActualProjectExpense',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         contentType: 'application/json; charset = utf-8', // sent to the server
         success: successCB,                // data.d id the Variable data contains the data we get from serverside
         error: errorCB
+    }); // end of ajax call
+}
+
+function getProjectExpenses(request, successCB, errorCB) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'ExpenseWS.asmx/GetProjectExpenses',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
+}
+
+function ActivateProject(request) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'ProjectWS.asmx/ActivateProject',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: function (data) { },                // data.d id the Variable data contains the data we get from serverside
+        error: function (err) { alert("Error"); }
+    }); // end of ajax call
+}
+
+function DeactivateExpense(request) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'ExpenseWS.asmx/DeactivateExpense',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: function (data) { },                // data.d id the Variable data contains the data we get from serverside
+        error: function (err) { alert("Error"); }
     }); // end of ajax call
 }

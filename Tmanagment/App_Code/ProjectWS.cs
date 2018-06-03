@@ -123,4 +123,14 @@ public class ProjectWS : System.Web.Services.WebService
         Project p = new Project(project_title, description, project_customer, project_priority_num, request_id, emp_project_manager, created_at, project_end_date, contact_name, contact_phone, created_at, created_at, emp_creator);
         p.SetProject();
     }
+
+    [WebMethod]
+    public void ActivateProject(int projectID)
+    {
+        Project project = new Project
+        {
+            Id = projectID
+        };
+        project.ActivateProject();
+    }
 }

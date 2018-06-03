@@ -83,7 +83,7 @@
                             <div class="card-box">
                                 <h4 class="header-title m-t-0">טופס משימה</h4>
                                 <p class="text-muted font-14 m-b-20">
-                                    יצירה, צפייה ועריכת משימה. לחץ על כפתור חזור בכדי לצפות בכל המשימות.
+                                    יצירה, צפייה ועריכת משימה.
                                 </p>
                                 <div class="text-right m-b-30 m-r-5">
                                     <button type="button" id="backButton" onclick="returnToTasksPage()" class="btn btn-secondary waves-effect w-md m-b-5 m-r-15"><i class="ti-back-right m-r-5"></i>חזור</button>
@@ -91,8 +91,14 @@
                                 <form class="form-horizontal" role="form" id="taskForm">
                                     <div class="form-group row">
                                         <label class="control-label col-sm-2">שם המשימה:</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" id="task_title" name="task_title" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2">תאריך התחלה:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" placeholder="dd.mm.yyyy" class="form-control" id="start_date" name="start_date">
                                         </div>
                                         <label class="control-label col-sm-2">תאריך יעד:</label>
                                         <div class="col-sm-3">
@@ -234,6 +240,10 @@
                     assign_to: {
                         required: true
                     },
+                    start_date: {
+                        required: true,
+                        greaterThan: ["#start_date", "תאריך התחלת המשימה"]
+                    },
                     end_date: {
                         required: true
                     },
@@ -254,6 +264,7 @@
 
                     var description = $("#description").val();
                     var task_title = $("#task_title").val();
+                    var start_date = moment($("#start_date").datepicker('getDate')).format();
                     var end_date = moment($("#end_date").datepicker('getDate')).format();
                     var assign_to = $("#assign_to option:selected").val();
                     //get the user id from session
@@ -285,7 +296,7 @@
                             taskID = arr_project_task.taskID;
                         }
                         var assign_to_project = $("#assign_to_project option:selected").val();
-                        var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_project: assign_to_project, description: description, created_by: created_by, status: status, func: func };
+                        var request = { taskID: taskID, task_title: task_title, start_date: start_date, end_date: end_date, assign_to: assign_to, assign_to_project: assign_to_project, description: description, created_by: created_by, status: status, func: func };
                         //call the ajax func
                         insertNewProjectTask(request, insertNewTaskCB, insertNewTaskErrorCB);
                     }
@@ -314,7 +325,7 @@
                             taskID = arr_request_task.taskID;
                         }
                         var assign_to_request = $("#assign_to_request option:selected").val();
-                        var request = { taskID: taskID, task_title: task_title, end_date: end_date, assign_to: assign_to, assign_to_request: assign_to_request, description: description, created_by: created_by, status: status, func: func };
+                        var request = { taskID: taskID, task_title: task_title, start_date: start_date, end_date: end_date, assign_to: assign_to, assign_to_request: assign_to_request, description: description, created_by: created_by, status: status, func: func };
                         //call the ajax func
                         insertNewRequestTask(request, insertNewTaskCB, insertNewTaskErrorCB);
                     }
@@ -327,6 +338,9 @@
                     },
                     assign_to: {
                         required: "אנא בחר עובד"
+                    },
+                    start_date: {
+                        required: "אנא בחר תאריך התחלה"
                     },
                     end_date: {
                         required: "אנא בחר תאריך יעד"
@@ -342,6 +356,14 @@
                     }
                 }
             });
+
+            jQuery.validator.addMethod("greaterThan", function () {
+                var End_date = $("#end_date").datepicker('getDate');
+                var Start_date = $("#start_date").datepicker('getDate');
+
+                return End_date >= Start_date;
+
+            }, 'תאריך יעד המשימה חייב להיות מוגדר לאחר או באותו תאריך ההתחלה');
 
             function insertNewTaskCB(result) {
                 swal({
@@ -379,6 +401,14 @@
 
         //DatePicker end_date
         jQuery('#end_date').datepicker({
+            toggleActive: true,
+            clearBtn: true,
+            autoclose: true,
+            format: 'dd.mm.yyyy'
+        });
+
+        //DatePicker end_date
+        jQuery('#start_date').datepicker({
             toggleActive: true,
             clearBtn: true,
             autoclose: true,

@@ -15,6 +15,7 @@ public class ActualTask
     private string title;
     private DateTime start_date;
     private DateTime end_date;
+    private DateTime created_at;
     private Employee created_by;
     private Employee assign_to;
     private Status status;
@@ -54,6 +55,19 @@ public class ActualTask
         this.title = title;
         this.start_date = start_date;
         this.end_date = end_date;
+        this.created_by = created_by;
+        this.assign_to = assign_to;
+        this.status = status;
+    }
+
+    public ActualTask(int id, string description, string title, DateTime start_date, DateTime end_date, DateTime created_at, Employee created_by, Employee assign_to, Status status)
+    {
+        this.id = id;
+        this.description = description;
+        this.title = title;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.created_at = created_at;
         this.created_by = created_by;
         this.assign_to = assign_to;
         this.status = status;
@@ -160,6 +174,19 @@ public class ActualTask
         set
         {
             status = value;
+        }
+    }
+
+    public DateTime Created_at
+    {
+        get
+        {
+            return created_at;
+        }
+
+        set
+        {
+            created_at = value;
         }
     }
 

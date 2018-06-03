@@ -9,6 +9,7 @@ $(document).ready(function () {
     if (JSON.parse(GENERAL.TASKS.getProjectsTasksList()).length != 0) {
         arr_project_task = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
         if (arr_project_task.func == "edit" || arr_project_task.func == "show") {
+            if (arr_project_task.proj = "proj") { $("#backButton").prop('hidden', true); }
             var taskID = 1;
             var arr_details = { taskID: taskID, func: "new" };
             localStorage.arr_project_task = JSON.stringify(arr_details);
@@ -19,6 +20,7 @@ $(document).ready(function () {
             uploadProjectTaskData(arr_project_task.taskID);
             if (arr_project_task.func == "show") {
                 $("#task_title").attr('disabled', 'disabled');
+                $("#start_date").attr('disabled', 'disabled');
                 $("#end_date").attr('disabled', 'disabled');
                 $("#status").attr('disabled', 'disabled');
                 $("#assign_to").attr('disabled', 'disabled');
@@ -44,6 +46,7 @@ $(document).ready(function () {
             uploadRequestTaskData(arr_request_task.taskID);
             if (arr_request_task.func == "show") {
                 $("#task_title").attr('disabled', 'disabled');
+                $("#start_date").attr('disabled', 'disabled');
                 $("#end_date").attr('disabled', 'disabled');
                 $("#status").attr('disabled', 'disabled');
                 $("#assign_to").attr('disabled', 'disabled');
@@ -94,6 +97,10 @@ $(document).ready(function () {
             if (arr_AssignToProject[i].Status.Title != "סגור") {
                 $('<option>', { value: arr_AssignToProject[i].Id, text: arr_AssignToProject[i].Title }).appendTo($select);
             }
+            else {
+                $('<option>', { value: arr_AssignToProject[i].Id, text: arr_AssignToProject[i].Title + " - סגור" }).attr({ 'disabled': '' }).appendTo($select);
+
+            }
         }
     }
 
@@ -121,6 +128,10 @@ $(document).ready(function () {
             if (arr_AssignToRequest[i].Status.Title != "סגורה") {
                 $('<option>', { value: arr_AssignToRequest[i].Id, text: arr_AssignToRequest[i].Title }).appendTo($select);
             }
+            else {
+                $('<option>', { value: arr_AssignToRequest[i].Id, text: arr_AssignToRequest[i].Title + " - סגורה" }).attr({ 'disabled': '' }).appendTo($select);
+
+            }
         }
     }
 
@@ -141,16 +152,20 @@ $(document).ready(function () {
         var projectTask = JSON.parse(TaskData.d);
         GENERAL.TASKS.setProjectsTasksList(projectTask);
 
+        var s_date = new Date(moment(projectTask.Actual_task.Start_date).format());
+        s_date = s_date.toLocaleDateString("he-IL");
+
         var e_date = new Date(moment(projectTask.Actual_task.End_date).format());
         e_date = e_date.toLocaleDateString("he-IL");
 
         selected = 1;
         $("#proj_req_assign").val(selected);
         $("#task_title").val(projectTask.Actual_task.Title);
+        $("#start_date").datepicker('setDate', s_date);
         $("#end_date").datepicker('setDate', e_date);
         $("#task_id").val(projectTask.Actual_task.Id);
         $("#status").val(projectTask.Actual_task.Status.Id);
-        $("#assign_to").val(projectTask.Actual_task.Assign_to.Id); //needs to be changed
+        $("#assign_to").val(projectTask.Actual_task.Assign_to.Id);
         $("#assign_to_project").val(projectTask.Project.Id);
         $("#description").val(projectTask.Actual_task.Description);
     }
@@ -172,16 +187,20 @@ $(document).ready(function () {
         var requestTask = JSON.parse(TaskData.d);
         GENERAL.TASKS.setRequestsTasksList(requestTask);
 
+        var s_date = new Date(moment(requestTask.Actual_task.Start_date).format());
+        s_date = s_date.toLocaleDateString("he-IL");
+
         var e_date = new Date(moment(requestTask.Actual_task.End_date).format());
         e_date = e_date.toLocaleDateString("he-IL");
 
         selected = 2;
         $("#proj_req_assign").val(selected);
         $("#task_title").val(requestTask.Actual_task.Title);
+        $("#start_date").datepicker('setDate', s_date);
         $("#end_date").datepicker('setDate', e_date);
         $("#task_id").val(requestTask.Actual_task.Id);
         $("#status").val(requestTask.Actual_task.Status.Id);
-        $("#assign_to").val(requestTask.Actual_task.Assign_to.Id); //needs to be changed
+        $("#assign_to").val(requestTask.Actual_task.Assign_to.Id);
         $("#assign_to_request").val(requestTask.Request.Id);
         $("#description").val(requestTask.Actual_task.Description);
     }
