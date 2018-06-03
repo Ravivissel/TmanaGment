@@ -582,7 +582,7 @@ $(document).ready(function () {
                     type: "success",
                     showConfirmButton: false
                 });
-                setTimeout(function () { refreshPage() }, 1001);
+                setTimeout(function () { refreshPage(); }, 1001);
             });
         });
 
@@ -605,7 +605,7 @@ $(document).ready(function () {
                     type: "success",
                     showConfirmButton: false
                 });
-                setTimeout(function () { refreshPage() }, 1001);
+                setTimeout(function () { refreshPage(); }, 1001);
             });
         });
 

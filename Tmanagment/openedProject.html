@@ -338,7 +338,8 @@
                                         </p>
                                     </div>
                                     <div class="col-md-4 text-right">
-                                        <button type="button" id="newExpense" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal"><span class="fa fa-plus-circle m-r-5"></span>חדש</button>
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-danger btn-sm m-b-5' id='remove' title='מחק'><i class='fa fa-remove'></i></button> מחק
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='שחזר'><i class='fa fa-undo'></i></button> שחזר
                                     </div>
                                 </div>
                                 <div class="row">
@@ -347,6 +348,9 @@
                                             <label for="total_expenses" class="control-label">סה"כ הוצאות לפרוייקט:</label>
                                             <input class="form-control" id="total_expenses" name="total_expenses" disabled="disabled">
                                         </div>
+                                    </div>
+                                    <div class="col-md-9 text-right m-b-30">
+                                        <button type="button" id="newExpense" class="btn btn-success waves-effect w-md waves-light m-b-5" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle m-r-5"></i>חדש</button>
                                     </div>
                                     <table id="datatable-buttons2" class="table table-striped table-bordered" data-pattern="priority-columns">
                                         <thead>
@@ -425,7 +429,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="expense_img" class="control-label" style="float:right">הוסף תמונה</label>
-                                    <input type="file" class="form-control" id="expense_img" placeholder="">
+                                    <input type="file" accept="image/*" class="form-control" id="expense_img" placeholder="">
                                 </div>
                             </div>
                         </div>
