@@ -15,6 +15,7 @@ public class ActualTask
     private string title;
     private DateTime start_date;
     private DateTime end_date;
+    private DateTime created_at;
     private Employee created_by;
     private Employee assign_to;
     private Status status;
@@ -202,6 +203,19 @@ public class ActualTask
         set
         {
             estimate_time = value;
+        }
+    }
+
+    public DateTime Created_at
+    {
+        get
+        {
+            return created_at;
+        }
+
+        set
+        {
+            created_at = value;
         }
     }
 
