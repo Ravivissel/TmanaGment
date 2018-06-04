@@ -116,12 +116,39 @@ $(document).ready(function () {
             $("#contact_phone").val(project.Contact_phone);
             $("#status").val(project.Status.Id);
             $("#description").val(project.Description);
+            $("#timeline" + project.Status.Id).click();
+            $(".state").addClass("isDisabled");
+          
+
         }
         catch (err) {
             console.log(err);
             throw err;
         }
     }
+    $(".state").on('click', function (event) {
+        {
+
+            if ($(".state").hasClass("isDisabled")) {
+                event.stopImmediatePropagation();
+                event.preventDefault();
+            }
+
+
+            else {
+
+
+                $("#status").val($(event.target).attr('id').replace("timeline",""));
+
+            }
+
+        }
+    });
+    $("#status").on('change', function(){
+
+        var statusId = $("#status").val();
+        $("#timeline" + statusId).click();
+    });
 
     $(document).on('click', '#editButton', function () {
         var hidden = false;
@@ -276,6 +303,14 @@ $(document).ready(function () {
         $("#saveButton").prop('hidden', state);
         $("#editButton").hide();
         $("#cancelButton").prop('hidden', state);
+
+        if (state == false) {
+            $(".state").removeClass("isDisabled");
+        }
+        else {
+
+            $(".state").addClass("isDisabled");
+        }
     }
 
     function getProjectError(error) {

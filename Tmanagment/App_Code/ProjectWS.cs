@@ -138,6 +138,7 @@ public class ProjectWS : System.Web.Services.WebService
             apt.Actual_task.Assign_to = emp_project_manager;
             apt.Project = p;
             actualProjectTasksList.Add(apt);
+<<<<<<< HEAD
         }
         p.SetProject(actualProjectTasksList);
     }
@@ -172,5 +173,9 @@ public class ProjectWS : System.Web.Services.WebService
             return ex.ToString();
         }
 
+=======
+        }
+        p.SetProject(actualProjectTasksList);
+>>>>>>> wizardFinal3
     }
 }

@@ -214,9 +214,18 @@
         var tasks_array = [];
 
         finish_tasks_list.each(function (i, v) {
+<<<<<<< HEAD
             // push in tasks array, an array of data-tasks
             tasks_array.push($(v).data('task'));
         });
+=======
+            tasks_array.push(($(v).data('task')))
+            var user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+            tasks_array[i].Created_by = user;
+            
+        });
+
+>>>>>>> wizardFinal3
 
         var string_tasks = JSON.stringify(tasks_array);
       
