@@ -472,10 +472,12 @@ public class Project
 
     public void SetProject(List<ActualProjectTask> actualProjectTasksList)
     {
+        Status tmpStatus = new Status();
 
         #region DB functions
 
         const string open_task_title_status = "פתוחה";
+        const string open_project_title_status = "פתוח";
 
         DbServices db = new DbServices();
         string query = "";
@@ -495,7 +497,7 @@ public class Project
             customer_query = "";
             project_query = "insert into projects OUTPUT INSERTED.ID into @output_projects(id) values ('" + title + "','" + description + "','" + Customer_id.Id + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "') ";
         }
-        string project_statuses_query = "INSERT into projects_statuses(project_id, status_id, modified_by) values((select id from @output_projects)," + 3 + "," + Created_by.Id + ") ";
+        string project_statuses_query = "INSERT into projects_statuses(project_id, status_id, modified_by) values((select id from @output_projects)," + tmpStatus.GetStatus(open_project_title_status).Id + "," + Created_by.Id + ") ";
         string update_requests_statuses_query = "UPDATE requests_statuses SET status_id = '" + status_done + "', modified_by = '" + Created_by.Id + "' WHERE request_id = " + Request_id + " ";
        
         query += customer_query + project_query + project_statuses_query + update_requests_statuses_query;
@@ -505,7 +507,6 @@ public class Project
 
         foreach (ActualProjectTask apt in actualProjectTasksList)
         {
-            Status tmpStatus = new Status();
             apt.Actual_task.Status = tmpStatus.GetStatus(open_task_title_status);
             apt.Project.Id = Convert.ToInt32(db.Ga("projects"));
             apt.SetTask("new");
