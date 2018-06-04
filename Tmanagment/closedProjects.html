@@ -9,9 +9,9 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <title>ארכיון</title>
-    
+
     <script>
-           var resizefunc = [];
+        var resizefunc = [];
     </script>
 
     <!-- Plugins  -->
@@ -27,6 +27,9 @@
     <script src="assets/js/jquery.nicescroll.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="./plugins/switchery/switchery.min.js"></script>
+
+    <!-- Sweet Alert css -->
+    <link href="./plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css" />
 
     <!-- Required datatable js -->
     <script src="./plugins/datatables/jquery.dataTables.min.js"></script>
@@ -84,7 +87,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
     <!--- Page Scripts Dependencies!-->
     <script src="assets/js/CookiesFunctions.js"></script>
     <script src="assets/js/changes/utils.js"></script>
@@ -128,11 +130,12 @@
                                     <div class="col-md-8">
                                         <h4 class="m-t-0 header-title">ארכיון הפרוייקטים</h4>
                                         <p class="text-muted font-14 m-b-30">
-                                            צפייה בפרוייקטים שהושלמו. לחץ על כפתור הצפייה על מנת לצפות בפרטים נוספים.
+                                            צפייה בפרוייקטים שהושלמו.
                                         </p>
                                     </div>
                                     <div class="col-md-4 text-right">
                                         <button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button> צפייה
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='הפוך לפעיל'><i class='fa fa-undo'></i></button> הפוך לפעיל
                                     </div>
                                 </div>
                                 <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0">
@@ -148,15 +151,15 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody> 
+                                    <tbody>
                                         <!--dynamic add of the closed projects-->
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <!-- end row         
-        <!-- end content -->
+                    <!-- end row
+                    <!-- end content -->
 
 
                 </div>
@@ -164,6 +167,9 @@
         </div>
     </div>
     <!-- END wrapper -->
+    <!-- Sweet Alert js -->
+    <script src="../plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
+    <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
     <!-- Custom main Js -->
     <script src="assets/js/jquery.core.js"></script>

@@ -86,8 +86,10 @@ public class TasksWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void SetActualProjectTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_project, string description, int created_by, int status, string func)
+    public void SetActualProjectTask(int taskID, string task_title, string start_date, string end_date, int assign_to, int assign_to_project, string description, int created_by, int status, string func)
     {
+        DateTime task_start_date;
+        task_start_date = DateTime.Parse(start_date);
         DateTime task_end_date;
         task_end_date = DateTime.Parse(end_date);
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
@@ -100,7 +102,7 @@ public class TasksWS : System.Web.Services.WebService
 
         Project project = new Project();
         project.Id = assign_to_project;
-        ActualTask actualTask = new ActualTask(taskID, description, task_title, created_at, task_end_date, emp_creator, emp_assign_to, taskStatus);
+        ActualTask actualTask = new ActualTask(taskID, description, task_title, task_start_date, task_end_date, created_at, emp_creator, emp_assign_to, taskStatus);
         ActualProjectTask actualProjectTask = new ActualProjectTask(project, actualTask);
         actualProjectTask.SetTask(func);
     }
@@ -130,8 +132,10 @@ public class TasksWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void SetActualRequestTask(int taskID, string task_title, string end_date, int assign_to, int assign_to_request, string description, int created_by, int status, string func)
+    public void SetActualRequestTask(int taskID, string task_title, string start_date, string end_date, int assign_to, int assign_to_request, string description, int created_by, int status, string func)
     {
+        DateTime task_start_date;
+        task_start_date = DateTime.Parse(start_date);
         DateTime task_end_date;
         task_end_date = DateTime.Parse(end_date);
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
@@ -145,7 +149,7 @@ public class TasksWS : System.Web.Services.WebService
         Request request = new Request();
         request.Id = assign_to_request;
 
-        ActualTask actualTask = new ActualTask(taskID, description, task_title, created_at, task_end_date, emp_creator, emp_assign_to, taskStatus);
+        ActualTask actualTask = new ActualTask(taskID, description, task_title, task_start_date, task_end_date, created_at, emp_creator, emp_assign_to, taskStatus);
         ActualRequestTask actualRequestTask = new ActualRequestTask(request, actualTask);
         actualRequestTask.SetTask(func);
     }

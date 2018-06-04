@@ -16,6 +16,7 @@ public class Expense
     private string img_url;
     private Employee created_by;
     private DateTime created_at;
+    private string active;
 
     public Expense()
     {
@@ -43,6 +44,18 @@ public class Expense
         this.Img_url = img_url;
         this.Created_by = created_by;
         this.Created_at = created_at;
+    }
+
+    public Expense(int id, string description, int type, int amount, string img_url, Employee created_by, DateTime created_at, string active)
+    {
+        this.id = id;
+        this.description = description;
+        this.type = type;
+        this.amount = amount;
+        this.img_url = img_url;
+        this.created_by = created_by;
+        this.created_at = created_at;
+        this.active = active;
     }
 
     public int Id
@@ -134,5 +147,26 @@ public class Expense
         {
             created_at = value;
         }
+    }
+
+    public string Active
+    {
+        get
+        {
+            return active;
+        }
+
+        set
+        {
+            active = value;
+        }
+    }
+
+    public void DeactivateExpense(string active)
+    {
+        #region DB functions
+        DbServices db = new DbServices();
+        db.ExecuteQuery("UPDATE expenses SET active = '" + active + "' WHERE id = " + Id);
+        #endregion
     }
 }

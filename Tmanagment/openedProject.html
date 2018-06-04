@@ -16,6 +16,7 @@
     <link href="plugins/horizontal-timeline-master/css/style.css" rel="stylesheet" />
 
     <!-- Sweet Alert css -->
+    <link href="./plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css" />
     <link href="./plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
     <link href="./plugins/custombox/dist/custombox.min.css" rel="stylesheet">
@@ -43,7 +44,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
     <!-- Plugins  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -108,6 +108,7 @@
 
     <!-- Sweet Alert Js  -->
     <script src="./plugins/sweet-alert/sweetalert2.min.js"></script>
+    <script src="../plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
     <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
     <!--DatePicker css-->
@@ -163,7 +164,7 @@
                             <div class="card-box">
                                 <h4 class="header-title m-t-0">פרטי הפרוייקט</h4>
                                 <p class="text-muted font-14 m-b-20">
-                                    צפייה ועריכת פרוייקט. לחץ על כפתור חזור על מנת לצפות בכל הפרוייקטים.
+                                    צפייה ועריכת פרוייקט. לחץ על כפתור חזור על מנת לצפות בכל הפרוייקטים הפתוחים.
                                 </p>
 
                                 <!-- Timeline start-->
@@ -172,14 +173,14 @@
                                         <div class="events-wrapper">
                                             <div class="events">
                                                 <ol>
-                                                    <li><a href="" data-date="16/01/2014" class="selected">פתוח</a></li>
-                                                    <li><a href="" data-date="28/02/2014">הצעת מחיר</a></li>
-                                                    <li><a href="" data-date="20/04/2014">תכנון</a></li>
-                                                    <li><a href="" data-date="20/05/2014">פרשה טכנית</a></li>
-                                                    <li><a href="" data-date="09/07/2014">רכש</a></li>
-                                                    <li><a href="" data-date="30/08/2014">תפעול</a></li>
-                                                    <li><a href="" data-date="15/09/2014">אספקה</a></li>
-                                                    <li><a href="" data-date="01/11/2014">סגור</a></li>
+                                                    <li><a id="4" href="" data-date="16/01/2014" class="selected">פתוח</a></li>
+                                                    <li><a id="5" href="" data-date="28/02/2014">הצעת מחיר</a></li>
+                                                    <li><a id="6" href="" data-date="20/04/2014">תכנון</a></li>
+                                                    <li><a id="7" href="" data-date="20/05/2014">פרשה טכנית</a></li>
+                                                    <li><a id="8" href="" data-date="09/07/2014">רכש</a></li>
+                                                    <li><a id="9" href="" data-date="30/08/2014">תפעול</a></li>
+                                                    <li><a id="10" href="" data-date="15/09/2014">אספקה</a></li>
+                                                    <li><a id="11" href="" data-date="01/11/2014">סגור</a></li>
                                                 </ol>
                                                 <span class="filling-line" aria-hidden="true"></span>
                                             </div> 
@@ -337,17 +338,28 @@
                                         </p>
                                     </div>
                                     <div class="col-md-4 text-right">
-                                        <button type="button" id="newExpense" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal"><span class="fa fa-plus-circle m-r-5"></span>חדש</button>
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-danger btn-sm m-b-5' id='remove' title='מחק'><i class='fa fa-remove'></i></button> מחק
+                                        <button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='שחזר'><i class='fa fa-undo'></i></button> שחזר
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <table id="expenses-datatable" class="table table-striped table-bordered" data-pattern="priority-columns">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="total_expenses" class="control-label">סה"כ הוצאות לפרוייקט:</label>
+                                            <input class="form-control" id="total_expenses" name="total_expenses" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 text-right m-b-30">
+                                        <button type="button" id="newExpense" class="btn btn-success waves-effect w-md waves-light m-b-5" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle m-r-5"></i>חדש</button>
+                                    </div>
+                                    <table id="datatable-buttons2" class="table table-striped table-bordered" data-pattern="priority-columns">
                                         <thead>
                                             <tr>
                                                 <th>מס' הוצאה</th>
-                                                <th>שם הוצאה</th>
+                                                <th>תיאור הוצאה</th>
                                                 <th>משוייכת לפרוייקט</th>
                                                 <th>נוצרה על ידי</th>
+                                                <th>נוצרה בתאריך</th>
                                                 <th>סוג</th>
                                                 <th>סכום</th>
                                                 <th>ערוך הוצאה</th>
@@ -389,7 +401,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="expense_desc" class="control-label" style="float:right">תיאור</label>
-                                    <input class="form-control" id="expense_desc" name="expense_desc" placeholder="">
+                                    <input class="form-control" id="expense_desc" name="expense_desc" placeholder="אנא הכנס תיאור משמעותי">
                                 </div>
                             </div>
                         </div>
@@ -400,7 +412,9 @@
                                     <select id="expense_type" name="expense_type" class="form-control">
                                         <option value="-1" selected="selected" disabled="disabled">בחר</option>
                                         <option value="1">תקורה</option>
-                                        <option value="2">הוצאה חד פעמית</option>
+                                        <option value="2">חנייה</option>
+                                        <option value="3">דלק</option>
+                                        <option value="4">אחר</option>
                                     </select>
                                 </div>
                             </div>
@@ -415,7 +429,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="expense_img" class="control-label" style="float:right">הוסף תמונה</label>
-                                    <input type="file" class="form-control" id="expense_img" placeholder="">
+                                    <input type="file" accept="image/*" class="form-control" id="expense_img" placeholder="">
                                 </div>
                             </div>
                         </div>

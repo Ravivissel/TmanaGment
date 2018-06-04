@@ -141,4 +141,14 @@ public class ProjectWS : System.Web.Services.WebService
         }
         p.SetProject(actualProjectTasksList);
     }
+
+    [WebMethod]
+    public void ActivateProject(int projectID)
+    {
+        Project project = new Project
+        {
+            Id = projectID
+        };
+        project.ActivateProject();
+    }
 }

@@ -510,4 +510,12 @@ public class Project
         }
         #endregion
     }
+
+    public void ActivateProject()
+    {
+        #region DB functions
+        DbServices db = new DbServices();
+        db.ExecuteQuery("UPDATE projects_statuses SET status_id = '10' WHERE project_id = " + Id);
+        #endregion
+    }
 }
