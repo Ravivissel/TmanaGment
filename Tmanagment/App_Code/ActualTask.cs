@@ -347,8 +347,6 @@ public class ActualTask
     public string GetStatistics()
     {
         #region DB functions
-
-
         #region query 
         // BuildMyString.com generated code. Please enjoy your string responsibly.
 
@@ -393,33 +391,20 @@ public class ActualTask
         "set @open_tasks_percent = (round((cast(@open_tasks as float) / cast (@total_actual_tasks as float))*100,0)) " +
         "set @tasks_in_progress_percent = (round((cast(@tasks_in_progress as float) / cast (@total_actual_tasks as float))*100,0)) " +
         "select @open_tasks open_tasks, @late_tasks late_tasks, @tasks_in_progress tasks_in_progress, @almost_late_tasks almost_late_tasks, @almost_late_tasks_percent almost_late_tasks_percent, @late_tasks_percent late_tasks_percent, @open_tasks_percent open_tasks_percent , @tasks_in_progress_percent tasks_in_progress_percent ";
-
-
-
         #endregion
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
         string statistics = JsonConvert.SerializeObject(ds.Tables[0]);
-
         return statistics;
         #endregion
-
-
     }
 
     public List<ActualTask> GetConstActualTasks()
     {
         #region DB functions
-
-
         #region query 
         // BuildMyString.com generated code. Please enjoy your string responsibly.
-
-        // BuildMyString.com generated code. Please enjoy your string responsibly.
-
-        string query = "select * from actual_tasks where is_const='True'";
-
-
+        string query = "select * from actual_tasks where is_const = 'True'";
         #endregion
         try
         {
@@ -431,10 +416,11 @@ public class ActualTask
             {
                 try
                 {   
-                    ActualTask at =new ActualTask();
+                    ActualTask at = new ActualTask();
                     at.Id = Convert.ToInt32(dr["id"]);
                     at.Title = dr["title"].ToString();
                     at.Description = dr["description"].ToString();
+                    at.Estimate_time = Convert.ToInt32(dr["estimated_time"]);
                     actList.Add(at);
                 }
                 catch (Exception ex)
@@ -442,22 +428,13 @@ public class ActualTask
                     Console.WriteLine(ex.ToString());
                     throw ex;
                 }
-            }
-
-
-          
+            }         
             return actList;
         }
-
         catch(Exception e)
         {
-
             throw (e);
-        }
-
-      
+        }     
         #endregion
-
-
     }
 }

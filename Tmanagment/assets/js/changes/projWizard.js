@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     //generate select options
     generateAssignToRequestList();
@@ -9,8 +8,7 @@ $(document).ready(function () {
 
     function generateConstTasks() {
 
-        GetConstActualTasks(GetConstActualTasksCB, GetConstActualTasksErrorCB)
-
+        GetConstActualTasks(GetConstActualTasksCB, GetConstActualTasksErrorCB);
 
         function GetConstActualTasksCB(results) {
 
@@ -19,7 +17,7 @@ $(document).ready(function () {
 
             var constTasks = $('#constTasks');
             $.each(results, function (val, result) {
-                var dynamicLi = "<li class='dd-item' id={id} data-id={data-id}><div class='dd-handle'>{title}</div></li>"
+                var dynamicLi = "<li class='dd-item' id={id} data-id={data-id}><div class='dd-handle'>{title}</div></li>";
                 dynamicLi = dynamicLi.replace("{data-id}", result.Id);
                 dynamicLi = dynamicLi.replace("{title}", result.Title);
                 dynamicLi = dynamicLi.replace("{id}", "task" + result.Id);
@@ -31,10 +29,8 @@ $(document).ready(function () {
           
         }
         function GetConstActualTasksErrorCB(err) {
-
             console.log(err);
         }
-
     }
 
     //Assign to Request                      
@@ -100,6 +96,14 @@ $(document).ready(function () {
     function generateCustomersListErrorCB(error) {
         console.log(error);
     }
+
+    //DatePicker start_date
+    jQuery('#start_date').datepicker({
+        toggleActive: true,
+        clearBtn: true,
+        autoclose: true,
+        format: 'dd.mm.yyyy'
+    });
 
     //DatePicker end_date
     jQuery('#end_date').datepicker({
@@ -176,6 +180,9 @@ $(document).ready(function () {
     $('#project_priority_num').change(function () {
         $('#project_priority_num2').val($(this).val());
     });
+    $('#start_date').change(function () {
+        $('#start_date2').val($(this).val());
+    });
     $('#end_date').change(function () {
         $('#end_date2').val($(this).val());
     });
@@ -199,18 +206,19 @@ $(document).ready(function () {
         var project_title = $("#project_title").val();
         var project_manager = $("#project_manager option:selected").val();
         var project_priority_num = $("#project_priority_num").val();
+        var start_date = moment($("#start_date").datepicker('getDate')).format();
         var end_date = moment($("#end_date").datepicker('getDate')).format();
         var contact_name = $("#contact_name").val();
         var contact_phone = $("#contact_phone").val();
         var request_id = $("#request_id").val();
         var description = $("#description").val();
         var finish_tasks_list = $("#nestable_list_2").children().children();
-        var tasks_array = []
+        var tasks_array = [];
 
         finish_tasks_list.each(function (i, v) {
-            // push in fruits array, an array of data-fruit
-            tasks_array.push(($(v).data('task')))
-        })
+            // push in tasks array, an array of data-tasks
+            tasks_array.push($(v).data('task'));
+        });
 
         var string_tasks = JSON.stringify(tasks_array);
       
@@ -231,7 +239,7 @@ $(document).ready(function () {
             var customer_id = -1;
         }
 
-        var request = { project_title: project_title, project_manager: project_manager, project_priority_num: project_priority_num, end_date: end_date, contact_name: contact_name, contact_phone: contact_phone, request_id: request_id, description: description, created_by: created_by, customer_id: customer_id, customer_name: customer_name, customer_f_name: customer_f_name, customer_phone: customer_phone, actual_tasks: string_tasks };
+        var request = { project_title: project_title, project_manager: project_manager, project_priority_num: project_priority_num, start_date: start_date, end_date: end_date, contact_name: contact_name, contact_phone: contact_phone, request_id: request_id, description: description, created_by: created_by, customer_id: customer_id, customer_name: customer_name, customer_f_name: customer_f_name, customer_phone: customer_phone, actual_tasks: string_tasks };
         //call the ajax func
         insertNewProject(request, insertNewProjectCB, insertNewProjectErrorCB);
     });

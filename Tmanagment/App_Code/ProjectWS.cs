@@ -98,10 +98,12 @@ public class ProjectWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void InsertNewProject(string project_title, int project_manager, string project_priority_num, string end_date, string contact_name, string contact_phone, int request_id, string description, int created_by, int customer_id, string customer_name, string customer_f_name, string customer_phone, string actual_tasks)
+    public void InsertNewProject(string project_title, int project_manager, string project_priority_num, string start_date, string end_date, string contact_name, string contact_phone, int request_id, string description, int created_by, int customer_id, string customer_name, string customer_f_name, string customer_phone, string actual_tasks)
     {
         List<ActualTask> actualTasksList = JsonConvert.DeserializeObject<List<ActualTask>>(actual_tasks);
 
+        DateTime project_start_date;
+        project_start_date = DateTime.Parse(start_date);
         DateTime project_end_date;
         project_end_date = DateTime.Parse(end_date);
         DateTime created_at = DateTime.Now; //REMOVE after updating the db!!
@@ -110,10 +112,6 @@ public class ProjectWS : System.Web.Services.WebService
         Employee emp_project_manager = new Employee();
         emp_project_manager.Id = project_manager;
         Customer project_customer = new Customer();
-
-    
-       
-
 
         if (customer_id != -1)
         {
@@ -127,19 +125,20 @@ public class ProjectWS : System.Web.Services.WebService
             project_customer.Phone_num = customer_phone;
         }
 
-        Project p = new Project(project_title, description, project_customer, project_priority_num, request_id, emp_project_manager, created_at, project_end_date, contact_name, contact_phone, created_at, created_at, emp_creator);
+        Project p = new Project(project_title, description, project_customer, project_priority_num, request_id, emp_project_manager, project_start_date, project_end_date, contact_name, contact_phone, created_at, created_at, emp_creator);
         List<ActualProjectTask> actualProjectTasksList = new List<ActualProjectTask>();
 
         foreach (ActualTask at in actualTasksList)
         {
             ActualProjectTask apt = new ActualProjectTask();
             apt.Actual_task = at;
+            apt.Actual_task.Start_date = project_start_date;
+            apt.Actual_task.End_date = project_start_date.AddDays(apt.Actual_task.Estimate_time);
+            apt.Actual_task.Created_by = emp_creator;
+            apt.Actual_task.Assign_to = emp_project_manager;
             apt.Project = p;
-
             actualProjectTasksList.Add(apt);
-
         }
-
         p.SetProject(actualProjectTasksList);
     }
 }

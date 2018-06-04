@@ -504,6 +504,7 @@ function setExpense(request, successCB, errorCB) {
         error: errorCB
     }); // end of ajax call
 }
+
 function GetConstActualTasks(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
