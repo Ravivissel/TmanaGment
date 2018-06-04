@@ -442,13 +442,7 @@ public class ActualTask
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 try
-<<<<<<< HEAD
-                {   
-=======
-
                 {
-                  
->>>>>>> wizardFinal3
                     ActualTask at = new ActualTask();
                     at.Id = Convert.ToInt32(dr["id"]);
                     at.Title = dr["title"].ToString();

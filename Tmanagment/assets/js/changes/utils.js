@@ -127,9 +127,6 @@ var GENERAL = {
             localStorage.employee = employee;
         }
     }
-
-
-
 };
 
 

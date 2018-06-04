@@ -73,6 +73,7 @@ public class Status
 
     public Status GetStatus(string status)
     {
+        #region DB functions
         DbServices db = new DbServices();
 
         string query = "Select * from statuses where title='" + status + "'";
@@ -94,6 +95,7 @@ public class Status
             }
 
         }
+        #endregion
         return this;
     }
 }

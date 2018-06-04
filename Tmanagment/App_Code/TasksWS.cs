@@ -214,7 +214,7 @@ public class TasksWS : System.Web.Services.WebService
         try
         {
             ActualTask tasks = new ActualTask();
-            List<ActualTask> const_actual_tasks =tasks.GetConstActualTasks();
+            List<ActualTask> const_actual_tasks = tasks.GetConstActualTasks();
             return JsonConvert.SerializeObject(const_actual_tasks);       
         }
         catch (Exception ex)

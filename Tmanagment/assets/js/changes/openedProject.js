@@ -118,8 +118,6 @@ $(document).ready(function () {
             $("#description").val(project.Description);
             $("#timeline" + project.Status.Id).click();
             $(".state").addClass("isDisabled");
-          
-
         }
         catch (err) {
             console.log(err);
@@ -128,24 +126,16 @@ $(document).ready(function () {
     }
     $(".state").on('click', function (event) {
         {
-
             if ($(".state").hasClass("isDisabled")) {
                 event.stopImmediatePropagation();
                 event.preventDefault();
             }
-
-
             else {
-
-
                 $("#status").val($(event.target).attr('id').replace("timeline",""));
-
             }
-
         }
     });
     $("#status").on('change', function(){
-
         var statusId = $("#status").val();
         $("#timeline" + statusId).click();
     });

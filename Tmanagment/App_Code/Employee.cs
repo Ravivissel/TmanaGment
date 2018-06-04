@@ -295,6 +295,7 @@ public class Employee
         #endregion
         return employees;
     }
+
     public int InsertEmployee(Employee emp)
     {
         #region DB functions

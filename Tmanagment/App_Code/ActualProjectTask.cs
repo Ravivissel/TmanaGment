@@ -182,17 +182,10 @@ public class ActualProjectTask
         string query = "";
         if (func == "edit")
         {
-
             query += "Begin TRANSACTION ";
 
-
             //update the task
-<<<<<<< HEAD
-            query = "UPDATE actual_tasks SET description = '" + actual_task.Description + "', title = '" + actual_task.Title + "', start_date = '" + actual_task.Start_date + "', end_date = '" + actual_task.End_date + "', created_by = '" + actual_task.Created_by.Id + "', assign_to = '" + actual_task.Assign_to.Id + "' WHERE id = " + actual_task.Id;
-            db.ExecuteQuery(query);
-=======
             string actual_tasks_query = "UPDATE actual_tasks SET description = '" + actual_task.Description + "', title = '" + actual_task.Title + "', end_date = '" + actual_task.End_date + "', created_by = '" + actual_task.Created_by.Id + "', assign_to = '" + actual_task.Assign_to.Id + "' WHERE id = " + actual_task.Id + " " ;
->>>>>>> wizardFinal3
 
             //update the matching project task
             string actual_project_query = "UPDATE actual_project_task SET project_id = '" + Project.Id + "' WHERE actual_tasks_id = " + actual_task.Id+" ";
@@ -206,16 +199,7 @@ public class ActualProjectTask
         }
         else if (func == "new")
         {
-<<<<<<< HEAD
-            //insert a new task
-            query = "insert into actual_tasks (description, title, start_date, end_date, created_by, assign_to, is_const, created_at ) values ('" + actual_task.Description + "','" + actual_task.Title + "','" + actual_task.Start_date + "','" + actual_task.End_date + "','" + actual_task.Created_by.Id + "','" + actual_task.Assign_to.Id + "','0','" + actual_task.Created_at + "')";
-            db.ExecuteQuery(query);
-=======
->>>>>>> wizardFinal3
-
-
             StringBuilder query2 = new StringBuilder();
-
 
             query2.AppendFormat("Begin TRANSACTION DECLARE @output_actual_tasks TABLE (ID INT) ");
 
@@ -226,7 +210,7 @@ public class ActualProjectTask
             query2.AppendFormat("insert into actual_project_task values ('" + Project.Id + "'" + ",(select id from @output_actual_tasks)) ");
 
             //insert the new task a status
-            query2.AppendFormat("insert into actual_tasks_statuses values ((select id from @output_actual_tasks),'" + actual_task.Status.Id + "','" + actual_task.Created_by.Id + "') ");
+            query2.AppendFormat("insert into actual_tasks_statuses values ((select id from @output_actual_tasks),'1','" + actual_task.Created_by.Id + "') ");
 
             query2.AppendFormat("Commit");
 
