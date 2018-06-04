@@ -2,6 +2,11 @@
     if (JSON.parse(GENERAL.USERS.getUser())) {
         arr_user = JSON.parse(GENERAL.USERS.getUser());
         if (arr_user.func == "edit") {
+            user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+            if (user.User_type == "B") {
+                $("#userType").attr('disabled', 'disabled');
+                $("#back").attr('hidden', 'hidden');
+            }
             updateUserRoute(arr_user.userID);
         }
         else newUserRoute();
