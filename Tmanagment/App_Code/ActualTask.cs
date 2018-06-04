@@ -76,6 +76,19 @@ public class ActualTask
         this.Estimate_time = estimate_time;
     }
 
+    public ActualTask(int id, string description, string title, DateTime start_date, DateTime end_date, DateTime created_at, Employee created_by, Employee assign_to, Status status)
+    {
+        this.id = id;
+        this.description = description;
+        this.title = title;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.created_at = created_at;
+        this.created_by = created_by;
+        this.assign_to = assign_to;
+        this.status = status;
+    }
+
     public int Id
     {
         get

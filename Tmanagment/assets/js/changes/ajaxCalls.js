@@ -65,6 +65,7 @@ function getRequests(request, successCB, errorCB) {
 }
 
 function getAllProjectsTasks(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -80,6 +81,7 @@ function getAllProjectsTasks(request, successCB, errorCB) {
 }
 
 function getAllRequestsTasks(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -95,6 +97,7 @@ function getAllRequestsTasks(request, successCB, errorCB) {
 }
 
 function insertNewRequest(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -110,6 +113,7 @@ function insertNewRequest(request, successCB, errorCB) {
 }
 
 function insertNewProjectTask(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -125,6 +129,7 @@ function insertNewProjectTask(request, successCB, errorCB) {
 }
 
 function GetRequest(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -140,6 +145,7 @@ function GetRequest(request, successCB, errorCB) {
 }
 
 function GetProject(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -154,6 +160,7 @@ function GetProject(request, successCB, errorCB) {
     }); // end of ajax call
 }
 function UpdateProject(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -182,6 +189,7 @@ function GetAssignToList(successCB, errorCB) {
 }
 
 function GetProjectTask(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -197,6 +205,7 @@ function GetProjectTask(request, successCB, errorCB) {
 }
 
 function GetRequestTask(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -241,6 +250,7 @@ function getCustomers(successCB, errorCB) {
 }
 
 function insertNewCustomer(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -256,6 +266,7 @@ function insertNewCustomer(request, successCB, errorCB) {
 }
 
 function GetCustomer(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -270,6 +281,7 @@ function GetCustomer(request, successCB, errorCB) {
     }); // end of ajax call
 }
 function GetEmployees(request, successCB, errorCB) {
+
     if (request) {
         var dataString = JSON.stringify(request);
     }
@@ -285,6 +297,7 @@ function GetEmployees(request, successCB, errorCB) {
     }); // end of ajax call
 }
 function SetEmployee(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -300,6 +313,7 @@ function SetEmployee(request, successCB, errorCB) {
 }
 
 function UpdateEmployee(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -343,6 +357,7 @@ function getOpenRequestsNum(successCB, errorCB) {
 }
 
 function getTasksNum(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -358,6 +373,7 @@ function getTasksNum(request, successCB, errorCB) {
 }
 
 function insertNewRequestTask(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -421,6 +437,7 @@ function getAlmostLateTasksNum(successCB, errorCB) {
 }
 
 function getProjectTasksList(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -436,6 +453,7 @@ function getProjectTasksList(request, successCB, errorCB) {
 }
 
 function GetDashboardStatistics(successCB, errorCB) {
+
     $.ajax({
         url: 'DashboardWS.asmx/GetStatistics',
         type: 'POST',
@@ -459,6 +477,7 @@ function GetTasksStatistics(successCB, errorCB) {
 }
 
 function insertNewProject(request, successCB, errorCB) {
+
     // serialize the object to JSON string
     var dataString = JSON.stringify(request);
 
@@ -495,7 +514,7 @@ function setExpense(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ExpenseWS.cs.asmx/SetActualProjectExpense',       // server side web service method
+        url: 'ExpenseWS.asmx/SetActualProjectExpense',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -508,11 +527,59 @@ function setExpense(request, successCB, errorCB) {
 function GetConstActualTasks(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetConstActualTasks',         
-        type: 'POST',                              
-        dataType: 'json',                      
-        contentType: 'application/json; charset = utf-8', 
+        url: 'TasksWS.asmx/GetConstActualTasks',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json; charset = utf-8',
         success: successCB,
         error: errorCB
-    }); 
+    });
+}
+
+function getProjectExpenses(request, successCB, errorCB) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'ExpenseWS.asmx/GetProjectExpenses',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: successCB,                // data.d id the Variable data contains the data we get from serverside
+        error: errorCB
+    }); // end of ajax call
+}
+
+function ActivateProject(request) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'ProjectWS.asmx/ActivateProject',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: function (data) { },                // data.d id the Variable data contains the data we get from serverside
+        error: function (err) { alert("Error"); }
+    }); // end of ajax call
+}
+
+function DeactivateExpense(request) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(request);
+
+    $.ajax({ // ajax call starts
+        url: 'ExpenseWS.asmx/DeactivateExpense',       // server side web service method
+        data: dataString,                          // the parameters sent to the server
+        type: 'POST',                              // can be also GET
+        dataType: 'json',                          // expecting JSON datatype from the server
+        contentType: 'application/json; charset = utf-8', // sent to the server
+        success: function (data) { },                // data.d id the Variable data contains the data we get from serverside
+        error: function (err) { alert("Error"); }
+    }); // end of ajax call
 }
