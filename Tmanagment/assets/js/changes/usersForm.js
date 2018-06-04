@@ -43,6 +43,10 @@ function newUserRoute() {
                 userName: {
                     required: true
                 },
+                userType: {
+                    required: true,
+                    typeVal: true
+                },
                 password: {
                     required: true
                 },
@@ -56,7 +60,7 @@ function newUserRoute() {
             submitHandler: function (form, event) {
                 event.preventDefault();
 
-                var request = {}
+                var request = {};
                 var employee = getEmployeeFromUserInput();
                 var employeeString = JSON.stringify(employee);
                 request.employee = employeeString;
@@ -81,26 +85,31 @@ function newUserRoute() {
                 userName: {
                     required: "אנא הזן שם משתמש"
                 },
+                userType: {
+                    required: "אנא הזן סוג משתמש"
+                },
                 password: {
                     required: "אנא הזן סיסמא"
                 },
                 confirm_password: {
                     equalTo: "הסיסמאות שהוזנו לא תאומות "
                 }
-            },
+            }
 
         });
         $.validator.addMethod("telVal", function (phone_number, element) {
-            return phone_number.match("[0-9]{4}[0-9]{3}[0-9]{3}")
+            return phone_number.match("[0-9]{4}[0-9]{3}[0-9]{3}");
         }, "אנא הזן מספר טלפון תקין");
-
+        $.validator.addMethod("typeVal", function (user_type, element) {
+            return user_type.match(/^(רגיל|מנהל)$/);
+        }, "אנא הזן מנהל או רגיל");
 
     }
     function setEmployeeCB(result) {
         var resultObj = JSON.parse(result.d);
         if (resultObj != null && resultObj.success) {
             sweetAlertSuccess();
-            setTimeout(function () { returnToEmployeesPage() }, 1001);
+            setTimeout(function () { returnToEmployeesPage(); }, 1001);
         } else {
             setEmployeeError(result);
         }
@@ -124,7 +133,7 @@ function updateUserRoute(userID) {
 
     function getCustomerCB(result) {
         var resultObj = $.parseJSON(result.d);
-        setEmployeeToForm(resultObj[0])
+        setEmployeeToForm(resultObj[0]);
     }
 
     function getCustomerErrorCB(err) {
@@ -137,13 +146,18 @@ function updateUserRoute(userID) {
         $("#userName").val(employee.User_name);
         $("#title").val(employee.Title);
         $("#phoneNumber").val(employee.Phone_number);
+        if (employee.User_type == "A") {
+            userType = "מנהל";
+        }
+        else userType = "רגיל";
+        $("#userType").val(userType);
     }
 
     function updateEmployeeCB(result) {
         var resultObj = JSON.parse(result.d);
         if (resultObj != null && resultObj.success) {
             sweetAlertSuccess();
-            setTimeout(function () { returnToEmployeesPage() }, 1001);
+            setTimeout(function () { returnToEmployeesPage(); }, 1001);
         } else {
             updateEmployeeError(result);
         }
@@ -181,13 +195,17 @@ function updateUserRoute(userID) {
                 },
                 userName: {
                     required: true
+                },
+                userType: {
+                    required: true,
+                    typeVal: true
                 }
             },
 
             submitHandler: function (form, event) {
                 event.preventDefault();
 
-                var request = {}
+                var request = {};
                 var employee = getEmployeeFromUserInput();
                 employee.id = userId;
                 var employeeString = JSON.stringify(employee);
@@ -212,14 +230,19 @@ function updateUserRoute(userID) {
                 },
                 userName: {
                     required: "אנא הזן שם משתמש"
+                },
+                userType: {
+                    required: "אנא הזן סוג משתמש"
                 }
-            },
+            }
 
         });
         $.validator.addMethod("telVal", function (phone_number, element) {
-            return phone_number.match("[0-9]{4}[0-9]{3}[0-9]{3}")
+            return phone_number.match("[0-9]{4}[0-9]{3}[0-9]{3}");
         }, "אנא הזן מספר טלפון תקין");
-
+        $.validator.addMethod("typeVal", function (user_type, element) {
+            return user_type.match(/^(רגיל|מנהל)$/);
+        }, "אנא הזן מנהל או רגיל");
     }
 }
 
@@ -229,6 +252,10 @@ function getEmployeeFromUserInput() {
     tmpEmployee.first_name = $("#firstName").val();
     tmpEmployee.last_name = $("#lastName").val();
     tmpEmployee.user_name = $("#userName").val();
+    if ($("#userType").val() == "מנהל") {
+        tmpEmployee.user_type = "A";
+    }
+    else tmpEmployee.user_type = "B";
     tmpEmployee.title = $("#title").val();
     tmpEmployee.phone_number = $("#phoneNumber").val();
     tmpEmployee.password = $("#password").val();

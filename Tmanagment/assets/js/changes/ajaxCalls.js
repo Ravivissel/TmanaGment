@@ -159,6 +159,7 @@ function GetProject(request, successCB, errorCB) {
         error: errorCB
     }); // end of ajax call
 }
+
 function UpdateProject(request, successCB, errorCB) {
 
     // serialize the object to JSON string

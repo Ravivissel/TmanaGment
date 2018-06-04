@@ -196,10 +196,8 @@
         $('#customer2').val($('#customer_nameCB').val() + " " + $(this).val());
     });
     $('.dd').on('change',function () {
-
         $("#finish_tasks").html('');
         $('#finish_tasks').append($('#nestable_list_2').prop('outerHTML'));
-
     });
 
     $('#wizard-validation-form').find('a[href="#finish"]').click(function () {

@@ -27,7 +27,7 @@
 
     var request = {
         id: null
-    }
+    };
 
     GetEmployees(request, getEmployeesCB, getEmployeesError);
 
@@ -51,11 +51,16 @@
         var results = $.parseJSON(employeesData.d);
         $.each(results, function (i, row) {
 
+            if (row.User_type == "A") {
+                userType = "מנהל";
+            }
+            else userType = "רגיל";
+
             var btnStr = "";
             var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='עריכה'><i class='ti-pencil'></i></button>";
             btnStr += editBtn;
 
-            table.row.add([row.Id, row.First_name, row.Last_name, row.Phone_number, row.Title, row.User_name, row.User_type, btnStr]).draw(false);
+            table.row.add([row.Id, row.First_name, row.Last_name, row.Phone_number, row.Title, row.User_name, userType, btnStr]).draw(false);
         });
     }
 });
