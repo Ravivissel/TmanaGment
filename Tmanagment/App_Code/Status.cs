@@ -9,6 +9,7 @@ using System.Web;
 /// </summary>
 public class Status
 {
+  
     private int id;
     private string title;
 
@@ -67,5 +68,32 @@ public class Status
         tmpStatus.Id = Convert.ToInt32(dr["status_id"]);
         #endregion
         return tmpStatus;
+    }
+
+
+    public Status GetStatus(string status)
+    {
+        DbServices db = new DbServices();
+
+        string query = "Select * from statuses where title='" + status + "'";
+
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                this.Id = Convert.ToInt32(dr["id"]);
+                this.Title = dr["title"].ToString();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+
+        }
+        return this;
     }
 }

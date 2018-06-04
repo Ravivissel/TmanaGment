@@ -472,9 +472,12 @@ public class Project
 
     public void SetProject(List<ActualProjectTask> actualProjectTasksList)
     {
-        #region DB functions
-        DbServices db = new DbServices();
 
+        #region DB functions
+
+        const string open_task_title_status = "פתוחה";
+
+        DbServices db = new DbServices();
         string query = "";
         const int status_done = 3;
         string project_query;
@@ -484,17 +487,13 @@ public class Project
 
         if (customer_id.Id == -1)
         {
-
             customer_query = "insert into customers INSERTED.ID into @output_projects(id) values ('" + customer_id.First_name + "','" + customer_id.Last_name + "','" + customer_id.Phone_num + "','Y') ";
             project_query = "insert into projects OUTPUT INSERTED.ID into @output_projects(id) values ('" + title + "','" + description + "','" + "(select id from @output_customers)" + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "') ";
-
         }
         else
         {
             customer_query = "";
             project_query = "insert into projects OUTPUT INSERTED.ID into @output_projects(id) values ('" + title + "','" + description + "','" + Customer_id.Id + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "') ";
-
-
         }
         string project_statuses_query = "INSERT into projects_statuses(project_id, status_id, modified_by) values((select id from @output_projects)," + 3 + "," + Created_by.Id + ") ";
         string update_requests_statuses_query = "UPDATE requests_statuses SET status_id = '" + status_done + "', modified_by = '" + Created_by.Id + "' WHERE request_id = " + Request_id + " ";
@@ -504,13 +503,15 @@ public class Project
 
         db.ExecuteQuery(query);
 
-        foreach(ActualProjectTask apt in actualProjectTasksList)
+        foreach (ActualProjectTask apt in actualProjectTasksList)
         {
-
+            Status tmpStatus = new Status();
+            apt.Actual_task.Status = tmpStatus.GetStatus(open_task_title_status);
+            apt.Project.Id = Convert.ToInt32(db.Ga("projects"));
             apt.SetTask("new");
-
         }
 
+     
         #endregion
     }
 }

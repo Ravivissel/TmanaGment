@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -135,7 +136,7 @@ public class ActualProjectTask
             "inner join actual_tasks_statuses ats on at.id = ats.task_id " +
             "where at.id =" + Actual_task.Id + "";
 
-        ActualProjectTask actualProjectTask = new ActualProjectTask(); 
+        ActualProjectTask actualProjectTask = new ActualProjectTask();
         ActualTask task = new ActualTask();
         DbServices db = new DbServices();
         DataSet ds = db.GetDataSetByQuery(query);
@@ -161,7 +162,7 @@ public class ActualProjectTask
                 status.Id = (int)dr["status_id"];
                 task.Status = status;
                 actualProjectTask.Actual_task = task;
-                
+
             }
             catch (Exception ex)
             {
@@ -177,41 +178,47 @@ public class ActualProjectTask
     {
         #region DB functions
         DbServices db = new DbServices();
-        DbServices db2 = new DbServices();
-        DbServices db3 = new DbServices();
         string query = "";
         if (func == "edit")
         {
+
+            query += "Begin TRANSACTION ";
+
+
             //update the task
-            query = "UPDATE actual_tasks SET description = '" + actual_task.Description + "', title = '" + actual_task.Title + "', end_date = '" + actual_task.End_date + "', created_by = '" + actual_task.Created_by.Id + "', assign_to = '" + actual_task.Assign_to.Id + "' WHERE id = " + actual_task.Id;
-            db.ExecuteQuery(query);
+            string actual_tasks_query = "UPDATE actual_tasks SET description = '" + actual_task.Description + "', title = '" + actual_task.Title + "', end_date = '" + actual_task.End_date + "', created_by = '" + actual_task.Created_by.Id + "', assign_to = '" + actual_task.Assign_to.Id + "' WHERE id = " + actual_task.Id + " " ;
 
             //update the matching project task
-            query = "UPDATE actual_project_task SET project_id = '" + Project.Id + "' WHERE actual_tasks_id = " + actual_task.Id;
-            db2.ExecuteQuery(query);
+            string actual_project_query = "UPDATE actual_project_task SET project_id = '" + Project.Id + "' WHERE actual_tasks_id = " + actual_task.Id+" ";
 
             //update the task status
-            query = "UPDATE actual_tasks_statuses SET status_id = '" + actual_task.Status.Id + "', modified_by = '" + actual_task.Created_by.Id + "' WHERE task_id = " + actual_task.Id;
-            db3.ExecuteQuery(query);
+            string actual_tasks_statuses_query = "UPDATE actual_tasks_statuses SET status_id = '" + actual_task.Status.Id + "', modified_by = '" + actual_task.Created_by.Id + "' WHERE task_id = " + actual_task.Id +" ";
+
+            query += actual_tasks_query + actual_project_query + actual_tasks_statuses_query + "Commit";
+
+            int row_affected = db.ExecuteQuery(query);
         }
         else if (func == "new")
-        {       
-            //insert a new task
-            query = "insert into actual_tasks values ('" + actual_task.Description + "','" + actual_task.Title + "','" + actual_task.Start_date + "','" + actual_task.End_date + "','" + actual_task.Created_by.Id + "','" + actual_task.Assign_to.Id + "')";
-            db.ExecuteQuery(query);
+        {
 
-            //get the task id
-            string tableName = "actual_tasks";
-            string actualTaskId = db.Ga(tableName);
+
+            StringBuilder query2 = new StringBuilder();
+
+
+            query2.AppendFormat("Begin TRANSACTION DECLARE @output_actual_tasks TABLE (ID INT) ");
+
+            //insert a new task
+            query2.AppendFormat("insert into  actual_tasks (title, [description] ,start_date,end_date,assign_to,created_by,is_const,created_at) OUTPUT INSERTED.ID into @output_actual_tasks(id) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}') ", actual_task.Title, actual_task.Description,actual_task.Start_date,actual_task.End_date,actual_task.Assign_to.Id, actual_task.Created_by.Id,0,Convert.ToString(DateTime.Now));
 
             //insert the new task to the matchig project
-            query = "insert into actual_project_task values ('" + Project.Id + "','" + actualTaskId + "')";
-            db2.ExecuteQuery(query);
+            query2.AppendFormat("insert into actual_project_task values ('" + Project.Id + "'" + ",(select id from @output_actual_tasks)) ");
 
             //insert the new task a status
-            string statusId = "1";
-            query = "insert into actual_tasks_statuses values ('" + actualTaskId + "','" + statusId + "','" + actual_task.Created_by.Id + "')";
-            db3.ExecuteQuery(query);
+            query2.AppendFormat("insert into actual_tasks_statuses values ((select id from @output_actual_tasks),'" + actual_task.Status.Id + "','" + actual_task.Created_by.Id + "') ");
+
+            query2.AppendFormat("Commit");
+
+            int row_affected = db.ExecuteQuery(query2.ToString());
         }
         #endregion
     }

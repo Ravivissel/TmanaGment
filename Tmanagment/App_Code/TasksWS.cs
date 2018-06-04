@@ -211,14 +211,12 @@ public class TasksWS : System.Web.Services.WebService
         {
             ActualTask tasks = new ActualTask();
             List<ActualTask> const_actual_tasks =tasks.GetConstActualTasks();
-            return JsonConvert.SerializeObject(const_actual_tasks);
-            
+            return JsonConvert.SerializeObject(const_actual_tasks);       
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            return ex.Message;
-           
+            return ex.Message;        
         }
     }
 }
