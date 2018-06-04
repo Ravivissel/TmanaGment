@@ -64,7 +64,7 @@
 
                     var btnStr = "";
                     var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button>";
-                    var reactiveBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='הפוך לפעיל'><i class='fa fa-undo' ></i></button>"
+                    var reactiveBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='הפוך לפעיל'><i class='fa fa-undo' ></i></button>";
                     btnStr += showBtn + " " + reactiveBtn;
 
                     table.row.add([row.Id, row.Title, row.Project_manager.First_name, row.Priority_key, s_date, e_date, btnStr]).draw("false");
@@ -80,7 +80,7 @@
 
                     var btnStr = "";
                     var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='פרטים נוספים'><i class='fa fa-wpforms'></i></button>";
-                    var reactiveBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='הפוך לפעיל'><i class='fa fa-undo' ></i></button>"
+                    var reactiveBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='הפוך לפעיל'><i class='fa fa-undo' ></i></button>";
                     btnStr += showBtn + " " + reactiveBtn;
 
                     table.row.add([row.Id, row.Title, row.Project_manager.First_name, row.Priority_key, s_date, e_date, btnStr]).draw("false");
@@ -116,7 +116,7 @@
                 type: "success",
                 showConfirmButton: false
             });
-            setTimeout(function () { refreshPage() }, 1001);
+            setTimeout(function () { refreshPage(); }, 1001);
         });
     });
 

@@ -151,4 +151,26 @@ public class ProjectWS : System.Web.Services.WebService
         };
         project.ActivateProject();
     }
+
+    [WebMethod]
+    public string GetCustomerProjects(int customerID)
+    {
+        Customer customer = new Customer
+        {
+            Id = customerID
+        };
+        Project projects = new Project();
+        try
+        {
+            JavaScriptSerializer j = new JavaScriptSerializer();
+            List<Project> projects_list = projects.GetAllCustomerProjectsList(customer.Id);
+            return j.Serialize(projects_list);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ex.ToString();
+        }
+
+    }
 }

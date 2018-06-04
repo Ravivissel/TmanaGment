@@ -110,6 +110,19 @@ public class Project
         this.created_by = created_by;
     }
 
+    public Project(int id, string title, Employee project_manager, DateTime start_date, DateTime end_date, string contact_name, string priority_key, Status status, Customer customer_id)
+    {
+        this.id = id;
+        this.Title = title;
+        this.Project_manager = project_manager;
+        this.Start_date = start_date;
+        this.End_date = end_date;
+        this.Contact_name = contact_name;
+        this.Priority_key = priority_key;
+        this.status = status;
+        this.customer_id = customer_id;
+    }
+
     public int Id
     {
         get
@@ -517,5 +530,58 @@ public class Project
         DbServices db = new DbServices();
         db.ExecuteQuery("UPDATE projects_statuses SET status_id = '10' WHERE project_id = " + Id);
         #endregion
+    }
+
+    public List<Project> GetAllCustomerProjectsList(int customerID) 
+    {
+        #region DB functions
+        string query = "select s.title project_status, c.first_name, c.last_name, p.id, p.title project_title, p.project_manager, p.start_date, p.end_date, p.contact_name, p.priority_key from projects p " +
+            "inner join projects_statuses ps on p.id = ps.project_id " +
+            "inner join statuses s on ps.status_id = s.id " +
+            "inner join customers c on p.customer_id = c.id " +
+            "where p.customer_id = " + customerID + "";
+
+        List<Project> ProjectsList = new List<Project>();
+        DbServices db = new DbServices();
+        DataSet ds = db.GetDataSetByQuery(query);
+
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            try
+            {
+                Project project = new Project();
+                List<Employee> employees = new List<Employee>();
+                Employee emp = new Employee();
+                Customer customer = new Customer();
+                Status status = new Status();
+
+                project.Id = (int)dr["id"];
+                project.Title = dr["project_title"].ToString();
+                project.Start_date = (DateTime)dr["start_date"];
+                project.End_date = (DateTime)dr["end_date"];
+                project.Contact_name = dr["contact_name"].ToString();
+                project.Priority_key = dr["priority_key"].ToString();
+                int project_manager_id = (int)dr["project_manager"];
+                employees = emp.GetEmployees(project_manager_id); //call the func from employee to get employee details
+                emp = employees.First();
+                project.Project_manager = emp;
+                status.Title = dr["project_status"].ToString();
+                project.Status = status;
+                customer.First_name = dr["first_name"].ToString();
+                customer.Last_name = dr["last_name"].ToString();
+                project.Customer_id = customer;
+
+                Project proj = new Project(project.Id, project.Title, project.Project_manager, project.Start_date, project.End_date, project.Contact_name, project.Priority_key, project.Status, project.Customer_id);
+
+                ProjectsList.Add(proj);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+        #endregion
+        return ProjectsList;
     }
 }

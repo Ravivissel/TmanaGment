@@ -1,11 +1,9 @@
 ﻿$(document).ready(function () {
 
-    //Need to change to be dynamic from the user login session
-    const userId = 65;
-
-    var groupid = userId;
+    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    var userId = user.Id;
     var request = {
-        employeeId: groupid
+        employeeId: userId
     };
 
     getProjects(request, getOpenedProjectsCB, getOpenedProjectsErrorCB);
