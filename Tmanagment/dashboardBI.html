@@ -89,6 +89,13 @@
     <!--- Page Scripts Dependencies!-->
     <script src="assets/js/changes/utils.js"></script>
 
+    <script>
+
+        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        if (user.User_type == "B") { location.href = "index.html"; }
+
+    </script>
+
 </head>
 
 <body class="fixed-left">

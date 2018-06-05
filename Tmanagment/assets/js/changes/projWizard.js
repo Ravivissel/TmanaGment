@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
 
+    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    if (user.User_type == "B") { location.href = "index.html"; }
+
     //generate select options
     generateAssignToRequestList();
     generateProjectManagerList();
