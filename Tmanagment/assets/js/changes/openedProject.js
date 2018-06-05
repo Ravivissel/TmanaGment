@@ -471,7 +471,7 @@ $(document).ready(function () {
             var expense_assign_to = $("#project_id").val();
             var expense_type = $("#expense_type option:selected").val();
             var expense_amount = $("#expense_amount").val();
-            var expense_img_name = $("#expense_img").val();
+            var expense_img_name = ""; /*$("#expense_img").val();*/
             //get the user id from session
             user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
             var created_by = user.Id;           
