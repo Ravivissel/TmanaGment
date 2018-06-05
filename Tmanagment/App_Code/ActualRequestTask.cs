@@ -199,7 +199,7 @@ public class ActualRequestTask
         else if (func == "new")
         {
             //insert a new task
-            query = "insert into actual_tasks (description, title, start_date, end_date, created_by, assign_to, is_const, created_at ) values ('" + actual_task.Description + "','" + actual_task.Title + "','" + actual_task.Start_date + "','" + actual_task.End_date + "','" + actual_task.Created_by.Id + "','" + actual_task.Assign_to.Id + "','0','null','" + actual_task.Created_at + "')";
+            query = "insert into actual_tasks (description, title, start_date, end_date, created_by, assign_to, is_const, created_at ) values ('" + actual_task.Description + "','" + actual_task.Title + "','" + actual_task.Start_date + "','" + actual_task.End_date + "','" + actual_task.Created_by.Id + "','" + actual_task.Assign_to.Id + "','0','" + actual_task.Created_at + "')";
             db.ExecuteQuery(query);
 
             //get the task id

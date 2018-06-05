@@ -394,10 +394,16 @@ public class ActualTask
         "set @almost_late_date = dateadd(day,+2,@today) " +
         "set @almost_late_tasks = (select count(*) as almost_late_tasks " +
         "from actual_tasks as at " +
-        "where at.end_date > @today and at.end_date <= @almost_late_date) " +
+        "join actual_tasks_statuses ats on ats.task_id = at.id " +
+        "join  statuses s on s.id = ats.status_id " +
+        "where s.title != 'סגורה' and " +
+        "at.end_date > @today and at.end_date <= @almost_late_date) " +
         "set @late_tasks = (select count(*) as late_tasks " +
         "from actual_tasks as at " +
-        "where at.end_date < @today) " +
+        "join actual_tasks_statuses ats on ats.task_id = at.id " +
+        "join  statuses s on s.id = ats.status_id " +
+        "where s.title != 'סגורה' and " +
+        "at.end_date < @today) " +
         "set @open_tasks = ( " +
         "select count(*) as open_tasks " +
         "from actual_tasks as at " +

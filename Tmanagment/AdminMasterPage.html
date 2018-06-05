@@ -27,8 +27,8 @@
 
                 <li class="list-inline-item dropdown notification-list">
                     <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
-                       aria-haspopup="false" aria-expanded="false">
-                        <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                       aria-haspopup="false" aria-expanded="false" id="profilePic">
+                        <!--<img src="assets/images/users/Roy.jpg" alt="user" class="rounded-circle">-->
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                         <!-- item-->
@@ -149,6 +149,10 @@
 <script>
 
     user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    if (user.Id == "102") {
+        $("#profilePic").html('<img src="assets/images/users/Roy.jpg" alt="user" class="rounded-circle">');
+    }
+    else $("#profilePic").html('<img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">');
     $('#dropdown_menu').append(user.First_name);
 
 </script>
