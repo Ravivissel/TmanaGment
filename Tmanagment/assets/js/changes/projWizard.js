@@ -1,5 +1,9 @@
 ﻿$(document).ready(function () {
 
+    $('a[href$="#next"]').text('הבא');
+    $('a[href$="#previous"]').text('הקודם');
+    $('a[href$="#finish"]').text('סיום');
+
     user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
     if (user.User_type == "B") { location.href = "index.html"; }
 

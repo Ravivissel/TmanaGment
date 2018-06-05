@@ -21,6 +21,7 @@ $(document).ready(function () {
             };
             GetProject(request, getProjectCB, getProjectError);
             getProjectTasksList(request, getProjectTasksListCB, getProjectTasksListErrorCB);
+            getProjectExpenses(request, getProjectExpensesCB, getProjectExpensesErrorCB);
         }
         catch (err) {
             console.log(err);
@@ -138,6 +139,73 @@ $(document).ready(function () {
 
         ProjectsTaskTable.buttons().container()
             .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+    }
+
+    function getProjectExpensesCB(results) {
+        allProjectsExpenses = $.parseJSON(results.d);
+        renderAllProjectsExpensesTable(allProjectsExpenses);
+    }
+
+    function getProjectExpensesErrorCB(error) {
+        console.log(error);
+    }
+
+    function renderAllProjectsExpensesTable(allProjectsExpenses) {
+
+        ProjectsExpensesTable = $('#datatable-buttons2').DataTable({
+            lengthChange: false,
+            buttons: ['copy', 'excel', 'pdf'],
+            "oLanguage": {
+                "sSearch": "<span>חיפוש:</span> _INPUT_", //search
+                "sProcessing": "מעבד...",
+                "sLengthMenu": "הצג _MENU_ פריטים",
+                "sZeroRecords": "לא נמצאו רשומות מתאימות",
+                "sInfo": "_START_ עד _END_ מתוך _TOTAL_ רשומות",
+                "sInfoEmpty": "0 עד 0 מתוך 0 רשומות",
+                "sInfoFiltered": "(מסונן מסך _MAX_  רשומות)",
+                "sInfoPostFix": "",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "ראשון",
+                    "sPrevious": "הקודם",
+                    "sNext": "הבא",
+                    "sLast": "אחרון"
+                }
+            }
+        });
+
+        $('#datatable-buttons2_filter').find('label').css({ "float": "left" });
+
+        total_expenses = 0;
+
+        //Buttons examples
+        $.each(allProjectsExpenses, function (index, row) {
+
+            if (row.Expense.Active == "Y") {
+                total_expenses += row.Expense.Amount;
+            }
+
+            var created_date = new Date(parseInt(row.Expense.Created_at.replace('/Date(', '')));
+            created_date = created_date.toLocaleDateString("he-IL");
+
+            if (row.Expense.Type == 1) {
+                typeName = "תקורה";
+            }
+            else if (row.Expense.Type == 2) {
+                typeName = "חנייה";
+            }
+            else if (row.Expense.Type == 3) {
+                typeName = "דלק";
+            }
+            else typeName = "אחר";
+
+            ProjectsExpensesTable.row.add([row.Expense.Id, row.Expense.Description, row.Project.Title, row.Expense.Created_by.First_name, created_date, typeName, row.Expense.Amount]).draw("false");
+        });
+
+        ProjectsExpensesTable.buttons().container()
+            .appendTo('#datatable-buttons2_wrapper .col-md-6:eq(0)');
+
+        $("#total_expenses").val(total_expenses);
     }
 
 });
