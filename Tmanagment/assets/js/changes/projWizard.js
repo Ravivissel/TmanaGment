@@ -9,6 +9,11 @@
     generateCustomersList();
     generateConstTasks();
 
+
+  
+
+  
+
     function generateConstTasks() {
 
         GetConstActualTasks(GetConstActualTasksCB, GetConstActualTasksErrorCB);
@@ -29,6 +34,8 @@
                 );
                 $("#task" + result.Id).data("task", result);
             });
+
+            #
           
         }
         function GetConstActualTasksErrorCB(err) {

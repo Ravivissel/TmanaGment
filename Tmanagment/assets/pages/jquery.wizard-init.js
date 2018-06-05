@@ -1,4 +1,4 @@
-/**
+﻿/**
 * Theme: Minton Admin Template
 * Author: Coderthemes
 * Form wizard page
@@ -19,7 +19,7 @@
                 console.log("Form has been validated!");
                 return true; 
             }, 
-            onFinished: function (event, currentIndex) {
+                 onFinished: function (event, currentIndex) {
                //NOTE: Submit the form, if all validation passed.
                 console.log("Form can be submitted using submit method. E.g. $('#basic-form').submit()"); 
                 $("#basic-form").submit();
