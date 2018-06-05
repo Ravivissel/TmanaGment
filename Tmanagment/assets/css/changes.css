@@ -9,21 +9,3 @@
     opacity: 0.5;
     text-decoration: none;
 }
-
-.navbar-custom{
-
-
-    min-height:73px;
-}
-
-button.button-menu-mobile.open-left.waves-light.waves-effect {
-    background-color: #6c757d;
-}
-
-nav.navbar-custom {
-    background-color: #6c757d;
-}
-
-.topbar .topbar-left {
-    background-color: #6c757d;
-}

@@ -472,8 +472,6 @@ $(document).ready(function () {
             var expense_type = $("#expense_type option:selected").val();
             var expense_amount = $("#expense_amount").val();
             var expense_img_name = $("#expense_img").val();
-            expense_img_name = "";
-
             //get the user id from session
             user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
             var created_by = user.Id;           
