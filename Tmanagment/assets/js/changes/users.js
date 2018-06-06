@@ -36,7 +36,7 @@
 
     $('#datatable-buttons tbody').on('click', '#edit', function () {
         var data = table.row($(this).parents('tr')).data();
-        var arr_details = { userID: data[0], func: "edit" };
+        var arr_details = { userID: data[0], func: "edit", profile: false };
          GENERAL.USERS.setUser(JSON.stringify(arr_details));
          location.href = "userForm.html";
     });

@@ -259,7 +259,7 @@
                     },
                     phone_num: {
                         required: true,
-                        number: true
+                        telVal: true
                     },
                 },
 
@@ -287,12 +287,14 @@
                         required: "אנא הכנס שם משפחה"
                     },
                     phone_num: {
-                        required: "אנא הכנס מספר טלפון",
-                        number: "הכנס רק ספרות"
+                        required: "אנא הכנס מספר טלפון"
                     },
                 },
 
             });
+            $.validator.addMethod("telVal", function (phone_num, element) {
+                return phone_num.match("[0-9]{4}[0-9]{3}[0-9]{3}");
+            }, "אנא הזן מספר טלפון תקין");
 
             function insertNewCustomerCB(result) {
                 swal({

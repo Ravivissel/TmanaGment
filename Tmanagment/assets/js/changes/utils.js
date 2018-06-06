@@ -38,7 +38,7 @@ $(document).on('click', '#newUserForm', function () {
 
 $(document).on('click', '#profile', function () {
     user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    var arr_details = { userID: user.Id, func: "edit" };
+    var arr_details = { userID: user.Id, func: "edit", profile: true };
     GENERAL.USERS.setUser(JSON.stringify(arr_details));
     location.href = "userForm.html";
 });

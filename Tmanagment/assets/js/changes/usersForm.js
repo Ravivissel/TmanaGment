@@ -3,6 +3,9 @@
         arr_user = JSON.parse(GENERAL.USERS.getUser());
         if (arr_user.func == "edit") {
             user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+            if (arr_user.profile == true) {
+                $("#page_title").text("פרופיל משתמש")
+            }
             if (user.User_type == "B") {
                 $("#userType").attr('disabled', 'disabled');
                 $("#back").attr('hidden', 'hidden');

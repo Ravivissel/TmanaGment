@@ -211,7 +211,7 @@
                     },
                     contact_phone: {
                         required: true,
-                        number: true
+                        telVal: true
                     },
                 },
 
@@ -251,12 +251,14 @@
                         required: "אנא הכנס איש קשר"
                     },
                     contact_phone: {
-                        required: "אנא הכנס מספר טלפון",
-                        number: "הכנס רק ספרות"
+                        required: "אנא הכנס מספר טלפון"
                     },
                 },
 
             });
+            $.validator.addMethod("telVal", function (contact_phone, element) {
+                return contact_phone.match("[0-9]{4}[0-9]{3}[0-9]{3}");
+            }, "אנא הזן מספר טלפון תקין");
 
             function insertNewRequestCB(result) {
                 swal({
