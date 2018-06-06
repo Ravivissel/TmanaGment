@@ -64,12 +64,12 @@ $(document).ready(function () {
             $("#project_id").val(project.Id);
             $("#project_priority_num").val(project.Priority_key);
             $("#project_manager").val(project.Project_manager.First_name);
-            $("#project_customer").val(project.Customer_id.First_name + " " + project.Customer_id.Last_name);
+            $("#project_customer").val(project.Customer_id.First_name + "" + project.Customer_id.Last_name);
             $("#end_date").val(e_date);
             $("#start_date").val(s_date);
             $("#contact_name").val(project.Contact_name);
             $("#contact_phone").val(project.Contact_phone);
-            $("#status").val(project.Status.Id);
+            $("#status").val("סגור");
             $("#description").val(project.Description);
         }
         catch (err) {
