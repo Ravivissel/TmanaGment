@@ -4,11 +4,11 @@
         if (arr_user.func == "edit") {
             user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
             if (arr_user.profile == true) {
-                $("#page_title").text("פרופיל משתמש")
+                $("#page_title").text("פרופיל משתמש");
+                $("#back").attr('hidden', 'hidden');
             }
             if (user.User_type == "B") {
                 $("#userType").attr('disabled', 'disabled');
-                $("#back").attr('hidden', 'hidden');
             }
             updateUserRoute(arr_user.userID);
         }

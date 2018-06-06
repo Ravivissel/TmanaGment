@@ -29,7 +29,7 @@
                     var e_date = new Date(parseInt(row.End_date.replace('/Date(', '')));
                     e_date = e_date.toLocaleDateString("he-IL");
 
-                    dynamicLi = '<div class="col-sm-4 col-lg-4 col-xs-12" style="text-align:right"><div class="card m-b-20"><div class="card-body" id="' + row.Id + '"><h2 class="card-title">' + row.Title + '</h2><p class="card-text"><b>מנהל הפרוייקט: </b>' + row.Project_manager.First_name + '</p><p class="card-text"><b>תאריך סיום: </b>' + e_date + '</p><p class="card-text"><b>איש קשר: </b>' + row.Contact_name + '</p><p class="card-text"><b>סטטוס: </b>' + row.Status.Title + '</p><button type="button" id="show" class="btn btn-primary">כניסה</button></div></div></div>';
+                    dynamicLi = '<div class="col-sm-4 col-lg-4 col-xs-12" style="text-align:right"><div class="card m-b-20"><div class="card-body" id="' + row.Id + '"><h1 class="card-title" style="color:#3bafda">' + row.Title + '</h1><p class="card-text"><b>מנהל הפרוייקט: </b>' + row.Project_manager.First_name + '</p><p class="card-text"><b>תאריך סיום: </b>' + e_date + '</p><p class="card-text"><b>איש קשר: </b>' + row.Contact_name + '</p><p class="card-text"><b>סטטוס: </b>' + row.Status.Title + '</p><button type="button" id="show" class="btn btn-primary">כניסה</button></div></div></div>';
                     $('#openedProjects').append(dynamicLi);
                 }
             }
@@ -39,7 +39,7 @@
                     var e_date = new Date(parseInt(row.End_date.replace('/Date(', '')));
                     e_date = e_date.toLocaleDateString("he-IL");
 
-                    dynamicLi = '<div class="col-sm-4 col-lg-4 col-xs-12" style="text-align:right"><div class="card m-b-20"><div class="card-body" id="' + row.Id + '"><h2 class="card-title">' + row.Title + '</h2><p class="card-text"><b>מנהל הפרוייקט: </b>' + row.Project_manager.First_name + '</p><p class="card-text"><b>תאריך סיום: </b>' + e_date + '</p><p class="card-text"><b>איש קשר: </b>' + row.Contact_name + '</p><p class="card-text"><b>סטטוס: </b>' + row.Status.Title + '</p><button type="button" id="show" class="btn btn-primary">כניסה</button></div></div></div>';
+                    dynamicLi = '<div class="col-sm-4 col-lg-4 col-xs-12" style="text-align:right"><div class="card m-b-20"><div class="card-body" id="' + row.Id + '"><h1 class="card-title" style="color:#3bafda">' + row.Title + '</h1><p class="card-text"><b>מנהל הפרוייקט: </b>' + row.Project_manager.First_name + '</p><p class="card-text"><b>תאריך סיום: </b>' + e_date + '</p><p class="card-text"><b>איש קשר: </b>' + row.Contact_name + '</p><p class="card-text"><b>סטטוס: </b>' + row.Status.Title + '</p><button type="button" id="show" class="btn btn-primary">כניסה</button></div></div></div>';
                     $('#openedProjects').append(dynamicLi);
                 }
             }

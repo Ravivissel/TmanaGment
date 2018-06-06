@@ -27,3 +27,21 @@ nav.navbar-custom {
 .topbar .topbar-left {
     background-color: #6c757d;
 }
+
+.paginate_button.page-item.previous.disabled {
+    color: currentColor;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+.paginate_button.page-item.next.disabled {
+    color: currentColor;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+.form-control[disabled], fieldset[disabled] .form-control {
+    color: currentColor;
+    cursor: not-allowed;
+    text-decoration: none;
+}
