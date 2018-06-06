@@ -151,7 +151,7 @@ public class Customer
         }
         else if (func == "new")
         {
-            query = "insert into customers values ('" + first_name + "','" + last_name + "','" + phone_num + "',' Y ')";
+            query = "insert into customers values ('" + first_name + "','" + last_name + "','" + phone_num + "','Y')";
         }
         db.ExecuteQuery(query);
         #endregion
