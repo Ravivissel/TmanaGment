@@ -6,10 +6,20 @@ $(document).ready(function () {
     generateAssignToProjectList();
     generateAssignToRequestList();
 
+    if (JSON.parse(localStorage.arr_project_task).length != 0) {
+        arr_project_task = JSON.parse(localStorage.arr_project_task);
+        if (arr_project_task.func == "new" && arr_project_task.proj != "-1") {
+            selected = 1;
+            $("#proj_req_assign").val(selected);
+            $("#projectDiv").prop('hidden', false);                 
+            $("#assign_to_project").val(arr_project_task.proj);
+        }
+    }
+
     if (JSON.parse(GENERAL.TASKS.getProjectsTasksList()).length != 0) {
         arr_project_task = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
         if (arr_project_task.func == "edit" || arr_project_task.func == "show") {
-            if (arr_project_task.proj = "proj") { $("#backButton").prop('hidden', true); }
+            if (arr_project_task.proj = "proj") { $("#backButton").prop('hidden', true); };
             var taskID = 1;
             var arr_details = { taskID: taskID, func: "new" };
             localStorage.arr_project_task = JSON.stringify(arr_details);

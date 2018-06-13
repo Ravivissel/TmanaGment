@@ -383,6 +383,15 @@ $(document).ready(function () {
             location.href = "taskForm.html";
         });
 
+        $(document).on('click', '#newTask', function () {
+            var taskID = -1;
+            var proj = $("#project_id").val();
+            var arr_details = { taskID: taskID, func: "new", proj: proj };
+            localStorage.arr_project_task = JSON.stringify(arr_details);
+            localStorage.arr_request_task = JSON.stringify(arr_details);
+            location.href = "taskForm.html";
+        });
+
         $('#activeProjectsTasks').change(function () {
             refreshProjectsTaskTable();
         });

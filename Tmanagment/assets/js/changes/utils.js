@@ -16,7 +16,8 @@ $(document).on('click', '#newRequestForm', function () {
 
 $(document).on('click', '#newTaskForm', function () {
     var taskID = -1;
-    var arr_details = { taskID: taskID, func: "new" };
+    var proj = -1;
+    var arr_details = { taskID: taskID, func: "new", proj: proj };
     localStorage.arr_project_task = JSON.stringify(arr_details);
     localStorage.arr_request_task = JSON.stringify(arr_details);
     //location.href = "taskForm.html";
