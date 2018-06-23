@@ -2,9 +2,9 @@ $(document).ready(function () {
     checkCookie();
     user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
     if (user.User_type == "A") {
-        $("#masterPageContext").load("AdminMasterPage.html");
+        $("#masterPageContext").load("/pages/Masters/AdminMasterPage.html");
     }
-    else $("#masterPageContext").load("RegMasterPage.html");
+    else $("#masterPageContext").load("/pages/Masters/RegMasterPage.html");
 });
 
 $(document).on('click', '#newRequestForm', function () {
