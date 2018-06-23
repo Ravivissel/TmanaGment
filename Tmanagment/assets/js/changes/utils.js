@@ -40,7 +40,7 @@ $(document).on('click', '#profile', function () {
     user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
     var arr_details = { userID: user.Id, func: "edit" };
     GENERAL.USERS.setUser(JSON.stringify(arr_details));
-    location.href = "userForm.html";
+    location.href = "../../../pages/userForm.html";
 });
 
 $(document).on('click', '#logOut', function () {

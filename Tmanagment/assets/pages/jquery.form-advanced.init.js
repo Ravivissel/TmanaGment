@@ -163,7 +163,7 @@ $('.input-limit-datepicker').daterangepicker({
     }
 });
 
-$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+$('#reportrange').find('span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 
 $('#reportrange').daterangepicker({
     format: 'MM/DD/YYYY',
@@ -205,6 +205,6 @@ $('#reportrange').daterangepicker({
     }
 }, function (start, end, label) {
     console.log(start.toISOString(), end.toISOString(), label);
-    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    $('#reportrange').find('span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 });
 

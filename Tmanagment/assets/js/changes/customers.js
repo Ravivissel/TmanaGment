@@ -63,21 +63,21 @@
             table.row.add([row.Id, row.First_name, row.Last_name, row.Phone_num, active, btnStr]).draw(false);
         });
 
-        $('#datatable-buttons tbody').on('click', '#show', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = table.row($(this).parents('tr')).data();
             arr_details = { customerID: data[0], func: "show" };
             GENERAL.CUSTOMERS.setCustomersList(JSON.stringify(arr_details));
-            location.href = "customerForm.html";
+            location.href = "../../../pages/customerForm.html";
         });
 
-        $('#datatable-buttons tbody').on('click', '#edit', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = table.row($(this).parents('tr')).data();
             arr_details = { customerID: data[0], func: "edit" };
             GENERAL.CUSTOMERS.setCustomersList(JSON.stringify(arr_details));
-            location.href = "customerForm.html";
+            location.href = "../../../pages/customerForm.html";
         });
 
-        $('#datatable-buttons tbody').on('click', '#remove', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#remove', function () {
             var data = table.row($(this).parents('tr')).data();
             swal({
                 title: "אתה בטוח שברצונך להפוך את הלקוח ללא פעיל?",
@@ -100,7 +100,7 @@
             });
         });
 
-        $('#datatable-buttons tbody').on('click', '#reactive', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#reactive', function () {
             var data = table.row($(this).parents('tr')).data();
             swal({
                 title: "אתה בטוח שברצונך להפוך את הלקוח לפעיל?",
@@ -129,7 +129,7 @@
     }
 
     function refreshPage() {
-        location.href = "customers.html";
+        location.href = "../../../pages/customers.html";
     }
 
     function refreshTable() {

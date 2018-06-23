@@ -294,7 +294,7 @@ $(document).ready(function () {
         $("#editButton").hide();
         $("#cancelButton").prop('hidden', state);
 
-        if (state == false) {
+        if (state === false) {
             $(".state").removeClass("isDisabled");
         }
         else {
@@ -309,7 +309,7 @@ $(document).ready(function () {
     }
 
     function returnToProjectsPage() {
-        location.href = "openedProjects.html";
+        location.href = "../../../pages/openedProjects.html";
     }
 
     function getProjectTasksListCB(results) {
@@ -369,18 +369,18 @@ $(document).ready(function () {
             ProjectsTaskTable.row.add([row.Actual_task.Id, row.Actual_task.Title, row.Project.Title, row.Actual_task.Created_by.First_name, row.Actual_task.Assign_to.First_name, s_date, e_date, row.Actual_task.Status.Title, btnStr]).draw("false");
         });
 
-        $('#datatable-buttons tbody').on('click', '#show', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
             arr_details = { taskID: data[0], func: "show", proj: "proj" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
-            location.href = "taskForm.html";
+            location.href = "../../../pages/taskForm.html";
         });
 
-        $('#datatable-buttons tbody').on('click', '#edit', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
             arr_details = { taskID: data[0], func: "edit", proj: "proj" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
-            location.href = "taskForm.html";
+            location.href = "../../../pages/taskForm.html";
         });
 
         $('#activeProjectsTasks').change(function () {
@@ -396,10 +396,10 @@ $(document).ready(function () {
         var active = $("#activeProjectsTasks").prop('checked');
         ProjectsTaskTable.clear().draw();
 
-        if (active == true) {
+        if (active === true) {
             $.each(allProjectsTasks, function (index, row) {
 
-                if (row.Actual_task.Status.Title == "סגורה") {
+                if (row.Actual_task.Status.Title === "סגורה") {
                     return true;
                 }
 
@@ -469,7 +469,7 @@ $(document).ready(function () {
 
             var expense_desc = $("#expense_desc").val();
             var expense_assign_to = $("#project_id").val();
-            var expense_type = $("#expense_type option:selected").val();
+            var expense_type = $("#expense_type").find("option:selected").val();
             var expense_amount = $("#expense_amount").val();
             var expense_img_name = ""; /*$("#expense_img").val();*/
             //get the user id from session
@@ -517,7 +517,7 @@ $(document).ready(function () {
     }
 
     function returnToOpenProjectPage() {
-        location.href = "openedProject.html";
+        location.href = "../../../pages/openedProject.html";
     }
 
     function getProjectExpensesCB(results) {
@@ -588,7 +588,7 @@ $(document).ready(function () {
             ProjectsExpensesTable.row.add([row.Expense.Id, row.Expense.Description, row.Project.Title, row.Expense.Created_by.First_name, created_date, typeName, row.Expense.Amount, btnStr]).draw("false");
         });
 
-        $('#datatable-buttons2 tbody').on('click', '#remove', function () {
+        $('#datatable-buttons2').find('tbody').on('click', '#remove', function () {
             var data = ProjectsExpensesTable.row($(this).parents('tr')).data();
             swal({
                 title: "אתה בטוח שברצונך למחוק את ההוצאה?",
@@ -611,7 +611,7 @@ $(document).ready(function () {
             });
         });
 
-        $('#datatable-buttons2 tbody').on('click', '#reactive', function () {
+        $('#datatable-buttons2').find('tbody').on('click', '#reactive', function () {
             var data = ProjectsExpensesTable.row($(this).parents('tr')).data();
             swal({
                 title: "אתה בטוח שברצונך לשחזר את ההוצאה?",
@@ -641,7 +641,7 @@ $(document).ready(function () {
     }
 
     function refreshPage() {
-        location.href = "openedProject.html";
+        location.href = "../../../pages/openedProject.html";
     }
 
     function deactivateExpense(expenseID, active) {
@@ -655,6 +655,6 @@ $(document).ready(function () {
 });
 
 function returnToProjectsPage() {
-    location.href = "openedProjects.html";
+    location.href = "../../../pages/openedProjects.html";
 }
 

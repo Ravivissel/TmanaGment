@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    if (user.User_type == "B") { location.href = "index.html"; }
+    if (user.User_type == "B") { location.href = "../../../pages/index.html"; }
 
     table = $('#datatable-buttons').DataTable({
         lengthChange: false,
@@ -34,11 +34,11 @@
 
     GetEmployees(request, getEmployeesCB, getEmployeesError);
 
-    $('#datatable-buttons tbody').on('click', '#edit', function () {
+    $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
         var data = table.row($(this).parents('tr')).data();
         var arr_details = { userID: data[0], func: "edit" };
          GENERAL.USERS.setUser(JSON.stringify(arr_details));
-         location.href = "userForm.html";
+         location.href = "../../../pages/userForm.html";
     });
 
     function getEmployeesCB(results) {

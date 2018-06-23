@@ -106,18 +106,18 @@
             ProjectsTaskTable.row.add([row.Actual_task.Id, row.Actual_task.Title, row.Project.Title, row.Actual_task.Created_by.First_name, row.Actual_task.Assign_to.First_name, s_date, e_date, row.Actual_task.Status.Title, btnStr]).draw("false");
         });
 
-        $('#datatable-buttons tbody').on('click', '#show', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
             arr_details = { taskID: data[0], func: "show" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
-            location.href = "taskForm.html";
+            location.href = "../../../pages/taskForm.html";
         });
 
-        $('#datatable-buttons tbody').on('click', '#edit', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
             arr_details = { taskID: data[0], func: "edit" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
-            location.href = "taskForm.html";
+            location.href = "../../../pages/taskForm.html";
         });
 
         $('#activeProjectsTasks').change(function () {
@@ -219,18 +219,18 @@
             RequestsTaskTable.row.add([row.Actual_task.Id, row.Actual_task.Title, row.Request.Title, row.Actual_task.Created_by.First_name, row.Actual_task.Assign_to.First_name, s_date, e_date, row.Actual_task.Status.Title, btnStr]).draw("false");
         });
 
-        $('#datatable-buttons2 tbody').on('click', '#show', function () {
+        $('#datatable-buttons2').find('tbody').on('click', '#show', function () {
             var data = RequestsTaskTable.row($(this).parents('tr')).data();
             arr_details = { taskID: data[0], func: "show", status: data[7] };
             GENERAL.TASKS.setRequestsTasksList(JSON.stringify(arr_details));
-            location.href = "taskForm.html";
+            location.href = "../../../pages/taskForm.html";
         });
 
-        $('#datatable-buttons2 tbody').on('click', '#edit', function () {
+        $('#datatable-buttons2').find('tbody').on('click', '#edit', function () {
             var data = RequestsTaskTable.row($(this).parents('tr')).data();
             arr_details = { taskID: data[0], func: "edit", status: data[7] };
             GENERAL.TASKS.setRequestsTasksList(JSON.stringify(arr_details));
-            location.href = "taskForm.html";
+            location.href = "../../../pages/taskForm.html";
         });
 
         $('#activeRequestsTasks').change(function () {

@@ -1,0 +1,159 @@
+<!-- END wrapper -->
+<!-- Top Bar Start -->
+
+<link href="../../assets/css/changes.css" rel="stylesheet" />
+
+<div class="topbar">
+
+
+    <!-- Button mobile view to collapse sidebar menu -->
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+        <!-- LOGO -->
+        <div class="topbar-left">
+            <div class="text-center">
+                <button class="button-menu-mobile open-left waves-light waves-effect">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <a href="../index.html" class="logo"><i class=""></i> <span>TmanaGment</span></a>
+            </div>
+        </div>
+
+        <!-- Button mobile view to collapse sidebar menu -->
+        <nav class="navbar-custom">
+
+            <ul class="list-inline float-right mb-0">
+
+                <li class="list-inline-item dropdown notification-list">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="false" aria-expanded="false" id="profilePic">
+                        <!--<img src="assets/images/users/Roy.jpg" alt="user" class="rounded-circle">-->
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                        <!-- item-->
+                        <div class="dropdown-item noti-title">
+                            <h5 class="text-overflow" id="dropdown_menu">היי </h5>
+                        </div>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="mdi mdi-account"></i> <span id="profile">פרופיל</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="mdi mdi-logout"></i> <span id="logOut">התנתק</span>
+                        </a>
+
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+<!-- Top Bar End -->
+<!-- ========== Right Sidebar Start ========== -->
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+        <!--- Divider -->
+        <div id="sidebar-menu">
+            <ul>
+
+                <li>
+                    <a href="../index.html" class="waves-effect waves-primary">
+                        <i class="ti-home"></i><span> דף הבית </span>
+                    </a>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect waves-primary">
+                        <i class="ti-briefcase"></i> <span> פרוייקטים </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+
+                    <ul class="list-unstyled">
+                        <li><a href="../openedProjects.html">כל הפרוייקטים</a></li>
+                        <li><a href="../projectWizard.html"><span class="mdi mdi-plus-circle"></span> צור פרוייקט</a></li>
+
+                    </ul>
+
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect waves-primary">
+                        <i class="ti-write"></i><span> משימות </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li><a href="../tasks.html">כל המשימות</a></li>
+                        <li><a href="../taskForm.html" id="newTaskForm"><span class="mdi mdi-plus-circle"></span> הוסף משימה</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect waves-primary">
+                        <i class="ti-headphone-alt"></i><span> פניות </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li><a href="../requests.html">כל הפניות</a></li>
+                        <li><a href="../requestsForm.html" id="newRequestForm"><span class="mdi mdi-plus-circle"></span> הוסף פנייה</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect waves-primary">
+                        <i class="ti-id-badge"></i><span> לקוחות </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li><a href="../customers.html">כל הלקוחות</a></li>
+                        <li><a href="../customerForm.html" id="newCustomerForm"><span class="mdi mdi-plus-circle"></span> הוסף לקוח</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect waves-primary">
+                        <i class="ti-user"></i><span> משתמשים </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li><a href="../users.html">ניהול המשתמשים</a></li>
+                        <li><a href="../userForm.html" id="newUserForm"><span class="mdi mdi-plus-circle"></span> הוסף משתמש</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub">
+                    <a href="dashBoardBI.html" class="waves-effect waves-primary">
+                        <i class="ti-dashboard"></i><span> דאשבורד BI </span>
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<footer class="footer">
+    <span class="hide-phone">2018 © TmanaGement System powered by Roy Shoval, Raviv Vissel, Yarden Carmi</span>
+</footer>
+<!-- Right Sidebar End -->
+<!-- ============================================================== -->
+<!-- Custom main Js -->
+<script src="../../assets/js/external_utils/jquery.core.js"></script>
+<script src="../../assets/js/external_utils/jquery.app.js"></script>
+
+<script>
+
+    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    if (user.Id == "102") {
+        $("#profilePic").html('<img src="assets/images/users/Roy.jpg" alt="user" class="rounded-circle">');
+    }
+    else $("#profilePic").html('<img src="../../assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">');
+    $('#dropdown_menu').append(user.First_name);
+
+</script>
+

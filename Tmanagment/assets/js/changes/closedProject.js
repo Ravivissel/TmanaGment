@@ -130,11 +130,11 @@ $(document).ready(function () {
             ProjectsTaskTable.row.add([row.Actual_task.Id, row.Actual_task.Title, row.Project.Title, row.Actual_task.Created_by.First_name, row.Actual_task.Assign_to.First_name, s_date, e_date, row.Actual_task.Status.Title, btnStr]).draw("false");
         });
 
-        $('#datatable-buttons tbody').on('click', '#show', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
             arr_details = { taskID: data[0], func: "show", proj: "proj" };
             GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
-            location.href = "taskForm.html";
+            location.href = "../../../pages/taskForm.html";
         });
 
         ProjectsTaskTable.buttons().container()
@@ -211,7 +211,7 @@ $(document).ready(function () {
 });
 
 $(document).on('click', '#returnButton', function () {
-    location.href = "closedProjects.html";
+    location.href = "../../../pages/closedProjects.html";
 });
 
 

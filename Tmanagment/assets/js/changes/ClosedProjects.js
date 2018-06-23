@@ -90,14 +90,14 @@
         });
     }
 
-    $('#datatable-buttons tbody').on('click', '#show', function () {
+    $('#datatable-buttons').find('tbody').on('click', '#show', function () {
         var data = table.row($(this).parents('tr')).data();
         GENERAL.PROJECTS.setClosedProjectClicked(data[0]);
-        location.href = "closedProject.html";
+        location.href = "../../../pages/closedProject.html";
         console.log(data[0]); 
     });
 
-    $('#datatable-buttons tbody').on('click', '#reactive', function () {
+    $('#datatable-buttons').find('tbody').on('click', '#reactive', function () {
         var data = table.row($(this).parents('tr')).data();
         swal({
             title: "אתה בטוח שברצונך להפוך את הפרוייקט לפעיל?",
@@ -121,7 +121,7 @@
     });
 
     function refreshPage() {
-        location.href = "openedProjects.html";
+        location.href = "../../../pages/openedProjects.html";
     }
 
     function activateProject(projectID) {

@@ -17,7 +17,7 @@
         this.$event = ('#external-events div.external-event'),
         this.$calendar = $('#calendar'),
         this.$saveCategoryBtn = $('.save-category'),
-        this.$categoryForm = $('#add-category form'),
+        this.$categoryForm = $('#add-category').find('form'),
         this.$extEvents = $('#external-events'),
         this.$calendarObj = null
     };

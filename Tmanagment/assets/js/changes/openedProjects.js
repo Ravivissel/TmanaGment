@@ -50,7 +50,7 @@
     $('#openedProjects').on('click', '#show', function () {
         var projectCardId = $(this).parent().attr('id');
         GENERAL.PROJECTS.setOpenProjectClicked(projectCardId);
-        location.href = "openedProject.html";
+        location.href = "../../../pages/openedProject.html";
         console.log(projectCardId);
     });
 });

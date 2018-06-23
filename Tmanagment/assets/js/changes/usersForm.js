@@ -286,11 +286,11 @@ function sweetAlertSuccess() {
 }
 
 function returnToEmployeesPage() {
-    location.href = "users.html";
+    location.href = "../../../pages/users.html";
 }
 
 $(document).on('click', '#back', function () {
-    location.href = "users.html";
+    location.href = "../../../pages/users.html";
 });
 
 

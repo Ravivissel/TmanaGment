@@ -5,7 +5,7 @@
     $('a[href$="#finish"]').text('סיום');
 
     user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    if (user.User_type == "B") { location.href = "index.html"; }
+    if (user.User_type == "B") { location.href = "../../../pages/index.html"; }
 
     //generate select options
     generateAssignToRequestList();
@@ -154,7 +154,7 @@
     //fill the project name, contact name and contact phone after the request was choosen
     $('#assign_to_request').change(function () {
         arr_request = JSON.parse(GENERAL.REQUESTS.getRequestsList());
-        request = $('#assign_to_request option:selected').val();
+        request = $('#assign_to_request').find('option:selected').val();
         for (i in arr_request) {
             if (arr_request[i].Id == request)
             {
@@ -209,7 +209,7 @@
 
     $('#wizard-validation-form').find('a[href="#finish"]').click(function () {
         var project_title = $("#project_title").val();
-        var project_manager = $("#project_manager option:selected").val();
+        var project_manager = $("#project_manager").find("option:selected").val();
         var project_priority_num = $("#project_priority_num").val();
         var start_date = moment($("#start_date").datepicker('getDate')).format();
         var end_date = moment($("#end_date").datepicker('getDate')).format();
@@ -232,8 +232,8 @@
         user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
         var created_by = user.Id;
 
-        if ($("#customerCB option:selected").val() != -1) {
-            var customer_id = $("#customerCB option:selected").val();
+        if ($("#customerCB").find("option:selected").val() != -1) {
+            var customer_id = $("#customerCB").find("option:selected").val();
             var customer_name = -1;
             var customer_f_name = -1;
             var customer_phone = -1;
@@ -276,7 +276,7 @@
     }
 
     function returnToOpenProjectsPage() {
-        location.href = "openedProjects.html";
+        location.href = "../../../pages/openedProjects.html";
     }
 
 });

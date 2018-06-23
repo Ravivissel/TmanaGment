@@ -69,18 +69,18 @@
             table.row.add([row.Id, row.Title, row.Contact_name, row.Contact_phone, row.Assign_to.First_name, row.Status.Title, btnStr]).draw(false);
         });
 
-        $('#datatable-buttons tbody').on('click', '#show', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = table.row($(this).parents('tr')).data();
             arr_details = { requestID: data[0], func: "show" };
             GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_details));
-            location.href = "requestsForm.html";
+            location.href = "../../../pages/requestsForm.html";
         });
 
-        $('#datatable-buttons tbody').on('click', '#edit', function () {
+        $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = table.row($(this).parents('tr')).data();
             arr_details = { requestID: data[0], func: "edit", status: data[5] };
             GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_details));
-            location.href = "requestsForm.html";
+            location.href = "../../../pages/requestsForm.html";
         });
 
         $('#activeRequests').change(function () {
