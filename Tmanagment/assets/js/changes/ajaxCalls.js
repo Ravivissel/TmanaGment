@@ -4,7 +4,7 @@
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'DashboardWS.asmx/GetMyTasksList',       // server side web service method
+        url: '/DashboardWS.asmx/GetMyTasksList',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -20,7 +20,7 @@ function getMyRequestes(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'DashboardWS.asmx/GetMyRequestsList',       // server side web service method
+        url: '/DashboardWS.asmx/GetMyRequestsList',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -36,7 +36,7 @@ function getProjects(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/GetProjectsList',       // server side web service method
+        url: '/ProjectWS.asmx/GetProjectsList',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -53,7 +53,7 @@ function getRequests(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'RequestWS.asmx/GetRequestsList',       // server side web service method
+        url: '/RequestWS.asmx/GetRequestsList',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -70,7 +70,7 @@ function getAllProjectsTasks(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetAllProjectsTasksList',       // server side web service method
+        url: '/TasksWS.asmx/GetAllProjectsTasksList',       // server side web service method
         data: dataString,
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -86,7 +86,7 @@ function getAllRequestsTasks(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetAllRequestsTasksList',       // server side web service method
+        url: '/TasksWS.asmx/GetAllRequestsTasksList',       // server side web service method
         data: dataString,
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -102,7 +102,7 @@ function insertNewRequest(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'RequestWS.asmx/SetRequest',       // server side web service method
+        url: '/RequestWS.asmx/SetRequest',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -118,7 +118,7 @@ function insertNewProjectTask(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/SetActualProjectTask',       // server side web service method
+        url: '/TasksWS.asmx/SetActualProjectTask',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -134,7 +134,7 @@ function GetRequest(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'RequestWS.asmx/GetRequest',       // server side web service method
+        url: '/RequestWS.asmx/GetRequest',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -150,7 +150,7 @@ function GetProject(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/GetProject',       // server side web service method
+        url: '/ProjectWS.asmx/GetProject',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -166,7 +166,7 @@ function UpdateProject(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/UpdateProjects',       // server side web service method
+        url: '/ProjectWS.asmx/UpdateProjects',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -179,7 +179,7 @@ function UpdateProject(request, successCB, errorCB) {
 function GetAssignToList(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'EmployeeWS.asmx/GetAssignToList',       // server side web service method
+        url: '/EmployeeWS.asmx/GetAssignToList',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         async: false,                             
@@ -195,7 +195,7 @@ function GetProjectTask(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetProjectTask',       // server side web service method
+        url: '/TasksWS.asmx/GetProjectTask',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -211,7 +211,7 @@ function GetRequestTask(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetRequestTask',       // server side web service method
+        url: '/TasksWS.asmx/GetRequestTask',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -227,7 +227,7 @@ function loginCheck(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'LoginWS.asmx/LoginUser',       // server side web service method
+        url: '/LoginWS.asmx/LoginUser',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -240,7 +240,7 @@ function loginCheck(request, successCB, errorCB) {
 function getCustomers(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'CustomerWS.asmx/GetCustomersList',       // server side web service method
+        url: '/CustomerWS.asmx/GetCustomersList',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         async: false,
@@ -256,7 +256,7 @@ function insertNewCustomer(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'CustomerWS.asmx/SetCustomer',       // server side web service method
+        url: '/CustomerWS.asmx/SetCustomer',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -272,7 +272,7 @@ function GetCustomer(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'CustomerWS.asmx/GetCustomer',       // server side web service method
+        url: '/CustomerWS.asmx/GetCustomer',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -288,7 +288,7 @@ function GetEmployees(request, successCB, errorCB) {
     }
 
     $.ajax({ // ajax call starts
-        url: 'EmployeeWS.asmx/GetEmployees',       // server side web service method
+        url: '/EmployeeWS.asmx/GetEmployees',       // server side web service method
         type: 'POST',
         data: dataString,
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -303,7 +303,7 @@ function SetEmployee(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'EmployeeWS.asmx/SetEmployee',       // server side web service method
+        url: '/EmployeeWS.asmx/SetEmployee',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -319,7 +319,7 @@ function UpdateEmployee(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'EmployeeWS.asmx/UpdateEmployee',       // server side web service method
+        url: '/EmployeeWS.asmx/UpdateEmployee',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -335,7 +335,7 @@ function DeactivateCustomer(request) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'CustomerWS.asmx/DeactivateCustomer',       // server side web service method
+        url: '/CustomerWS.asmx/DeactivateCustomer',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -363,7 +363,7 @@ function getTasksNum(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetTasksNum',       // server side web service method
+        url: '/TasksWS.asmx/GetTasksNum',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -379,7 +379,7 @@ function insertNewRequestTask(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/SetActualRequestTask',       // server side web service method
+        url: '/TasksWS.asmx/SetActualRequestTask',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -392,7 +392,7 @@ function insertNewRequestTask(request, successCB, errorCB) {
 function getOpenProjectsNum(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'DashboardWS.asmx/GetOpenProjectsNum',       // server side web service method
+        url: '/DashboardWS.asmx/GetOpenProjectsNum',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         contentType: 'application/json; charset = utf-8', // sent to the server
@@ -404,7 +404,7 @@ function getOpenProjectsNum(successCB, errorCB) {
 function getTodaysTasksNum(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'DashboardWS.asmx/GetTodaysTasksNum',       // server side web service method
+        url: '/DashboardWS.asmx/GetTodaysTasksNum',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         contentType: 'application/json; charset = utf-8', // sent to the server
@@ -416,7 +416,7 @@ function getTodaysTasksNum(successCB, errorCB) {
 function getLateTasksNum(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'DashboardWS.asmx/GetLateTasksNum',       // server side web service method
+        url: '/DashboardWS.asmx/GetLateTasksNum',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         contentType: 'application/json; charset = utf-8', // sent to the server
@@ -428,7 +428,7 @@ function getLateTasksNum(successCB, errorCB) {
 function getAlmostLateTasksNum(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetAlmostLateTasksNum',       // server side web service method
+        url: '/TasksWS.asmx/GetAlmostLateTasksNum',       // server side web service method
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
         contentType: 'application/json; charset = utf-8', // sent to the server
@@ -443,7 +443,7 @@ function getProjectTasksList(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetProjectTasksList',       // server side web service method
+        url: '/TasksWS.asmx/GetProjectTasksList',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -456,7 +456,7 @@ function getProjectTasksList(request, successCB, errorCB) {
 function GetDashboardStatistics(successCB, errorCB) {
 
     $.ajax({
-        url: 'DashboardWS.asmx/GetStatistics',
+        url: '/DashboardWS.asmx/GetStatistics',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json; charset = utf-8',
@@ -468,7 +468,7 @@ function GetDashboardStatistics(successCB, errorCB) {
 
 function GetTasksStatistics(successCB, errorCB) {
     $.ajax({
-        url: 'TasksWS.asmx/GetStatistics',
+        url: '/TasksWS.asmx/GetStatistics',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json; charset = utf-8',
@@ -483,7 +483,7 @@ function insertNewProject(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/InsertNewProject',       // server side web service method
+        url: '/ProjectWS.asmx/InsertNewProject',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -499,7 +499,7 @@ function getUserDetails(uName, successCB, errorCB) {
     var dataString = JSON.stringify(uName);
 
     $.ajax({ // ajax call starts
-        url: 'DashboardWS.asmx/GetUserDetails',       // server side web service method
+        url: '/DashboardWS.asmx/GetUserDetails',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -515,7 +515,7 @@ function setExpense(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ExpenseWS.asmx/SetActualProjectExpense',       // server side web service method
+        url: '/ExpenseWS.asmx/SetActualProjectExpense',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -528,7 +528,7 @@ function setExpense(request, successCB, errorCB) {
 function GetConstActualTasks(successCB, errorCB) {
 
     $.ajax({ // ajax call starts
-        url: 'TasksWS.asmx/GetConstActualTasks',
+        url: '/TasksWS.asmx/GetConstActualTasks',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json; charset = utf-8',
@@ -543,7 +543,7 @@ function getProjectExpenses(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ExpenseWS.asmx/GetProjectExpenses',       // server side web service method
+        url: '/ExpenseWS.asmx/GetProjectExpenses',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -559,7 +559,7 @@ function ActivateProject(request) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/ActivateProject',       // server side web service method
+        url: '/ProjectWS.asmx/ActivateProject',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -575,7 +575,7 @@ function DeactivateExpense(request) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ExpenseWS.asmx/DeactivateExpense',       // server side web service method
+        url: '/ExpenseWS.asmx/DeactivateExpense',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
@@ -591,7 +591,7 @@ function getCustomerProjects(request, successCB, errorCB) {
     var dataString = JSON.stringify(request);
 
     $.ajax({ // ajax call starts
-        url: 'ProjectWS.asmx/GetCustomerProjects',       // server side web service method
+        url: '/ProjectWS.asmx/GetCustomerProjects',       // server side web service method
         data: dataString,                          // the parameters sent to the server
         type: 'POST',                              // can be also GET
         dataType: 'json',                          // expecting JSON datatype from the server
