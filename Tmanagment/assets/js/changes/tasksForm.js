@@ -6,19 +6,25 @@ $(document).ready(function () {
     generateAssignToProjectList();
     generateAssignToRequestList();
 
-    if (JSON.parse(GENERAL.TASKS.getProjectsTasksList()).length != 0) {
-        arr_project_task = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
-        if (arr_project_task.func == "edit" || arr_project_task.func == "show") {
+    var projectTasksList = getFromLocalStorage(localStorageConstants.projects.ProjectsTasksList);
+    var requestsTasksList = getFromLocalStorage(localStorageConstants.requests.RequestsTasksList);
+
+    if (projectTasksList.length !==0) {
+        if (projectTasksList.func === "edit" || projectTasksList.func === "show") {
             if (arr_project_task.proj = "proj") { $("#backButton").prop('hidden', true); }
             var taskID = 1;
             var arr_details = { taskID: taskID, func: "new" };
-            localStorage.arr_project_task = JSON.stringify(arr_details);
+
+            setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,arr_details);
+
             $("#proj_req_assignDiv").prop('hidden', true);
             $("#proj_req_assign_label").prop('hidden', true);
             $("#statusDiv").prop('hidden', false);
             $("#projectDiv").prop('hidden', false);                 
+
             uploadProjectTaskData(arr_project_task.taskID);
-            if (arr_project_task.func == "show") {
+
+            if (projectTasksList.func === "show") {
                 $("#task_title").attr('disabled', 'disabled');
                 $("#start_date").attr('disabled', 'disabled');
                 $("#end_date").attr('disabled', 'disabled');
@@ -33,17 +39,21 @@ $(document).ready(function () {
         else $("#backButton").prop('hidden', true);
     }
 
-    if (JSON.parse(GENERAL.TASKS.getRequestsTasksList()).length != 0) {
-        arr_request_task = JSON.parse(GENERAL.TASKS.getRequestsTasksList());
-        if (arr_request_task.func == "edit" || arr_request_task.func == "show") {
+    if (requestsTasksList.length !== 0) {
+        if (requestsTasksList.func === "edit" || requestsTasksList.func === "show") {
+
             var taskID = 1;
             var arr_details = { taskID: taskID, func: "new" };
-            localStorage.arr_request_task = JSON.stringify(arr_details);
+
+            setToLocalStorage(localStorageConstants.requests.RequestsTasksList,arr_details);
+
             $("#proj_req_assignDiv").prop('hidden', true);
             $("#proj_req_assign_label").prop('hidden', true);
             $("#statusDiv").prop('hidden', false);
             $("#requestDiv").prop('hidden', false);   
+
             uploadRequestTaskData(arr_request_task.taskID);
+
             if (arr_request_task.func == "show") {
                 $("#task_title").attr('disabled', 'disabled');
                 $("#start_date").attr('disabled', 'disabled');
@@ -110,7 +120,8 @@ $(document).ready(function () {
 
     //Assign to Request                      
     function generateAssignToRequestList() {
-        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var user = getFromLocalStorage(localStorageConstants.employees.user);
+
         var userId = user.Id;
         var userType = user.User_type;
         var request = {
@@ -150,7 +161,8 @@ $(document).ready(function () {
 
     function getProjectTaskCB(TaskData) {
         var projectTask = JSON.parse(TaskData.d);
-        GENERAL.TASKS.setProjectsTasksList(projectTask);
+
+        setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,projectTask);
 
         var s_date = new Date(moment(projectTask.Actual_task.Start_date).format());
         s_date = s_date.toLocaleDateString("he-IL");
@@ -185,7 +197,7 @@ $(document).ready(function () {
 
     function getRequestTaskCB(TaskData) {
         var requestTask = JSON.parse(TaskData.d);
-        GENERAL.TASKS.setRequestsTasksList(requestTask);
+        setToLocalStorage(localStorageConstants.requests.RequestsTasksList,requestTask);
 
         var s_date = new Date(moment(requestTask.Actual_task.Start_date).format());
         s_date = s_date.toLocaleDateString("he-IL");

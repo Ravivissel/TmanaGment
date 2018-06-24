@@ -1,8 +1,10 @@
 ﻿//wait until the dom is loaded
 $(document).ready(function () {
 
-    if (JSON.parse(GENERAL.CUSTOMERS.getCustomersList()).length != 0) {
-        arr_customer = JSON.parse(GENERAL.CUSTOMERS.getCustomersList());
+
+    var arr_customer = getFromLocalStorage(localStorageConstants.customers.customersList);
+    if (arr_customer != 0) {
+       var  arr_customer = getFromLocalStorage(localStorageConstants.customers.customersList);
         if (arr_customer.func == "edit" || arr_customer.func == "show") {
             uploadData(arr_customer.customerID);
             if (arr_customer.func == "show") {
@@ -31,8 +33,8 @@ $(document).ready(function () {
 
     function getCustomerCB(CustomerData) {
 
-        var customer = JSON.parse(CustomerData.d);
-        GENERAL.CUSTOMERS.setCustomersList(customer);
+        var customerList = JSON.parse(CustomerData.d);
+        setToLocalStorage(localStorageConstants.customers.customersList,customerList);
 
         $("#first_name").val(customer.First_name);
         $("#last_name").val(customer.Last_name);
@@ -44,7 +46,7 @@ $(document).ready(function () {
     }
 
     function getCustomerProjectsCB(results) {
-        customerProjectsData = $.parseJSON(results.d);
+        var customerProjectsData = $.parseJSON(results.d);
         renderCustomerProjects(customerProjectsData);
     }
 

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    table = $('#datatable-buttons').DataTable({
+    var table = $('#datatable-buttons').DataTable({
         lengthChange: false,
         buttons: ['copy', 'excel', 'pdf'],
         "oLanguage": {
@@ -42,13 +42,13 @@
     }
 
     function renderCustomersPage(CustomersData) {
-        results = $.parseJSON(CustomersData.d);
+        var results = $.parseJSON(CustomersData.d);
         //localStorage.customerList = results;
-        GENERAL.CUSTOMERS.setCustomersList(JSON.stringify(results));
+        setToLocalStorage(localStorageConstants.customers.customersList, results)
 
         $.each(results, function (i, row) {
 
-            if (row.Active == "N") {
+            if (row.Active === "N") {
                 return true;
             }
 
@@ -65,15 +65,15 @@
 
         $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = table.row($(this).parents('tr')).data();
-            arr_details = { customerID: data[0], func: "show" };
-            GENERAL.CUSTOMERS.setCustomersList(JSON.stringify(arr_details));
+            var customersList = {customerID: data[0], func: "show"};
+            setToLocalStorage(localStorageConstants.customers.customersList, customersList);
             location.href = "../../../pages/customerForm.html";
         });
 
         $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = table.row($(this).parents('tr')).data();
-            arr_details = { customerID: data[0], func: "edit" };
-            GENERAL.CUSTOMERS.setCustomersList(JSON.stringify(arr_details));
+            var customersList = {customerID: data[0], func: "edit"};
+            setToLocalStorage(localStorageConstants.customers.customersList, customersList);
             location.href = "../../../pages/customerForm.html";
         });
 
@@ -96,7 +96,9 @@
                     type: "success",
                     showConfirmButton: false
                 });
-                setTimeout(function () { refreshPage() }, 1001);
+                setTimeout(function () {
+                    refreshPage()
+                }, 1001);
             });
         });
 
@@ -119,13 +121,15 @@
                     type: "success",
                     showConfirmButton: false
                 });
-                setTimeout(function () { refreshPage() }, 1001);
+                setTimeout(function () {
+                    refreshPage()
+                }, 1001);
             });
         });
 
         $('#activeCustomers').change(function () {
             refreshTable();
-        }); 
+        });
     }
 
     function refreshPage() {
@@ -133,14 +137,14 @@
     }
 
     function refreshTable() {
-        results = JSON.parse(GENERAL.CUSTOMERS.getCustomersList());
+        var results = getFromLocalStorage(localStorageConstants.customers.customersList);
         var active = $("#activeCustomers").prop('checked');
         table.clear().draw();
 
-        if (active == true) {
+        if (active === true) {
             $.each(results, function (i, row) {
 
-                if (row.Active == "N") {
+                if (row.Active === "N") {
                     return true;
                 }
 
@@ -157,20 +161,23 @@
         }
         else {
             $.each(results, function (i, row) {
+                var btnStr = "";
+                var showBtn;
+                var editBtn;
 
-                if (row.Active == "Y") {
+                if (row.Active === "Y") {
                     active = "פעיל";
-                    var btnStr = "";
-                    var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='צפייה'><i class='fa fa-wpforms'></i></button>";
-                    var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='עריכה'><i class='ti-pencil'></i></button>";
+                    btnStr = "";
+                    showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='צפייה'><i class='fa fa-wpforms'></i></button>";
+                    editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='עריכה'><i class='ti-pencil'></i></button>";
                     var deleteBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-danger btn-sm m-b-5' id='remove' title='הפוך ללא פעיל'><i class='fa fa-remove' ></i></button>";
                     btnStr += showBtn + " " + editBtn + " " + deleteBtn;
                 }
                 else {
                     active = "לא פעיל";
-                    var btnStr = "";
-                    var showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='צפייה'><i class='fa fa-wpforms'></i></button>";
-                    var editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='עריכה'><i class='ti-pencil'></i></button>";
+                    btnStr = "";
+                    showBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-success btn-sm m-b-5' id='show' title='צפייה'><i class='fa fa-wpforms'></i></button>";
+                    editBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-primary btn-sm m-b-5' id='edit' title='עריכה'><i class='ti-pencil'></i></button>";
                     var reactiveBtn = "<button type='button' class='btn btn-icon waves-effect waves-light btn-warning btn-sm m-b-5' id='reactive' title='הפוך לפעיל'><i class='fa fa-undo' ></i></button>";
                     btnStr += showBtn + " " + editBtn + " " + reactiveBtn;
                 }

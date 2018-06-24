@@ -30,7 +30,7 @@
         console.log(err);
     }
 
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
     var userId = user.Id;
     var userType = user.User_type;
     var request = {
@@ -42,8 +42,8 @@
     getAllRequestsTasks(request, getAllRequestsTasksCB, getAllRequestsTasksErrorCB);
 
     function getAllProjectsTasksCB(results) {
-        allProjectsTasks = $.parseJSON(results.d);
-        GENERAL.TASKS.setProjectsTasksList(JSON.stringify(allProjectsTasks));
+        var allProjectsTasks = $.parseJSON(results.d);
+        setToLocalStorage(localStorageConstants.Tasks.TasksList,allProjectsTasks);
         renderAllProjectsTaskTable(allProjectsTasks);
     }
 
@@ -52,8 +52,8 @@
     }
 
     function getAllRequestsTasksCB(results) {
-        allRequestsTasks = $.parseJSON(results.d);
-        GENERAL.TASKS.setRequestsTasksList(JSON.stringify(allRequestsTasks));
+        var allRequestsTasks = $.parseJSON(results.d);
+        setToLocalStorage(localStorageConstants.requests.RequestsTasksList,allRequestsTasks)
         renderAllRequestsTaskTable(allRequestsTasks);
     }
 
@@ -108,15 +108,15 @@
 
         $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "show" };
-            GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
+            var arr_details = { taskID: data[0], func: "show" };
+            setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,arr_details);
             location.href = "../../../pages/taskForm.html";
         });
 
         $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "edit" };
-            GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
+            var arr_details = { taskID: data[0], func: "edit" };
+            setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,arr_details);
             location.href = "../../../pages/taskForm.html";
         });
 
@@ -129,7 +129,7 @@
     }
 
     function refreshProjectsTaskTable() {
-        allProjectsTasks = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
+        var allProjectsTasks = getFromLocalStorage(localStorageConstants.projects.ProjectsTasksList);
         var active = $("#activeProjectsTasks").prop('checked');
         ProjectsTaskTable.clear().draw();
 
@@ -221,15 +221,15 @@
 
         $('#datatable-buttons2').find('tbody').on('click', '#show', function () {
             var data = RequestsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "show", status: data[7] };
-            GENERAL.TASKS.setRequestsTasksList(JSON.stringify(arr_details));
+            var arr_details = { taskID: data[0], func: "show", status: data[7] };
+            setToLocalStorage(localStorageConstants.requests.RequestsTasksList,arr_details);
             location.href = "../../../pages/taskForm.html";
         });
 
         $('#datatable-buttons2').find('tbody').on('click', '#edit', function () {
             var data = RequestsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "edit", status: data[7] };
-            GENERAL.TASKS.setRequestsTasksList(JSON.stringify(arr_details));
+            var arr_details = { taskID: data[0], func: "edit", status: data[7] };
+            setToLocalStorage(localStorageConstants.requests.RequestsTasksList,arr_details);
             location.href = "../../../pages/taskForm.html";
         });
 
@@ -242,14 +242,14 @@
     }
 
     function refreshRequestsTaskTable() {
-        allRequestsTasks = JSON.parse(GENERAL.TASKS.getRequestsTasksList());
+        var allRequestsTasks = getFromLocalStorage(localStorageConstants.requests.RequestsTasksList);
         var active = $("#activeRequestsTasks").prop('checked');
         RequestsTaskTable.clear().draw();
 
-        if (active == true) {
+        if (active === true) {
             $.each(allRequestsTasks, function (index, row) {
 
-                if (row.Actual_task.Status.Title == "סגורה") {
+                if (row.Actual_task.Status.Title === "סגורה") {
                     return true;
                 }
 

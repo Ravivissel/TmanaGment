@@ -4,8 +4,11 @@
     $('a[href$="#previous"]').text('הקודם');
     $('a[href$="#finish"]').text('סיום');
 
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    if (user.User_type == "B") { location.href = "../../../pages/index.html"; }
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
+
+    if (user.User_type === "B") {
+        location.href = "../../../pages/index.html";
+    }
 
     //generate select options
     generateAssignToRequestList();
@@ -33,8 +36,9 @@
                 );
                 $("#task" + result.Id).data("task", result);
             });
-          
+
         }
+
         function GetConstActualTasksErrorCB(err) {
             console.log(err);
         }
@@ -42,7 +46,7 @@
 
     //Assign to Request                      
     function generateAssignToRequestList() {
-        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var user = getFromLocalStorage(localStorageConstants.employees.user);
         var userId = user.Id;
         var userType = user.User_type;
         var request = {
@@ -54,12 +58,13 @@
 
     function getAssignToRequestListCB(AssignToRequestListData) {
         var arr_AssignToRequest = $.parseJSON(AssignToRequestListData.d);
-        GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_AssignToRequest));
+        setToLocalStorage(localStorageConstants.requests.RequestsList,arr_AssignToRequest);
+
         $select = $("#assign_to_request");
-        $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+        $('<option>', {value: -1, text: 'בחר'}).attr({'selected': '', 'disabled': ''}).appendTo($select);
         for (i in arr_AssignToRequest) {
             if (arr_AssignToRequest[i].Status.Title != "סגורה") {
-                $('<option>', { value: arr_AssignToRequest[i].Id, text: arr_AssignToRequest[i].Title }).appendTo($select);
+                $('<option>', {value: arr_AssignToRequest[i].Id, text: arr_AssignToRequest[i].Title}).appendTo($select);
             }
         }
     }
@@ -76,9 +81,9 @@
     function generateProjectManagerListCB(AssignToListData) {
         var arr_AssignTo = $.parseJSON(AssignToListData.d);
         $select = $("#project_manager");
-        $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+        $('<option>', {value: -1, text: 'בחר'}).attr({'selected': '', 'disabled': ''}).appendTo($select);
         for (i in arr_AssignTo) {
-            $('<option>', { value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name }).appendTo($select);
+            $('<option>', {value: arr_AssignTo[i].Id, text: arr_AssignTo[i].First_name}).appendTo($select);
         }
     }
 
@@ -94,9 +99,12 @@
     function generateCustomersListCB(customerData) {
         var arr_customer = $.parseJSON(customerData.d);
         $select = $("#customerCB");
-        $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+        $('<option>', {value: -1, text: 'בחר'}).attr({'selected': '', 'disabled': ''}).appendTo($select);
         for (i in arr_customer) {
-            $('<option>', { value: arr_customer[i].Id, text: arr_customer[i].First_name + " " + arr_customer[i].Last_name }).appendTo($select);
+            $('<option>', {
+                value: arr_customer[i].Id,
+                text: arr_customer[i].First_name + " " + arr_customer[i].Last_name
+            }).appendTo($select);
         }
     }
 
@@ -153,11 +161,12 @@
 
     //fill the project name, contact name and contact phone after the request was choosen
     $('#assign_to_request').change(function () {
-        arr_request = JSON.parse(GENERAL.REQUESTS.getRequestsList());
-        request = $('#assign_to_request').find('option:selected').val();
+
+        var arr_request = getFromLocalStorage(localStorageConstants.requests.RequestsList);
+        var request = $('#assign_to_request').find('option:selected').val();
+
         for (i in arr_request) {
-            if (arr_request[i].Id == request)
-            {
+            if (arr_request[i].Id == request) {
                 $("#project_title").val(arr_request[i].Title);
                 $("#contact_name").val(arr_request[i].Contact_name);
                 $("#contact_phone").val(arr_request[i].Contact_phone);
@@ -202,7 +211,7 @@
     $('#customer_f_nameCB').change(function () {
         $('#customer2').val($('#customer_nameCB').val() + " " + $(this).val());
     });
-    $('.dd').on('change',function () {
+    $('.dd').on('change', function () {
         $("#finish_tasks").html('');
         $('#finish_tasks').append($('#nestable_list_2').prop('outerHTML'));
     });
@@ -223,13 +232,12 @@
         finish_tasks_list.each(function (i, v) {
             // push in tasks array, an array of data-tasks
             tasks_array.push($(v).data('task'));
-            var user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-            tasks_array[i].Created_by = user;
+            tasks_array[i].Created_by = getFromLocalStorage(localStorageConstants.employees.user);
         });
         var string_tasks = JSON.stringify(tasks_array);
-      
+
         //get the user id from session
-        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        user = getFromLocalStorage(localStorageConstants.employees.user);
         var created_by = user.Id;
 
         if ($("#customerCB").find("option:selected").val() != -1) {
@@ -245,7 +253,23 @@
             var customer_id = -1;
         }
 
-        var request = { project_title: project_title, project_manager: project_manager, project_priority_num: project_priority_num, start_date: start_date, end_date: end_date, contact_name: contact_name, contact_phone: contact_phone, request_id: request_id, description: description, created_by: created_by, customer_id: customer_id, customer_name: customer_name, customer_f_name: customer_f_name, customer_phone: customer_phone, actual_tasks: string_tasks };
+        var request = {
+            project_title: project_title,
+            project_manager: project_manager,
+            project_priority_num: project_priority_num,
+            start_date: start_date,
+            end_date: end_date,
+            contact_name: contact_name,
+            contact_phone: contact_phone,
+            request_id: request_id,
+            description: description,
+            created_by: created_by,
+            customer_id: customer_id,
+            customer_name: customer_name,
+            customer_f_name: customer_f_name,
+            customer_phone: customer_phone,
+            actual_tasks: string_tasks
+        };
         //call the ajax func
         insertNewProject(request, insertNewProjectCB, insertNewProjectErrorCB);
     });
@@ -258,7 +282,9 @@
             showConfirmButton: false
         });
         // send user to openProjects page
-        setTimeout(function () { returnToOpenProjectsPage(); }, 1001);
+        setTimeout(function () {
+            returnToOpenProjectsPage();
+        }, 1001);
     }
 
     function insertNewProjectErrorCB(error) {

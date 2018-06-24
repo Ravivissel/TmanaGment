@@ -52,7 +52,8 @@
 
     function renderClosedProjectsPage(closedProjectsData) {
         results = $.parseJSON(closedProjectsData.d);
-        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var user = getFromLocalStorage(localStorageConstants.employee.user);
+
         $.each(results, function (i, row) {
             if (user.User_type == "B") {
                 if (row.Status.Title == "סגור" && user.First_name == row.Project_manager.First_name) {
@@ -92,7 +93,7 @@
 
     $('#datatable-buttons').find('tbody').on('click', '#show', function () {
         var data = table.row($(this).parents('tr')).data();
-        GENERAL.PROJECTS.setClosedProjectClicked(data[0]);
+        setToLocalStorage(localStorageConstants.projects.ClosedProjectClicked,data[0]);
         location.href = "../../../pages/closedProject.html";
         console.log(data[0]); 
     });

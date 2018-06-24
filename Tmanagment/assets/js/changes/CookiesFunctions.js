@@ -1,11 +1,10 @@
 ﻿function checkCookie() {
     var username = getCookie("username");
-    if (username != "") {
+    if (username !== "") {
         setCookie("username", username, 1 / 24);
-        GENERAL.USERS.setUserName(username);
-        //alert("Welcome again " + username);
-        //document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+        setToLocalStorage(localStorageConstants.employees.userName, username);
     }
+
     else {
         location.href = "../pages/login.html";
         //username = prompt("Please enter your name:", "");

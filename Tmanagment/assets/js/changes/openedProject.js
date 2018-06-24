@@ -1,7 +1,7 @@
 ﻿var resizefunc = [];
 //wait until the dom is loaded
 $(document).ready(function () {
-    
+
     //generate select options
     generateProjectManagerList();
     generateCustomersList();
@@ -14,9 +14,9 @@ $(document).ready(function () {
     function generateProjectManagerListCB(ProjectManagerListData) {
         var arr_ProjectManager = $.parseJSON(ProjectManagerListData.d);
         $select = $("#project_manager");
-        $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+        $('<option>', {value: -1, text: 'בחר'}).attr({'selected': '', 'disabled': ''}).appendTo($select);
         for (i in arr_ProjectManager) {
-            $('<option>', { value: arr_ProjectManager[i].Id, text: arr_ProjectManager[i].First_name }).appendTo($select);
+            $('<option>', {value: arr_ProjectManager[i].Id, text: arr_ProjectManager[i].First_name}).appendTo($select);
         }
     }
 
@@ -31,9 +31,12 @@ $(document).ready(function () {
     function generateCustomersListCB(customerData) {
         var arr_customer = $.parseJSON(customerData.d);
         $select = $("#project_customer");
-        $('<option>', { value: -1, text: 'בחר' }).attr({ 'selected': '', 'disabled': '' }).appendTo($select);
+        $('<option>', {value: -1, text: 'בחר'}).attr({'selected': '', 'disabled': ''}).appendTo($select);
         for (i in arr_customer) {
-            $('<option>', { value: arr_customer[i].Id, text: arr_customer[i].First_name + " " + arr_customer[i].Last_name }).appendTo($select);
+            $('<option>', {
+                value: arr_customer[i].Id,
+                text: arr_customer[i].First_name + " " + arr_customer[i].Last_name
+            }).appendTo($select);
         }
     }
 
@@ -42,7 +45,7 @@ $(document).ready(function () {
     }
 
     try {
-        var projectId = JSON.parse(GENERAL.PROJECTS.getOpenProjectClicked());
+        var projectId = getFromLocalStorage(localStorageConstants.projects.OpenProjectClicked);
         if (projectId) {
             getProjectFromServer(projectId);
         }
@@ -71,7 +74,7 @@ $(document).ready(function () {
     function getProjectCB(projectResult) {
         try {
             var projects = JSON.parse(projectResult.d);
-            GENERAL.PROJECTS.setOpenedProjectsList(JSON.stringify(projects));
+            setToLocalStorage(localStorageConstants.projects.OpenedProjectsList,projects);
             renderPage(projects[0]);
         }
         catch (err) {
@@ -124,6 +127,7 @@ $(document).ready(function () {
             throw err;
         }
     }
+
     $(".state").on('click', function (event) {
         {
             if ($(".state").hasClass("isDisabled")) {
@@ -131,11 +135,11 @@ $(document).ready(function () {
                 event.preventDefault();
             }
             else {
-                $("#status").val($(event.target).attr('id').replace("timeline",""));
+                $("#status").val($(event.target).attr('id').replace("timeline", ""));
             }
         }
     });
-    $("#status").on('change', function(){
+    $("#status").on('change', function () {
         var statusId = $("#status").val();
         $("#timeline" + statusId).click();
     });
@@ -191,7 +195,7 @@ $(document).ready(function () {
 
         submitHandler: function (form, event) {
             event.preventDefault();
-            var projects = JSON.parse(GENERAL.PROJECTS.getOpenedProjectsList());
+            var projects = getFromLocalStorage(localStorageConstants.projects.OpenedProjectsList);
             var project = projects[0];
 
             project.Title = $("#project_title").val();
@@ -238,7 +242,7 @@ $(document).ready(function () {
             status: {
                 required: "אנא בחר סטטוס פרוייקט"
             }
-      
+
         }
 
     });
@@ -248,12 +252,14 @@ $(document).ready(function () {
         var Start_date = $("#start_date").datepicker('getDate');
 
         return End_date >= Start_date;
-    
+
     }, 'תאריך יעד הפרוייקט חייב להיות מוגדר לאחר או באותו תאריך ההתחלה');
 
     function UpdateProjectCB(result) {
         sweetAlertSuccess();
-        setTimeout(function () { returnToProjectsPage(); }, 1001);
+        setTimeout(function () {
+            returnToProjectsPage();
+        }, 1001);
     }
 
     function UpdateProjectError(err) {
@@ -313,8 +319,8 @@ $(document).ready(function () {
     }
 
     function getProjectTasksListCB(results) {
-        allProjectsTasks = $.parseJSON(results.d);
-        GENERAL.TASKS.setProjectsTasksList(JSON.stringify(allProjectsTasks));
+        var allProjectsTasks = $.parseJSON(results.d);
+        setToLocalStorage(localStorageConstants.projects.ProjectsTasksList, allProjectsTasks)
         renderAllProjectsTaskTable(allProjectsTasks);
     }
 
@@ -346,12 +352,12 @@ $(document).ready(function () {
             }
         });
 
-        $('#datatable-buttons_filter').find('label').css({ "float": "left" });
+        $('#datatable-buttons_filter').find('label').css({"float": "left"});
 
         //Buttons examples
         $.each(allProjectsTasks, function (index, row) {
 
-            if (row.Actual_task.Status.Title == "סגורה") {
+            if (row.Actual_task.Status.Title === "סגורה") {
                 return true;
             }
 
@@ -371,15 +377,15 @@ $(document).ready(function () {
 
         $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "show", proj: "proj" };
-            GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
+            var arr_details = {taskID: data[0], func: "show", proj: "proj"};
+            setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,arr_details);
             location.href = "../../../pages/taskForm.html";
         });
 
         $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "edit", proj: "proj" };
-            GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
+            var arr_details = {taskID: data[0], func: "edit", proj: "proj"};
+            setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,arr_details);
             location.href = "../../../pages/taskForm.html";
         });
 
@@ -392,7 +398,7 @@ $(document).ready(function () {
     }
 
     function refreshProjectsTaskTable() {
-        allProjectsTasks = JSON.parse(GENERAL.TASKS.getProjectsTasksList());
+        var allProjectsTasks = getFromLocalStorage(localStorageConstants.projects.ProjectsTasksList);
         var active = $("#activeProjectsTasks").prop('checked');
         ProjectsTaskTable.clear().draw();
 
@@ -471,11 +477,17 @@ $(document).ready(function () {
             var expense_assign_to = $("#project_id").val();
             var expense_type = $("#expense_type").find("option:selected").val();
             var expense_amount = $("#expense_amount").val();
-            var expense_img_name = ""; /*$("#expense_img").val();*/
-            //get the user id from session
-            user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-            var created_by = user.Id;           
-            var request = { expense_desc: expense_desc, expense_assign_to: expense_assign_to, expense_type: expense_type, expense_amount: expense_amount, expense_img_name: expense_img_name, created_by: created_by };
+            var expense_img_name = "";
+            var user  = getFromLocalStorage(localStorageConstants.employees.user);
+            var created_by = user.Id;
+            var request = {
+                expense_desc: expense_desc,
+                expense_assign_to: expense_assign_to,
+                expense_type: expense_type,
+                expense_amount: expense_amount,
+                expense_img_name: expense_img_name,
+                created_by: created_by
+            };
             //call the ajax func
             setExpense(request, setExpenseCB, setExpenseCBError);
 
@@ -499,7 +511,9 @@ $(document).ready(function () {
 
     function setExpenseCB(result) {
         sweetAlertSuccess();
-        setTimeout(function () { returnToOpenProjectPage(); }, 1001);
+        setTimeout(function () {
+            returnToOpenProjectPage();
+        }, 1001);
     }
 
     function setExpenseCBError(err) {
@@ -521,7 +535,7 @@ $(document).ready(function () {
     }
 
     function getProjectExpensesCB(results) {
-        allProjectsExpenses = $.parseJSON(results.d);
+        var allProjectsExpenses = $.parseJSON(results.d);
         renderAllProjectsExpensesTable(allProjectsExpenses);
     }
 
@@ -531,7 +545,7 @@ $(document).ready(function () {
 
     function renderAllProjectsExpensesTable(allProjectsExpenses) {
 
-        ProjectsExpensesTable = $('#datatable-buttons2').DataTable({
+        var ProjectsExpensesTable = $('#datatable-buttons2').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf'],
             "oLanguage": {
@@ -553,9 +567,9 @@ $(document).ready(function () {
             }
         });
 
-        $('#datatable-buttons2_filter').find('label').css({ "float": "left" });
+        $('#datatable-buttons2_filter').find('label').css({"float": "left"});
 
-        total_expenses = 0;
+        var total_expenses = 0;
 
         //Buttons examples
         $.each(allProjectsExpenses, function (index, row) {
@@ -607,7 +621,9 @@ $(document).ready(function () {
                     type: "success",
                     showConfirmButton: false
                 });
-                setTimeout(function () { refreshPage(); }, 1001);
+                setTimeout(function () {
+                    refreshPage();
+                }, 1001);
             });
         });
 
@@ -630,7 +646,9 @@ $(document).ready(function () {
                     type: "success",
                     showConfirmButton: false
                 });
-                setTimeout(function () { refreshPage(); }, 1001);
+                setTimeout(function () {
+                    refreshPage();
+                }, 1001);
             });
         });
 

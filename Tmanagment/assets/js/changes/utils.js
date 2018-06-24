@@ -1,51 +1,28 @@
 $(document).ready(function () {
     checkCookie();
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    if (user.User_type == "A") {
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
+    if (user.User_type === "A") {
         $("#masterPageContext").load("/pages/Masters/AdminMasterPage.html");
     }
     else $("#masterPageContext").load("/pages/Masters/RegMasterPage.html");
 });
 
-$(document).on('click', '#newRequestForm', function () {
-    var requestID = -1;
-    var arr_details = { requestID: requestID, func: "new" };
-    localStorage.requestList = JSON.stringify(arr_details);
-    //location.href = "requestsForm.html";
-});
-
-$(document).on('click', '#newTaskForm', function () {
-    var taskID = -1;
-    var arr_details = { taskID: taskID, func: "new" };
-    localStorage.arr_project_task = JSON.stringify(arr_details);
-    localStorage.arr_request_task = JSON.stringify(arr_details);
-    //location.href = "taskForm.html";
-});
-
-$(document).on('click', '#newCustomerForm', function () {
-    var customerID = -1;
-    var arr_details = { customerID: customerID, func: "new" };
-    localStorage.customerList = JSON.stringify(arr_details);
-    //location.href = "customerForm.html";
-});
-
-$(document).on('click', '#newUserForm', function () {
-    var userID = -1;
-    var arr_details = { userID: userID, func: "new" };
-    GENERAL.USERS.setUser(JSON.stringify(arr_details));
-    //location.href = "userForm.html";
-});
-
-$(document).on('click', '#profile', function () {
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    var arr_details = { userID: user.Id, func: "edit" };
-    GENERAL.USERS.setUser(JSON.stringify(arr_details));
-    location.href = "../../../pages/userForm.html";
-});
-
 $(document).on('click', '#logOut', function () {
     deleteCookie();
 });
+
+function setToLocalStorage(operation, data) {
+
+    var stringData = JSON.stringify(data);
+    localStorage.setItem(operation, stringData);
+}
+
+function getFromLocalStorage(operation) {
+
+    return JSON.parse(localStorage.getItem(operation));
+
+}
+
 
 var GENERAL = {
 
@@ -131,4 +108,39 @@ var GENERAL = {
 
 
 
+$(document).on('click', '#newRequestForm', function () {
+    var requestID = -1;
+    var arr_details = {requestID: requestID, func: "new"};
+    setToLocalStorage(localStorageConstants.requests.RequestsList);
+    //location.href = "requestsForm.html";
+});
+
+$(document).on('click', '#newTaskForm', function () {
+    var taskID = -1;
+    var arr_details = {taskID: taskID, func: "new"};
+    setToLocalStorage(localStorageConstants.projects.ProjectsTasksList, arr_details);
+    setToLocalStorage(localStorageConstants.requests.RequestsTasksList, arr_details);
+    //location.href = "taskForm.html";
+});
+
+$(document).on('click', '#newCustomerForm', function () {
+    var customerID = -1;
+    var arr_details = {customerID: customerID, func: "new"};
+    setToLocalStorage(localStorageConstants.customers.customersList, arr_details);
+    //location.href = "customerForm.html";
+});
+
+$(document).on('click', '#newUserForm', function () {
+    var userID = -1;
+    var arr_details = {userID: userID, func: "new"};
+    setToLocalStorage(localStorageConstants.employees.user, arr_details);
+});
+
+$(document).on('click', '#profile', function () {
+
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
+    var arr_details = {userID: user.Id, func: "edit"};
+    setToLocalStorage(localStorageConstants.employees.user, arr_details);
+    location.href = "../../../pages/userForm.html";
+});
 

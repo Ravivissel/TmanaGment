@@ -2,7 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84cb470b-1e2b-4c96-9259-1a633aa0bd1d" name="Default" comment="Changed the folders structure">
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/js/changes/constants.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/ClosedProjects.js" afterPath="$PROJECT_DIR$/assets/js/changes/ClosedProjects.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/CookiesFunctions.js" afterPath="$PROJECT_DIR$/assets/js/changes/CookiesFunctions.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/closedProject.js" afterPath="$PROJECT_DIR$/assets/js/changes/closedProject.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/customerForm.js" afterPath="$PROJECT_DIR$/assets/js/changes/customerForm.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/customers.js" afterPath="$PROJECT_DIR$/assets/js/changes/customers.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/dashboard.js" afterPath="$PROJECT_DIR$/assets/js/changes/dashboard.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/openedProject.js" afterPath="$PROJECT_DIR$/assets/js/changes/openedProject.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/openedProjects.js" afterPath="$PROJECT_DIR$/assets/js/changes/openedProjects.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/projWizard.js" afterPath="$PROJECT_DIR$/assets/js/changes/projWizard.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/requests.js" afterPath="$PROJECT_DIR$/assets/js/changes/requests.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/requestsForm.js" afterPath="$PROJECT_DIR$/assets/js/changes/requestsForm.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/tasks.js" afterPath="$PROJECT_DIR$/assets/js/changes/tasks.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/tasksForm.js" afterPath="$PROJECT_DIR$/assets/js/changes/tasksForm.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/users.js" afterPath="$PROJECT_DIR$/assets/js/changes/users.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/usersForm.js" afterPath="$PROJECT_DIR$/assets/js/changes/usersForm.js" />
+      <change beforePath="$PROJECT_DIR$/assets/js/changes/utils.js" afterPath="$PROJECT_DIR$/assets/js/changes/utils.js" />
+      <change beforePath="$PROJECT_DIR$/pages/Masters/AdminMasterPage.html" afterPath="$PROJECT_DIR$/pages/Masters/AdminMasterPage.html" />
+      <change beforePath="$PROJECT_DIR$/pages/Masters/RegMasterPage.html" afterPath="$PROJECT_DIR$/pages/Masters/RegMasterPage.html" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboardBI.html" afterPath="$PROJECT_DIR$/pages/dashboardBI.html" />
+      <change beforePath="$PROJECT_DIR$/pages/requestsForm.html" afterPath="$PROJECT_DIR$/pages/requestsForm.html" />
+      <change beforePath="$PROJECT_DIR$/pages/taskForm.html" afterPath="$PROJECT_DIR$/pages/taskForm.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,12 +38,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="closedProject.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/closedProject.html">
+      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/changes/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3945">
-              <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+            <state relative-caret-position="90">
+              <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+              <folding>
+                <element signature="n#!!block;n#setToLocalStorage#0" expanded="false" />
+                <element signature="n#!!block;n#getFromLocalStorage#0" expanded="false" />
+                <marker date="1529877871000" expanded="true" signature="2990:2992" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CookiesFunctions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/changes/CookiesFunctions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-300">
+              <caret line="4" column="66" lean-forward="false" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="66" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customerForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/changes/customerForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-675">
+              <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customers.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/changes/customers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-177">
+              <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="closedProject.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/changes/closedProject.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClosedProjects.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/changes/ClosedProjects.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-270">
+              <caret line="96" column="38" lean-forward="false" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/changes/constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#localStorageConstants#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,18 +117,8 @@
       <file leaf-file-name="AdminMasterPage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/Masters/AdminMasterPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1800">
-              <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tasks.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/tasks.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="64" column="47" lean-forward="false" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
+            <state relative-caret-position="202">
+              <caret line="150" column="35" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -49,65 +127,18 @@
       <file leaf-file-name="RegMasterPage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/Masters/RegMasterPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1632">
-              <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            <state relative-caret-position="232">
+              <caret line="127" column="19" lean-forward="false" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="closedProjects.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/closedProjects.html">
+      <file leaf-file-name="dashboardBI.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/dashboardBI.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="93" column="41" lean-forward="false" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/changes/customers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1620">
-              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-232">
-              <caret line="72" column="57" lean-forward="false" selection-start-line="72" selection-start-column="57" selection-end-line="72" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="favicon.ico" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/images/favicon.ico">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/changes/dashboard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+            <state relative-caret-position="-358">
+              <caret line="95" column="30" lean-forward="false" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -132,8 +163,21 @@
       <find>../</find>
       <find>mo</find>
       <find>momen</find>
-      <find>master</find>
       <find>﻿wrapper</find>
+      <find>master</find>
+      <find>oper</find>
+      <find>local</find>
+      <find>g</find>
+      <find>localsto</find>
+      <find>Gene</find>
+      <find>GEnera</find>
+      <find>GEn</find>
+      <find>set</find>
+      <find>GENE</find>
+      <find>GENERAL</find>
+      <find>GENERA</find>
+      <find>user</find>
+      <find>GENERa</find>
     </findStrings>
     <replaceStrings>
       <replace>../assets/plugins</replace>
@@ -158,7 +202,6 @@
       <list>
         <option value="$PROJECT_DIR$/Projects.html" />
         <option value="$PROJECT_DIR$/fullcalendar-3.9.0/_materialFullCalendar.scss" />
-        <option value="$PROJECT_DIR$/assets/js/changes/dashboard.js" />
         <option value="$PROJECT_DIR$/closedProjects.html" />
         <option value="$PROJECT_DIR$/openedProjects.html" />
         <option value="$PROJECT_DIR$/projectForm.html" />
@@ -169,31 +212,44 @@
         <option value="$PROJECT_DIR$/MasterPage.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/customers.html" />
-        <option value="$PROJECT_DIR$/assets/js/changes/projWizard.js" />
         <option value="$PROJECT_DIR$/assets/js/jquery.app.js" />
         <option value="$PROJECT_DIR$/pages/users.html" />
         <option value="$PROJECT_DIR$/pages/customerForm.html" />
         <option value="$PROJECT_DIR$/pages/customers.html" />
-        <option value="$PROJECT_DIR$/pages/dashboardBI.html" />
         <option value="$PROJECT_DIR$/pages/newAppIndex.html" />
         <option value="$PROJECT_DIR$/pages/openedProject.html" />
         <option value="$PROJECT_DIR$/pages/openedProjects.html" />
         <option value="$PROJECT_DIR$/pages/projectWizard.html" />
         <option value="$PROJECT_DIR$/pages/requests.html" />
-        <option value="$PROJECT_DIR$/pages/requestsForm.html" />
-        <option value="$PROJECT_DIR$/pages/taskForm.html" />
         <option value="$PROJECT_DIR$/pages/tasks.html" />
         <option value="$PROJECT_DIR$/pages/userForm.html" />
         <option value="$PROJECT_DIR$/pages/closedProject.html" />
         <option value="$PROJECT_DIR$/pages/closedProjects.html" />
         <option value="$PROJECT_DIR$/pages/login.html" />
-        <option value="$PROJECT_DIR$/assets/js/changes/CookiesFunctions.js" />
-        <option value="$PROJECT_DIR$/assets/js/changes/openedProject.js" />
         <option value="$PROJECT_DIR$/assets/js/changes/ajaxCalls.js" />
-        <option value="$PROJECT_DIR$/assets/js/changes/utils.js" />
-        <option value="$PROJECT_DIR$/pages/Masters/RegMasterPage.html" />
-        <option value="$PROJECT_DIR$/pages/Masters/AdminMasterPage.html" />
         <option value="$PROJECT_DIR$/pages/index.html" />
+        <option value="$PROJECT_DIR$/assets/js/changes/closedProject.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/ClosedProjects.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/customerForm.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/customers.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/dashboard.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/openedProject.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/openedProjects.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/projWizard.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/requestsForm.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/tasks.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/tasksForm.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/usersForm.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/requests.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/users.js" />
+        <option value="$PROJECT_DIR$/pages/taskForm.html" />
+        <option value="$PROJECT_DIR$/pages/requestsForm.html" />
+        <option value="$PROJECT_DIR$/pages/Masters/RegMasterPage.html" />
+        <option value="$PROJECT_DIR$/pages/dashboardBI.html" />
+        <option value="$PROJECT_DIR$/pages/Masters/AdminMasterPage.html" />
+        <option value="$PROJECT_DIR$/assets/js/changes/CookiesFunctions.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/constants.js" />
+        <option value="$PROJECT_DIR$/assets/js/changes/utils.js" />
       </list>
     </option>
   </component>
@@ -263,24 +319,7 @@
             <path>
               <item name="Tmanagment" type="b2602c69:ProjectViewProjectNode" />
               <item name="Tmanagment" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Tmanagment" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tmanagment" type="462c0819:PsiDirectoryNode" />
-              <item name="Bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Tmanagment" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tmanagment" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Tmanagment" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tmanagment" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Masters" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -318,26 +357,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.login.html">
+  <component name="RunManager" selected="JavaScript Debug.customers.html">
     <configuration name="closedProject.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Tmanagment/pages/closedProject.html" />
     <configuration name="closedProjects.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Tmanagment/pages/closedProjects.html" />
+    <configuration name="customers.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Tmanagment/pages/customers.html" />
     <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Tmanagment/pages/index.html" />
-    <configuration name="locales.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Tmanagment/fullcalendar-3.9.0/demos/locales.html" />
     <configuration name="login.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Tmanagment/pages/login.html" />
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.locales.html" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.closedProject.html" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.closedProjects.html" />
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.closedProject.html" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.closedProjects.html" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.customers.html" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.closedProject.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.closedProjects.html" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.locales.html" />
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.customers.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.closedProject.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.closedProjects.html" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
@@ -360,12 +399,12 @@
       <workItem from="1521125402441" duration="523000" />
       <workItem from="1526818053283" duration="341000" />
       <workItem from="1528235865317" duration="1083000" />
-      <workItem from="1529766283693" duration="4204000" />
+      <workItem from="1529766283693" duration="11285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17430000" />
+    <option name="totallyTimeSpent" value="24511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -374,11 +413,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39970502" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -386,7 +426,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -407,92 +446,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/changes/utils.js</url>
-          <line>2</line>
+          <url>file://$PROJECT_DIR$/assets/js/changes/ClosedProjects.js</url>
+          <line>93</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/images/logo_dark.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/logo_he1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/appIndex.html" />
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="66" lean-forward="false" selection-start-line="3" selection-start-column="66" selection-end-line="3" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/projWizard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2595">
-          <caret line="173" column="7" lean-forward="false" selection-start-line="173" selection-start-column="7" selection-end-line="173" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/requests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="35" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/big/img1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/email/1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/email/2.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/email/3.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/gallery/1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/gallery/2.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/users/avatar-1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/images/small/img1.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -517,14 +481,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/closedProject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="183" column="39" lean-forward="false" selection-start-line="183" selection-start-column="39" selection-end-line="183" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -569,14 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/dashboardBI.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-690">
-          <caret line="88" column="16" lean-forward="true" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/newAppIndex.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -617,14 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/requestsForm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2283">
-          <caret line="183" column="34" lean-forward="false" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/userForm.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2775">
@@ -641,102 +581,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/CookiesFunctions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/customerForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/openedProject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5145">
-          <caret line="296" column="20" lean-forward="false" selection-start-line="296" selection-start-column="20" selection-end-line="296" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/ajaxCalls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1705">
-          <caret line="594" column="27" lean-forward="true" selection-start-line="594" selection-start-column="27" selection-end-line="594" selection-end-column="27" />
-          <folding>
-            <marker date="1529769446000" expanded="true" signature="27394:27912" ph="{&quot;url&quot;: 'TasksWS.asmx/GetProjectTasksList'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1555">
-          <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-          <folding>
-            <marker date="1529769638000" expanded="true" signature="4040:4042" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/usersForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/taskForm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="219" column="34" lean-forward="false" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/tasks.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="64" column="47" lean-forward="false" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/changes/customers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1620">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/Masters/AdminMasterPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1800">
-          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/Masters/RegMasterPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1632">
-          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -752,15 +600,7 @@
     <entry file="file://$PROJECT_DIR$/pages/closedProject.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3945">
-          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -776,6 +616,249 @@
     <entry file="file://$PROJECT_DIR$/assets/images/favicon.ico">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LoginWS.asmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/static_data/tasks.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="9919" column="4" lean-forward="false" selection-start-line="9919" selection-start-column="4" selection-end-line="9919" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/ajaxCalls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8910">
+          <caret line="594" column="27" lean-forward="true" selection-start-line="594" selection-start-column="27" selection-end-line="594" selection-end-column="27" />
+          <folding>
+            <marker date="1529769446000" expanded="true" signature="27394:27912" ph="{&quot;url&quot;: 'TasksWS.asmx/GetProjectTasksList'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/openedProject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-584">
+          <caret line="197" column="43" lean-forward="true" selection-start-line="197" selection-start-column="43" selection-end-line="197" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/openedProjects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <marker date="1529875356000" expanded="true" signature="1181:1197" ph="..." />
+            <marker date="1529875356000" expanded="true" signature="2072:2088" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/projWizard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/requestsForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/tasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-390">
+          <caret line="244" column="101" lean-forward="false" selection-start-line="244" selection-start-column="101" selection-end-line="244" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/tasksForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/requests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="80" column="82" lean-forward="true" selection-start-line="80" selection-start-column="82" selection-end-line="80" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="59" column="32" lean-forward="false" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/taskForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="273" column="45" lean-forward="true" selection-start-line="273" selection-start-column="45" selection-end-line="273" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/usersForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="292" column="30" lean-forward="false" selection-start-line="292" selection-start-column="30" selection-end-line="292" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/requestsForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="227" column="89" lean-forward="false" selection-start-line="227" selection-start-column="89" selection-end-line="227" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/Masters/RegMasterPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="127" column="19" lean-forward="false" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/dashboardBI.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-358">
+          <caret line="95" column="30" lean-forward="false" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/Masters/AdminMasterPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="150" column="35" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#localStorageConstants#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/plugins/tinymce/tinymce.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="1" column="31490" lean-forward="false" selection-start-line="1" selection-start-column="31490" selection-end-line="1" selection-end-column="31490" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!block;n#setToLocalStorage#0" expanded="false" />
+            <element signature="n#!!block;n#getFromLocalStorage#0" expanded="false" />
+            <marker date="1529877871000" expanded="true" signature="2990:2992" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/closedProject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/ClosedProjects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="96" column="38" lean-forward="false" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/CookiesFunctions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300">
+          <caret line="4" column="66" lean-forward="false" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/customerForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-675">
+          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/changes/customers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-177">
+          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
