@@ -1,4 +1,4 @@
-var localStorageConstants = {
+ localStorageConstants = {
 
     projects:
         {
@@ -9,7 +9,7 @@ var localStorageConstants = {
         },
     employees:
         {
-            user: "user",
+            user: "employee",
             userName:"userName"
         },
     customers:

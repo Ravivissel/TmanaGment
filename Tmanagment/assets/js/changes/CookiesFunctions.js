@@ -2,7 +2,7 @@
     var username = getCookie("username");
     if (username !== "") {
         setCookie("username", username, 1 / 24);
-        setToLocalStorage(localStorageConstants.employees.userName, username);
+        setToLocalStorage("userName", username);
     }
 
     else {
