@@ -11,7 +11,7 @@ $(document).ready(function () {
         if (arr_project_task.func == "new" && arr_project_task.proj != "-1") {
             selected = 1;
             $("#proj_req_assign").val(selected);
-            $("#projectDiv").prop('hidden', false);                 
+            $("#projectDiv").prop('hidden', false);
             $("#assign_to_project").val(arr_project_task.proj);
         }
     }
@@ -41,7 +41,7 @@ $(document).ready(function () {
             }
         }
         else $("#backButton").prop('hidden', true);
-    }
+    } 
 
     if (JSON.parse(GENERAL.TASKS.getRequestsTasksList()).length != 0) {
         arr_request_task = JSON.parse(GENERAL.TASKS.getRequestsTasksList());
@@ -51,6 +51,7 @@ $(document).ready(function () {
             localStorage.arr_request_task = JSON.stringify(arr_details);
             $("#proj_req_assignDiv").prop('hidden', true);
             $("#proj_req_assign_label").prop('hidden', true);
+            $("#projectDiv").prop('hidden', true);
             $("#statusDiv").prop('hidden', false);
             $("#requestDiv").prop('hidden', false);   
             uploadRequestTaskData(arr_request_task.taskID);

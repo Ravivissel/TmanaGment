@@ -500,8 +500,8 @@ public class Project
 
         if (customer_id.Id == -1)
         {
-            customer_query = "insert into customers INSERTED.ID into @output_projects(id) values ('" + customer_id.First_name + "','" + customer_id.Last_name + "','" + customer_id.Phone_num + "','Y') ";
-            project_query = "insert into projects OUTPUT INSERTED.ID into @output_projects(id) values ('" + title + "','" + description + "','" + "(select id from @output_customers)" + "','" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "') ";
+            customer_query = "insert into customers OUTPUT INSERTED.ID into @output_customers(id) values ('" + customer_id.First_name + "','" + customer_id.Last_name + "','" + customer_id.Phone_num + "','Y') ";
+            project_query = "insert into projects OUTPUT INSERTED.ID into @output_projects(id) values ('" + title + "','" + description + "',(select id from @output_customers),'" + Priority_key + "','" + Request_id + "','" + Project_manager.Id + "','" + Start_date + "','" + End_date + "','" + Contact_name + "','" + Contact_phone + "','" + Modified_at + "','" + Created_at + "','" + Created_by.Id + "') ";
         }
         else
         {
