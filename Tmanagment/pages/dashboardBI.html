@@ -7,7 +7,7 @@
     <meta name="author" content="Coderthemes">
 
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
-
+    <script src="../../assets/js/changes/constants.js"></script>
     <title>דאשבורד BI</title>
 
     <!-- Plugins  -->
@@ -92,8 +92,8 @@
 
     <script>
 
-        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-        if (user.User_type == "B") { location.href = "index.html"; }
+        var user = getFromLocalStorage(localStorageConstants.employees.user);
+        if (user.User_type === "B") { location.href = "index.html"; }
 
     </script>
 

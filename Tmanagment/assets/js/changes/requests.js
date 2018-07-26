@@ -20,7 +20,7 @@
                 "sLast": "אחרון"
             }
         }
-   
+
     });
 
     table.buttons().container()
@@ -30,8 +30,8 @@
 
     function addDataToTable() {
         table.clear().draw();
+        var user = getFromLocalStorage(localStorageConstants.employees.user);
 
-        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
         var userId = user.Id;
         var userType = user.User_type;
         var request = {
@@ -51,9 +51,9 @@
     }
 
     function renderRequestsPage(RequestsData) {
-        results = $.parseJSON(RequestsData.d);
+        var results = $.parseJSON(RequestsData.d);
         //localStorage.requestList = results;
-        GENERAL.REQUESTS.setRequestsList(JSON.stringify(results));
+        setToLocalStorage(localStorageConstants.requests.RequestsList, results);
 
         $.each(results, function (i, row) {
 
@@ -71,25 +71,25 @@
 
         $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = table.row($(this).parents('tr')).data();
-            arr_details = { requestID: data[0], func: "show" };
-            GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_details));
+            var arr_details = {requestID: data[0], func: "show"};
+            setToLocalStorage(localStorageConstants.requests.RequestsTasksList,arr_details);
             location.href = "../../../pages/requestsForm.html";
         });
 
         $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
             var data = table.row($(this).parents('tr')).data();
-            arr_details = { requestID: data[0], func: "edit", status: data[5] };
-            GENERAL.REQUESTS.setRequestsList(JSON.stringify(arr_details));
+            var arr_details = {requestID: data[0], func: "edit", status: data[5]};
+            setToLocalStorage(localStorageConstants.requests.RequestsTasksList,arr_details);
             location.href = "../../../pages/requestsForm.html";
         });
 
         $('#activeRequests').change(function () {
             refreshTable();
-        }); 
+        });
     }
 
     function refreshTable() {
-        results = JSON.parse(GENERAL.REQUESTS.getRequestsList());
+        var results = getFromLocalStorage(localStorageConstants.requests.RequestsList);
         var active = $("#activeRequests").prop('checked');
         table.clear().draw();
 

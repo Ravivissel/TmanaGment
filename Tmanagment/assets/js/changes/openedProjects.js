@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
     var userId = user.Id;
     var request = {
         employeeId: userId
@@ -17,10 +17,10 @@
     }
 
     function renderActiveProjectsPage(openedProjectsData) {
-        results = $.parseJSON(openedProjectsData.d);
-        //for the projectForm page
-        localStorage.openedProjectsList = results;
-        user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+        var results = $.parseJSON(openedProjectsData.d);
+        var user = getFromLocalStorage(localStorageConstants.employees.user);
+        setToLocalStorage(localStorageConstants.projects.OpenedProjectsList,results);
+
         $("#openedProjects").empty();
         $.each(results, function (i, row) {
             if (user.User_type == "B") {
@@ -49,7 +49,7 @@
 
     $('#openedProjects').on('click', '#show', function () {
         var projectCardId = $(this).parent().attr('id');
-        GENERAL.PROJECTS.setOpenProjectClicked(projectCardId);
+        setToLocalStorage(localStorageConstants.projects.OpenProjectClicked, projectCardId);
         location.href = "../../../pages/openedProject.html";
         console.log(projectCardId);
     });

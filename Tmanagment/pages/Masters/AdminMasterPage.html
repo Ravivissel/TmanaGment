@@ -2,7 +2,7 @@
 <!-- Top Bar Start -->
 
 <link href="../../assets/css/changes.css" rel="stylesheet" />
-
+<script src="../../assets/js/changes/constants.js"></script>
 <div class="topbar">
 
 
@@ -148,8 +148,8 @@
 
 <script>
 
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    if (user.Id == "102") {
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
+    if (user.Id === "102") {
         $("#profilePic").html('<img src="/assets/images/users/Roy.jpg" alt="user" class="rounded-circle">');
     }
     else $("#profilePic").html('<img src="../../assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">');

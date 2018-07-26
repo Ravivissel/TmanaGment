@@ -1,7 +1,10 @@
 ﻿$(document).ready(function () {
 
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-    if (user.User_type == "B") { location.href = "../../../pages/index.html"; }
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
+
+    if (user.User_type === "B") {
+        location.href = "../../../pages/index.html";
+    }
 
     table = $('#datatable-buttons').DataTable({
         lengthChange: false,
@@ -36,9 +39,9 @@
 
     $('#datatable-buttons').find('tbody').on('click', '#edit', function () {
         var data = table.row($(this).parents('tr')).data();
-        var arr_details = { userID: data[0], func: "edit" };
-         GENERAL.USERS.setUser(JSON.stringify(arr_details));
-         location.href = "../../../pages/userForm.html";
+        var arr_details = {userID: data[0], func: "edit"};
+        setToLocalStorage(localStorageConstants.employees.user,arr_details);
+        location.href = "../../../pages/userForm.html";
     });
 
     function getEmployeesCB(results) {
@@ -54,7 +57,7 @@
         var results = $.parseJSON(employeesData.d);
         $.each(results, function (i, row) {
 
-            if (row.User_type == "A") {
+            if (row.User_type === "A") {
                 userType = "מנהל";
             }
             else userType = "רגיל";

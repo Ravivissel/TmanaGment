@@ -1,13 +1,11 @@
 ﻿$(document).ready(function () {
-    if (JSON.parse(GENERAL.USERS.getUser())) {
-        arr_user = JSON.parse(GENERAL.USERS.getUser());
-        if (arr_user.func == "edit") {
-            user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
-            if (user.User_type == "B") {
-                $("#userType").attr('disabled', 'disabled');
-                $("#back").attr('hidden', 'hidden');
-            }
-            updateUserRoute(arr_user.userID);
+
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
+    if (user) {
+        if (user.func === "edit" && user.User_type === "B") {
+            $("#userType").attr('disabled', 'disabled');
+            $("#back").attr('hidden', 'hidden');
+            updateUserRoute(user.userID);
         }
         else newUserRoute();
     }
@@ -110,16 +108,20 @@ function newUserRoute() {
         }, "אנא הזן מנהל או רגיל");
 
     }
+
     function setEmployeeCB(result) {
         var resultObj = JSON.parse(result.d);
         if (resultObj != null && resultObj.success) {
             sweetAlertSuccess();
-            setTimeout(function () { returnToEmployeesPage(); }, 1001);
+            setTimeout(function () {
+                returnToEmployeesPage();
+            }, 1001);
         } else {
             setEmployeeError(result);
         }
 
     }
+
     function setEmployeeError(err) {
 
         sweetAlertError();
@@ -127,6 +129,7 @@ function newUserRoute() {
     }
 
 }
+
 function updateUserRoute(userID) {
 
     var request = {
@@ -162,11 +165,13 @@ function updateUserRoute(userID) {
         var resultObj = JSON.parse(result.d);
         if (resultObj != null && resultObj.success) {
             sweetAlertSuccess();
-            setTimeout(function () { returnToEmployeesPage(); }, 1001);
+            setTimeout(function () {
+                returnToEmployeesPage();
+            }, 1001);
         } else {
             updateEmployeeError(result);
         }
-        GENERAL.USERS.setUser(null);
+        setToLocalStorage(localStorageConstants.employees.user,null);
     }
 
     function updateEmployeeError(err) {
@@ -257,7 +262,7 @@ function getEmployeeFromUserInput() {
     tmpEmployee.first_name = $("#firstName").val();
     tmpEmployee.last_name = $("#lastName").val();
     tmpEmployee.user_name = $("#userName").val();
-    if ($("#userType").val() == "מנהל") {
+    if ($("#userType").val() === "מנהל") {
         tmpEmployee.user_type = "A";
     }
     else tmpEmployee.user_type = "B";

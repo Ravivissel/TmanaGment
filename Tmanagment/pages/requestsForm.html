@@ -40,8 +40,8 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
     <!--- Page Scripts Dependencies!-->
+    <script src="../../assets/js/changes/constants.js"></script>
     <script src="../assets/js/changes/utils.js"></script>
 
     <link href="../assets/css/changes.css" rel="stylesheet" />
@@ -225,7 +225,7 @@
                     var contact_phone = $("#contact_phone").val();
                     var description = $("#description").val();
                     //get the user id from session
-                    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+                    var user = getFromLocalStorage(localStorageConstants.employees.user);
                     var created_by = user.Id;
                     //check's if it is a new request or an update
                     var func = arr_request.func;

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    user = JSON.parse(GENERAL.EMPLOYEES.getEmployee());
+    var user = getFromLocalStorage(localStorageConstants.employees.user);
     $('#welcome-user').append(user.First_name);
 
     var userId = user.Id;
@@ -15,6 +15,7 @@ $(document).ready(function () {
     function GetDashboardStatisticsCB(results) {
         var resultsArray = $.parseJSON(results.d);
         var statistics = resultsArray[0];
+
 
         $('#projectsInProcessChart').attr("data-percent", statistics.projects_in_progress_percent);
         $('#projectsInProcessChart').attr("data-text", statistics.projects_in_progress_percent+"%");
@@ -50,7 +51,7 @@ $(document).ready(function () {
     }
 
     function renderMyTaskTable(myTaskData) {
-        results = $.parseJSON(myTaskData.d);
+        var results = $.parseJSON(myTaskData.d);
         $.each(results, function (i, row) {
 
             var e_date = new Date(parseInt(row.End_date.replace('/Date(', '')));

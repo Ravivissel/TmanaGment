@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     try {
-        var projectId = JSON.parse(GENERAL.PROJECTS.getClosedProjectClicked());
+        var projectId = getFromLocalStorage(localStorageConstants.projects.ClosedProjectClicked);
         if (projectId) {
             getProjectFromServer(projectId);
         }
@@ -34,7 +34,7 @@ $(document).ready(function () {
         try {
 
             var projects = JSON.parse(projectResult.d);
-            GENERAL.PROJECTS.setOpenedProjectsList(JSON.stringify(projects));
+            setToLocalStorage(localStorageConstants.projects.OpenedProjectsList,projects);
             renderPage(projects[0]);
 
         }
@@ -79,8 +79,8 @@ $(document).ready(function () {
     }
 
     function getProjectTasksListCB(results) {
-        allProjectsTasks = $.parseJSON(results.d);
-        GENERAL.TASKS.setProjectsTasksList(JSON.stringify(allProjectsTasks));
+        var allProjectsTasks = $.parseJSON(results.d);
+        setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,allProjectsTasks);
         renderAllProjectsTaskTable(allProjectsTasks);
     }
 
@@ -132,8 +132,8 @@ $(document).ready(function () {
 
         $('#datatable-buttons').find('tbody').on('click', '#show', function () {
             var data = ProjectsTaskTable.row($(this).parents('tr')).data();
-            arr_details = { taskID: data[0], func: "show", proj: "proj" };
-            GENERAL.TASKS.setProjectsTasksList(JSON.stringify(arr_details));
+            var arr_details = { taskID: data[0], func: "show", proj: "proj" };
+            setToLocalStorage(localStorageConstants.projects.ProjectsTasksList,arr_details);
             location.href = "../../../pages/taskForm.html";
         });
 
@@ -142,7 +142,7 @@ $(document).ready(function () {
     }
 
     function getProjectExpensesCB(results) {
-        allProjectsExpenses = $.parseJSON(results.d);
+        var allProjectsExpenses = $.parseJSON(results.d);
         renderAllProjectsExpensesTable(allProjectsExpenses);
     }
 
